@@ -19,7 +19,7 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li>
-                            <a href="widget-statistic.html" class="waves-effect waves-dark">
+                            <a href="{{ route('aggriculture_property') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Aggriculture Property</span>
                             </a>
                         </li>

@@ -95,21 +95,18 @@
                 <li class="user-profile header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ url('/') }}/assets/images/avatar-4.jpg" class="img-radius"
-                                alt="User-Profile-Image">
-                            <span style="color: white;">John Doe</span>
+                            {{-- <img src="{{ url('/') }}/assets/images/user_icon.png" class="img-radius"
+                                alt="User-Profile-Image"> --}}
+                            @if (session()->has('admin'))
+                                <span style="color: white;">{{ session('admin')['name'] }}</span>
+                            @endif
                             <i class="feather icon-chevron-down" style="color: white;"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn"
                             data-dropdown-out="fadeOut">
-                            <li>
+                            {{-- <li>
                                 <a href="#!">
                                     <i class="feather icon-settings"></i> Settings
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="feather icon-user"></i> Profile
                                 </a>
                             </li>
                             <li>
@@ -121,9 +118,14 @@
                                 <a href="auth-lock-screen.html">
                                     <i class="feather icon-lock"></i> Lock Screen
                                 </a>
+                            </li> --}}
+                            <li>
+                                <a href="{{ route('profile') }}">
+                                    <i class="feather icon-user"></i> Profile
+                                </a>
                             </li>
                             <li>
-                                <a href="auth-sign-in-social.html">
+                                <a href="{{ route('admin_logout') }}">
                                     <i class="feather icon-log-out"></i> Logout
                                 </a>
                             </li>

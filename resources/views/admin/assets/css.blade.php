@@ -1,5 +1,5 @@
 <head>
-    <title></title>
+    <title>@yield('title')</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -22,11 +22,16 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/icon/feather/css/feather.css">
 
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/css/font-awesome-n.min.css">
+
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/icon/themify-icons/themify-icons.css">
 
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/icon/icofont/css/icofont.css">
 
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/icon/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{ url('/') }}/bower_components/chartist/css/chartist.css" type="text/css"
+        media="all">
 
     <link rel="stylesheet" href="{{ url('/') }}/bower_components/select2/css/select2.min.css" />
 
@@ -43,6 +48,7 @@
         href="{{ url('/') }}/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/css/widget.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/css/pages.css">
 
     <style>

@@ -8,8 +8,22 @@
 <script type="text/javascript" src="{{ url('/') }}/bower_components/jquery-slimscroll/js/jquery.slimscroll.js">
 </script>
 
+<script src="{{ url('/') }}/assets/pages/chart/float/jquery.flot.js"></script>
+<script src="{{ url('/') }}/assets/pages/chart/float/jquery.flot.categories.js"></script>
+<script src="{{ url('/') }}/assets/pages/chart/float/curvedLines.js"></script>
+<script src="{{ url('/') }}/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
+
+<script src="{{ url('/') }}/assets/pages/widget/amchart/amcharts.js"></script>
+<script src="{{ url('/') }}/assets/pages/widget/amchart/serial.js"></script>
+<script src="{{ url('/') }}/assets/pages/widget/amchart/light.js"></script>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="{{ url('/') }}/assets/pages/google-maps/gmaps.js"></script>
+
 <script type="text/javascript" src="{{ url('/') }}/bower_components/modernizr/js/modernizr.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/bower_components/modernizr/js/css-scrollbars.js"></script>
+
+
 
 <script src="{{ url('/') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ url('/') }}/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -34,5 +48,6 @@
 <script type="text/javascript" src="{{ url('/') }}/assets/pages/advance-elements/select2-custom.js"></script>
 <script src="{{ url('/') }}/assets/js/pcoded.min.js"></script>
 <script src="{{ url('/') }}/assets/js/vertical/vertical-layout.min.js"></script>
+<script type="text/javascript" src="{{ url('/') }}/assets/pages/dashboard/crm-dashboard.min.js"></script>
 <script src="{{ url('/') }}/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/assets/js/script.js"></script>

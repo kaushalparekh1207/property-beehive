@@ -1,11 +1,11 @@
-@section('Property')
+@section('setup')
     active pcoded-trigger
 @endsection
-@section('a_property')
+@section('role')
     active
 @endsection
 @section('title')
-    Aggriculture Property | Add
+    Roles | Add
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -77,42 +77,23 @@
                                                 <div class="card">
 
                                                     <div class="card-block">
-                                                        <form action="{{ route('aggriculture_property_insert') }}"
-                                                            method="POST">
+                                                        <form action="{{ route('roles_insert') }}" method="POST">
                                                             @csrf
                                                             <div class="form-group row">
-                                                                <label class="col-sm-2 col-form-label">Select Property
-                                                                    Type: <sup>*</sup>
-                                                                </label>
+                                                                <label class="col-sm-2 col-form-label">Enter Role Name:
+                                                                    <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select"
-                                                                        class="js-example-basic-single col-sm-12">
-                                                                        <option value="" selected disabled>Select
-                                                                            One
-                                                                        </option>
-                                                                        @foreach ($propertyData as $property)
-                                                                            <option value="{{ $property->id }}">
-                                                                                {{ $property->property_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-2 col-form-label">Enter Property
-                                                                    Name: <sup>*</sup></label>
-                                                                <div class="col-sm-10">
-                                                                    <input name="a_property_name" type="text"
-                                                                        class="form-control"
-                                                                        placeholder="Aggriculture Property Name">
+                                                                    <input name="role_name" type="text"
+                                                                        class="form-control" placeholder="Role Name">
                                                                 </div>
                                                             </div>
                                                             <br>
-                                                            <center><button type="submit"
+                                                            <center>
+                                                                <button type="submit"
                                                                     class="btn btn-success">Submit</button>
                                                                 <button type="reset"
                                                                     class="btn btn-danger">Cancel</button>
                                                             </center>
-
                                                         </form>
                                                     </div>
                                                 </div>

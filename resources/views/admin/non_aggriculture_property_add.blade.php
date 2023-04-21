@@ -1,11 +1,11 @@
 @section('Property')
-active pcoded-trigger
+    active pcoded-trigger
 @endsection
 @section('na_property')
     active
 @endsection
 @section('title')
-Non Aggriculture Property | Add
+    Non Aggriculture Property | Add
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +85,8 @@ Non Aggriculture Property | Add
                                                                     Type: <sup>*</sup>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select class="js-example-basic-single col-sm-12" name = "propertytype">
+                                                                    <select class="js-example-basic-single col-sm-12"
+                                                                        name="propertytype">
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -97,19 +98,22 @@ Non Aggriculture Property | Add
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-2 col-form-label">Select Non Aggriculture Property
+                                                                <label class="col-sm-2 col-form-label">Select Non
+                                                                    Aggriculture Property
                                                                     Type: <sup>*</sup>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select class="js-example-basic-single col-sm-12" name="na_property_type">
+                                                                    <select class="js-example-basic-single col-sm-12"
+                                                                        name="na_property_type">
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
-                                                                        <option value="Residential" >Residential</option>
-                                                                        <option value="Commercial" >Commercial</option>
+                                                                        <option value="Residential">Residential</option>
+                                                                        <option value="Commercial">Commercial</option>
                                                                         <option value="Industrial">Industrial</option>
-                                                                        <option value="Multi Purpose" >Multi Purpose</option>
-                                                                        
+                                                                        <option value="Multi Purpose">Multi Purpose
+                                                                        </option>
+
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -117,15 +121,18 @@ Non Aggriculture Property | Add
                                                                 <label class="col-sm-2 col-form-label">Enter Property
                                                                     Name: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" name = 'nonaggriculture'
+                                                                    <input type="text" class="form-control"
+                                                                        name='nonaggriculture'
                                                                         placeholder="Non Aggriculture Property Name">
                                                                 </div>
                                                             </div>
-                                                            <hr>
-                                                            <button type="submit"
-                                                                class="btn btn-success">Submit</button>
-                                                            <button type="reset"
-                                                                class="btn btn-danger">Cancel</button>
+                                                            <br>
+                                                            <center>
+                                                                <button type="submit"
+                                                                    class="btn btn-success">Submit</button>
+                                                                <button type="reset"
+                                                                    class="btn btn-danger">Cancel</button>
+                                                            </center>
 
                                                         </form>
                                                     </div>

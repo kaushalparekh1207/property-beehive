@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AgricultureProperty;
 use App\Http\Controllers\Controller;
-use App\Models\Property;
+use App\Models\AdminRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
-class AgriculturePropertyController extends Controller
+class AdminRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.aggriculture_property');
+        return view('admin.admin_roles');
     }
 
     /**
@@ -22,9 +22,7 @@ class AgriculturePropertyController extends Controller
      */
     public function create()
     {
-        $propertyData = Property::where('flag',1)->get();
-
-        return view('admin.aggriculture_property_add',compact('propertyData'));
+        return view('admin.admin_roles_add');
     }
 
     /**
@@ -32,17 +30,17 @@ class AgriculturePropertyController extends Controller
      */
     public function store(Request $request)
     {
-        $formdata = new AgricultureProperty();
-        $formdata->property_id = $request->select;
-        $formdata->a_property_name	= $request->a_property_name;
-        $formdata->created_by = session('admin')['admin_id'];
-        $saveData = $formdata->save();
-        if ($saveData) {
-            toastr()->success('Property Added Successfully !');
-        } else {
-            toastr()->error('Something went Wrong !');
+        $roleModel = new AdminRole();
+        $roleModel->role_name = $request->role_name;
+        $roleModel->created_by = session('admin')['admin_id'];
+        $saveData = $roleModel->save();
+        if($saveData){
+            toastr('Role created successfully','success');
+        }else{
+            toastr('Something went wrong','error');
         }
-        return redirect()->route('aggriculture_property');
+        return redirect()->route('roles');
+
     }
 
     /**
@@ -65,21 +63,20 @@ class AgriculturePropertyController extends Controller
         $columnSortOrder = $order_arr[0]['dir']; // asc or desc
         $searchValue = $search_arr['value']; // Search value
 
-        $totalRecords = AgricultureProperty::select('count(*) as allcount')
-            ->where('agriculture_properties.flag', 1)
-            ->where('agriculture_properties.a_property_name', 'like', '%' . $searchValue . '%')
+        $totalRecords = AdminRole::select('count(*) as allcount')
+            ->where('admin_roles.flag', 1)
+            ->where('admin_roles.role_name', 'like', '%' . $searchValue . '%')
             ->count();
 
-        $totalRecordswithFilter = AgricultureProperty::select('count(*) as allcount')
-            ->where('agriculture_properties.flag', 1)
-            ->where('agriculture_properties.a_property_name', 'like', '%' . $searchValue . '%')
+        $totalRecordswithFilter = AdminRole::select('count(*) as allcount')
+            ->where('admin_roles.flag', 1)
+            ->where('admin_roles.role_name', 'like', '%' . $searchValue . '%')
             ->count();
 
         // Fetch records
-        $records = AgricultureProperty::orderBy($columnName, $columnSortOrder)
-        ->where('agriculture_properties.flag', 1)
-        ->where('agriculture_properties.a_property_name', 'like', '%' . $searchValue . '%')
-            // ->select('block_lists.block', 'block_lists.id', 'block_lists.site_detail_id', 'site_details.title', 'bhk_types.bhk')
+        $records = AdminRole::orderBy($columnName, $columnSortOrder)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_roles.role_name', 'like', '%' . $searchValue . '%')
             ->skip($start)
             ->take($rowperpage)
             ->get();
@@ -89,16 +86,15 @@ class AgriculturePropertyController extends Controller
         foreach ($records as $record) {
             $count = $count + 1;
             $id = $record->id;
-            $a_property_name = $record->a_property_name;
-            $property_id = $record->property_id;
+            $role_name = $record->role_name;
 
             $data_arr[] = array(
                 "id" => $count,
-                "property_name" => $a_property_name,
+                "role_name" => $role_name,
                 "action" => '<div class="dropdown-primary dropdown open">
                 <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
                 <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="'.route('aggriculture_property_destroy',$id).'">Delete</a>
+                <a class="dropdown-item waves-light waves-effect" href="' . route('roles_destroy', $id) . '">Delete</a>
                 </div>
                 </div>',
             );
@@ -118,7 +114,7 @@ class AgriculturePropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AgricultureProperty $agricultureProperty)
+    public function edit()
     {
         //
     }
@@ -126,7 +122,7 @@ class AgriculturePropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AgricultureProperty $agricultureProperty)
+    public function update(Request $request)
     {
         //
     }
@@ -136,15 +132,16 @@ class AgriculturePropertyController extends Controller
      */
     public function destroy($id)
     {
-        $obj = AgricultureProperty::findOrFail($id);
-        $obj->flag = 2;
-        $obj->updated_by = session('admin')['admin_id'];
-        $saveData = $obj->save();
-        if ($saveData) {
-            toastr()->success('Property Deleted Successfully !');
-        } else {
-            toastr()->error('Something went Wrong !');
+        $roleModel = AdminRole::findOrFail($id);
+        $roleModel->flag = 2;
+        $roleModel->updated_by = session('admin')['admin_id'];
+        $delete = $roleModel->save();
+        if($delete){
+            toastr('Role deleted successfully','success');
+        }else{
+            toastr('Something went Wrong Please Try Again','error');
         }
-        return Redirect()->route('aggriculture_property');
+
+        return redirect()->route('roles');
     }
 }

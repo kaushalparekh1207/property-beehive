@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('non_agriculture_properties', function (Blueprint $table) {
             $table->id();
             $table->integer('property_id');
+            $table->string('na_property_type',50);
             $table->string('na_property_name',50);
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();

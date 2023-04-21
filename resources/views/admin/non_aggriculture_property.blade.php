@@ -1,11 +1,11 @@
 @section('Property')
 active pcoded-trigger
 @endsection
-@section('a_property')
+@section('na_property')
     active
 @endsection
 @section('title')
-Aggriculture Property
+Non Aggriculture Property
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@ Aggriculture Property
                                     <div class="page-header-title">
                                         <i class="feather icon-layers bg-c-blue"></i>
                                         <div class="d-inline">
-                                            <h4>Aggriculture Property</h4>
+                                            <h4>Non Aggriculture Property</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@ Aggriculture Property
                                             </li>
                                             <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a>
                                             </li>
-                                            <li class="breadcrumb-item">Aggriculture Property
+                                            <li class="breadcrumb-item">Non Aggriculture Property
                                             </li>
                                         </ul>
                                     </div>
@@ -70,14 +70,15 @@ Aggriculture Property
 
                                                     <div class="card-block">
                                                         <a type="button"
-                                                            href="{{ route('aggriculture_property_add') }}"
+                                                            href="{{ route('non_aggriculture_property_add') }}"
                                                             id="" class="btn btn-success m-b-20">+ Add New</a>
                                                         <div class="dt-responsive table-responsive">
-                                                            <table id="aggricultureProperty"
+                                                            <table id="nonaggricultureProperty"
                                                                 class="table table-striped table-bordered nowrap">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Sr No.</th>
+                                                                        <th>Property Type</th>
                                                                         <th>Property Name</th>
                                                                         <th>Action</th>
                                                                     </tr>
@@ -85,6 +86,7 @@ Aggriculture Property
                                                                 <tfoot>
                                                                     <tr>
                                                                         <th>Sr No.</th>
+                                                                        <th>Property Type</th>
                                                                         <th>Property Name</th>
                                                                         <th>Action</th>
                                                                     </tr>
@@ -116,15 +118,18 @@ Aggriculture Property
 
             columnString = [{
                     data: 'id'
+                }, 
+                {
+                    data: 'na_property_type'
                 },
                 {
-                    data: 'property_name'
+                    data: 'na_property_name'
                 },
                 {
                     data: 'action'
                 },
             ]
-            $('#aggricultureProperty').DataTable({
+            $('#nonaggricultureProperty').DataTable({
                 "language": {
                     "infoFiltered": ""
                 },
@@ -137,7 +142,7 @@ Aggriculture Property
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-                ajax: "{{ route('showAggriculturePropertyDetails') }}",
+                ajax: "{{ route('show_non_AggriculturePropertyDetails') }}",
                 columns: columnString,
             });
         });

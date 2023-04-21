@@ -1,11 +1,11 @@
 @section('Property')
 active pcoded-trigger
 @endsection
-@section('a_property')
+@section('na_property')
     active
 @endsection
 @section('title')
-Aggriculture Property | Add
+Non Aggriculture Property | Add
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +42,8 @@ Aggriculture Property | Add
                                     <div class="page-header-title">
                                         <i class="feather icon-layers bg-c-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Add Aggriculture Property</h5>
-                                            <span>Add New Aggriculture Property</span>
+                                            <h5>Add Non Aggriculture Property</h5>
+                                            <span>Add New Non Aggriculture Property</span>
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@ Aggriculture Property | Add
                                                 <a href="{{ route('index') }}"><i class="feather icon-home"></i></a>
                                             </li>
                                             <li class="breadcrumb-item"><a
-                                                    href="{{ route('aggriculture_property') }}">Aggriculture
+                                                    href="{{ route('non_aggriculture_property') }}">Non Aggriculture
                                                     Property</a>
                                             </li>
                                             <li class="breadcrumb-item">Add New
@@ -77,7 +77,7 @@ Aggriculture Property | Add
                                                 <div class="card">
 
                                                     <div class="card-block">
-                                                        <form action="{{ route('aggriculture_property_insert') }}"
+                                                        <form action="{{ route('non_aggriculture_property_insert') }}"
                                                             method="POST">
                                                             @csrf
                                                             <div class="form-group row">
@@ -85,11 +85,11 @@ Aggriculture Property | Add
                                                                     Type: <sup>*</sup>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select" class="js-example-basic-single col-sm-12">
+                                                                    <select class="js-example-basic-single col-sm-12" name = "propertytype">
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
-                                                                        @foreach ($propertyData as $property)
+                                                                        @foreach ($nonpropertyData as $property)
                                                                             <option value="{{ $property->id }}">
                                                                                 {{ $property->property_name }}</option>
                                                                         @endforeach
@@ -97,16 +97,33 @@ Aggriculture Property | Add
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">Select Non Aggriculture Property
+                                                                    Type: <sup>*</sup>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="js-example-basic-single col-sm-12" name="na_property_type">
+                                                                        <option value="" selected disabled>Select
+                                                                            One
+                                                                        </option>
+                                                                        <option value="Residential" >Residential</option>
+                                                                        <option value="Commercial" >Commercial</option>
+                                                                        <option value="Industrial">Industrial</option>
+                                                                        <option value="Multi Purpose" >Multi Purpose</option>
+                                                                        
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">Enter Property
                                                                     Name: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <input name="a_property_name" type="text" class="form-control"
-                                                                        placeholder="Aggriculture Property Name">
+                                                                    <input type="text" class="form-control" name = 'nonaggriculture'
+                                                                        placeholder="Non Aggriculture Property Name">
                                                                 </div>
                                                             </div>
                                                             <hr>
                                                             <button type="submit"
-                                                                class="btn btn-success" >Submit</button>
+                                                                class="btn btn-success">Submit</button>
                                                             <button type="reset"
                                                                 class="btn btn-danger">Cancel</button>
 

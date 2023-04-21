@@ -23,6 +23,7 @@ class AgriculturePropertyController extends Controller
     public function create()
     {
         $propertyData = Property::where('flag',1)->get();
+
         return view('admin.aggriculture_property_add',compact('propertyData'));
     }
 
@@ -31,7 +32,17 @@ class AgriculturePropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formdata = new AgricultureProperty();
+        $formdata->property_id = $request->select;
+        $formdata->a_property_name	= $request->a_property_name;
+        $formdata->created_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
+        if ($saveData) {
+            toastr()->success('Property Added Successfully !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
+        return redirect()->route('aggriculture_property');
     }
 
     /**
@@ -89,7 +100,7 @@ class AgriculturePropertyController extends Controller
                 <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                 <a class="dropdown-item waves-light waves-effect" href="#">Edit</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item waves-light waves-effect" href="#">Delete</a>
+                <a class="dropdown-item waves-light waves-effect" href="'.route('aggriculture_property_destroy',$id).'">Delete</a>
                 </div>
                 </div>',
             );
@@ -125,8 +136,17 @@ class AgriculturePropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AgricultureProperty $agricultureProperty)
+    public function destroy($id)
     {
-        //
+        $obj = AgricultureProperty::findOrFail($id);
+        $obj->flag = 2;
+        $obj->updated_by = session('admin')['admin_id'];
+        $saveData = $obj->save();
+        if ($saveData) {
+            toastr()->success('Property Deleted Successfully !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
+        return Redirect()->route('aggriculture_property');
     }
 }

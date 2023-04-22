@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\NonAgriculturePropertyController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
 /*

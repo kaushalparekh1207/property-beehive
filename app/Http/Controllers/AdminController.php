@@ -37,4 +37,15 @@ class AdminController extends Controller
             return redirect('admin/login')->with('failedmsg', 'Invalid Information');
         }
     }
+
+    public function index()
+    {
+        return view('admin.admin_users');
+    }
+
+    public function create()
+    {
+        $roles = AdminRole::where('flag',1)->get();
+        return view('admin.admin_users_add',compact('roles'));
+    }
 }

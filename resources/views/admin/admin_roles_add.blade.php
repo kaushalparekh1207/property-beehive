@@ -40,10 +40,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="feather icon-layers bg-c-blue"></i>
+                                        <i class="feather icon-settings bg-c-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Add Aggriculture Property</h5>
-                                            <span>Add New Aggriculture Property</span>
+                                            <h5>Admin Roles</h5>
+                                            <span>Add New Admin Roles</span>
                                         </div>
                                     </div>
                                 </div>
@@ -53,9 +53,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('index') }}"><i class="feather icon-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item"><a
-                                                    href="{{ route('aggriculture_property') }}">Aggriculture
-                                                    Property</a>
+                                            <li class="breadcrumb-item"><a href="{{ route('roles') }}">Roles</a>
                                             </li>
                                             <li class="breadcrumb-item">Add New
                                             </li>

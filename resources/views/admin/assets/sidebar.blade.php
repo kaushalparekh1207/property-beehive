@@ -48,8 +48,8 @@
                                 <span class="pcoded-mtext ml-3">State Master</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="widget-data.html" class="waves-effect waves-dark">
+                        <li class="@yield('city')">
+                            <a href="{{ route('city') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext ml-3">City Master</span>
                             </a>
                         </li>

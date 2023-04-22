@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('admin_password',100);
             $table->string('password',255);
             $table->rememberToken();
+            $table->integer('flag')->default(1)->comment('1=Active,2=Inactive');
             $table->timestamps();
         });
     }

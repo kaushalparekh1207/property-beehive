@@ -1,11 +1,8 @@
-@section('Property')
-    active pcoded-trigger
-@endsection
-@section('a_property')
+@section('admin_users')
     active
 @endsection
 @section('title')
-    Admin Users
+    Admin User List
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -73,19 +70,25 @@
                                                         <a type="button" href="{{ route('createAdminUsers') }}"
                                                             id="" class="btn btn-success m-b-20">+ Add New</a>
                                                         <div class="dt-responsive table-responsive">
-                                                            <table id="aggricultureProperty"
+                                                            <table id="adminUsersTable"
                                                                 class="table table-striped table-bordered nowrap">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Sr No.</th>
-                                                                        <th>Property Name</th>
+                                                                        <th>Role Name</th>
+                                                                        <th>User Name</th>
+                                                                        <th>Email</th>
+                                                                        <th>Contact</th>
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tfoot>
                                                                     <tr>
                                                                         <th>Sr No.</th>
-                                                                        <th>Property Name</th>
+                                                                        <th>Role Name</th>
+                                                                        <th>User Name</th>
+                                                                        <th>Email</th>
+                                                                        <th>Contact</th>
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </tfoot>
@@ -118,13 +121,22 @@
                     data: 'id'
                 },
                 {
-                    data: 'property_name'
+                    data: 'role_name'
+                },
+                {
+                    data: 'name'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'contact'
                 },
                 {
                     data: 'action'
                 },
             ]
-            $('#aggricultureProperty').DataTable({
+            $('#adminUsersTable').DataTable({
                 "language": {
                     "infoFiltered": ""
                 },
@@ -137,7 +149,7 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-                ajax: "{{ route('showAggriculturePropertyDetails') }}",
+                ajax: "{{ route('showAdminUsers') }}",
                 columns: columnString,
             });
         });

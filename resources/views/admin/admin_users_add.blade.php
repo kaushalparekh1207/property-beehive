@@ -74,14 +74,14 @@
                                                 <div class="card">
 
                                                     <div class="card-block">
-                                                        <form action="{{ route('non_aggriculture_property_insert') }}"
+                                                        <form action="{{ route('AdminUsersinsert') }}"
                                                             method="POST">
                                                             @csrf
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">Select
                                                                     Role: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select" class="form-control">
+                                                                    <select name="role" class="form-control">
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -118,6 +118,16 @@
                                                                         placeholder="Enter Contact Number">
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    Password: <sup>*</sup></label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" class="form-control"
+                                                                        name="password"
+                                                                        placeholder="Enter Password">
+                                                                </div>
+                                                            </div>
+
                                                             <br>
                                                             <center>
                                                                 <button type="submit"

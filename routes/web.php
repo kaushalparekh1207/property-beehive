@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\NonAgriculturePropertyController;
-use App\Models\NonAgricultureProperty;
+use App\Http\Controllers\StateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,3 +81,11 @@ Route::get('/admin/state/delete/{id}',[StateController::class,'destroy'])->name(
 Route::get('/admin/users',[AdminController::class,'index'])->name('admin_users');
 Route::get('/admin/users/show',[AdminController::class,'show'])->name('showAdminUsers');
 Route::get('/admin/users/add',[AdminController::class,'create'])->name('createAdminUsers');
+Route::post('/admin/users/insert',[AdminController::class,'store'])->name('AdminUsersinsert');
+Route::get('/admin/users/delete/{id}',[AdminController::class,'destroy'])->name('AdminUsersdestroy');
+
+Route::get('/admin/city',[CityController::class,'index'])->name('city');
+Route::get('/admin/city/show',[CityController::class,'show'])->name('showcity');
+Route::get('/admin/city/add',[CityController::class,'create'])->name('city_add');
+Route::post('/admin/city/insert',[CityController::class,'store'])->name('city_insert');
+Route::get('/admin/city/delete/{id}',[CityController::class,'destroy'])->name('city_destroy');

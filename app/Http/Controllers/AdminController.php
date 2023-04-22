@@ -58,7 +58,7 @@ class AdminController extends Controller
         $Model->contact = $request->contact_number;
         $Model->admin_password = $request->password;
         $Model->password = Hash::make($request->passwoed);
-        
+
         // $Model->created_by = session('admin')['admin_id'];
         $saveData = $Model->save();
         if($saveData){
@@ -134,12 +134,15 @@ class AdminController extends Controller
                 "name"=>$username,
                 "email" => $useremail,
                 "contact"=>$number,
-                "action" => '<div class="dropdown-primary dropdown open">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="' . route('roles_destroy', $id) . '">Delete</a>
+                "action" => '<div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  Action
+                </button>
+                <div class="dropdown-menu">
+                  <a href="' . route('AdminUsersedit', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Edit</a>
+                  <a href="' . route('AdminUsersdestroy', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Delete</a>
                 </div>
-                </div>',
+              </div>',
             );
         }
 
@@ -152,6 +155,40 @@ class AdminController extends Controller
 
         echo json_encode($response);
         exit;
+    }
+
+    public function edit($id){
+        $userData = AdminUser::find($id);
+        $roles = AdminRole::where('flag',1)->get();
+        return view('admin.admin_users_edit',compact('userData', 'roles'));
+    }
+
+    public function update(Request $request){
+
+        $obj = AdminUser::find($request->user_id);
+        $obj->role_id = $request->role_id;
+        $obj->name  = $request -> name;
+        $obj->email  = $request -> email;
+        $obj->contact  = $request -> contact;
+        $updateData = $obj->save();
+        if($updateData){
+            toastr()->success('Admin User Updated Successfully !');
+        }else{
+            toastr()->error('Something Went Wrong!');
+        }
+        return redirect()->route('admin_users');
+    }
+
+    public function destroy($id){
+        $obj = AdminUser::findOrFail($id);
+        $obj->flag = 2;
+        $saveData = $obj->save();
+        if($saveData){
+            toastr()->success('Admin User Deleted Successfully !');
+        }else{
+            toastr()->error('Something Went Wrong!');
+        }
+        return redirect()->route('admin_users');
     }
 
 }

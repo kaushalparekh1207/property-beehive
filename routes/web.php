@@ -84,6 +84,8 @@ Route::get('/admin/users/show',[AdminController::class,'show'])->name('showAdmin
 Route::get('/admin/users/add',[AdminController::class,'create'])->name('createAdminUsers');
 Route::post('/admin/users/insert',[AdminController::class,'store'])->name('AdminUsersinsert');
 Route::get('/admin/users/delete/{id}',[AdminController::class,'destroy'])->name('AdminUsersdestroy');
+Route::get('/admin/users/edit/{id}',[AdminController::class,'edit'])->name('AdminUsersedit');
+Route::post('/admin/users/edit/updateuser',[AdminController::class,'update'])->name('AdminUsersupdate');
 
 Route::get('/admin/city',[CityController::class,'index'])->name('city');
 Route::get('/admin/city/show',[CityController::class,'show'])->name('showcity');

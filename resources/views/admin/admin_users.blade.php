@@ -43,11 +43,9 @@
                                     <div class="page-header-breadcrumb">
                                         <ul class=" breadcrumb breadcrumb-title">
                                             <li class="breadcrumb-item">
-                                                <a href="../index-2.html"><i class="feather icon-home"></i></a>
+                                                <a href="{{ route('index') }}"><i class="feather icon-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a>
-                                            </li>
-                                            <li class="breadcrumb-item">Aggriculture Property
+                                            <li class="breadcrumb-item">Admin Users
                                             </li>
                                         </ul>
                                     </div>

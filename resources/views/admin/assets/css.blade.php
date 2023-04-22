@@ -55,5 +55,9 @@
         .pcoded .pcoded-header[header-theme=themelight1] {
             background: #263544;
         }
+
+        .btn i {
+            margin-right: 0px !important;
+        }
     </style>
 </head>

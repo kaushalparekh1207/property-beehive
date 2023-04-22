@@ -50,9 +50,8 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('index') }}"><i class="feather icon-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item"><a
-                                                    href="{{ route('non_aggriculture_property') }}">Non Aggriculture
-                                                    Property</a>
+                                            <li class="breadcrumb-item"><a href="{{ route('admin_users') }}">Admin
+                                                    Users</a>
                                             </li>
                                             <li class="breadcrumb-item">Add New
                                             </li>
@@ -74,8 +73,7 @@
                                                 <div class="card">
 
                                                     <div class="card-block">
-                                                        <form action="{{ route('AdminUsersinsert') }}"
-                                                            method="POST">
+                                                        <form action="{{ route('AdminUsersinsert') }}" method="POST">
                                                             @csrf
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">Select
@@ -113,8 +111,10 @@
                                                                 <label class="col-sm-2 col-form-label">
                                                                     Contact Number: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="number" class="form-control"
-                                                                        name="contact_number"
+                                                                    <input type="text" class="form-control"
+                                                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+                                                                        name="contact_number" minlength="10"
+                                                                        maxlength="10"
                                                                         placeholder="Enter Contact Number">
                                                                 </div>
                                                             </div>
@@ -123,8 +123,7 @@
                                                                     Password: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input type="password" class="form-control"
-                                                                        name="password"
-                                                                        placeholder="Enter Password">
+                                                                        name="password" placeholder="Enter Password">
                                                                 </div>
                                                             </div>
 

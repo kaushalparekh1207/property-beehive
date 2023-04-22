@@ -1,11 +1,11 @@
 @section('setup')
     active pcoded-trigger
 @endsection
-@section('role')
+@section('state')
     active
 @endsection
 @section('title')
-    Roles | Add
+    State | Add
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +42,8 @@
                                     <div class="page-header-title">
                                         <i class="feather icon-settings bg-c-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Admin Roles</h5>
-                                            <span>Add New Admin Roles</span>
+                                            <h5>States</h5>
+                                            <span>Add New States</span>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,8 @@
                                             <li class="breadcrumb-item">
                                                 <a href="{{ route('index') }}"><i class="feather icon-home"></i></a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="{{ route('roles') }}">Roles</a>
+                                            <li class="breadcrumb-item"><a
+                                                    href="{{ route('state') }}">States List</a>
                                             </li>
                                             <li class="breadcrumb-item">Add New
                                             </li>
@@ -70,19 +71,16 @@
                                     <div class="page-body">
                                         <div class="row">
                                             <div class="col-sm-12">
-
-
                                                 <div class="card">
-
                                                     <div class="card-block">
-                                                        <form action="{{ route('roles_insert') }}" method="POST">
+                                                        <form action="{{ route('state_insert') }}" method="POST">
                                                             @csrf
                                                             <div class="form-group row">
-                                                                <label class="col-sm-2 col-form-label">Enter Role Name:
+                                                                <label class="col-sm-2 col-form-label">Enter State Name:
                                                                     <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <input name="role_name" type="text"
-                                                                        class="form-control" placeholder="Role Name">
+                                                                    <input name="state" type="text"
+                                                                        class="form-control" placeholder="State Name">
                                                                 </div>
                                                             </div>
                                                             <br>

@@ -1,3 +1,9 @@
+@section('dashboard')
+    active
+@endsection
+@section('title')
+    Dashboard
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 

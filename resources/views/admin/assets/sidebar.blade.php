@@ -2,7 +2,7 @@
     <div class="nav-list">
         <div class="pcoded-inner-navbar main-menu">
             <ul class="pcoded-item pcoded-left-item">
-                <li class="">
+                <li class="@yield('dashboard')">
                     <a href="{{ route('index') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
                             <i class="feather icon-home"></i>
@@ -43,8 +43,8 @@
                                 <span class="pcoded-mtext ml-3">Role Master</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="widget-data.html" class="waves-effect waves-dark">
+                        <li class="@yield('state')">
+                            <a href="{{ route('state') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext ml-3">State Master</span>
                             </a>
                         </li>
@@ -54,6 +54,14 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="@yield('admin_users')">
+                    <a href="{{ route('admin_users') }}" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="fa fa-user-plus"></i>
+                        </span>
+                        <span class="pcoded-mtext">Admin Users</span>
+                    </a>
                 </li>
             </ul>
 

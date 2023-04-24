@@ -92,3 +92,7 @@ Route::get('/admin/city/show',[CityController::class,'show'])->name('showcity');
 Route::get('/admin/city/add',[CityController::class,'create'])->name('city_add');
 Route::post('/admin/city/insert',[CityController::class,'store'])->name('city_insert');
 Route::get('/admin/city/delete/{id}',[CityController::class,'destroy'])->name('city_destroy');
+
+// Profile Master
+Route::get('/admin/profile/{id}',[AdminController::class,'profile'])->name('profile');
+Route::post('/admin/profile/update',[AdminController::class,'updateProfile'])->name('updateProfile');

@@ -120,9 +120,11 @@
                                 </a>
                             </li> --}}
                             <li>
-                                <a href="{{ route('profile') }}">
+                                @if (session()->has('admin'))
+                                <a href="{{ route('profile', session('admin')['admin_id']) }} ">
                                     <i class="feather icon-user"></i> Profile
                                 </a>
+                                @endif
                             </li>
                             <li>
                                 <a href="{{ route('admin_logout') }}">

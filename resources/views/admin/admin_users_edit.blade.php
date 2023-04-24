@@ -40,7 +40,7 @@
                                         <i class="fa fa-user-plus bg-c-blue"></i>
                                         <div class="d-inline">
                                             <h5>Edit Admin Users</h5>
-                                            <span>Edit New Admin User</span>
+                                            <span>Edit Exist Admin User</span>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                                                     Contact Number: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control"
-                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+                                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                                         name="contact" minlength="10"
                                                                         maxlength="10" value="{{ $userData->contact}}"
                                                                         placeholder="Enter Contact Number">

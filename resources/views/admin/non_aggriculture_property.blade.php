@@ -38,6 +38,7 @@ Non Aggriculture Property
                                         <i class="feather icon-layers bg-c-blue"></i>
                                         <div class="d-inline">
                                             <h4>Non Aggriculture Property</h4>
+                                            <span>Non Aggriculture Property List</span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +119,7 @@ Non Aggriculture Property
 
             columnString = [{
                     data: 'id'
-                }, 
+                },
                 {
                     data: 'na_property_type'
                 },

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cookie;
 use App\Models\AdminUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -31,12 +32,13 @@ class AdminController extends Controller
                 Cookie::queue('saved_input', $input, 1440);
                 Cookie::queue('saved_password', $request->get('password'), 1440);
             }
-            $request->session()->put('admin', ['admin_id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
-            return redirect('admin/dashboard');
+                $request->session()->put('admin', ['admin_id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
+                return redirect('admin/dashboard');
         } else {
             toastr()->error('Invalid Info !');
             return redirect('admin/login')->with('failedmsg', 'Invalid Information');
         }
+
     }
 
     public function index()
@@ -191,4 +193,31 @@ class AdminController extends Controller
         return redirect()->route('admin_users');
     }
 
+    public function profile($id)
+    {
+        $user = AdminUser::find($id);
+        return view('admin.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $userData = AdminUser::find($request->id);
+        $userData->name  = $request -> name;
+        $userData->email  = $request -> email;
+        $userData->contact  = $request -> contact;
+
+        $updateData = $userData->save();
+        $role_id = AdminUser::where('id',$request->id)->pluck('role_id')->first();
+        $role_name = AdminRole::where('id',$role_id)->pluck('role_name')->first();
+        session()->pull('admin');
+        $request->session()->put('admin', ['admin_id' => $request->id, 'name' => $request -> name, 'role' => $role_id, 'role_name' => $role_name]);
+        if($updateData){
+            toastr()->success('Profile Updated Successfully !');
+        }else{
+            toastr()->error('Something Went Wrong!');
+        }
+
+
+        return redirect()->route('index');
+    }
 }

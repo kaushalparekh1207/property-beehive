@@ -38,6 +38,7 @@ Aggriculture Property
                                         <i class="feather icon-layers bg-c-blue"></i>
                                         <div class="d-inline">
                                             <h4>Aggriculture Property</h4>
+                                            <span>Aggriculture Property List</span>
                                         </div>
                                     </div>
                                 </div>

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminRole;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 use App\Models\AdminUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -32,8 +32,8 @@ class AdminController extends Controller
                 Cookie::queue('saved_input', $input, 1440);
                 Cookie::queue('saved_password', $request->get('password'), 1440);
             }
-                $request->session()->put('admin', ['admin_id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
-                return redirect('admin/dashboard');
+            $request->session()->put('admin', ['admin_id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
+            return redirect('admin/dashboard');
         } else {
             toastr()->error('Invalid Info !');
             return redirect('admin/login')->with('failedmsg', 'Invalid Information');
@@ -48,8 +48,8 @@ class AdminController extends Controller
 
     public function create()
     {
-        $roles = AdminRole::where('flag',1)->get();
-        return view('admin.admin_users_add',compact('roles'));
+        $roles = AdminRole::where('flag', 1)->get();
+        return view('admin.admin_users_add', compact('roles'));
     }
     public function store(Request $request)
     {
@@ -59,14 +59,14 @@ class AdminController extends Controller
         $Model->email = $request->email;
         $Model->contact = $request->contact_number;
         $Model->admin_password = $request->password;
-        $Model->password = Hash::make($request->passwoed);
+        $Model->password = Hash::make($request->password);
 
         // $Model->created_by = session('admin')['admin_id'];
         $saveData = $Model->save();
-        if($saveData){
-            toastr('Admin User created successfully','success');
-        }else{
-            toastr('Something went wrong','error');
+        if ($saveData) {
+            toastr('Admin User created successfully', 'success');
+        } else {
+            toastr('Something went wrong', 'error');
         }
         return redirect()->route('admin_users');
 
@@ -90,32 +90,54 @@ class AdminController extends Controller
 
         $totalRecords = AdminUser::join('admin_roles', 'admin_roles.id', '=', 'admin_users.role_id')->select('count(*) as allcount')
             ->where('admin_users.flag', 1)
-            ->where('admin_roles.flag',1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
             ->where('admin_users.name', 'like', '%' . $searchValue . '%')
+            ->orWhere('admin_users.email', 'like', '%' . $searchValue . '%')
+            ->where('admin_users.flag', 1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
+            ->orWhere('admin_users.contact', 'like', '%' . $searchValue . '%')
+            ->where('admin_users.flag', 1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
             ->count();
 
         $totalRecordswithFilter = AdminUser::join('admin_roles', 'admin_roles.id', '=', 'admin_users.role_id')->select('count(*) as allcount')
-        ->where('admin_users.flag', 1)
-        ->where('admin_roles.flag',1)
-        ->where('admin_users.name', 'like', '%' . $searchValue . '%')
-        ->count();
+            ->where('admin_users.flag', 1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
+            ->where('admin_users.name', 'like', '%' . $searchValue . '%')
+            ->orWhere('admin_users.email', 'like', '%' . $searchValue . '%')
+            ->where('admin_users.flag', 1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
+            ->orWhere('admin_users.contact', 'like', '%' . $searchValue . '%')
+            ->where('admin_users.flag', 1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
+            ->count();
 
         // Fetch records
         $records = AdminUser::orderBy($columnName, $columnSortOrder)
             ->join('admin_roles', 'admin_roles.id', '=', 'admin_users.role_id')
             ->where('admin_users.flag', 1)
-            ->where('admin_roles.flag',1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
             ->where('admin_users.name', 'like', '%' . $searchValue . '%')
             ->orWhere('admin_roles.role_name', 'like', '%' . $searchValue . '%')
             ->where('admin_users.flag', 1)
-            ->where('admin_roles.flag',1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
             ->orWhere('admin_users.email', 'like', '%' . $searchValue . '%')
             ->where('admin_users.flag', 1)
-            ->where('admin_roles.flag',1)
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
             ->orWhere('admin_users.contact', 'like', '%' . $searchValue . '%')
             ->where('admin_users.flag', 1)
-            ->where('admin_roles.flag',1)
-            ->select('admin_users.*','admin_roles.role_name')
+            ->where('admin_roles.flag', 1)
+            ->where('admin_users.role_id', '>', 1)
+            ->select('admin_users.*', 'admin_roles.role_name')
             ->skip($start)
             ->take($rowperpage)
             ->get();
@@ -133,9 +155,9 @@ class AdminController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "role_name" => $role_name,
-                "name"=>$username,
+                "name" => $username,
                 "email" => $useremail,
-                "contact"=>$number,
+                "contact" => $number,
                 "action" => '<div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                   Action
@@ -159,35 +181,38 @@ class AdminController extends Controller
         exit;
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $userData = AdminUser::find($id);
-        $roles = AdminRole::where('flag',1)->get();
-        return view('admin.admin_users_edit',compact('userData', 'roles'));
+        $roles = AdminRole::where('flag', 1)->get();
+        return view('admin.admin_users_edit', compact('userData', 'roles'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $obj = AdminUser::find($request->user_id);
         $obj->role_id = $request->role_id;
-        $obj->name  = $request -> name;
-        $obj->email  = $request -> email;
-        $obj->contact  = $request -> contact;
+        $obj->name = $request->name;
+        $obj->email = $request->email;
+        $obj->contact = $request->contact;
         $updateData = $obj->save();
-        if($updateData){
+        if ($updateData) {
             toastr()->success('Admin User Updated Successfully !');
-        }else{
+        } else {
             toastr()->error('Something Went Wrong!');
         }
         return redirect()->route('admin_users');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $obj = AdminUser::findOrFail($id);
         $obj->flag = 2;
         $saveData = $obj->save();
-        if($saveData){
+        if ($saveData) {
             toastr()->success('Admin User Deleted Successfully !');
-        }else{
+        } else {
             toastr()->error('Something Went Wrong!');
         }
         return redirect()->route('admin_users');
@@ -202,21 +227,20 @@ class AdminController extends Controller
     public function updateProfile(Request $request)
     {
         $userData = AdminUser::find($request->id);
-        $userData->name  = $request -> name;
-        $userData->email  = $request -> email;
-        $userData->contact  = $request -> contact;
+        $userData->name = $request->name;
+        $userData->email = $request->email;
+        $userData->contact = $request->contact;
 
         $updateData = $userData->save();
-        $role_id = AdminUser::where('id',$request->id)->pluck('role_id')->first();
-        $role_name = AdminRole::where('id',$role_id)->pluck('role_name')->first();
+        $role_id = AdminUser::where('id', $request->id)->pluck('role_id')->first();
+        $role_name = AdminRole::where('id', $role_id)->pluck('role_name')->first();
         session()->pull('admin');
-        $request->session()->put('admin', ['admin_id' => $request->id, 'name' => $request -> name, 'role' => $role_id, 'role_name' => $role_name]);
-        if($updateData){
+        $request->session()->put('admin', ['admin_id' => $request->id, 'name' => $request->name, 'role' => $role_id, 'role_name' => $role_name]);
+        if ($updateData) {
             toastr()->success('Profile Updated Successfully !');
-        }else{
+        } else {
             toastr()->error('Something Went Wrong!');
         }
-
 
         return redirect()->route('index');
     }

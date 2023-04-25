@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 22, 2023 at 01:49 PM
+-- Generation Time: Apr 25, 2023 at 05:47 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -73,14 +73,18 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_users`
 --
 
 INSERT INTO `admin_users` (`id`, `role_id`, `name`, `email`, `contact`, `email_verified_at`, `admin_password`, `password`, `remember_token`, `flag`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Hackberry Softech', 'info@hackberrysoftech.com', '7948998877', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', '0EOHvim3x3AkHUHPb1sVmdTSIe9ikQei0aZVUSalAT5XiKJChpyr0oH5zhnV', 1, '2023-04-21 06:40:08', '2023-04-21 06:40:08');
+(1, 1, 'Hackberry Softech', 'info@hackberrysoftech.com', '7948998877', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', '0EOHvim3x3AkHUHPb1sVmdTSIe9ikQei0aZVUSalAT5XiKJChpyr0oH5zhnV', 1, '2023-04-21 06:40:08', '2023-04-22 08:22:31'),
+(2, 2, 'Kaushal Parekh', 'kaushal.parekh@hackberrysoftech.com', '8780009537', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', 'RJV2A4tdlq4tyqjT0SebkWrW2Z2oxC8ZJ0fxulKSCCbxLM3mwwqAmuBvDxIr', 1, '2023-04-22 08:24:00', '2023-04-22 08:24:00'),
+(3, 2, 'Yash Patel', 'yashpatel0197@gmail.com', '8849284774', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', NULL, 1, '2023-04-22 08:24:31', '2023-04-22 08:24:31'),
+(4, 3, 'Parthik Modi', 'pmmodi@gmail.com', '1234567890', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', NULL, 1, '2023-04-24 07:21:41', '2023-04-24 07:21:41'),
+(5, 4, 'Harsh Patel', 'harsh.patel@hackberrysoftech.com', '8200192436', NULL, '123', '$2y$10$rKRcH8DB22j0nUWThFH9yOHQOfxZgddN1RpF.N8ZJB26mXa8741iW', '1wEKyHxw6OkVzbiZa4jXZOtAJJ3jmrJR7yX5Iwe67COCB8DX7Aj1FXUyZYV0', 1, '2023-04-24 07:23:42', '2023-04-24 07:23:42');
 
 -- --------------------------------------------------------
 

@@ -1,7 +1,7 @@
 <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
     <div class="navbar-wrapper">
         <div class="navbar-logo" logo-theme="theme6">
-            <a href="../index-2.html">
+            <a href="{{ route('index') }}">
                 <img class="img-fluid" src="{{ url('/') }}/assets/images/logo.png" alt="Theme-Logo" />
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
@@ -121,9 +121,9 @@
                             </li> --}}
                             <li>
                                 @if (session()->has('admin'))
-                                <a href="{{ route('profile', session('admin')['admin_id']) }} ">
-                                    <i class="feather icon-user"></i> Profile
-                                </a>
+                                    <a href="{{ route('profile', session('admin')['admin_id']) }} ">
+                                        <i class="feather icon-user"></i> Profile
+                                    </a>
                                 @endif
                             </li>
                             <li>

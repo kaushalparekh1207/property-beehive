@@ -1,3 +1,6 @@
+@section('Property')
+    active pcoded-trigger
+@endsection
 @section('property_transaction')
     active
 @endsection

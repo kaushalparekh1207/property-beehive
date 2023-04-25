@@ -21,7 +21,7 @@ class PropertyTransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.property_transaction_add');
     }
 
     /**
@@ -29,7 +29,19 @@ class PropertyTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formdata = new PropertyTransaction();
+            $formdata->property_transaction_type = $request->property_transaction;
+            $formdata->created_by = session('admin')['admin_id'];
+            $formdata->updated_by = session('admin')['admin_id'];
+            $saveData = $formdata->save();
+
+            if ($saveData) {
+                toastr()->success('Property Transaction Type add !');
+            } else {
+                toastr()->error('Something went Wrong !');
+            }
+        
+        return redirect()->route('property_transaction');
     }
 
     /**
@@ -83,7 +95,7 @@ class PropertyTransactionController extends Controller
                 "action" => '<div class="dropdown-primary dropdown open">
                 <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
                 <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="' . route('aggriculture_property_destroy', $id) . '">Delete</a>
+                <a class="dropdown-item waves-light waves-effect" href="' . route('property_transaction_delete', $id) . '">Delete</a>
                 </div>
                 </div>',
             );
@@ -119,8 +131,17 @@ class PropertyTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PropertyTransaction $propertyTransaction)
+    public function destroy($id)
     {
-        //
+        $data = PropertyTransaction::find($id);
+        $data->flag = 2;
+        $data->updated_by = session('admin')['admin_id'];
+        $saveData = $data->save();
+        if ($saveData) {
+            toastr()->success('Property Transaction Type Deleted !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
+        return redirect()->route('property_transaction');
     }
 }

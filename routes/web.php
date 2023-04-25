@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\NonAgriculturePropertyController;
+use App\Http\Controllers\PropertyTransactionController;
 use App\Http\Controllers\StateController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,15 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/non_aggriculture_property/add', [NonAgriculturePropertyController::class, 'create'])->name('non_aggriculture_property_add');
     Route::post('/admin/non_aggriculture_property/insert', [NonAgriculturePropertyController::class, 'store'])->name('non_aggriculture_property_insert');
     Route::get('/admin/non_aggriculture_property/delete/{id}', [NonAgriculturePropertyController::class, 'destroy'])->name('non_aggriculture_property_delete');
+});
+
+// Add Property Transaction //
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/property_transaction', [PropertyTransactionController::class, 'index'])->name('property_transaction');
+    Route::get('/admin/property_transaction/show', [PropertyTransactionController::class, 'show'])->name('show_property_transaction');
+    Route::get('/admin/property_transaction/add', [PropertyTransactionController::class, 'create'])->name('property_transaction_add');
+    Route::post('/admin/property_transaction/insert', [PropertyTransactionController::class, 'store'])->name('property_transaction_insert');
+    Route::get('/admin/property_transaction/delete/{id}', [PropertyTransactionController::class, 'destroy'])->name('property_transaction_delete');
 });
 
 // Role Master Routes //

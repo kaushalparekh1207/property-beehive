@@ -28,6 +28,11 @@
                                 <span class="pcoded-mtext ml-3">Non Aggriculture Property</span>
                             </a>
                         </li>
+                        <li class="@yield('property_transaction')">
+                            <a href="{{ route('property_transaction') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">Property Transaction</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="pcoded-hasmenu @yield('setup')">

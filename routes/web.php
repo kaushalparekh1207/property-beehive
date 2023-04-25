@@ -7,6 +7,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\NonAgriculturePropertyController;
 use App\Http\Controllers\PropertyTransactionController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,13 +100,13 @@ Route::group(['middleware' => 'checksession'], function () {
 
 // Admin Users Routes
 Route::group(['middleware' => 'checksession'], function () {
-    Route::get('/admin/users', [AdminController::class, 'index'])->name('admin_users');
-    Route::get('/admin/users/show', [AdminController::class, 'show'])->name('showAdminUsers');
-    Route::get('/admin/users/add', [AdminController::class, 'create'])->name('createAdminUsers');
-    Route::post('/admin/users/insert', [AdminController::class, 'store'])->name('AdminUsersinsert');
-    Route::get('/admin/users/delete/{id}', [AdminController::class, 'destroy'])->name('AdminUsersdestroy');
-    Route::get('/admin/users/edit/{id}', [AdminController::class, 'edit'])->name('AdminUsersedit');
-    Route::post('/admin/users/edit/updateuser', [AdminController::class, 'update'])->name('AdminUsersupdate');
+    Route::get('/admin/admin_users', [AdminController::class, 'index'])->name('admin_users');
+    Route::get('/admin/admin_users/show', [AdminController::class, 'show'])->name('showAdminUsers');
+    Route::get('/admin/admin_users/add', [AdminController::class, 'create'])->name('createAdminUsers');
+    Route::post('/admin/admin_users/insert', [AdminController::class, 'store'])->name('AdminUsersinsert');
+    Route::get('/admin/admin_users/delete/{id}', [AdminController::class, 'destroy'])->name('AdminUsersdestroy');
+    Route::get('/admin/admin_users/edit/{id}', [AdminController::class, 'edit'])->name('AdminUsersedit');
+    Route::post('/admin/admin_users/edit/updateuser', [AdminController::class, 'update'])->name('AdminUsersupdate');
 });
 
 // City Master Routes
@@ -120,4 +122,23 @@ Route::group(['middleware' => 'checksession'], function () {
 Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/profile/{id}', [AdminController::class, 'profile'])->name('profile');
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])->name('updateProfile');
+});
+
+// Add user Type//
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/user_type', [UserTypeController::class, 'index'])->name('user_type');
+    Route::get('/admin/user_type/show', [UserTypeController::class, 'show'])->name('show_user_type');
+    Route::get('/admin/user_type/add', [UserTypeController::class, 'create'])->name('user_type_add');
+    Route::post('/admin/user_type/insert', [UserTypeController::class, 'store'])->name('user_type_insert');
+    Route::get('/admin/user_type/delete/{id}', [UserTypeController::class, 'destroy'])->name('user_type_delete');
+});
+// Add users //
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+    Route::get('/admin/users/show', [UserController::class, 'show'])->name('show_users');
+    Route::get('/admin/users/add', [UserController::class, 'create'])->name('users_add');
+    Route::post('/admin/users/insert', [UserController::class, 'store'])->name('users_insert');
+    Route::get('/admin/users/delete/{id}', [UserController::class, 'destroy'])->name('users_delete');
+    Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('users_edit');
+    Route::post('/admin/users/edit/updateuser', [UserController::class, 'update'])->name('users_update');
 });

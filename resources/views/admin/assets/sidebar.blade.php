@@ -10,12 +10,20 @@
                         <span class="pcoded-mtext">Dashboard</span>
                     </a>
                 </li>
+                <li class="@yield('admin_users')">
+                    <a href="{{ route('admin_users') }}" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="fa fa-user-plus"></i>
+                        </span>
+                        <span class="pcoded-mtext">Admin Users</span>
+                    </a>
+                </li>
                 <li class="pcoded-hasmenu @yield('Property')">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
                             <i class="feather icon-layers"></i>
                         </span>
-                        <span class="pcoded-mtext">Property</span>
+                        <span class="pcoded-mtext">Property Types</span>
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="@yield('a_property')">
@@ -60,14 +68,32 @@
                         </li>
                     </ul>
                 </li>
-                <li class="@yield('admin_users')">
-                    <a href="{{ route('admin_users') }}" class="waves-effect waves-dark">
+                <li class="pcoded-hasmenu @yield('users')">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
-                            <i class="fa fa-user-plus"></i>
+                            <i class="fa fa-users"></i>
                         </span>
-                        <span class="pcoded-mtext">Admin Users</span>
+                        <span class="pcoded-mtext">Users</span>
                     </a>
+                    <ul class="pcoded-submenu">
+                        <li class="@yield('user_type')">
+                            <a href="{{ route('user_type') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">User Types</span>
+                            </a>
+                        </li>
+                        <li class="@yield('users_add')">
+                            <a href="{{ route('users_add') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">Add Users</span>
+                            </a>
+                        </li>
+                        <li class="@yield('user_list')">
+                            <a href="{{ route('city') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">User List</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
             </ul>
 
         </div>

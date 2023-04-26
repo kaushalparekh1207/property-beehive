@@ -95,7 +95,7 @@
                                                                     Name: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control"
-                                                                        name='user_name' placeholder="Enter Name">
+                                                                        name='user_name' placeholder="Enter Name" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -115,7 +115,7 @@
                                                                         oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                                         name="contact_number" minlength="10"
                                                                         maxlength="10"
-                                                                        placeholder="Enter Contact Number">
+                                                                        placeholder="Enter Contact Number" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -123,7 +123,7 @@
                                                                     Password: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input type="password" class="form-control"
-                                                                        name="password" placeholder="Enter Password">
+                                                                        name="password" placeholder="Enter Password" required>
                                                                 </div>
                                                             </div>
 

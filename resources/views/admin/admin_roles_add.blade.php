@@ -82,7 +82,7 @@
                                                                     <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input name="role_name" type="text"
-                                                                        class="form-control" placeholder="Role Name">
+                                                                        class="form-control" placeholder="Role Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

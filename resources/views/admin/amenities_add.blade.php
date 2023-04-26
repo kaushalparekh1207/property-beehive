@@ -72,7 +72,7 @@ Amenities | Add
                                                                     <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input name="amenities" type="text"
-                                                                        class="form-control" placeholder="Amenities Name">
+                                                                        class="form-control" placeholder="Amenities Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -81,7 +81,8 @@ Amenities | Add
                                                                     class="btn btn-success">Submit</button>
                                                                 <button type="reset"
                                                                     class="btn btn-danger">Cancel</button>
-                                                            </center>
+                                           
+                                                                </center>
                                                         </form>
                                                     </div>
                                                 </div>

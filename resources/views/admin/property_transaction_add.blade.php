@@ -82,7 +82,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="property_transaction" type="text"
                                                                         class="form-control"
-                                                                        placeholder="Property Transaction Name">
+                                                                        placeholder="Property Transaction Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

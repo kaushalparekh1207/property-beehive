@@ -82,7 +82,7 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select class="js-example-basic-single col-sm-12"
-                                                                        name="user_type">
+                                                                        name="user_type" required>
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -98,7 +98,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="user_name" type="text"
                                                                         class="form-control"
-                                                                        placeholder="Enter User Name">
+                                                                        placeholder="Enter User Name" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -106,7 +106,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="contact" type="number"
                                                                         class="form-control"
-                                                                        placeholder="Enter User contact Number">
+                                                                        placeholder="Enter User contact Number" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -122,7 +122,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="password" type="password"
                                                                         class="form-control"
-                                                                        placeholder="Enter User Password">
+                                                                        placeholder="Enter User Password" required>
                                                                 </div>
                                                             </div>
                                                             <br>

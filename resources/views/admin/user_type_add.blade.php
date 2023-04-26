@@ -81,7 +81,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="user_type" type="text"
                                                                         class="form-control"
-                                                                        placeholder="Enter User Type">
+                                                                        placeholder="Enter User Type" required>
                                                                 </div>
                                                             </div>
                                                             <br>

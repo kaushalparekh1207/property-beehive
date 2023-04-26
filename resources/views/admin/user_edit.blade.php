@@ -81,7 +81,7 @@
                                                                 <label class="col-sm-2 col-form-label">Select User
                                                                     Type: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="user_type" class="form-control">
+                                                                    <select name="user_type" class="form-control" required>
 
                                                                         @foreach ($userType as $type)
                                                                         @php
@@ -102,7 +102,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="user_name" type="text"
                                                                         class="form-control" value="{{$userData->name}}"
-                                                                        placeholder="Enter User Name">
+                                                                        placeholder="Enter User Name" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -110,7 +110,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="contact" type="number"
                                                                         class="form-control" value="{{$userData->contact}}"
-                                                                        placeholder="Enter User contact Number">
+                                                                        placeholder="Enter User contact Number" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -126,7 +126,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="password" type="password"
                                                                         class="form-control" value="{{$userData->user_password}}"
-                                                                        placeholder="Enter User Password">
+                                                                        placeholder="Enter User Password" required>
                                                                 </div>
                                                             </div>
 

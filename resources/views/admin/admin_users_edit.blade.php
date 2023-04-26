@@ -102,7 +102,7 @@
                                                                     Name: <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control"
-                                                                       value="{{ $userData->name}}" name='name' placeholder="Enter Name">
+                                                                       value="{{ $userData->name}}" name='name' placeholder="Enter Name" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -122,9 +122,10 @@
                                                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                                         name="contact" minlength="10"
                                                                         maxlength="10" value="{{ $userData->contact}}"
-                                                                        placeholder="Enter Contact Number">
+                                                                        placeholder="Enter Contact Number" required>
                                                                 </div>
                                                             </div>
+                                                            
 
 
                                                             <br>

@@ -80,7 +80,7 @@
                                                                     <sup>*</sup></label>
                                                                 <div class="col-sm-10">
                                                                     <input name="state" type="text"
-                                                                        class="form-control" placeholder="State Name">
+                                                                        class="form-control" placeholder="State Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

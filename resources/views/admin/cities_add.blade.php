@@ -71,7 +71,7 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select class="js-example-basic-single col-sm-12 scrollable-menu"
-                                                                        name="state_id" id="state_id">
+                                                                        name="state_id" id="state_id" required>
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -85,7 +85,7 @@
                                                                     <sup>*</sup></label>
                                                                 <div class="col-sm-10 mt-2">
                                                                     <input name="city" type="text"
-                                                                        class="form-control" placeholder="City Name">
+                                                                        class="form-control" placeholder="City Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

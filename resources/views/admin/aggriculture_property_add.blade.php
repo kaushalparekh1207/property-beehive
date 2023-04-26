@@ -86,7 +86,7 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select name="select"
-                                                                        class="js-example-basic-single col-sm-12">
+                                                                        class="js-example-basic-single col-sm-12" required>
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -103,7 +103,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input name="a_property_name" type="text"
                                                                         class="form-control"
-                                                                        placeholder="Aggriculture Property Name">
+                                                                        placeholder="Aggriculture Property Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

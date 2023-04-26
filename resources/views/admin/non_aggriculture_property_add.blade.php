@@ -86,7 +86,7 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select class="js-example-basic-single col-sm-12"
-                                                                        name="propertytype">
+                                                                        name="propertytype" required>
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -104,7 +104,7 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select class="js-example-basic-single col-sm-12"
-                                                                        name="na_property_type">
+                                                                        name="na_property_type" required>
                                                                         <option value="" selected disabled>Select
                                                                             One
                                                                         </option>
@@ -123,7 +123,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control"
                                                                         name='nonaggriculture'
-                                                                        placeholder="Non Aggriculture Property Name">
+                                                                        placeholder="Non Aggriculture Property Name" required>
                                                                 </div>
                                                             </div>
                                                             <br>

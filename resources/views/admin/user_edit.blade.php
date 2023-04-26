@@ -5,7 +5,7 @@
     active
 @endsection
 @section('title')
-    User Type
+    User | Edit
 @endsection
 <!DOCTYPE html>
 <html lang="en">

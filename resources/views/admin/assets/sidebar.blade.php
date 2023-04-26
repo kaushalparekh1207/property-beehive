@@ -87,7 +87,7 @@
                             </a>
                         </li>
                         <li class="@yield('user_list')">
-                            <a href="{{ route('city') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('users') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext ml-3">User List</span>
                             </a>
                         </li>

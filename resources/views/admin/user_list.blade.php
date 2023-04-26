@@ -5,7 +5,7 @@
     active
 @endsection
 @section('title')
-    User Type
+    Users List
 @endsection
 <!DOCTYPE html>
 <html lang="en">

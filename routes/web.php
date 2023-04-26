@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AgriculturePropertyController;
+use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\NonAgriculturePropertyController;
 use App\Http\Controllers\PropertyTransactionController;
@@ -116,6 +117,14 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/city/add', [CityController::class, 'create'])->name('city_add');
     Route::post('/admin/city/insert', [CityController::class, 'store'])->name('city_insert');
     Route::get('/admin/city/delete/{id}', [CityController::class, 'destroy'])->name('city_destroy');
+});
+// City Master Routes
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/amenities', [AmenitiesController::class, 'index'])->name('Amenities');
+    Route::get('/admin/amenities/show', [AmenitiesController::class, 'show'])->name('show_amenities');
+    Route::get('/admin/amenities/add', [AmenitiesController::class, 'create'])->name('amenities_add');
+    Route::post('/admin/amenities/insert', [AmenitiesController::class, 'store'])->name('amenities_insert');
+    Route::get('/admin/amenities/delete/{id}', [AmenitiesController::class, 'destroy'])->name('amenities_destroy');
 });
 
 // Profile Master

@@ -66,6 +66,11 @@
                                 <span class="pcoded-mtext ml-3">City Master</span>
                             </a>
                         </li>
+                        <li class="@yield('Amenities')">
+                            <a href="{{ route('Amenities') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">Amenities</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="pcoded-hasmenu @yield('users')">

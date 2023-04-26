@@ -98,6 +98,26 @@
                         </li>
                     </ul>
                 </li>
+                <li class="pcoded-hasmenu @yield('property_master')">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <span class="pcoded-mtext">Property Master</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="@yield('property_listing')">
+                            <a href="{{ route('property_listing') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">Property Listing</span>
+                            </a>
+                        </li>
+                        <li class="@yield('properties_add')">
+                            <a href="{{ route('properties_add') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext ml-3">Add Property</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
 

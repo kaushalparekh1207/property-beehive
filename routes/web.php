@@ -6,6 +6,7 @@ use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\NonAgriculturePropertyController;
+use App\Http\Controllers\PropertyMasterController;
 use App\Http\Controllers\PropertyTransactionController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
@@ -141,6 +142,7 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::post('/admin/user_type/insert', [UserTypeController::class, 'store'])->name('user_type_insert');
     Route::get('/admin/user_type/delete/{id}', [UserTypeController::class, 'destroy'])->name('user_type_delete');
 });
+
 // Add users //
 Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users');
@@ -150,4 +152,16 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/users/delete/{id}', [UserController::class, 'destroy'])->name('users_delete');
     Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('users_edit');
     Route::post('/admin/users/edit/updateuser', [UserController::class, 'update'])->name('users_update');
+});
+
+// Properties Master Routes //
+
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/property_master', [PropertyMasterController::class, 'index'])->name('property_listing');
+    Route::get('/admin/property_master/show', [PropertyMasterController::class, 'show'])->name('show_users');
+    Route::get('/admin/property_master/add', [PropertyMasterController::class, 'create'])->name('users_add');
+    Route::post('/admin/property_master/insert', [PropertyMasterController::class, 'store'])->name('users_insert');
+    Route::get('/admin/property_master/delete/{id}', [PropertyMasterController::class, 'destroy'])->name('users_delete');
+    Route::get('/admin/property_master/edit/{id}', [PropertyMasterController::class, 'edit'])->name('users_edit');
+    Route::post('/admin/property_master/edit/updateuser', [PropertyMasterController::class, 'update'])->name('users_update');
 });

@@ -30,17 +30,17 @@ class PropertyTransactionController extends Controller
     public function store(Request $request)
     {
         $formdata = new PropertyTransaction();
-            $formdata->property_transaction_type = $request->property_transaction;
-            $formdata->created_by = session('admin')['admin_id'];
-            $formdata->updated_by = session('admin')['admin_id'];
-            $saveData = $formdata->save();
+        $formdata->property_transaction_type = $request->property_transaction;
+        $formdata->created_by = session('admin')['admin_id'];
+        $formdata->updated_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
 
-            if ($saveData) {
-                toastr()->success('Property Transaction Type add !');
-            } else {
-                toastr()->error('Something went Wrong !');
-            }
-        
+        if ($saveData) {
+            toastr()->success('Property Transaction Type add !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
+
         return redirect()->route('property_transaction');
     }
 
@@ -92,12 +92,14 @@ class PropertyTransactionController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "property_transaction_type" => $property_transaction_type,
-                "action" => '<div class="dropdown-primary dropdown open">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="' . route('property_transaction_delete', $id) . '">Delete</a>
-                </div>
-                </div>',
+                "action" => '<div class="btn-group m-b-5">
+                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
+                    <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="' . route('property_transaction_delete', $id) . '">Delete</a></li>
+                </ul>
+            </div>',
             );
         }
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AgricultureProperty;
 use App\Http\Controllers\Controller;
+use App\Models\AgricultureProperty;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -22,9 +22,9 @@ class AgriculturePropertyController extends Controller
      */
     public function create()
     {
-        $propertyData = Property::where('flag',1)->get();
+        $propertyData = Property::where('flag', 1)->get();
 
-        return view('admin.aggriculture_property_add',compact('propertyData'));
+        return view('admin.aggriculture_property_add', compact('propertyData'));
     }
 
     /**
@@ -34,7 +34,7 @@ class AgriculturePropertyController extends Controller
     {
         $formdata = new AgricultureProperty();
         $formdata->property_id = $request->select;
-        $formdata->a_property_name	= $request->a_property_name;
+        $formdata->a_property_name = $request->a_property_name;
         $formdata->created_by = session('admin')['admin_id'];
         $saveData = $formdata->save();
         if ($saveData) {
@@ -77,9 +77,9 @@ class AgriculturePropertyController extends Controller
 
         // Fetch records
         $records = AgricultureProperty::orderBy($columnName, $columnSortOrder)
-        ->where('agriculture_properties.flag', 1)
-        ->where('agriculture_properties.a_property_name', 'like', '%' . $searchValue . '%')
-            // ->select('block_lists.block', 'block_lists.id', 'block_lists.site_detail_id', 'site_details.title', 'bhk_types.bhk')
+            ->where('agriculture_properties.flag', 1)
+            ->where('agriculture_properties.a_property_name', 'like', '%' . $searchValue . '%')
+        // ->select('block_lists.block', 'block_lists.id', 'block_lists.site_detail_id', 'site_details.title', 'bhk_types.bhk')
             ->skip($start)
             ->take($rowperpage)
             ->get();
@@ -95,12 +95,14 @@ class AgriculturePropertyController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "property_name" => $a_property_name,
-                "action" => '<div class="dropdown-primary dropdown open">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="'.route('aggriculture_property_destroy',$id).'">Delete</a>
-                </div>
-                </div>',
+                "action" => '<div class="btn-group m-b-5">
+                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
+                    <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="' . route('aggriculture_property_destroy', $id) . '">Delete</a></li>
+                </ul>
+            </div>',
             );
         }
 

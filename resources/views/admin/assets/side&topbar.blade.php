@@ -253,9 +253,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="@yield('a_property')"><a href="{{ route('aggriculture_property') }}">Aggriculture Property</a></li>
-                    <li class="@yield('na_property')"><a href="{{ route('non_aggriculture_property') }}">Non Aggriculture Property</a></li>
-                    <li  class="@yield('property_transaction')" ><a href="{{ route('property_transaction') }}">Property Transaction</a></li>
+                    <li class="@yield('a_property')"><a href="{{ route('aggriculture_property') }}">Aggriculture
+                            Property</a></li>
+                    <li class="@yield('na_property')"><a href="{{ route('non_aggriculture_property') }}">Non Aggriculture
+                            Property</a></li>
+                    <li class="@yield('property_transaction')"><a href="{{ route('property_transaction') }}">Property
+                            Transaction</a></li>
                 </ul>
             </li>
             <li class="treeview @yield('setup')">
@@ -272,7 +275,7 @@
                     <li class="@yield('Amenities')"><a href="{{ route('Amenities') }}">Amenities</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview @yield('users')">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Client Master</span>
                     <span class="pull-right-container">
@@ -280,9 +283,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="table.html">Client Types</a></li>
-                    <li><a href="dataTables.html">Add Clients</a></li>
-                    <li><a href="footable.html">Clients</a></li>
+                    <li class="@yield('user_type')"><a href="{{ route('user_type') }}">Client Types</a></li>
+                    <li class="@yield('users_add')"><a href="{{ route('users_add') }}">Add Clients</a></li>
+                    <li class="@yield('user_list')"><a href="{{ route('users') }}">Clients</a></li>
                 </ul>
             </li>
             <li class="treeview">

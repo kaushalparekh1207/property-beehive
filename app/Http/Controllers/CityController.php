@@ -82,12 +82,14 @@ class CityController extends Controller
                 "id" => $count,
                 "state" => $state,
                 "city" => $city,
-                "action" => '<div class="dropdown-primary dropdown open">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="' . route('city_destroy', $id) . '">Delete</a>
-                </div>
-                </div>',
+                "action" => '<div class="btn-group m-b-5">
+                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
+                    <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="' . route('city_destroy', $id) . '">Delete</a></li>
+                </ul>
+            </div>',
             );
         }
 

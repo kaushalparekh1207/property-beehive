@@ -34,10 +34,10 @@ class AdminRoleController extends Controller
         $roleModel->role_name = $request->role_name;
         $roleModel->created_by = session('admin')['admin_id'];
         $saveData = $roleModel->save();
-        if($saveData){
-            toastr('Role created successfully','success');
-        }else{
-            toastr('Something went wrong','error');
+        if ($saveData) {
+            toastr('Role created successfully', 'success');
+        } else {
+            toastr('Something went wrong', 'error');
         }
         return redirect()->route('roles');
 
@@ -91,12 +91,14 @@ class AdminRoleController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "role_name" => $role_name,
-                "action" => '<div class="dropdown-primary dropdown open">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
-                <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="' . route('roles_destroy', $id) . '">Delete</a>
-                </div>
-                </div>',
+                "action" => '<div class="btn-group m-b-5">
+                 <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
+                     <span class="caret"></span>
+                 </button>
+                 <ul role="menu" class="dropdown-menu">
+                     <li><a href="' . route('roles_destroy', $id) . '">Delete</a></li>
+                 </ul>
+             </div>',
             );
         }
 
@@ -136,10 +138,10 @@ class AdminRoleController extends Controller
         $roleModel->flag = 2;
         $roleModel->updated_by = session('admin')['admin_id'];
         $delete = $roleModel->save();
-        if($delete){
-            toastr('Role deleted successfully','success');
-        }else{
-            toastr('Something went Wrong Please Try Again','error');
+        if ($delete) {
+            toastr('Role deleted successfully', 'success');
+        } else {
+            toastr('Something went Wrong Please Try Again', 'error');
         }
 
         return redirect()->route('roles');

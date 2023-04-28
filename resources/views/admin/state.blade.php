@@ -1,5 +1,11 @@
-@section('admin_user')
+@section('setup')
+menu-open active
+@endsection
+@section('state')
     active
+@endsection
+@section('title')
+    State 
 @endsection
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +26,14 @@
                     <i class="pe-7s-world"></i>
                 </div>
                 <div class="header-title">
-                    <h1>Admin Users</h1>
-                    <small>Add New Admin User</small>
+                    <h1>States</h1>
+                    <small>Add New State</small>
                     <ol class="breadcrumb">
-                        <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        < <li class="breadcrumb-item">
+                            <a href="{{ route('index') }}"><i class="pe-7s-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="{{ route('state') }}">States List</a>
+                    </li>
                     </ol>
                 </div>
             </section>
@@ -35,8 +44,10 @@
                         <div class="panel panel-bd">
 
                             <div class="panel-body">
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add
-                                    New</button>
+                                {{-- <button type="button"  class="btn btn-success"><a href="{{ route('state_add') }}"><i class="fa fa-plus"></i> Add
+                                    New</a></button> --}}
+                                    <a type="button" href="{{ route('state_add') }}"
+                                    id="" class="btn btn-success">+ Add New</a>
                                 <div class="table-responsive" style="margin-top: 2%;">
                                     <table id="StatesList" class="table table-striped table-condensed">
                                         <thead>

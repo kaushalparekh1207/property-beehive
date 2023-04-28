@@ -245,7 +245,7 @@
                 <a href="{{ route('createAdminUsers') }}"><i class="fa fa-user-plus"></i> <span>Admin Users</span>
                 </a>
             </li>
-            <li class="treeview">
+            <li class="treeview @yield('Property')">
                 <a href="#">
                     <i class="fa fa-map"></i><span>Property Types</span>
                     <span class="pull-right-container">
@@ -253,12 +253,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="buttons.html">Aggriculture Property</a></li>
-                    <li><a href="tabs.html">Non Aggriculture Property</a></li>
-                    <li><a href="notification.html">Property Transaction</a></li>
+                    <li class="@yield('a_property')"><a href="{{ route('aggriculture_property') }}">Aggriculture Property</a></li>
+                    <li class="@yield('na_property')"><a href="{{ route('non_aggriculture_property') }}">Non Aggriculture Property</a></li>
+                    <li  class="@yield('property_transaction')" ><a href="{{ route('property_transaction') }}">Property Transaction</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview @yield('setup')">
                 <a href="#">
                     <i class="fa fa-cog"></i> <span>Setup</span>
                     <span class="pull-right-container">
@@ -266,10 +266,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="forms_basic.html">Role Master</a></li>
-                    <li><a href="forms_validation.html">State Master</a></li>
-                    <li><a href="forms_cropper.html">City Master</a></li>
-                    <li><a href="form_file_upload.html">Amenities</a></li>
+                    <li class="@yield('role')"><a href="{{ route('roles') }}">Role Master</a></li>
+                    <li class="@yield('state')"><a href="{{ route('state') }}">State Master</a></li>
+                    <li class="@yield('city')"> <a href="{{ route('city') }}">City Master</a></li>
+                    <li class="@yield('Amenities')"><a href="{{ route('Amenities') }}">Amenities</a></li>
                 </ul>
             </li>
             <li class="treeview">

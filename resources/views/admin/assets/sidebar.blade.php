@@ -101,7 +101,7 @@
                 <li class="pcoded-hasmenu @yield('property_master')">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
-                            <i class="fa fa-users"></i>
+                            <i class="fa fa-building-o"></i>
                         </span>
                         <span class="pcoded-mtext">Property Master</span>
                     </a>

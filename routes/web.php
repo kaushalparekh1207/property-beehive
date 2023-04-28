@@ -159,9 +159,13 @@ Route::group(['middleware' => 'checksession'], function () {
 Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/property_master', [PropertyMasterController::class, 'index'])->name('property_listing');
     Route::get('/admin/property_master/show', [PropertyMasterController::class, 'show'])->name('show_property_master');
-    Route::get('/admin/property_master/add', [PropertyMasterController::class, 'create'])->name('property_master_add');
+    Route::get('/admin/property_master/add', [PropertyMasterController::class, 'create'])->name('properties_add');
     Route::post('/admin/property_master/insert', [PropertyMasterController::class, 'store'])->name('property_master_insert');
     Route::get('/admin/property_master/delete/{id}', [PropertyMasterController::class, 'destroy'])->name('property_master_delete');
     Route::get('/admin/property_master/edit/{id}', [PropertyMasterController::class, 'edit'])->name('property_master_edit');
     Route::post('/admin/property_master/edit/updateuser', [PropertyMasterController::class, 'update'])->name('property_master_update');
+
+    Route::get('/admin/fetch_property_list/', [PropertyMasterController::class, 'fetchProperty'])->name('get-property-list');
 });
+
+Route::view('/index-1', 'admin.index-1');

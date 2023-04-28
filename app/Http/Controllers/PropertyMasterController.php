@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgricultureProperty;
+use App\Models\Amenities;
+use App\Models\City;
+use App\Models\NonAgricultureProperty;
 use App\Models\PropertyMaster;
+use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PropertyMasterController extends Controller
 {
@@ -13,7 +19,7 @@ class PropertyMasterController extends Controller
      */
     public function index()
     {
-        return view('property_listing');
+        return view('admin.property_listing');
     }
 
     /**
@@ -21,7 +27,12 @@ class PropertyMasterController extends Controller
      */
     public function create()
     {
-        //
+        $amenities = Amenities::where('flag', 1)->get();
+        $states = State::where('flag', 1)->get();
+        $cities = City::where('flag', 1)->get();
+        $agriculturePropertyData = AgricultureProperty::where('flag', 1)->get(['id', 'a_property_name']);
+        $nonAgriculturePropertyData = NonAgricultureProperty::where('flag', 1)->distinct()->get(['id', 'na_property_type']);
+        return view('admin.property_add', compact('agriculturePropertyData', 'nonAgriculturePropertyData', 'states', 'cities', 'amenities'));
     }
 
     /**
@@ -62,5 +73,20 @@ class PropertyMasterController extends Controller
     public function destroy(PropertyMaster $propertyMaster)
     {
         //
+    }
+
+    /**
+     * Fetch Property Data
+     */
+    public function fetchProperty(Request $request)
+    {
+        $property_id = $request->property_id;
+        if ($property_id == 1) {
+            $data['property_type'] = DB::table('agriculture_properties')->where("flag", 1)->distinct()->get(['id', 'a_property_name']);
+            return response()->json($data);
+        } else {
+            $data['property_type'] = DB::table('non_agriculture_property_types')->where("flag", 1)->get(['id', 'na_property_type']);
+            return response()->json($data);
+        }
     }
 }

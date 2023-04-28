@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\State;
 use Illuminate\Http\Request;
 
@@ -85,7 +85,7 @@ class CityController extends Controller
                 "action" => '<div class="dropdown-primary dropdown open">
                 <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
                 <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a class="dropdown-item waves-light waves-effect" href="'.route('city_destroy',$id).'">Delete</a>
+                <a class="dropdown-item waves-light waves-effect" href="' . route('city_destroy', $id) . '">Delete</a>
                 </div>
                 </div>',
             );
@@ -107,8 +107,8 @@ class CityController extends Controller
      */
     public function create()
     {
-        $stateData = State::where('flag',1)->get();
-        return view('admin.cities_add',compact('stateData'));
+        $stateData = State::where('flag', 1)->get();
+        return view('admin.cities_add', compact('stateData'));
     }
 
     /**
@@ -116,17 +116,17 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-            $formdata = new City();
-            $formdata-> state_id  = $request->state_id;
-            $formdata-> city = $request->city;
-            $formdata->created_by = session('admin')['admin_id'];
-            $saveData = $formdata->save();
+        $formdata = new City();
+        $formdata->state_id = $request->state_id;
+        $formdata->city = $request->city;
+        $formdata->created_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
 
-            if ($saveData) {
-                toastr()->success('City add Successfully !');
-            } else {
-                toastr()->error('Something went Wrong !');
-            }
+        if ($saveData) {
+            toastr()->success('City add Successfully !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
 
         return redirect()->route('city');
     }
@@ -152,15 +152,15 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-            $formdata = City::findOrFail($id);
-            $formdata-> flag = 2;
-            $formdata->updated_by = session('admin')['admin_id'];
-            $saveData = $formdata->save();
-            if ($saveData) {
-                toastr()->success('City Deleted Successfully !');
-            } else {
-                toastr()->error('Something went Wrong !');
-            }
+        $formdata = City::findOrFail($id);
+        $formdata->flag = 2;
+        $formdata->updated_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
+        if ($saveData) {
+            toastr()->success('City Deleted Successfully !');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
 
         return redirect()->route('city');
     }

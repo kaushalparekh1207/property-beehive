@@ -47,6 +47,9 @@
         =====================================================================-->
 <!-- Start Theme label Script
         =====================================================================-->
+<!-- dataTables js -->
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <!-- Dashboard js -->
 <script src="{{ url('/') }}/admin/assets/dist/js/dashboard.js" type="text/javascript"></script>
 <!-- End Theme label Script
@@ -55,6 +58,38 @@
     $(document).ready(function() {
 
         "use strict"; // Start of use strict
+
+        // $("#dataTableExample2").DataTable({
+        //     dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+        //     "lengthMenu": [
+        //         [10, 25, 50, -1],
+        //         [10, 25, 50, "All"]
+        //     ],
+        //     buttons: [{
+        //             extend: 'copy',
+        //             className: 'btn-sm'
+        //         },
+        //         {
+        //             extend: 'csv',
+        //             title: 'ExampleFile',
+        //             className: 'btn-sm'
+        //         },
+        //         {
+        //             extend: 'excel',
+        //             title: 'ExampleFile',
+        //             className: 'btn-sm'
+        //         },
+        //         {
+        //             extend: 'pdf',
+        //             title: 'ExampleFile',
+        //             className: 'btn-sm'
+        //         },
+        //         {
+        //             extend: 'print',
+        //             className: 'btn-sm'
+        //         }
+        //     ]
+        // });
 
         // notification
         // setTimeout(function() {

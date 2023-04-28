@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('city_id');
             $table->string('locality', 99);
             $table->string('name_of_project', 99);
+            $table->text('descr');
             $table->text('spectification')->nullable();
             $table->text('address');
             $table->integer('total_hall')->nullable();

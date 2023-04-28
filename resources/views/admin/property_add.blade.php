@@ -5,6 +5,10 @@
 <html lang="en">
 
 @include('admin.assets.link')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+<!--Summernote css-->
+<link href="{{ url('/') }}/admin/assets/plugins/summernote/summernote.css" rel="stylesheet" type="text/css" />
+
 
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
@@ -33,11 +37,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-bd">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Free Bootstrap Wizard</h4>
-                                </div>
-                            </div>
+
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12 text-center">
@@ -49,11 +49,11 @@
                                                     <div class="f1-progress-line" data-now-value="16.66"
                                                         data-number-of-steps="3" style="width: 16.66%;"></div>
                                                 </div>
-                                                <div class="f1-step active">
+                                                <div class="f1-step ">
                                                     <div class="f1-step-icon"><i class="fa fa-user"></i></div>
                                                     <p>Basic Information</p>
                                                 </div>
-                                                <div class="f1-step">
+                                                <div class="f1-step active">
                                                     <div class="f1-step-icon"><i class="fa fa-key"></i></div>
                                                     <p>Property Information</p>
                                                 </div>
@@ -119,12 +119,6 @@
                                                     </select>
                                                 </div>
 
-                                                <label class="" for="">Address: </label>
-                                                <div class="form-group">
-                                                    <textarea id="address" placeholder="Describe Here..." rows="5" name="address" type="text"
-                                                        class="form-control"></textarea>
-                                                </div>
-
                                                 <div class="f1-buttons">
                                                     <button type="button"
                                                         class="btn btn-success btn-next">Next</button>
@@ -132,7 +126,7 @@
                                             </fieldset>
                                             <fieldset>
 
-                                                <label for=""></label>
+                                                <label for="">Name of Project: </label>
                                                 <div class="form-group">
                                                     <label class="sr-only" for="f1-email">Name of
                                                         Project/Property: </label>
@@ -140,18 +134,46 @@
                                                         placeholder="Name of Project/Title" class="form-control"
                                                         id="name_of_project">
                                                 </div>
+
+                                                <label for="">Select Amenities: </label>
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="f1-password">Password</label>
-                                                    <input type="password" name="f1-password" placeholder="Password..."
-                                                        class="form-control" id="f1-password">
+                                                    <select class="form-control" name="amenities" id="amenities"
+                                                        required>
+                                                        <option value="" selected disabled>Select
+                                                            One
+                                                        </option>
+                                                        @foreach ($amenities as $amenity)
+                                                            <option value="{{ $amenity->id }}">
+                                                                {{ $amenity->amenities }}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
                                                 </div>
+                                                <label class="" for="">Description:</label>
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="f1-repeat-password">Repeat
-                                                        password</label>
-                                                    <input type="password" name="f1-repeat-password"
-                                                        placeholder="Repeat password..." class="form-control"
-                                                        id="f1-repeat-password">
+                                                    <textarea type="text" class="form-control" name="descr" id="summernote" rows="5"></textarea>
                                                 </div>
+
+                                                <label class="" for="">Address: </label>
+                                                <div class="form-group">
+                                                    <textarea id="address" placeholder="Describe Here..." rows="5" name="address" type="text"
+                                                        class="form-control"></textarea>
+                                                </div>
+
+
+                                                <label class="" for="">Locality: </label>
+                                                <div class="form-group">
+                                                    <input type="text" name="locality" id="locality"
+                                                        class="form-control" placeholder="Locality">
+                                                </div>
+
+                                                <div class="checkbox checkbox-primary">
+                                                    <input id="checkbox2" type="checkbox" checked="">
+                                                    <label for="checkbox2">Primary</label>
+                                                </div>
+
+
                                                 <div class="f1-buttons">
                                                     <button type="button" class="btn btn-previous">Previous</button>
                                                     <button type="button"
@@ -200,6 +222,17 @@
     </div>
     <!-- ./wrapper -->
     @include('admin.assets.script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <!-- summernote js -->
+    <script src="{{ url('/') }}/admin/assets/plugins/summernote/summernote.js" type="text/javascript"></script>
+    <script>
+        $('#summernote').summernote({
+            height: 200, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: true // set focus to editable area after initializing summernote
+        });
+    </script>
     <script>
         $('#property').on('change', function() {
             var property_id = $(this).val();

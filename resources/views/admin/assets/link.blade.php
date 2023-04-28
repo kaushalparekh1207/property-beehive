@@ -42,6 +42,10 @@
         =====================================================================-->
     <!-- Start page Label Plugins
         =====================================================================-->
+    <!-- dataTables css -->
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ url('/') }}/admin/assets/plugins/datatables/dataTables.min.css" rel="stylesheet"
+        type="text/css" /> --}}
     <!-- Toastr css -->
     <link href="{{ url('/') }}/admin/assets/plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
     <!-- Emojionearea -->

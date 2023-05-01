@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('possession_status', 50)->nullable();
             $table->string('age', 50)->nullable();
             $table->string('time_duration', 99)->nullable();
+            $table->string('rera_certificate', 99)->nullable();
             $table->string('khata_certificate', 99)->nullable();
             $table->string('deed_certificate', 99)->nullable();
             $table->string('occupancy_certificate', 99)->nullable();

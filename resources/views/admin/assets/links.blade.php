@@ -15,10 +15,14 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <link rel="stylesheet"
     href="{{ url('/') }}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="{{ url('/') }}/plugins/bs-stepper/css/bs-stepper.min.css">
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ url('/') }}/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="{{ url('/') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- overlayScrollbars -->
 <link rel="stylesheet" href="{{ url('/') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- summernote -->
+<link rel="stylesheet" href="{{ url('/') }}/plugins/summernote/summernote-bs4.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ url('/') }}/dist/css/adminlte.min.css">

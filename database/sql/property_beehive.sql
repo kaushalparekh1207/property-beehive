@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 25, 2023 at 05:47 AM
+-- Generation Time: May 01, 2023 at 01:56 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_users`
@@ -84,7 +84,8 @@ INSERT INTO `admin_users` (`id`, `role_id`, `name`, `email`, `contact`, `email_v
 (2, 2, 'Kaushal Parekh', 'kaushal.parekh@hackberrysoftech.com', '8780009537', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', 'RJV2A4tdlq4tyqjT0SebkWrW2Z2oxC8ZJ0fxulKSCCbxLM3mwwqAmuBvDxIr', 1, '2023-04-22 08:24:00', '2023-04-22 08:24:00'),
 (3, 2, 'Yash Patel', 'yashpatel0197@gmail.com', '8849284774', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', NULL, 1, '2023-04-22 08:24:31', '2023-04-22 08:24:31'),
 (4, 3, 'Parthik Modi', 'pmmodi@gmail.com', '1234567890', NULL, '123', '$2y$10$AipmtgbC1QD9nPl8j3NCoum/PFOBQmugWLv4ptW5diP.5Ogbf7R5G', NULL, 1, '2023-04-24 07:21:41', '2023-04-24 07:21:41'),
-(5, 4, 'Harsh Patel', 'harsh.patel@hackberrysoftech.com', '8200192436', NULL, '123', '$2y$10$rKRcH8DB22j0nUWThFH9yOHQOfxZgddN1RpF.N8ZJB26mXa8741iW', '1wEKyHxw6OkVzbiZa4jXZOtAJJ3jmrJR7yX5Iwe67COCB8DX7Aj1FXUyZYV0', 1, '2023-04-24 07:23:42', '2023-04-24 07:23:42');
+(5, 4, 'Harsh Patel', 'harsh.patel@hackberrysoftech.com', '8200192436', NULL, '123', '$2y$10$rKRcH8DB22j0nUWThFH9yOHQOfxZgddN1RpF.N8ZJB26mXa8741iW', '1wEKyHxw6OkVzbiZa4jXZOtAJJ3jmrJR7yX5Iwe67COCB8DX7Aj1FXUyZYV0', 1, '2023-04-24 07:23:42', '2023-04-24 07:23:42'),
+(6, 5, 'Kaushal Parekh 1', 'admin@gmail.com', '8780009537', NULL, '123', '$2y$10$oL.0n7w6QuEdnUssI3Ddg.A38U4eaW30auLo55seByzQ9zaPTYObu', NULL, 1, '2023-04-27 09:03:51', '2023-04-27 09:03:51');
 
 -- --------------------------------------------------------
 
@@ -112,6 +113,35 @@ CREATE TABLE IF NOT EXISTS `agriculture_properties` (
 INSERT INTO `agriculture_properties` (`id`, `property_id`, `a_property_name`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Culti Vated', 1, 1, 1, '2023-04-21 08:43:02', '2023-04-21 08:43:02'),
 (2, 1, 'Multi-Purpose', 1, NULL, NULL, '2023-04-21 08:57:23', '2023-04-21 08:57:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `amenities`
+--
+
+DROP TABLE IF EXISTS `amenities`;
+CREATE TABLE IF NOT EXISTS `amenities` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `amenities` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `amenities`
+--
+
+INSERT INTO `amenities` (`id`, `amenities`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Swimming Pool', 1, 1, NULL, '2023-04-26 04:19:38', '2023-04-26 04:19:38'),
+(2, 'Gym', 1, 1, NULL, '2023-04-26 04:19:49', '2023-04-26 04:19:49'),
+(3, '24/7 Electricity', 1, 1, NULL, '2023-04-26 04:20:02', '2023-04-26 04:20:02'),
+(4, 'Gardens', 1, 1, NULL, '2023-04-26 04:20:17', '2023-04-26 04:20:17'),
+(5, 'test', 2, 1, 1, '2023-04-28 05:39:18', '2023-04-28 05:39:24');
 
 -- --------------------------------------------------------
 
@@ -772,14 +802,14 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
+(16, '2014_10_12_000000_create_users_table', 6),
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
@@ -790,7 +820,24 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2023_04_20_132934_create_admin_roles_table', 1),
 (10, '2023_04_20_133648_create_admin_users_table', 1),
 (13, '2023_04_21_133428_create_cities_table', 3),
-(12, '2023_04_21_133443_create_states_table', 2);
+(12, '2023_04_21_133443_create_states_table', 2),
+(14, '2023_04_25_082414_create_property_transactions_table', 4),
+(15, '2023_04_25_102424_create_user_types_table', 5),
+(17, '2023_04_26_065126_create_amenities_table', 7),
+(18, '2023_04_26_112651_create_property_masters_table', 8),
+(19, '2023_04_26_123731_create_property_images_table', 8),
+(20, '2023_04_26_124221_create_property_exterior_view_images_table', 8),
+(21, '2023_04_26_124241_create_property_living_room_images_table', 8),
+(22, '2023_04_26_124303_create_property_bedroom_images_table', 8),
+(23, '2023_04_26_124318_create_property_bathroom_images_table', 8),
+(24, '2023_04_26_124350_create_property_kitchen_images_table', 8),
+(25, '2023_04_26_124437_create_property_floor_plan_images_table', 8),
+(26, '2023_04_26_124455_create_property_master_plan_images_table', 8),
+(27, '2023_04_26_124513_create_property_location_map_images_table', 8),
+(28, '2023_04_26_124532_create_property_other_images_table', 8),
+(29, '2023_04_26_125414_create_property_amenities_table', 8),
+(30, '2023_04_27_091919_create_non_agriculture_property_types_table', 9),
+(31, '2023_05_01_061503_create_property_bhk_details_table', 10);
 
 -- --------------------------------------------------------
 
@@ -819,6 +866,34 @@ CREATE TABLE IF NOT EXISTS `non_agriculture_properties` (
 INSERT INTO `non_agriculture_properties` (`id`, `property_id`, `na_property_type`, `na_property_name`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Residential', 'Prelaunch', 1, 1, 1, '2023-04-21 07:01:47', '2023-04-21 07:01:47'),
 (2, 1, 'Residential', 'Startup', 1, 1, 1, '2023-04-21 07:03:11', '2023-04-21 07:03:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `non_agriculture_property_types`
+--
+
+DROP TABLE IF EXISTS `non_agriculture_property_types`;
+CREATE TABLE IF NOT EXISTS `non_agriculture_property_types` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `na_property_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `non_agriculture_property_types`
+--
+
+INSERT INTO `non_agriculture_property_types` (`id`, `na_property_type`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Resedential', 1, NULL, NULL, NULL, NULL),
+(2, 'Commercial', 1, NULL, NULL, NULL, NULL),
+(3, 'Industrial', 1, NULL, NULL, NULL, NULL),
+(4, 'Multi-Purpose', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -880,6 +955,303 @@ CREATE TABLE IF NOT EXISTS `properties` (
 INSERT INTO `properties` (`id`, `property_name`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Physical Property', 1, NULL, NULL, NULL, NULL),
 (2, 'Online Trading Property', 1, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_amenities`
+--
+
+DROP TABLE IF EXISTS `property_amenities`;
+CREATE TABLE IF NOT EXISTS `property_amenities` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `amenities_id` int NOT NULL,
+  `amenities_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_bathroom_images`
+--
+
+DROP TABLE IF EXISTS `property_bathroom_images`;
+CREATE TABLE IF NOT EXISTS `property_bathroom_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_bedroom_images`
+--
+
+DROP TABLE IF EXISTS `property_bedroom_images`;
+CREATE TABLE IF NOT EXISTS `property_bedroom_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `bedroom_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_bhk_details`
+--
+
+DROP TABLE IF EXISTS `property_bhk_details`;
+CREATE TABLE IF NOT EXISTS `property_bhk_details` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_exterior_view_images`
+--
+
+DROP TABLE IF EXISTS `property_exterior_view_images`;
+CREATE TABLE IF NOT EXISTS `property_exterior_view_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `exterior_view_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_floor_plan_images`
+--
+
+DROP TABLE IF EXISTS `property_floor_plan_images`;
+CREATE TABLE IF NOT EXISTS `property_floor_plan_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `floor_plan_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_images`
+--
+
+DROP TABLE IF EXISTS `property_images`;
+CREATE TABLE IF NOT EXISTS `property_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `property_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_kitchen_images`
+--
+
+DROP TABLE IF EXISTS `property_kitchen_images`;
+CREATE TABLE IF NOT EXISTS `property_kitchen_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `kitchen_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_living_room_images`
+--
+
+DROP TABLE IF EXISTS `property_living_room_images`;
+CREATE TABLE IF NOT EXISTS `property_living_room_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `living_room_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_location_map_images`
+--
+
+DROP TABLE IF EXISTS `property_location_map_images`;
+CREATE TABLE IF NOT EXISTS `property_location_map_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `location_map_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_masters`
+--
+
+DROP TABLE IF EXISTS `property_masters`;
+CREATE TABLE IF NOT EXISTS `property_masters` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `property_type_id` int NOT NULL,
+  `state_id` int NOT NULL,
+  `city_id` int NOT NULL,
+  `locality` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_of_project` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descr` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `spectification` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_balconies` int NOT NULL,
+  `total_bathrooms` int NOT NULL,
+  `total_floor` int NOT NULL,
+  `furnished_status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `floor_allowed_for_construction` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_open_side` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_road_facing_plot` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carpet_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `super_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession_status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_duration` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rera_certificate` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `khata_certificate` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deed_certificate` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `occupancy_certificate` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `maintenance` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monthly_charge` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_master_plan_images`
+--
+
+DROP TABLE IF EXISTS `property_master_plan_images`;
+CREATE TABLE IF NOT EXISTS `property_master_plan_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `master_plan_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_other_images`
+--
+
+DROP TABLE IF EXISTS `property_other_images`;
+CREATE TABLE IF NOT EXISTS `property_other_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_id` int NOT NULL,
+  `other_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_transactions`
+--
+
+DROP TABLE IF EXISTS `property_transactions`;
+CREATE TABLE IF NOT EXISTS `property_transactions` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_transaction_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `property_transactions`
+--
+
+INSERT INTO `property_transactions` (`id`, `property_transaction_type`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Buy', 1, 1, 1, '2023-04-25 03:43:30', '2023-04-25 03:43:30'),
+(2, 'Sell', 1, 1, 1, '2023-04-25 03:43:37', '2023-04-25 03:43:37'),
+(3, 'Rent', 1, 1, 1, '2023-04-25 03:43:45', '2023-04-25 03:43:45'),
+(4, 'Lease', 1, 1, 1, '2023-04-25 03:43:56', '2023-04-25 03:43:56'),
+(5, 'Morgase (With Possession)', 1, 1, 1, '2023-04-25 03:44:48', '2023-04-25 03:44:48'),
+(6, 'Morgase (Without Possession)', 1, 1, 1, '2023-04-25 03:45:00', '2023-04-25 03:45:00'),
+(7, 'Partly Selling (Sharing Property)', 1, 1, 1, '2023-04-25 03:45:29', '2023-04-25 03:45:29'),
+(8, 'PG', 1, 1, 1, '2023-04-25 03:45:43', '2023-04-25 03:45:43'),
+(9, 'Urgent Sell', 1, 1, 1, '2023-04-25 03:45:55', '2023-04-25 03:45:55'),
+(10, 'Urgent Buy', 1, 1, 1, '2023-04-25 03:46:06', '2023-04-25 03:46:06');
 
 -- --------------------------------------------------------
 
@@ -949,16 +1321,51 @@ INSERT INTO `states` (`id`, `state`, `flag`, `created_by`, `updated_by`, `create
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_type_id` int NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` bigint NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `user_password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_type_id`, `name`, `contact`, `email`, `email_verified_at`, `user_password`, `password`, `flag`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, 'yash', 8849284774, 'yash@gmail.com', NULL, '123', '$2y$10$jtFGKDpqHjBDq554IX/mfeu/TbvzKFR/6Zyk6bgdnE.Q2d0WaQ3cm', 1, NULL, '2023-04-28 07:42:17', '2023-04-28 07:42:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_types`
+--
+
+DROP TABLE IF EXISTS `user_types`;
+CREATE TABLE IF NOT EXISTS `user_types` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_types`
+--
+
+INSERT INTO `user_types` (`id`, `user_type`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 't', 1, 1, 1, '2023-04-28 07:36:18', '2023-04-28 07:36:18');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

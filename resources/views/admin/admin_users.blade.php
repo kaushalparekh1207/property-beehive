@@ -53,6 +53,8 @@
                         </div> --}}
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <a type="button" href="{{ route('createAdminUsers') }}"
+                                                            id="" class="btn btn-success mb-3">+ Add New</a>
                             <table id="adminUsersTable" class="table table-striped table-hover">
                                 <thead>
                                     <tr>

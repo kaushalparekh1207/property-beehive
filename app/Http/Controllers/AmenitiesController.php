@@ -88,14 +88,15 @@ class AmenitiesController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "amenities" => $amenities,
-                "action" => '<div class="btn-group m-b-5">
-                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
-                    <span class="caret"></span>
+                "action" => '<div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  Action
                 </button>
-                <ul role="menu" class="dropdown-menu">
-                    <li><a href="' . route('amenities_destroy', $id) . '">Delete</a></li>
-                </ul>
-            </div>',
+                <div class="dropdown-menu">
+                 
+                  <a href="' . route('amenities_destroy', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Delete</a>
+                </div>
+              </div>',
             );
         }
 

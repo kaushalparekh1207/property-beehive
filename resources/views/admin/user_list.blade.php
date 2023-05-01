@@ -1,90 +1,103 @@
 @section('users')
-    menu-open active
+menu-is-opening menu-open
 @endsection
 @section('user_list')
     active
 @endsection
-@section('title')
-    Users List
-@endsection
 <!DOCTYPE html>
 <html lang="en">
 
-@include('admin.assets.link')
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users List</title>
 
-<body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
+    @include('admin.assets.links')
+    <style>
+        sup {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
+
         @include('admin.assets.side&topbar')
 
-        <!-- =============================================== -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="header-icon">
-                    <i class="pe-7s-world"></i>
-                </div>
-                <div class="header-title">
-                    <h1>Users</h1>
-                    <small>Add New Users</small>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('index') }}"><i class="pe-7s-home"></i></a>
-                        </li>
-                        <li class="breadcrumb-item">Users List
-                        </li>
-                    </ol>
-                </div>
-            </section>
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Users List</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                                <li class="breadcrumb-item"> Users List
+                                </li>
+                                
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
             <!-- Main content -->
             <section class="content">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-bd">
-
-                            <div class="panel-body">
-                                {{-- <button type="button"  class="btn btn-success"><a href="{{ route('state_add') }}"><i class="fa fa-plus"></i> Add
-                                    New</a></button> --}}
-                                <a type="button" href="{{ route('users_add') }}" id=""
-                                    class="btn btn-success">+ Add New</a>
-                                <div class="table-responsive" style="margin-top: 2%;">
-                                    <table id="users_list" class="table table-striped table-condensed">
-                                        <thead>
-                                            <tr>
-                                                <th>Sr No.</th>
-                                                <th>User Type</th>
-                                                <th>User Name</th>
-                                                <th>Contact Number</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Sr No.</th>
-                                                <th>User Type</th>
-                                                <th>User Name</th>
-                                                <th>Contact Number</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
+                <div class="containter-fluid">
+                    <div class="card card-info">
+                        {{-- <div class="card-header">
+                            <h3 class="card-title">Horizontal Form</h3>
+                        </div> --}}
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <a type="button" href="{{ route('users_add') }}" id=""
+                            class="btn btn-success mb-3">+ Add New</a>
+                            <table id="users_list" class="table table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>User Type</th>
+                                        <th>User Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>User Type</th>
+                                        <th>User Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </section> <!-- /.content -->
-        </div> <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
-            <strong>Copyright &copy; 2016-2017 <a href="#">bdtask</a>.</strong> All rights reserved. <i
-                class="fa fa-heart color-green"></i>
-        </footer>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        @yield('footer')
     </div>
     <!-- ./wrapper -->
-    @include('admin.assets.script')
+
+    @include('admin.assets.scripts')
     <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+        });
+    </script>
+     <script>
         var columnString;
         columnString = [{
                 data: 'id'

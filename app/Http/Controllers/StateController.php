@@ -88,14 +88,15 @@ class StateController extends Controller
             $data_arr[] = array(
                 "id" => $count,
                 "state" => $state_name,
-                "action" => '<div class="btn-group m-b-5">
-                 <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-primary" aria-expanded="true">Action
-                     <span class="caret"></span>
-                 </button>
-                 <ul role="menu" class="dropdown-menu">
-                     <li><a href="' . route('state_destroy', $id) . '">Delete</a></li>
-                 </ul>
-             </div>',
+                "action" => '<div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  Action
+                </button>
+                <div class="dropdown-menu">
+                 
+                  <a href="' . route('state_destroy', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Delete</a>
+                </div>
+              </div>',
             );
         }
 

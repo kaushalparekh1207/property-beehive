@@ -1,306 +1,343 @@
-<header class="main-header">
-    <a href="index.html" class="logo">
-        <!-- Logo -->
-        <span class="logo-mini">
-            <!--<b>A</b>BD-->
-            <img src="{{ url('/') }}/admin/assets/dist/img/mini-logo.png" alt="">
-        </span>
-        <span class="logo-lg">
-            <!--<b>Admin</b>BD-->
-            <img src="{{ url('/') }}/admin/assets/dist/img/logo.png" alt="">
-        </span>
-    </a>
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top">
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <!-- Sidebar toggle button-->
-            <span class="sr-only">Toggle navigation</span>
-            <span class="pe-7s-keypad"></span>
-        </a>
-        <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-                <!-- Messages -->
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="pe-7s-mail"></i>
-                        <span class="label label-success">4</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
-                        <li>
-                            <ul class="menu">
-                                <li>
-                                    <!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left"><img
-                                                src="{{ url('/') }}/admin/assets/dist/img/avatar.png"
-                                                class="img-circle" alt="User Image"></div>
-                                        <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img
-                                                src="{{ url('/') }}/admin/assets/dist/img/avatar2.png"
-                                                class="img-circle" alt="User Image"></div>
-                                        <h4>AdminLTE Design Team<small><i class="fa fa-clock-o"></i> 2
-                                                hours</small></h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img
-                                                src="{{ url('/') }}/admin/assets/dist/img/avatar3.png"
-                                                class="img-circle" alt="User Image"></div>
-                                        <h4>Developers<small><i class="fa fa-clock-o"></i> Today</small></h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img
-                                                src="{{ url('/') }}/admin/assets/dist/img/avatar4.png"
-                                                class="img-circle" alt="User Image"></div>
-                                        <h4>Sales Department<small><i class="fa fa-clock-o"></i>
-                                                Yesterday</small></h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img
-                                                src="{{ url('/') }}/admin/assets/dist/img/avatar5.png"
-                                                class="img-circle" alt="User Image"></div>
-                                        <h4>Reviewers<small><i class="fa fa-clock-o"></i> 2 days</small></h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
-                    </ul>
-                </li>
-                <!-- Notifications -->
-                <li class="dropdown notifications-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="pe-7s-speaker"></i>
-                        <span class="label label-warning">8</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
-                        <li>
-                            <ul class="menu">
-                                <li><a href="#"><i class="ti-user color-gray"></i> 5 new members joined
-                                        today
-                                    </a></li>
-                                <li><a href="#"><i class="ti-announcement color-green"></i> Very long
-                                        description here that may not fit into the page and may cause design
-                                        problems</a></li>
-                                <li><a href="#"><i class="fa fa-users"></i> 5 new members joined</a>
-                                </li>
-                                <li><a href="#"><i class="ti-shopping-cart color-violet"></i> 25 sales
-                                        made</a>
-                                </li>
-                                <li><a href="#"><i class="ti-twitter color-info"></i> 3 New
-                                        Followers</a></li>
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#">View all</a></li>
-                    </ul>
-                </li>
-                <!-- Tasks -->
-                <li class="dropdown tasks-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="pe-7s-flag"></i>
-                        <span class="label label-danger">9</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 9 tasks</li>
-                        <li>
-                            <ul class="menu">
-                                <li>
-                                    <!-- Task item -->
-                                    <a href="#">
-                                        <h3>
-                                            Design some buttons
-                                            <small class="pull-right">20%</small>
-                                        </h3>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-primary progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="30" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 30%">
-                                                <span class="sr-only">30% Complete (primary)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li> <!-- end task item -->
-                                <li>
-                                    <!-- Task item -->
-                                    <a href="#">
-                                        <h3>
-                                            Create a nice theme
-                                            <small class="pull-right">40%</small>
-                                        </h3>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40% Complete (primary)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li> <!-- end task item -->
-                                <li>
-                                    <!-- Task item -->
-                                    <a href="#">
-                                        <h3>
-                                            Some task I need to do
-                                            <small class="pull-right">60%</small>
-                                        </h3>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 60%">
-                                                <span class="sr-only">60% Complete (info)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li> <!-- end task item -->
-                                <li>
-                                    <!-- Task item -->
-                                    <a href="#">
-                                        <h3>
-                                            Make beautiful transitions
-                                            <small class="pull-right">80%</small>
-                                        </h3>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-warning progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 80%">
-                                                <span class="sr-only">80% Complete (warning)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- end task item -->
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#">View all tasks</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- settings -->
-                <li class="dropdown dropdown-user">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
-                            class="pe-7s-settings"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="profile.html"><i class="pe-7s-users"></i> User Profile</a></li>
-                        <li><a href="#"><i class="pe-7s-settings"></i> Settings</a></li>
-                        <li><a href="login.html"><i class="pe-7s-key"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<!-- =============================================== -->
-<!-- Left side column. contains the sidebar -->
-<aside class="main-sidebar">
-    <!-- sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel -->
-        {{-- <div class="user-panel text-center">
-            <div class="image">
-                <img src="{{ url('/') }}/admin/assets/dist/img/user2-160x160.png" class="img-circle"
-                    alt="User Image">
-            </div>
-            <div class="info">
-                <p>Naeem Khan</p>
-                
-            </div>
-        </div> --}}
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn"><i
-                            class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form> <!-- /.search form -->
-        <!-- sidebar menu -->
-        <ul class="sidebar-menu">
-            <li class="@yield('dashboard')">
-                <a href="{{ route('index') }}"><i class="fa fa-home"></i> <span>Dashboard</span>
-                    {{-- <span class="pull-right-container">
-                        <span class="label label-success pull-right">v.1</span>
-                    </span> --}}
-                </a>
-            </li>
-            <li class="@yield('admin_user')">
-                <a href="{{ route('createAdminUsers') }}"><i class="fa fa-user-plus"></i> <span>Admin Users</span>
-                </a>
-            </li>
-            <li class="treeview @yield('Property')">
-                <a href="#">
-                    <i class="fa fa-map"></i><span>Property Types</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="@yield('a_property')"><a href="{{ route('aggriculture_property') }}">Aggriculture
-                            Property</a></li>
-                    <li class="@yield('na_property')"><a href="{{ route('non_aggriculture_property') }}">Non Aggriculture
-                            Property</a></li>
-                    <li class="@yield('property_transaction')"><a href="{{ route('property_transaction') }}">Property
-                            Transaction</a></li>
-                </ul>
-            </li>
-            <li class="treeview @yield('setup')">
-                <a href="#">
-                    <i class="fa fa-cog"></i> <span>Setup</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="@yield('role')"><a href="{{ route('roles') }}">Role Master</a></li>
-                    <li class="@yield('state')"><a href="{{ route('state') }}">State Master</a></li>
-                    <li class="@yield('city')"> <a href="{{ route('city') }}">City Master</a></li>
-                    <li class="@yield('Amenities')"><a href="{{ route('Amenities') }}">Amenities</a></li>
-                </ul>
-            </li>
-            <li class="treeview @yield('users')">
-                <a href="#">
-                    <i class="fa fa-users"></i> <span>Client Master</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="@yield('user_type')"><a href="{{ route('user_type') }}">Client Types</a></li>
-                    <li class="@yield('users_add')"><a href="{{ route('users_add') }}">Add Clients</a></li>
-                    <li class="@yield('user_list')"><a href="{{ route('users') }}">Clients</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-building"></i> <span>Property Master</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('property_listing') }}">Property Listing</a></li>
-                    <li><a href="{{ route('properties_add') }}">Add Property</a></li>
-                </ul>
-            </li>
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__wobble" src="{{ url('/') }}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+          width="60">
+  </div>
 
-        </ul>
-    </div> <!-- /.sidebar -->
-</aside>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+              <a href="index3.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+              <a href="#" class="nav-link">Contact</a>
+          </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+          <!-- Navbar Search -->
+          <li class="nav-item">
+              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                  <i class="fas fa-search"></i>
+              </a>
+              <div class="navbar-search-block">
+                  <form class="form-inline">
+                      <div class="input-group input-group-sm">
+                          <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                              aria-label="Search">
+                          <div class="input-group-append">
+                              <button class="btn btn-navbar" type="submit">
+                                  <i class="fas fa-search"></i>
+                              </button>
+                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                  <i class="fas fa-times"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </li>
+
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+              <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-comments"></i>
+                  <span class="badge badge-danger navbar-badge">3</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <a href="#" class="dropdown-item">
+                      <!-- Message Start -->
+                      <div class="media">
+                          <img src="{{ url('/') }}/dist/img/user1-128x128.jpg" alt="User Avatar"
+                              class="img-size-50 mr-3 img-circle">
+                          <div class="media-body">
+                              <h3 class="dropdown-item-title">
+                                  Brad Diesel
+                                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                              </h3>
+                              <p class="text-sm">Call me whenever you can...</p>
+                              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                          </div>
+                      </div>
+                      <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                      <!-- Message Start -->
+                      <div class="media">
+                          <img src="{{ url('/') }}/dist/img/user8-128x128.jpg" alt="User Avatar"
+                              class="img-size-50 img-circle mr-3">
+                          <div class="media-body">
+                              <h3 class="dropdown-item-title">
+                                  John Pierce
+                                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                              </h3>
+                              <p class="text-sm">I got your message bro</p>
+                              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                          </div>
+                      </div>
+                      <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                      <!-- Message Start -->
+                      <div class="media">
+                          <img src="{{ url('/') }}/dist/img/user3-128x128.jpg" alt="User Avatar"
+                              class="img-size-50 img-circle mr-3">
+                          <div class="media-body">
+                              <h3 class="dropdown-item-title">
+                                  Nora Silvester
+                                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                              </h3>
+                              <p class="text-sm">The subject goes here</p>
+                              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                          </div>
+                      </div>
+                      <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+              </div>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item dropdown">
+              <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-bell"></i>
+                  <span class="badge badge-warning navbar-badge">15</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <span class="dropdown-item dropdown-header">15 Notifications</span>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                      <i class="fas fa-envelope mr-2"></i> 4 new messages
+                      <span class="float-right text-muted text-sm">3 mins</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                      <i class="fas fa-users mr-2"></i> 8 friend requests
+                      <span class="float-right text-muted text-sm">12 hours</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                      <i class="fas fa-file mr-2"></i> 3 new reports
+                      <span class="float-right text-muted text-sm">2 days</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+              </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt"></i>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                  <i class="fas fa-th-large"></i>
+              </a>
+          </li>
+      </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+          <img src="{{ url('/') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+              class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">AdminLTE 3</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="image">
+                  <img src="{{ url('/') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                      alt="User Image">
+              </div>
+              <div class="info">
+                  <a href="#" class="d-block">Alexander Pierce</a>
+              </div>
+          </div>
+
+          <!-- SidebarSearch Form -->
+          <div class="form-inline">
+              <div class="input-group" data-widget="sidebar-search">
+                  <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                      aria-label="Search">
+                  <div class="input-group-append">
+                      <button class="btn btn-sidebar">
+                          <i class="fas fa-search fa-fw"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                  data-accordion="false">
+                  <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                  <li class="nav-item">
+                      <a href="{{ route('index') }}" class="nav-link @yield('dashboard')">
+                          <i class="fa fa-home nav-icon"></i>
+                          <p>Dashboard</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('createAdminUsers') }}" class="nav-link @yield('admin_user')">
+                          <i class="fa fa-user-plus nav-icon"></i>
+                          <p>Admin Users</p>
+                      </a>
+                  </li>
+                  <li class="nav-item menu-is-opening menu-open @yield('Property')">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-map"></i>
+                          <p>
+                              Property Type
+                              <i class="fas fa-angle-left right"></i>
+                              {{-- <span class="badge badge-info right">6</span> --}}
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ route('aggriculture_property') }}" class="nav-link @yield('a_property')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Agriculture Property</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('non_aggriculture_property') }}" class="nav-link @yield('na_property')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>NonAgriculture Property</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('property_transaction') }}" class="nav-link @yield('property_transaction')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Property Transaction</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item @yield('setup')">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-cog"></i>
+                          <p>
+                              Setup
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ route('roles') }}" class="nav-link @yield('role')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Role Master</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('state') }}" class="nav-link @yield('state')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>State Master</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('city') }}" class="nav-link @yield('city')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>City Master</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('Amenities') }}" class="nav-link @yield('Amenities')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Amenities</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item @yield('users')">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-users"></i>
+                          <p>
+                              Client Master
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ route('user_type') }}" class="nav-link @yield('user_type')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Client Types</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('users_add') }}" class="nav-link @yield('users_add')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Add Clients</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('users') }}" class="nav-link @yield('user_list')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Clients</p>
+                              </a>
+                          </li>
+
+                      </ul>
+                  </li>
+                  <li class="nav-item @yield('property_master')">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-building"></i>
+                          <p>
+                              Property Master
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ route('properties_add') }}" class="nav-link @yield('properties_add')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Add Property</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('property_listing') }}" class="nav-link @yield('property_listing')">
+                                  <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                  <p>Property Listing</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+  </aside>
+
+
+  @section('footer')
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+          <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+          <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+          All rights reserved.
+          <div class="float-right d-none d-sm-inline-block">
+              <b>Version</b> 3.2.0
+          </div>
+      </footer>
+  @endsection

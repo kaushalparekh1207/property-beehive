@@ -11,7 +11,7 @@
           <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
-          
+
       </ul>
 
       <!-- Right navbar links -->
@@ -198,7 +198,7 @@
                       <a href="#" class="nav-link">
                           <i class="nav-icon fa fa-map"></i>
                           <p>
-                              Property Type
+                              Property Types
                               <i class="fas fa-angle-left right"></i>
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
@@ -207,13 +207,13 @@
                           <li class="nav-item">
                               <a href="{{ route('aggriculture_property') }}" class="nav-link @yield('a_property')">
                                   <i class="fas fa-angle-right nav-icon ml-1"></i>
-                                  <p>Agriculture Property</p>
+                                  <p>Add Property Type</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="{{ route('non_aggriculture_property') }}" class="nav-link @yield('na_property')">
                                   <i class="fas fa-angle-right nav-icon ml-1"></i>
-                                  <p>NonAgriculture Property</p>
+                                  <p>Add Property Category</p>
                               </a>
                           </li>
                           <li class="nav-item">

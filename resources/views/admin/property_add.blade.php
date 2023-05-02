@@ -53,7 +53,8 @@
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" method="POST" action="{{ route('AdminUsersinsert') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('property_master_insert') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body p-0">
                                 <div class="bs-stepper">
@@ -182,7 +183,7 @@
                                                     Amenities:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select6" name="amenities"
+                                                    <select class="form-control select6" name="amenities[]"
                                                         id="amenities" required style="width: 100%;" multiple>
                                                         <option value="" disabled>Select
                                                             One
@@ -287,7 +288,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row time_duration">
+                                            <div class="form-group row time_duration" style="display: none;">
                                                 <label for="" class="col-sm-2 col-form-label">Available From:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
@@ -296,14 +297,14 @@
                                                             <span class="input-group-text"><i
                                                                     class="far fa-calendar-alt"></i></span>
                                                         </div>
-                                                        <input type="text" id="datemask" class="form-control"
-                                                            data-inputmask-alias="datetime"
+                                                        <input type="text" id="datemask" name="time_duration"
+                                                            class="form-control" data-inputmask-alias="datetime"
                                                             data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row property_age">
+                                            <div class="form-group row property_age" style="display: none;">
                                                 <label for="" class="col-sm-2 col-form-label">Property Age:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
@@ -476,7 +477,10 @@
                 placeholder: "Select a Amenities",
                 allowClear: true
             });
-            $('.select7').select2();
+            $('.select7').select2({
+                placeholder: "Select a BHK",
+                allowClear: true
+            });
 
             bsCustomFileInput.init();
 
@@ -491,7 +495,18 @@
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', {
                 'placeholder': 'dd/mm/yyyy'
-            })
+            });
+
+            $('#possession_status').on('change', function() {
+                var possession_status = $(this).val();
+                if (possession_status == 'Under Construction') {
+                    $('.time_duration').show();
+                    $('.property_age').hide();
+                } else {
+                    $('.time_duration').hide();
+                    $('.property_age').show();
+                }
+            });
         });
 
         // BS-Stepper Init

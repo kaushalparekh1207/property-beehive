@@ -167,5 +167,3 @@ Route::group(['middleware' => 'checksession'], function () {
 
     Route::get('/admin/fetch_property_list/', [PropertyMasterController::class, 'fetchProperty'])->name('get-property-list');
 });
-
-Route::view('/index-1', 'admin.index-1');

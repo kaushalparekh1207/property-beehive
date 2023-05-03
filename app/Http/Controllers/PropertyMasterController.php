@@ -13,6 +13,7 @@ use App\Models\PropertyExteriorViewImage;
 use App\Models\PropertyFloorPlanImage;
 use App\Models\PropertyMaster;
 use App\Models\PropertyOtherImage;
+use App\Models\PropertyType;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,9 +38,8 @@ class PropertyMasterController extends Controller
         $amenities = Amenities::where('flag', 1)->get();
         $states = State::where('flag', 1)->get();
         $cities = City::where('flag', 1)->get();
-        $agriculturePropertyData = AgricultureProperty::where('flag', 1)->get(['id', 'a_property_name']);
-        $nonAgriculturePropertyData = NonAgricultureProperty::where('flag', 1)->distinct()->get(['id', 'na_property_type']);
-        return view('admin.property_add', compact('agriculturePropertyData', 'nonAgriculturePropertyData', 'states', 'cities', 'amenities'));
+        $propertyTypes = PropertyType::where('flag', 1)->get(['id', 'property_type']);
+        return view('admin.property_add', compact( 'propertyTypes', 'states', 'cities', 'amenities'));
     }
 
     /**
@@ -143,7 +143,7 @@ class PropertyMasterController extends Controller
         }
         // End of Coding
 
-        // Upload Property Other Image Image Code Start
+        // Upload Property Other Image Code Start
         $propertyOtherImages = $request->file('property_other_image');
         foreach ($propertyOtherImages as $propertyOtherImage) {
             $propertyOtherImageModel = new PropertyOtherImage();
@@ -204,15 +204,19 @@ class PropertyMasterController extends Controller
     /**
      * Fetch Property Data
      */
-    public function fetchProperty(Request $request)
+    public function fetchPropertyCategory(Request $request)
     {
-        $property_id = $request->property_id;
-        if ($property_id == 1) {
-            $data['property_type'] = DB::table('agriculture_properties')->where("flag", 1)->distinct()->get(['id', 'a_property_name']);
-            return response()->json($data);
-        } else {
-            $data['property_type'] = DB::table('non_agriculture_property_types')->where("flag", 1)->get(['id', 'na_property_type']);
-            return response()->json($data);
-        }
+        $property_type_id = $request->property_type_id;
+        $data['property_category'] = DB::table('property_categories')->where('property_type_id',$property_type_id)->where("flag", 1)->get(['id', 'property_category_name']);
+        return response()->json($data);
+    }
+
+    /**
+     * Fetch City Data
+     */
+    public function fetchCity(Request $request)
+    {
+        $data['city'] = City::where("state_id", $request->state)->where("flag", 1)->get(["id", "city"]);
+        return response()->json($data);
     }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\PropertyTransactionController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\PropertyCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,22 +57,22 @@ Route::post('/admin/login/validate', [AdminController::class, 'validateLogin'])-
 
 Route::get('/admin/profile', [AdminController::class, 'profile'])->name('profile');
 
-// Aggriculture Property
+// Property Types
 Route::group(['middleware' => 'checksession'], function () {
-    Route::get('/admin/aggriculture_property', [AgriculturePropertyController::class, 'index'])->name('aggriculture_property');
-    Route::get('/admin/aggriculture_property/show', [AgriculturePropertyController::class, 'show'])->name('showAggriculturePropertyDetails');
-    Route::get('/admin/aggriculture_property/add', [AgriculturePropertyController::class, 'create'])->name('aggriculture_property_add');
-    Route::post('/admin/aggriculture_property/insert', [AgriculturePropertyController::class, 'store'])->name('aggriculture_property_insert');
-    Route::get('/admin/aggriculture_property/destroy/{id}', [AgriculturePropertyController::class, 'destroy'])->name('aggriculture_property_destroy');
+    Route::get('/admin/property_types', [PropertyTypeController::class, 'index'])->name('property_types');
+    Route::get('/admin/property_types/show', [PropertyTypeController::class, 'show'])->name('showPropertyTypes');
+    Route::get('/admin/property_types/add', [PropertyTypeController::class, 'create'])->name('property_types_add');
+    Route::post('/admin/property_types/insert', [PropertyTypeController::class, 'store'])->name('property_types_insert');
+    Route::get('/admin/property_types/destroy/{id}', [PropertyTypeController::class, 'destroy'])->name('property_types_destroy');
 });
 
-// Non Aggriculture Property //
+// Property Category //
 Route::group(['middleware' => 'checksession'], function () {
-    Route::get('/admin/non_aggriculture_property', [NonAgriculturePropertyController::class, 'index'])->name('non_aggriculture_property');
-    Route::get('/admin/non_aggriculture_property/show', [NonAgriculturePropertyController::class, 'show'])->name('show_non_AggriculturePropertyDetails');
-    Route::get('/admin/non_aggriculture_property/add', [NonAgriculturePropertyController::class, 'create'])->name('non_aggriculture_property_add');
-    Route::post('/admin/non_aggriculture_property/insert', [NonAgriculturePropertyController::class, 'store'])->name('non_aggriculture_property_insert');
-    Route::get('/admin/non_aggriculture_property/delete/{id}', [NonAgriculturePropertyController::class, 'destroy'])->name('non_aggriculture_property_delete');
+    Route::get('/admin/property_categories', [PropertyCategoryController::class, 'index'])->name('property_categories');
+    Route::get('/admin/property_categories/show', [PropertyCategoryController::class, 'show'])->name('show_property_categories');
+    Route::get('/admin/property_categories/add', [PropertyCategoryController::class, 'create'])->name('property_categories_add');
+    Route::post('/admin/property_categories/insert', [PropertyCategoryController::class, 'store'])->name('property_categories_insert');
+    Route::get('/admin/property_categories/delete/{id}', [PropertyCategoryController::class, 'destroy'])->name('property_categories_delete');
 });
 
 // Add Property Transaction //
@@ -119,7 +121,8 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::post('/admin/city/insert', [CityController::class, 'store'])->name('city_insert');
     Route::get('/admin/city/delete/{id}', [CityController::class, 'destroy'])->name('city_destroy');
 });
-// City Master Routes
+
+// Amenities Routes
 Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/amenities', [AmenitiesController::class, 'index'])->name('Amenities');
     Route::get('/admin/amenities/show', [AmenitiesController::class, 'show'])->name('show_amenities');
@@ -164,6 +167,6 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/property_master/delete/{id}', [PropertyMasterController::class, 'destroy'])->name('property_master_delete');
     Route::get('/admin/property_master/edit/{id}', [PropertyMasterController::class, 'edit'])->name('property_master_edit');
     Route::post('/admin/property_master/edit/updateuser', [PropertyMasterController::class, 'update'])->name('property_master_update');
-
-    Route::get('/admin/fetch_property_list/', [PropertyMasterController::class, 'fetchProperty'])->name('get-property-list');
+    Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
+    Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
 });

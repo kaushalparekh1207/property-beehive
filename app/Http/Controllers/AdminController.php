@@ -32,7 +32,7 @@ class AdminController extends Controller
                 Cookie::queue('saved_input', $input, 1440);
                 Cookie::queue('saved_password', $request->get('password'), 1440);
             }
-            $request->session()->put('admin', ['admin_id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
+            $request->session()->put('admin', ['id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
             return redirect('admin/dashboard');
         } else {
             toastr()->error('Invalid Info !');

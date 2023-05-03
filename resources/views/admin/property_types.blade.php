@@ -1,7 +1,7 @@
 @section('Property')
 menu-is-opening menu-open
 @endsection
-@section('a_property')
+@section('property_types')
     active
 @endsection
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ menu-is-opening menu-open
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aggriculture Property</title>
+    <title>Property Types</title>
 
     @include('admin.assets.links')
     <style>
@@ -32,14 +32,14 @@ menu-is-opening menu-open
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Aggriculture Property</h1>
+                            <h1 class="m-0">Property Types</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item">Aggriculture Property
+                                <li class="breadcrumb-item">Property Types
                                 </li>
-                                
+
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -56,20 +56,20 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a type="button" href="{{ route('aggriculture_property_add') }}" id=""
+                            <a type="button" href="{{ route('property_types_add') }}" id=""
                             class="btn btn-success mb-3">+ Add New</a>
-                            <table id="aggricultureProperty" class="table table-striped table-bordered nowrap">
+                            <table id="propertyTypes" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Property Name</th>
+                                        <th>Property Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Sr No.</th>
-                                        <th>Property Name</th>
+                                        <th>Property Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -100,13 +100,13 @@ menu-is-opening menu-open
                 data: 'id'
             },
             {
-                data: 'property_name'
+                data: 'property_type'
             },
             {
                 data: 'action'
             },
         ]
-        $('#aggricultureProperty').DataTable({
+        $('#propertyTypes').DataTable({
             "language": {
                 "infoFiltered": ""
             },
@@ -119,7 +119,7 @@ menu-is-opening menu-open
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            ajax: "{{ route('showAggriculturePropertyDetails') }}",
+            ajax: "{{ route('showPropertyTypes') }}",
             columns: columnString,
         });
     </script>

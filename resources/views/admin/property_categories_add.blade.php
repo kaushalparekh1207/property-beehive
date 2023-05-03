@@ -1,7 +1,7 @@
 @section('Property')
 menu-is-opening menu-open
 @endsection
-@section('a_property')
+@section('property_categories')
     active
 @endsection
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ menu-is-opening menu-open
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aggriculture Property | Add</title>
+    <title>Property Category | Add</title>
 
     @include('admin.assets.links')
     <style>
@@ -32,16 +32,15 @@ menu-is-opening menu-open
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Add New Aggriculture Property</h1>
+                            <h1 class="m-0">Add New Property Category</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                                 <li class="breadcrumb-item"><a
-                                    href="{{ route('aggriculture_property') }}">Aggriculture
-                                    Property</a>
-                            </li>
-                                <li class="breadcrumb-item active">Add New Aggriculture Property</li>
+                                    href="{{ route('property_categories') }}">Property Categories</a>
+                                </li>
+                                <li class="breadcrumb-item active">Add New Property Category</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -58,34 +57,34 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" action="{{ route('aggriculture_property_insert') }}"
+                        <form class="form-horizontal" action="{{ route('property_categories_insert') }}"
                         method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Select Property
+                                <div class="form-group row">
+                                    <label class="control-label col-md-2">Select Property
                                         Type: <sup>*</sup>
                                     </label>
-                                    <div>
-                                        <select name="select"
+                                    <div class="col-10">
+                                        <select name="property_type"
                                         class="form-control select2" required>
                                             <option value="" selected disabled>Select
                                                 One
                                             </option>
-                                            @foreach ($propertyData as $property)
-                                                <option value="{{ $property->id }}">
-                                                    {{ $property->property_name }}</option>
-                                            @endforeach
+                                            @foreach ($propertyTypes as $propertyType)
+                                            <option value="{{ $propertyType->id }}">
+                                                {{ $propertyType->property_type }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Enter Property
-                                        Name: <sup>*</sup></label>
-                                    <div>
-                                        <input name="a_property_name" type="text"
+                                <div class="form-group row">
+                                    <label class="control-label col-md-2">Enter Property
+                                        Category Name: <sup>*</sup></label>
+                                    <div class="col-md-10">
+                                        <input name="property_category_name" type="text"
                                             class="form-control"
-                                            placeholder="Aggriculture Property Name" required>
+                                            placeholder="Enter Property Category Name Here..." required>
                                     </div>
                                 </div>
                             </div>

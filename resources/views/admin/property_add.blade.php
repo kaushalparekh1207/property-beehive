@@ -1,13 +1,16 @@
-@section('admin_user')
-    active
+@section('property_master')
+    menu-is-opening menu-open
 @endsection
+@section('properties_add')
+    active
+    @endsection
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Users | Add</title>
+    <title>Property | Add</title>
 
     @include('admin.assets.links')
     <style>
@@ -90,32 +93,29 @@
                                             aria-labelledby="basic-part-trigger">
                                             <hr>
                                             <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label">Select Property:
+                                                <label for="" class="col-sm-2 col-form-label">Select Property Type:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select2" name="property" id="property"
+                                                    <select class="form-control select2" name="property_type" id="property_type"
                                                         required style="width: 100%;">
                                                         <option value="" selected disabled>Select
-                                                            Property
+                                                            Property Type
                                                         </option>
-                                                        <option value="1">
-                                                            Aggriculture (Land)
-                                                            Property</option>
-                                                        <option value="2">Non
-                                                            Aggriculture Property
-                                                        </option>
+                                                        @foreach($propertyTypes as $propertyType)
+                                                            <option value="{{$propertyType->id}}">{{$propertyType->property_type }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label">Select Property
-                                                    Type:
+                                                    Category:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select3" name="propertytype"
-                                                        id="propertytype_dropdown" required style="width: 100%;">
+                                                    <select class="form-control select3" name="property_category"
+                                                        id="property_category_dropdown" required style="width: 100%;">
                                                         <option value="" selected disabled>Select
-                                                            Property Type
+                                                            Property Category
                                                         </option>
 
                                                     </select>
@@ -141,20 +141,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
+                                            <div class="form-group row city">
                                                 <label for="" class="col-sm-2 col-form-label">Select City:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select5" name="city" id="city"
+                                                    <select class="form-control select5" name="city" id="city_dropdown"
                                                         required style="width: 100%;">
                                                         <option value="" selected disabled>Select
                                                             City
                                                         </option>
-                                                        @foreach ($cities as $city)
-                                                            <option value="{{ $city->id }}">
-                                                                {{ $city->city }}
-                                                            </option>
-                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -515,42 +510,72 @@
         })
     </script>
     <script>
-        $('#property').on('change', function() {
-            var property_id = $(this).val();
+        $('#property_type').on('change', function() {
+            var property_type_id = $(this).val();
 
-            $("#propertytype_dropdown").html('');
+            $("#property_category_dropdown").html('');
             $.ajax({
-                url: "{{ route('get-property-list') }}",
+                url: "{{ route('get-property-category') }}",
                 type: "GET",
                 data: {
-                    property_id: property_id,
+                    property_type_id: property_type_id,
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
                 success: function(result) {
-                    $('#propertytype_dropdown').html(
-                        '<option value="" selected disabled>-- Select Property Type --</option>'
+                    $('#property_category_dropdown').html(
+                        '<option value="" selected disabled>-- Select Property Category --</option>'
                     );
-                    $.each(result.property_type, function(key, value) {
-                        if (property_id == 1) {
-                            $("#propertytype_dropdown").append(
-                                '<option value="' +
-                                value
-                                .id + '">' + value.a_property_name +
-                                '</option>');
-                        } else {
-                            $("#propertytype_dropdown").append(
-                                '<option value="' +
-                                value
-                                .id + '">' + value.na_property_type +
-                                '</option>');
-                        }
+                    $.each(result.property_category, function(key, value) {
+                        $("#property_category_dropdown").append(
+                            '<option value="' +
+                            value
+                                .id + '">' + value.property_category_name +
+                            '</option>');
 
                     });
                 }
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#city').hide();
+
+            /*------------------------------------------
+            --------------------------------------------
+            State Dropdown Change Event
+            --------------------------------------------
+            --------------------------------------------*/
+            $('#state').on('change', function() {
+                var state = this.value;
+                $("#city_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-city-list') }}",
+                    type: "GET",
+                    data: {
+                        state: state,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#city').show();
+                        $('#city_dropdown').html(
+                            '<option value="" selected disabled>-- Select City --</option>'
+                        );
+                        $.each(result.city, function(key, value) {
+                            $("#city_dropdown").append('<option value="' +
+                                value
+                                    .id + '">' + value.city +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

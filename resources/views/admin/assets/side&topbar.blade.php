@@ -205,13 +205,13 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('aggriculture_property') }}" class="nav-link @yield('a_property')">
+                              <a href="{{ route('property_types') }}" class="nav-link @yield('property_types')">
                                   <i class="fas fa-angle-right nav-icon ml-1"></i>
                                   <p>Add Property Type</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{ route('non_aggriculture_property') }}" class="nav-link @yield('na_property')">
+                              <a href="{{ route('property_categories') }}" class="nav-link @yield('property_categories')">
                                   <i class="fas fa-angle-right nav-icon ml-1"></i>
                                   <p>Add Property Category</p>
                               </a>
@@ -329,10 +329,10 @@
 
       <!-- Main Footer -->
       <footer class="main-footer">
-          <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-          All rights reserved.
+          <strong>Copyright &copy; 2023, Property Beehive. Design & Developed By <a target="_blank" href="https://hackberrysoftech.com">Hackberry Softech</a></strong>
+          All Rights Reserved.
           <div class="float-right d-none d-sm-inline-block">
-              <b>Version</b> 3.2.0
+              <b>Version</b> 1.0.0
           </div>
       </footer>
   @endsection

@@ -1,7 +1,7 @@
 @section('Property')
 menu-is-opening menu-open
 @endsection
-@section('na_property')
+@section('property_types')
     active
 @endsection
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ menu-is-opening menu-open
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Non Aggriculture Property | Add</title>
+    <title>Property Types | Add</title>
 
     @include('admin.assets.links')
     <style>
@@ -32,16 +32,16 @@ menu-is-opening menu-open
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Add New Non Aggriculture Property</h1>
+                            <h1 class="m-0">Add Property Type</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                                 <li class="breadcrumb-item"><a
-                                    href="{{ route('non_aggriculture_property') }}">Non Aggriculture
-                                    Property</a>
-                                </li>
-                                <li class="breadcrumb-item active">Add New Non Aggriculture Property</li>
+                                    href="{{ route('property_types') }}">
+                                    Property Types</a>
+                            </li>
+                                <li class="breadcrumb-item active">Add New Property Types</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -58,54 +58,34 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" action="{{ route('non_aggriculture_property_insert') }}"
+                        <form class="form-horizontal" action="{{ route('property_types_insert') }}"
                         method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Select Property
-                                        Type: <sup>*</sup>
-                                    </label>
-                                    <div>
-                                        <select name="select"
-                                        class="form-control select2" required>
-                                            <option value="" selected disabled>Select
-                                                One
-                                            </option>
-                                            @foreach ($nonpropertyData as $property)
-                                            <option value="{{ $property->id }}">
-                                                {{ $property->property_name }}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Select Non
-                                        Aggriculture Property
-                                        Type: <sup>*</sup>
-                                    </label>
-                                    <div>
-                                        <select  class="form-control select2"
-                                            name="na_property_type" required>
-                                            <option value="" selected disabled>Select
-                                                One
-                                            </option>
-                                            <option value="Residential">Residential</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Industrial">Industrial</option>
-                                            <option value="Multi Purpose">Multi Purpose
-                                            </option>
-
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="control-label">Select Property--}}
+{{--                                        Type: <sup>*</sup>--}}
+{{--                                    </label>--}}
+{{--                                    <div>--}}
+{{--                                        <select name="select"--}}
+{{--                                        class="form-control select2" required>--}}
+{{--                                            <option value="" selected disabled>Select--}}
+{{--                                                One--}}
+{{--                                            </option>--}}
+{{--                                            @foreach ($propertyData as $property)--}}
+{{--                                                <option value="{{ $property->id }}">--}}
+{{--                                                    {{ $property->property_name }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <label class="control-label">Enter Property
-                                        Name: <sup>*</sup></label>
+                                        Type: <sup>*</sup></label>
                                     <div>
-                                        <input name="a_property_name" type="text"
+                                        <input name="property_type" type="text"
                                             class="form-control"
-                                            placeholder="Aggriculture Property Name" required>
+                                            placeholder="Enter Property Type Here..." required>
                                     </div>
                                 </div>
                             </div>

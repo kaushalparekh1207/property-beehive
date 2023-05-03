@@ -1,7 +1,7 @@
 @section('Property')
 menu-is-opening menu-open
 @endsection
-@section('na_property')
+@section('property_categories')
     active
 @endsection
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ menu-is-opening menu-open
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Non Aggriculture Property</title>
+    <title>Property Categories</title>
 
     @include('admin.assets.links')
     <style>
@@ -32,14 +32,14 @@ menu-is-opening menu-open
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Non Aggriculture Property</h1>
+                            <h1 class="m-0">Property Categories</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"> Non Aggriculture Property
+                                <li class="breadcrumb-item"> Property Categories
                                 </li>
-                                
+
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -56,15 +56,15 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a type="button" href="{{ route('non_aggriculture_property_add') }}" id=""
+                            <a type="button" href="{{ route('property_categories_add') }}" id=""
                             class="btn btn-success mb-3">+ Add New</a>
-                            <table id="nonaggricultureProperty"
+                            <table id="property_categories_show"
                             class="table table-striped table-bordered nowrap">
                             <thead>
                                 <tr>
                                     <th>Sr No.</th>
                                     <th>Property Type</th>
-                                    <th>Property Name</th>
+                                    <th>Property Category Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@ menu-is-opening menu-open
                                 <tr>
                                     <th>Sr No.</th>
                                     <th>Property Type</th>
-                                    <th>Property Name</th>
+                                    <th>Property Category Name</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -103,16 +103,16 @@ menu-is-opening menu-open
                 data: 'id'
             },
             {
-                data: 'na_property_type'
+                data: 'property_type'
             },
             {
-                data: 'na_property_name'
+                data: 'property_category_name'
             },
             {
                 data: 'action'
             },
         ]
-        $('#nonaggricultureProperty').DataTable({
+        $('#property_categories_show').DataTable({
             "language": {
                 "infoFiltered": ""
             },
@@ -125,7 +125,7 @@ menu-is-opening menu-open
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            ajax: "{{ route('show_non_AggriculturePropertyDetails') }}",
+            ajax: "{{ route('show_property_categories') }}",
             columns: columnString,
         });
     </script>

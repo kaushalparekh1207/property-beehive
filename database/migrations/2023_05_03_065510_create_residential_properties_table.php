@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('plot_area', 50)->nullable();
             $table->string('plot_length', 50)->nullable();
             $table->string('plot_breadth', 50)->nullable();
+            $table->string('furnished_status', 99)->nullable();
             $table->string('possession_status', 50)->nullable();
             $table->string('age', 50)->nullable();
             $table->string('time_duration', 99)->nullable();

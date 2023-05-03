@@ -61,11 +61,11 @@ menu-is-opening menu-open
                         <form class="form-horizontal" action="{{ route('users_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Select User
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Select User
                                         Type: <sup>*</sup>
                                     </label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <select  class="form-control select2" name="user_type" required>
                                             <option value="" selected disabled>Select
                                                 One
@@ -78,32 +78,32 @@ menu-is-opening menu-open
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="control-label">Enter User Name:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter User Name:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="user_name" type="text" class="form-control"
                                             placeholder="Enter User Name" autocomplete="off" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Enter User contact Number:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter User contact Number:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="contact" type="number" class="form-control"
                                             placeholder="Enter User contact Number" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Enter User Email Id: <sup>*</sup></label>
-                                    <div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter User Email Id: <sup>*</sup></label>
+                                    <div class="col-sm-10">
                                         <input name="email" type="email" class="form-control"
                                             placeholder="Enter User Email Id">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Enter User Password: <sup>*</sup></label>
-                                    <div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter User Password: <sup>*</sup></label>
+                                    <div class="col-sm-10">
                                         <input name="password" type="password" class="form-control"
                                             placeholder="Enter User Password" required>
                                     </div>

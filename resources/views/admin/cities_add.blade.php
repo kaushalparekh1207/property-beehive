@@ -60,10 +60,10 @@ menu-is-opening menu-open
                         <form class="form-horizontal" action="{{ route('city_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Select State Name: <sup>*</sup>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Select State Name: <sup>*</sup>
                                     </label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <select class="form-control select2" name="state_id" id="state_id" required>
                                             <option value="" selected disabled>Select
                                                 One
@@ -75,10 +75,10 @@ menu-is-opening menu-open
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Enter City Name:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter City Name:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="city" type="text" class="form-control"
                                             placeholder="City Name" required>
                                     </div>

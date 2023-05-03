@@ -61,10 +61,10 @@ menu-is-opening menu-open
                         <form class="form-horizontal" action="{{ route('user_type_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Enter User Type:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter User Type:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="user_type" type="text" class="form-control"
                                             placeholder="Enter User Type" required>
                                     </div>

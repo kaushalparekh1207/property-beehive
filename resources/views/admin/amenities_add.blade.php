@@ -63,10 +63,10 @@ menu-is-opening menu-open
                             @csrf
                             <div class="card-body">
                                 
-                                <div class="form-group">
-                                    <label class="control-label">Enter Amenities Name:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter Amenities Name:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="amenities" type="text" class="form-control"
                                             placeholder="Amenities Name" required>
                                     </div>

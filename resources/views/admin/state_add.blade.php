@@ -60,10 +60,10 @@ menu-is-opening menu-open
                         <form class="form-horizontal" action="{{ route('state_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Enter State Name:
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Enter State Name:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="state" type="text"
                                         class="form-control" placeholder="State Name" required>
                                     </div>

@@ -61,10 +61,10 @@ menu-is-opening menu-open
                         method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Enter Property
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3">Enter Property
                                         Transaction Type: <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-9">
                                         <input name="property_transaction" type="text"
                                             class="form-control"
                                             placeholder="Property Transaction Name" required>

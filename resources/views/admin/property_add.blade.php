@@ -91,7 +91,24 @@
                                         <!-- your steps content here -->
                                         <div id="basics-part" class="content" role="tabpanel"
                                             aria-labelledby="basic-part-trigger">
-                                            <hr>
+                                            <hr><br>
+
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Property Purpose:
+                                                    <sup>*</sup></label>
+                                                <div class="custom-control custom-radio col-sm-3">
+                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio4" name="customRadio2">
+                                                    <label for="customRadio4" class="custom-control-label">Sell</label>
+                                                </div>
+                                                <div class="custom-control custom-radio col-sm-3">
+                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio5" name="customRadio2">
+                                                    <label for="customRadio5" class="custom-control-label">Rent/Lease</label>
+                                                </div>
+                                                <div class="custom-control custom-radio col-sm-3">
+                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio6" name="customRadio2">
+                                                    <label for="customRadio6" class="custom-control-label">PG/Hostel</label>
+                                                </div>
+                                            </div>
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label">Select Property Type:
                                                     <sup>*</sup></label>
@@ -155,6 +172,24 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Locality:
+                                                    <sup>*</sup></label>
+                                                <div class="col-sm-10">
+                                                    <input id="locality" placeholder="Enter Locality Here"
+                                                           type="text" class="form-control" name="locality"></input>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Address:
+                                                    <sup>*</sup></label>
+                                                <div class="col-sm-10">
+                                                    <textarea id="address" placeholder="Describe Here" rows="5" type="text" class="form-control"
+                                                              name="address"></textarea>
+                                                </div>
+                                            </div>
+
                                             <button type="button" class="btn btn-primary float-right"
                                                 onclick="stepper.next()">Next Step</button><br><br>
                                         </div>
@@ -198,24 +233,6 @@
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
                                                     <textarea id="summernote" type="text" class="form-control" name="descr">Describe Here</textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label">Address:
-                                                    <sup>*</sup></label>
-                                                <div class="col-sm-10">
-                                                    <textarea id="address" placeholder="Describe Here" rows="5" type="text" class="form-control"
-                                                        name="address"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label">Locality:
-                                                    <sup>*</sup></label>
-                                                <div class="col-sm-10">
-                                                    <input id="locality" placeholder="Enter Locality Here"
-                                                        type="text" class="form-control" name="locality"></input>
                                                 </div>
                                             </div>
 

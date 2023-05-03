@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_other_images', function (Blueprint $table) {
             $table->id();
-            $table->integer('property_id');
+            $table->integer('property_master_id');
             $table->string('other_image', 99)->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();

@@ -60,10 +60,10 @@ menu-is-opening menu-open
                         <form class="form-horizontal" action="{{ route('roles_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="control-label">Enter Role Name:
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Enter Role Name:
                                         <sup>*</sup></label>
-                                    <div>
+                                    <div class="col-sm-10">
                                         <input name="role_name" type="text"
                                             class="form-control" placeholder="Role Name" required>
                                     </div>

@@ -1,5 +1,5 @@
 @section('setup')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('role')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -39,7 +39,7 @@ menu-is-opening menu-open
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                                 <li class="breadcrumb-item">Roles
                                 </li>
-                                
+
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -57,7 +57,7 @@ menu-is-opening menu-open
                         <!-- /.card-header -->
                         <div class="card-body">
                             <a type="button" href="{{ route('roles_add') }}" id=""
-                            class="btn btn-success mb-3">+ Add New</a>
+                                class="btn btn-success mb-3">+ Add New</a>
                             <table id="adminRoles" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>

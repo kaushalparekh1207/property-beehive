@@ -1,5 +1,5 @@
 @section('Property')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('property_transaction')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,9 +37,9 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a
-                                    href="{{ route('property_transaction') }}">Property Transaction</a>
-                            </li>
+                                <li class="breadcrumb-item"><a href="{{ route('property_transaction') }}">Property
+                                        Transaction</a>
+                                </li>
                                 <li class="breadcrumb-item active">Add New Property Transaction</li>
                             </ol>
                         </div><!-- /.col -->
@@ -58,15 +58,14 @@ menu-is-opening menu-open
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form class="form-horizontal" action="{{ route('property_transaction_insert') }}"
-                        method="POST">
+                            method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3">Enter Property
                                         Transaction Type: <sup>*</sup></label>
                                     <div class="col-sm-9">
-                                        <input name="property_transaction" type="text"
-                                            class="form-control"
+                                        <input name="property_transaction" type="text" class="form-control"
                                             placeholder="Property Transaction Name" required>
                                     </div>
                                 </div>

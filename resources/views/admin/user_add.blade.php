@@ -1,5 +1,5 @@
 @section('users')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('users_add')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,8 +37,7 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a
-                                    href="{{ route('users') }}"> Users List
+                                <li class="breadcrumb-item"><a href="{{ route('users') }}"> Users List
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item active">Add New Users</li>
@@ -66,7 +65,7 @@ menu-is-opening menu-open
                                         Type: <sup>*</sup>
                                     </label>
                                     <div class="col-sm-10">
-                                        <select  class="form-control select2" name="user_type" required>
+                                        <select class="form-control select2" name="user_type" required>
                                             <option value="" selected disabled>Select
                                                 One
                                             </option>

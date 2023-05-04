@@ -1,5 +1,5 @@
 @section('setup')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('Amenities')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,8 +37,7 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a
-                                    href="{{ route('Amenities') }}">Amenities
+                                <li class="breadcrumb-item"><a href="{{ route('Amenities') }}">Amenities
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item active">Add New Amenities</li>
@@ -58,11 +57,10 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" action="{{ route('amenities_insert') }}"
-                        method="POST">
+                        <form class="form-horizontal" action="{{ route('amenities_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                
+
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-2">Enter Amenities Name:
                                         <sup>*</sup></label>
@@ -70,7 +68,7 @@ menu-is-opening menu-open
                                         <input name="amenities" type="text" class="form-control"
                                             placeholder="Amenities Name" required>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">

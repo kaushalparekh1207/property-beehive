@@ -1,5 +1,5 @@
 @section('Property')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('property_types')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,10 +37,9 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a
-                                    href="{{ route('property_types') }}">
-                                    Property Types</a>
-                            </li>
+                                <li class="breadcrumb-item"><a href="{{ route('property_types') }}">
+                                        Property Types</a>
+                                </li>
                                 <li class="breadcrumb-item active">Add New Property Types</li>
                             </ol>
                         </div><!-- /.col -->
@@ -58,33 +57,31 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" action="{{ route('property_types_insert') }}"
-                        method="POST">
+                        <form class="form-horizontal" action="{{ route('property_types_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="control-label">Select Property--}}
-{{--                                        Type: <sup>*</sup>--}}
-{{--                                    </label>--}}
-{{--                                    <div>--}}
-{{--                                        <select name="select"--}}
-{{--                                        class="form-control select2" required>--}}
-{{--                                            <option value="" selected disabled>Select--}}
-{{--                                                One--}}
-{{--                                            </option>--}}
-{{--                                            @foreach ($propertyData as $property)--}}
-{{--                                                <option value="{{ $property->id }}">--}}
-{{--                                                    {{ $property->property_name }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="form-group"> --}}
+                                {{--                                    <label class="control-label">Select Property --}}
+                                {{--                                        Type: <sup>*</sup> --}}
+                                {{--                                    </label> --}}
+                                {{--                                    <div> --}}
+                                {{--                                        <select name="select" --}}
+                                {{--                                        class="form-control select2" required> --}}
+                                {{--                                            <option value="" selected disabled>Select --}}
+                                {{--                                                One --}}
+                                {{--                                            </option> --}}
+                                {{--                                            @foreach ($propertyData as $property) --}}
+                                {{--                                                <option value="{{ $property->id }}"> --}}
+                                {{--                                                    {{ $property->property_name }}</option> --}}
+                                {{--                                            @endforeach --}}
+                                {{--                                        </select> --}}
+                                {{--                                    </div> --}}
+                                {{--                                </div> --}}
                                 <div class="form-group">
                                     <label class="control-label">Enter Property
                                         Type: <sup>*</sup></label>
                                     <div>
-                                        <input name="property_type" type="text"
-                                            class="form-control"
+                                        <input name="property_type" type="text" class="form-control"
                                             placeholder="Enter Property Type Here..." required>
                                     </div>
                                 </div>

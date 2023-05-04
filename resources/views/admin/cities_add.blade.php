@@ -1,5 +1,5 @@
 @section('setup')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('city')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,7 +37,7 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                               <li class="breadcrumb-item"><a href="{{ route('city') }}">City</a>
+                                <li class="breadcrumb-item"><a href="{{ route('city') }}">City</a>
                                 </li></a>
                                 </li>
                                 <li class="breadcrumb-item active">Add New City</li>

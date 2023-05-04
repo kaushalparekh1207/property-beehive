@@ -3,7 +3,7 @@
 @endsection
 @section('properties_add')
     active
-    @endsection
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +20,7 @@
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -97,29 +97,36 @@
                                                 <label for="" class="col-sm-3 col-form-label">Property Purpose:
                                                     <sup>*</sup></label>
                                                 <div class="custom-control custom-radio col-sm-3">
-                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio4" name="customRadio2">
+                                                    <input class="custom-control-input custom-control-input-danger"
+                                                        type="radio" id="customRadio4" name="customRadio2">
                                                     <label for="customRadio4" class="custom-control-label">Sell</label>
                                                 </div>
                                                 <div class="custom-control custom-radio col-sm-3">
-                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio5" name="customRadio2">
-                                                    <label for="customRadio5" class="custom-control-label">Rent/Lease</label>
+                                                    <input class="custom-control-input custom-control-input-danger"
+                                                        type="radio" id="customRadio5" name="customRadio2">
+                                                    <label for="customRadio5"
+                                                        class="custom-control-label">Rent/Lease</label>
                                                 </div>
                                                 <div class="custom-control custom-radio col-sm-3">
-                                                    <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio6" name="customRadio2">
-                                                    <label for="customRadio6" class="custom-control-label">PG/Hostel</label>
+                                                    <input class="custom-control-input custom-control-input-danger"
+                                                        type="radio" id="customRadio6" name="customRadio2">
+                                                    <label for="customRadio6"
+                                                        class="custom-control-label">PG/Hostel</label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label">Select Property Type:
+                                                <label for="" class="col-sm-2 col-form-label">Select Property
+                                                    Type:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select2" name="property_type" id="property_type"
-                                                        required style="width: 100%;">
+                                                    <select class="form-control select2" name="property_type"
+                                                        id="property_type" required style="width: 100%;">
                                                         <option value="" selected disabled>Select
                                                             Property Type
                                                         </option>
-                                                        @foreach($propertyTypes as $propertyType)
-                                                            <option value="{{$propertyType->id}}">{{$propertyType->property_type }}</option>
+                                                        @foreach ($propertyTypes as $propertyType)
+                                                            <option value="{{ $propertyType->id }}">
+                                                                {{ $propertyType->property_type }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -143,8 +150,8 @@
                                                 <label for="" class="col-sm-2 col-form-label">Select State:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select4" name="state" id="state"
-                                                        required style="width: 100%;">
+                                                    <select class="form-control select4" name="state"
+                                                        id="state" required style="width: 100%;">
                                                         <option value="" selected disabled>Select
                                                             State
                                                         </option>
@@ -162,8 +169,8 @@
                                                 <label for="" class="col-sm-2 col-form-label">Select City:
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select5" name="city" id="city_dropdown"
-                                                        required style="width: 100%;">
+                                                    <select class="form-control select5" name="city"
+                                                        id="city_dropdown" required style="width: 100%;">
                                                         <option value="" selected disabled>Select
                                                             City
                                                         </option>
@@ -177,7 +184,7 @@
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
                                                     <input id="locality" placeholder="Enter Locality Here"
-                                                           type="text" class="form-control" name="locality"></input>
+                                                        type="text" class="form-control" name="locality"></input>
                                                 </div>
                                             </div>
 
@@ -186,7 +193,7 @@
                                                     <sup>*</sup></label>
                                                 <div class="col-sm-10">
                                                     <textarea id="address" placeholder="Describe Here" rows="5" type="text" class="form-control"
-                                                              name="address"></textarea>
+                                                        name="address"></textarea>
                                                 </div>
                                             </div>
 
@@ -547,7 +554,7 @@
                         $("#property_category_dropdown").append(
                             '<option value="' +
                             value
-                                .id + '">' + value.property_category_name +
+                            .id + '">' + value.property_category_name +
                             '</option>');
 
                     });
@@ -583,7 +590,7 @@
                         $.each(result.city, function(key, value) {
                             $("#city_dropdown").append('<option value="' +
                                 value
-                                    .id + '">' + value.city +
+                                .id + '">' + value.city +
                                 '</option>');
                         });
                         // $('#sd').show();

@@ -1,5 +1,5 @@
 @section('Property')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('property_categories')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -37,8 +37,8 @@ menu-is-opening menu-open
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a
-                                    href="{{ route('property_categories') }}">Property Categories</a>
+                                <li class="breadcrumb-item"><a href="{{ route('property_categories') }}">Property
+                                        Categories</a>
                                 </li>
                                 <li class="breadcrumb-item active">Add New Property Category</li>
                             </ol>
@@ -57,8 +57,7 @@ menu-is-opening menu-open
                         </div> --}}
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" action="{{ route('property_categories_insert') }}"
-                        method="POST">
+                        <form class="form-horizontal" action="{{ route('property_categories_insert') }}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group row">
@@ -66,15 +65,14 @@ menu-is-opening menu-open
                                         Type: <sup>*</sup>
                                     </label>
                                     <div class="col-10">
-                                        <select name="property_type"
-                                        class="form-control select2" required>
+                                        <select name="property_type" class="form-control select2" required>
                                             <option value="" selected disabled>Select
                                                 One
                                             </option>
                                             @foreach ($propertyTypes as $propertyType)
-                                            <option value="{{ $propertyType->id }}">
-                                                {{ $propertyType->property_type }}</option>
-                                        @endforeach
+                                                <option value="{{ $propertyType->id }}">
+                                                    {{ $propertyType->property_type }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -82,8 +80,7 @@ menu-is-opening menu-open
                                     <label class="control-label col-md-2">Enter Property
                                         Category Name: <sup>*</sup></label>
                                     <div class="col-md-10">
-                                        <input name="property_category_name" type="text"
-                                            class="form-control"
+                                        <input name="property_category_name" type="text" class="form-control"
                                             placeholder="Enter Property Category Name Here..." required>
                                     </div>
                                 </div>

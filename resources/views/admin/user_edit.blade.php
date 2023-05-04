@@ -1,5 +1,5 @@
 @section('users')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('users_add')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -111,8 +111,8 @@ menu-is-opening menu-open
                                     <label class="control-label">Update User Password: <sup>*</sup></label>
                                     <div>
                                         <input name="password" type="password" class="form-control"
-                                            value="{{ $userData->user_password }}"
-                                            placeholder="Enter User Password" required>
+                                            value="{{ $userData->user_password }}" placeholder="Enter User Password"
+                                            required>
                                     </div>
                                 </div>
                             </div>

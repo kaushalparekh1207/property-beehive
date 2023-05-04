@@ -1,5 +1,5 @@
 @section('Property')
-menu-is-opening menu-open
+    menu-is-opening menu-open
 @endsection
 @section('property_categories')
     active
@@ -20,7 +20,7 @@ menu-is-opening menu-open
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         @include('admin.assets.side&topbar')
@@ -57,26 +57,25 @@ menu-is-opening menu-open
                         <!-- /.card-header -->
                         <div class="card-body">
                             <a type="button" href="{{ route('property_categories_add') }}" id=""
-                            class="btn btn-success mb-3">+ Add New</a>
-                            <table id="property_categories_show"
-                            class="table table-striped table-bordered nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Sr No.</th>
-                                    <th>Property Type</th>
-                                    <th>Property Category Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Sr No.</th>
-                                    <th>Property Type</th>
-                                    <th>Property Category Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                class="btn btn-success mb-3">+ Add New</a>
+                            <table id="property_categories_show" class="table table-striped table-bordered nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Property Type</th>
+                                        <th>Property Category Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Property Type</th>
+                                        <th>Property Category Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>

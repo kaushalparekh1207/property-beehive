@@ -1,5 +1,5 @@
 <!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand:wght@400;500&display=swap">
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="{{ url('/') }}/plugins/fontawesome-free/css/all.min.css">
 <link rel="icon" href="{{ url('/') }}/dist/img/fevicon.png" type="image/x-icon">

@@ -42,3 +42,4 @@
 <script src="{{ url('/') }}/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('/') }}/dist/js/adminlte.min.js"></script>
+<script src="https://kit.fontawesome.com/e04a23e55e.js" crossorigin="anonymous"></script>

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClientType;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -47,7 +50,7 @@ class UserController extends Controller
             } else {
                 toastr()->error('Something went Wrong !');
             }
-        
+
         return redirect()->route('users');
     }
 
@@ -191,10 +194,20 @@ class UserController extends Controller
         return redirect()->route('users');
     }
 
+
+    /**
+     * Individual User Registration Call Blade File.
+     */
+
+    public function sign_up()
+    {
+        $clientTypes = ClientType::where('flag',1)->get(['id','client_type']);
+        return view('front.sign_up',compact('clientTypes'));
+    }
+
     /**
      * Individual User Registration.
      */
-
      public function registerUser(Request $request)
      {
         $formdata = new User();
@@ -213,7 +226,37 @@ class UserController extends Controller
         } else {
             toastr()->error('Something went Wrong !');
         }
-    
-    return redirect()->back();
+
+        return redirect()->back();
      }
+
+    /**
+     * Individual User Login.
+     */
+    public function loginUser(Request $request)
+    {
+        $input = $request->input('contact_no');
+//        $name = User::where('contact', $input)->pluck('name')->first();
+        $client_type_id = User::where('contact', $input)->pluck('client_type_id')->first();
+        $role_name = ClientType::where('id', $client_type_id)->pluck('client_type')->first();
+        $user_id = User::where('contact', $input)->pluck('id')->first();
+
+        $credentials = array(
+            'contact' => $input,
+            'password' => $request->get('password'),
+        );
+
+        if (Auth::attempt($credentials, $request->get('savepassword'))) {
+            // Remember Login Details
+            if ($request->has('remember')) {
+                Cookie::queue('saved_input', $input, 1440);
+                Cookie::queue('saved_password', $request->get('password'), 1440);
+            }
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $input]);
+            return redirect()->route('front_home');
+        } else {
+            toastr()->error('Invalid Info !');
+            return redirect()->back();
+        }
+    }
 }

@@ -11,7 +11,7 @@
 # Global Settings
 # Header Navigation Styles
 # Homes Banner
-# General Features Design 
+# General Features Design
 # Vesh Property Style
 # Detail Page Elements Style
 # Veshm All Features Styles
@@ -149,7 +149,7 @@ i.req {
     background: #ffffff;
     border-radius: 50%;
 	z-index:1;
-    transition: all ease 0.4s;	
+    transition: all ease 0.4s;
 }
 .slick-prev:before {
 	color:#02335d;
@@ -231,7 +231,7 @@ a:focus {
 a.link {
   color:#fa962a; }
 a.link:hover, a.link:focus, a:hover, a:focus {
-    color:#fa962a; 
+    color:#fa962a;
 }
 a.text-success:focus, a.text-success:hover {
     color:#0fca98 !important;
@@ -300,7 +300,7 @@ p {
 }
 .tbl {
     display: table;
-} 
+}
 .full-height {
     height: 100%;
 }
@@ -355,7 +355,7 @@ p, ul, ol, dl, dt, dd, blockquote, address {
     position: relative;
     z-index: 1;
 }
-/*------------ Global Settings: Heading-------------*/ 
+/*------------ Global Settings: Heading-------------*/
 h1,
 h2,
 h3,
@@ -369,7 +369,7 @@ h6 {
 
 h5,
 h6 {
-	color:#2D3954;  
+	color:#2D3954;
 }
 h1 {
   line-height: 40px;
@@ -1027,7 +1027,7 @@ div[data-overlay] p{
 .bg-cover{
     background-size: cover !important;
     background-position: center !important;
-}	
+}
 .image-bg{
     background-size: cover !important;
     background-position: center !important;
@@ -1271,7 +1271,7 @@ html body .text-dark {
 .bg-light-inverse {
   background-color:rgba(62,69,85,0.1);
 }
-  
+
 .bg-facebook {
   background-color: #3b5a9a;
 }
@@ -1898,19 +1898,19 @@ table.table tr th {
 @media (max-width: 767px) {
 	.hidden-sm-down {
 		display: none !important;
-	} 
+	}
 }
 
 @media (min-width: 768px) {
 	.hidden-md-up {
-		display: none !important; 
-	} 
+		display: none !important;
+	}
 }
 
 @media (max-width: 991px) {
 	.hidden-md-down {
-		display: none !important; 
-	} 
+		display: none !important;
+	}
 }
 
 @media (min-width: 992px) {
@@ -2856,7 +2856,7 @@ nav a {
     color:#0fca98 !important;
 }
 .nav-brand img {
-    max-width: 155px;
+    max-width: 225px;
     position: relative;
 }
 .nav-menu.nav-menu-social>li>a>.fas {
@@ -3605,7 +3605,7 @@ span.noti-status {
     z-index: 2;
 }
 /*-----------------------------------
-	General Features Design 
+	General Features Design
 -----------------------------------*/
 /*------------------- Tab Design ------------------*/
 .nav-pills .nav-link {
@@ -4223,7 +4223,7 @@ span.prefix-title {
 }
 
 /*------------------------------------------------
-	Detail Page Elements Style 
+	Detail Page Elements Style
 ------------------------------------------------*/
 /*------- Ratting Box -------------*/
 .veshm-fl-rate-box {
@@ -4266,7 +4266,7 @@ span.prefix-title {
     position: relative;
     line-height: 4rem;
     margin: 0;
-}	
+}
 .flt-yuo12 {
     position: absolute;
     left: 0;
@@ -4508,7 +4508,7 @@ span.prefix-title {
 .nerb-school-subtext{
 	color: #617896;
     font-size: 13px;
-    font-weight: 500;	
+    font-weight: 500;
 }
 .nerb-lists-sgl-last {
     display: flex;
@@ -5503,10 +5503,10 @@ span.prefix-title {
 }
 .vesh-categ-list-links:hover .vesh-categ-list-icons, .vesh-categ-list-links:focus .vesh-categ-list-icons{
 	background:#fa962a;
-	color:#ffffff;	
+	color:#ffffff;
 }
 .vesh-categ-list-links:hover, .vesh-categ-list-links:focus{
-	
+
 }
 .vesh-categ-list-links:hover .vesh-categ-strt .starting, .vesh-categ-list-links:focus .vesh-categ-strt .starting{
 	color:#022f5d;
@@ -5639,7 +5639,7 @@ span.prefix-title {
 .count-agent-25 span{
     font-size:12px;
 	font-weight:500;
-}  
+}
 .agent-list-block {
     position: relative;
     display: flex;
@@ -6561,7 +6561,7 @@ div#filTabContent {
 }
 
 /*----------------------------------------------
-	Inner Page Design 
+	Inner Page Design
 -----------------------------------------------*/
 .page-title {
     padding: 1rem 0;
@@ -8155,7 +8155,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 
 
 }
-	
+
 @media (max-height: 600px) {
 
 }
@@ -8181,7 +8181,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 }
 
 @media (min-width: 1024px) {
-	
+
 }
 
 @media (min-width: 993px) {
@@ -8289,7 +8289,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 	.header.header-transparent .nav-submenu .submenu-indicator-chevron {
 		border-color: transparent #70798b #70798b transparent;
 	}
-	
+
 	.header.header-transparent.dark .submenu-indicator-chevron {
 		border-color: transparent #39466d #39466d transparent;
 	}
@@ -8318,7 +8318,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 	.hero-content p{
 		font-size:22px;
 	}
-	
+
 	.jumbo-banner.software .hero-content {
 		margin-top:0em;
 	}
@@ -8368,14 +8368,14 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 	.veshm-agent-social ul li {
 		margin-left: 5px;
 	}
-}	
+}
 
 @media (max-width: 1023px) {
-	
+
 }
 
 
-@media (max-width: 992px) {	
+@media (max-width: 992px) {
 	.nav-menu.nav-menu-social {
 		display: none;
 	}
@@ -8440,7 +8440,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 	.pg-side-groups {
 		margin-top: 1.5rem;
 	}
-	
+
 }
 @media (max-width: 991px) {
 	a.nav-brand.static-logo {
@@ -8683,7 +8683,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 	.nav-pills .nav-link {
 		padding: 0.8rem 1.3rem;
 	}
-	
+
 }
 
 @media (max-width: 500px) {
@@ -8699,6 +8699,11 @@ footer.skin-dark-footer .footer-widget .ftp-info {
 		max-width: 140px;
 		position: relative;
 	}
+}
+
+small{
+    color:red;
+    font-size: 13px;
 }
 
 

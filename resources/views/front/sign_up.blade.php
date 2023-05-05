@@ -83,18 +83,19 @@
                                      aria-labelledby="signin-tab" tabindex="0">
                                     <div class="row gx-3 gy-4">
                                         <div class="modal-login-form">
-                                            <form>
-
+                                            <form id="loginForm" method="post" action="{{route('loginUser')}}">
+                                                @csrf
                                                 <div class="form-floating mb-4">
                                                     <input type="number" class="form-control"
-                                                           placeholder="Contact Number
-                                                           ">
+                                                           placeholder="Contact Number" name="contact_no" id="login_contact">
+{{--                                                    <small id="contact_no_error"></small>--}}
                                                     <label>Contact Number</label>
                                                 </div>
 
                                                 <div class="form-floating mb-4">
                                                     <input type="password" class="form-control"
-                                                           placeholder="Password">
+                                                           placeholder="Password" name="password" id="login_password">
+{{--                                                    <small id="password_error"></small>--}}
                                                     <label>Password</label>
                                                 </div>
 
@@ -108,8 +109,8 @@
                                                     <div class="modal-flex-first">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="checkbox"
-                                                                   id="savepassword1" value="option1">
-                                                            <label class="form-check-label" for="savepassword1">Save
+                                                                   id="savepassword" name="savepassword">
+                                                            <label class="form-check-label" for="savepassword">Save
                                                                 Password</label>
                                                         </div>
                                                     </div>
@@ -119,8 +120,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <di
-                                            v class="social-login">
+                                        <div class="social-login">
                                             <ul>
                                                 <li><a href="JavaScript:Void(0);" class="btn connect-fb"><i
                                                             class="fa-brands fa-facebook"></i>Facebook</a></li>
@@ -135,35 +135,39 @@
                                      aria-labelledby="register-tab" tabindex="0">
                                     <div class="row gx-3 gy-4">
                                         <div class="modal-login-form">
-                                            <form method="post" action="{{route('registerUser')}}">
+                                            <form id="myForm" method="post" action="{{route('registerUser')}}">
                                             @csrf
                                                 <div class="form-floating mb-4">
                                                     <select class="form-control" name="regsiter_as" id="register_as">
-                                                        <option value="" selected disabled>Select One</option>
-                                                        <option value="1">Owner</option>
-                                                        <option value="2">Buyer</option>
-                                                        <option value="3">Broker</option>
+{{--                                                        <option value="" disabled>Select One</option>--}}
+                                                        @foreach($clientTypes as $clientType)
+                                                            <option value="{{$clientType->id}}">{{$clientType->client_type}}</option>
+                                                        @endforeach
                                                     </select>
-                                                    <label>Register as</label>
+                                                    <small id="register_as_error"></small>
+                                                    <label>Register as: <sup>*</sup></label>
                                                 </div>
                                                 <div class="form-floating mb-4">
                                                     <input type="number" class="form-control"
-                                                           placeholder="Contact Number" name="contact_no" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                                           maxlength="10" minlength="10">
+                                                           placeholder="Contact Number" name="contact_no"
+                                                           maxlength="10" minlength="10" id="contact_no">
+                                                    <small id="contact_no_error"></small>
                                                     <label>Contact Number: <sup>*</sup></label>
                                                 </div>
                                                 <div class="form-floating mb-4">
                                                     <input type="password" class="form-control"
-                                                           placeholder="Password" name="password">
-                                                    <label>Password</label>
+                                                           placeholder="Password" name="password" id="password">
+                                                    <small id="password_error"></small>
+                                                    <label>Password: <sup>*</sup></label>
                                                 </div>
                                                 <div class="form-floating mb-4">
                                                     <input type="password" class="form-control"
-                                                           placeholder="Password" name="confirmed_password">
-                                                    <label>Confirm Password</label>
+                                                           placeholder="Password" name="confirmed_password" id="confirmed_password">
+                                                    <small id="confirmed_password_error"></small>
+                                                    <label>Confirm Password: <sup>*</sup></label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit"
+                                                    <button type="submit" id="create_an_account"
                                                             class="btn btn-primary full-width font--bold btn-lg">Create an Account</button>
                                                 </div>
                                             </form>
@@ -226,6 +230,8 @@
 
 @include('front.assets.scripts')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{url('/')}}/front/assets/js/custom_validation.js"></script>
 </body>
 
 <!-- Mirrored from themezhub.net/veshm-demo/veshm/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Apr 2023 10:27:46 GMT -->

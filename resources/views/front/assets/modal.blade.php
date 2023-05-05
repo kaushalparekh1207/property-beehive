@@ -17,16 +17,17 @@
             </div>
             <div class="modal-body">
                 <div class="modal-login-form">
-                    <form>
-
+                    <form id="loginForm" method="post" action="{{route('loginUser')}}">
+                        @csrf
                         <div class="form-floating mb-4">
-                            <input type="email" class="form-control" placeholder="name@example.com"
-                                   required="true">
-                            <label>User Name</label>
+                            <input type="number" class="form-control"
+                                   placeholder="Contact Number" name="contact_no" id="login_contact" required>
+                            <label>Contact Number</label>
                         </div>
 
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" placeholder="Password" required="true">
+                            <input type="password" class="form-control"
+                                   placeholder="Password" name="password" id="login_password" required>
                             <label>Password</label>
                         </div>
 
@@ -38,8 +39,8 @@
                         <div class="modal-flex-item mb-3">
                             <div class="modal-flex-first">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="savepassword"
-                                           value="option1">
+                                    <input class="form-check-input" type="checkbox" name="savepassword" id="savepassword"
+                                           value="">
                                     <label class="form-check-label" for="savepassword">Save Password</label>
                                 </div>
                             </div>

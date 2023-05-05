@@ -1,3 +1,6 @@
+@section('home_page')
+    active
+@endsection
 <!doctype html>
 <html lang="en">
 <head>

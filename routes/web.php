@@ -34,7 +34,6 @@ Route::get('/admin', function () {
 //});
 
 // Logout Routes
-
 Route::get('/admin/logout', function () {
     if (session('admin')) {
         session()->pull('admin');
@@ -178,9 +177,19 @@ Route::group(['middleware' => 'checksession'], function () {
 |--------------------------------------------------------------------------
 */
 
+// Front Logout Routes
+Route::get('/logout', function () {
+    if (session('user')) {
+        session()->pull('user');
+    }
+    return redirect()->route('front_home');
+})->name('front_logout');
 
 Route::view('/','front.index')->name('front_home');
 
 // Signup Routes
-Route::view('/sign_up','front.sign_up')->name('sign_up');
+Route::get('/sign_up',[UserController::class,'sign_up'])->name('sign_up');
 Route::post('/sign_up/user',[UserController::class,'registerUser'])->name('registerUser');
+
+// Login Routes
+Route::post('/sign_in/user',[UserController::class,'loginUser'])->name('loginUser');

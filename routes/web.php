@@ -29,9 +29,9 @@ Route::get('/admin', function () {
     return redirect('admin/login');
 });
 
-Route::get('/', function () {
-    return redirect('admin/login');
-});
+//Route::get('/', function () {
+//    return redirect('admin/login');
+//});
 
 // Logout Routes
 
@@ -170,3 +170,17 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
     Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Front Routes
+|--------------------------------------------------------------------------
+*/
+
+
+Route::view('/','front.index')->name('front_home');
+
+// Signup Routes
+Route::view('/sign_up','front.sign_up')->name('sign_up');
+Route::post('/sign_up/user',[\App\Http\Controllers\FrontController::class,'registerUser'])->name('registerUser');

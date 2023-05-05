@@ -190,4 +190,30 @@ class UserController extends Controller
         }
         return redirect()->route('users');
     }
+
+    /**
+     * Individual User Registration.
+     */
+
+     public function registerUser(Request $request)
+     {
+        $formdata = new User();
+        $formdata->client_type_id = $request->regsiter_as;
+     //   $formdata->name = $request->user_name;
+        $formdata->contact = $request->contact_no;
+        $formdata->email = $request->email;
+        $formdata->user_password = $request->password;
+        $formdata->password = Hash::make($request->password);
+        // $formdata->created_by = session('admin')['admin_id'];
+        // $formdata->updated_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
+
+        if ($saveData) {
+            toastr()->success('Registration Successfully !!!');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
+    
+    return redirect()->back();
+     }
 }

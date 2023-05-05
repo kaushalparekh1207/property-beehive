@@ -183,4 +183,4 @@ Route::view('/','front.index')->name('front_home');
 
 // Signup Routes
 Route::view('/sign_up','front.sign_up')->name('sign_up');
-Route::post('/sign_up/user',[\App\Http\Controllers\FrontController::class,'registerUser'])->name('registerUser');
+Route::post('/sign_up/user',[UserController::class,'registerUser'])->name('registerUser');

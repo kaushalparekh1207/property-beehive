@@ -109,8 +109,8 @@
                                             <div class="drp_menu_headr-right"><a href="{{route('front_logout')}}" type="button" class="btn btn-whites">Logout</a></div>
                                         </div>
                                         <ul>
-                                            <li><a href="dashboard.html"><i class="fa fa-tachometer-alt"></i>Dashboard<span class="notti_coun style-1">4</span></a></li>
-                                            <li><a href="my-profile.html"><i class="fa fa-user-tie"></i>My Profile</a></li>
+                                            <li><a href="{{route('front_dashboard')}}"><i class="fa fa-tachometer-alt"></i>Dashboard<span class="notti_coun style-1">4</span></a></li>
+                                            <li><a href="{{route('userProfile',session('user')['id'])}}"><i class="fa fa-user-tie"></i>My Profile</a></li>
                                             <li><a href="bookmark-list.html"><i class="fa fa-bookmark"></i>Saved Property<span class="notti_coun style-2">7</span></a></li>
                                             <li><a href="my-property.html"><i class="fa fa-tasks"></i>My Properties</a></li>
                                             <li><a href="messages.html"><i class="fa fa-envelope"></i>Messages<span class="notti_coun style-3">3</span></a></li>

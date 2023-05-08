@@ -193,3 +193,9 @@ Route::post('/sign_up/user',[UserController::class,'registerUser'])->name('regis
 
 // Login Routes
 Route::post('/sign_in/user',[UserController::class,'loginUser'])->name('loginUser');
+
+// Dashboard Routes
+Route::get('/dashboard',[\App\Http\Controllers\FrontDashboardController::class,'dashboard'])->name('front_dashboard');
+
+// User Profile Routes
+Route::get('/profile/{id}',[UserController::class,'userProfile'])->name('userProfile');

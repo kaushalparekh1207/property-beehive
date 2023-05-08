@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('contact',11);
             $table->string('email',100)->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('state_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->string('zip',50)->nullable();
+            $table->text('address')->nullable();
             $table->string('user_password',100);
             $table->string('password',100);
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');

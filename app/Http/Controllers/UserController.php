@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\ClientType;
+use App\Models\State;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
@@ -258,5 +260,17 @@ class UserController extends Controller
             toastr()->error('Invalid Info !');
             return redirect()->back();
         }
+    }
+
+    /**
+     * User Profile.
+     */
+    public function userProfile($id)
+    {
+        $userData = User::findOrFail($id);
+        $clientTypes = ClientType::where('flag',1)->get();
+        $states = State::where('flag',1)->get();
+        $cities = City::where('flag',1)->get();
+        return view('front.profile',compact('userData','clientTypes','states','cities'));
     }
 }

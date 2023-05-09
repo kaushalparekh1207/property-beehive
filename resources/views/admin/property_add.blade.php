@@ -286,7 +286,6 @@
                                                         <option value="Fully Furnished">Fully Furnished</option>
                                                         <option value="Unfurnished">Unfurnished</option>
                                                         <option value="Semi Furnished">Semi Furnished</option>
-
                                                     </select>
                                                 </div>
                                             </div>

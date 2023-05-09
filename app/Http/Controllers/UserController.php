@@ -273,4 +273,56 @@ class UserController extends Controller
         $cities = City::where('flag',1)->get();
         return view('front.profile',compact('userData','clientTypes','states','cities'));
     }
+
+
+    /**
+     * Edit User Profile.
+     */
+    public function editProfile(Request $request)
+    {
+        $userData = User::find($request->id);
+        $userData->client_type_id = $request->client_type_id;
+        $userData->name = $request->name;
+        $userData->email=$request->email;
+        $userData->contact=$request->contact;
+        $userData->state_id = $request->state_id;
+        $userData->city_id = $request->city_id;
+        $userData->zip = $request->zip;
+        $userData->address = $request->address;
+        $saveData = $userData->save();
+        if ($saveData) {
+            return back()->with('success','Profile Details Updated Successfully');
+        } else {
+            return back()->with('error','Something Went Wrong');
+        }
+    }
+
+    /**
+     * Change Password
+     */
+    public function changePassword(Request $request)
+    {
+        return view('front.change-password');
+    }
+
+    /**
+     * Change Password Post Method
+     */
+    public function changePasswordSave(Request $request)
+    {
+        $auth = $request->user_id;
+        $users_pass = User::where('id', $auth)->pluck('user_password')->first();
+
+        if ($users_pass != $request->current_password) {
+            return back()->with('error', "Old Password is Invalid");
+        }
+        if ($request->current_password == $request->new_password) {
+            return back()->with('error', "New Password cannot be same as your current password");
+        }
+        $user = User::find($auth);
+        $user->password = Hash::make($request->new_password);
+        $user->user_password = $request->new_password;
+        $user->save();
+        return back()->with('success', "Password Changed Successfully");
+    }
 }

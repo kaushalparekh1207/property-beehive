@@ -199,3 +199,13 @@ Route::get('/dashboard',[\App\Http\Controllers\FrontDashboardController::class,'
 
 // User Profile Routes
 Route::get('/profile/{id}',[UserController::class,'userProfile'])->name('userProfile');
+Route::post('/profile/edit/updateprofile',[UserController::class,'editProfile'])->name('editProfile');
+
+// change password
+Route::group(['middleware' => 'checkfrontsession'], function (){
+    Route::get('/change-password', [UserController::class, 'changePassword'])->name('changePassword');
+    Route::post('/change-passwords', [UserController::class, 'changePasswordSave'])->name('postChangePassword');
+});
+
+// Post New Property
+Route::get('/post_property',[PropertyMasterController::class,'postProperty'])->name('postProperty')->middleware('checkfrontsession');

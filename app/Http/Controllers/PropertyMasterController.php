@@ -219,4 +219,13 @@ class PropertyMasterController extends Controller
         $data['city'] = City::where("state_id", $request->state)->where("flag", 1)->get(["id", "city"]);
         return response()->json($data);
     }
+
+    /**
+     * Create Property By Frontend User
+     */
+    public function postProperty()
+    {
+        $propertyTypes = PropertyType::where('flag',1)->get();
+        return view('front.post_property',compact('propertyTypes',));
+    }
 }

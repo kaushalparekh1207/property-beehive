@@ -31,7 +31,7 @@ class AmenitiesController extends Controller
     {
         $Model = new Amenities();
         $Model->amenities = $request->amenities;
-        $Model->created_by = session('admin')['admin_id'];
+        $Model->created_by = session('admin')['id'];
         $saveData = $Model->save();
         if ($saveData) {
             toastr('Amenities Add successfully', 'success');
@@ -93,7 +93,7 @@ class AmenitiesController extends Controller
                   Action
                 </button>
                 <div class="dropdown-menu">
-                 
+
                   <a href="' . route('amenities_destroy', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Delete</a>
                 </div>
               </div>',
@@ -134,7 +134,7 @@ class AmenitiesController extends Controller
     {
         $Model = Amenities::findOrFail($id);
         $Model->flag = 2;
-        $Model->updated_by = session('admin')['admin_id'];
+        $Model->updated_by = session('admin')['id'];
         $delete = $Model->save();
         if ($delete) {
             toastr('Amenities deleted successfully', 'success');

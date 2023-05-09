@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\PropertyCategoryController;
+use App\Http\Controllers\PropertyFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -166,9 +167,13 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::get('/admin/property_master/delete/{id}', [PropertyMasterController::class, 'destroy'])->name('property_master_delete');
     Route::get('/admin/property_master/edit/{id}', [PropertyMasterController::class, 'edit'])->name('property_master_edit');
     Route::post('/admin/property_master/edit/updateuser', [PropertyMasterController::class, 'update'])->name('property_master_update');
-    Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
-    Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
 });
+
+// Get City Name Based on State Drop Down
+Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
+
+// Get Property Category Based on Property Type
+Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
 
 
 /*
@@ -209,3 +214,8 @@ Route::group(['middleware' => 'checkfrontsession'], function (){
 
 // Post New Property
 Route::get('/post_property',[PropertyMasterController::class,'postProperty'])->name('postProperty')->middleware('checkfrontsession');
+Route::post('/post_property/insert',[PropertyMasterController::class,'frontPropertyInsert'])->name('front_property_master_insert');
+
+// Upload Documents/Images for Property
+Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
+Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');

@@ -114,6 +114,7 @@
                                                         class="custom-control-label">PG/Hostel</label>
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label">Select Property
                                                     Type:
@@ -131,6 +132,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label">Select Property
                                                     Category:
@@ -243,25 +245,25 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label">Select BHK:
-                                                    <sup>*</sup></label>
-                                                <div class="col-sm-10">
-                                                    <select class="form-control select7" name="bhk_details[]"
-                                                        id="bhk_details" style="width: 100%;" required multiple>
-                                                        <option value="" disabled>Select
-                                                            One
-                                                        </option>
-                                                        <option value="1">1 BHK</option>
-                                                        <option value="2">2 BHK</option>
-                                                        <option value="3">3 BHK</option>
-                                                        <option value="4">4 BHK</option>
-                                                        <option value="5">5 BHK</option>
-                                                        <option value="6">6 BHK</option>
+{{--                                            <div class="form-group row">--}}
+{{--                                                <label for="" class="col-sm-2 col-form-label">Select BHK:--}}
+{{--                                                    <sup>*</sup></label>--}}
+{{--                                                <div class="col-sm-10">--}}
+{{--                                                    <select class="form-control select7" name="bhk_details[]"--}}
+{{--                                                        id="bhk_details" style="width: 100%;" required multiple>--}}
+{{--                                                        <option value="" disabled>Select--}}
+{{--                                                            One--}}
+{{--                                                        </option>--}}
+{{--                                                        <option value="1">1 BHK</option>--}}
+{{--                                                        <option value="2">2 BHK</option>--}}
+{{--                                                        <option value="3">3 BHK</option>--}}
+{{--                                                        <option value="4">4 BHK</option>--}}
+{{--                                                        <option value="5">5 BHK</option>--}}
+{{--                                                        <option value="6">6 BHK</option>--}}
 
-                                                    </select>
-                                                </div>
-                                            </div>
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label">Total Floor:

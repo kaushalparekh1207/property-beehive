@@ -42,18 +42,18 @@
 
 
         <!-- ============================ Top Banner Start================================== -->
-        <div class="page-title" style="background:#017efa url({{url('/')}}/front/assets/img/page-title.png) no-repeat;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
+{{--        <div class="page-title" style="background:#017efa url({{url('/')}}/front/assets/img/page-title.png) no-repeat;">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-lg-12 col-md-12">--}}
 
-                        <h2 class="ipt-title">Hi, Harshvardhan</h2>
-                        <span class="ipn-subtitle">Manage your profile and view property</span>
+{{--                        <h2 class="ipt-title">Hi, Harshvardhan</h2>--}}
+{{--                        <span class="ipn-subtitle">Manage your profile and view property</span>--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- ============================ Top Banner End ================================== -->
 
         <!-- ============================= Explore Dashboard =============================== -->
@@ -74,24 +74,49 @@
                                                         <div class="col-lg-12 col-md-12">
 
                                                             <div class="submit-page">
+                                                                <form class="" method="POST" action="{{ route('front_property_master_insert') }}"
+                                                                      enctype="multipart/form-data">
+                                                                    @csrf
+                                                                <div class="bs-stepper">
+                                                                    <div class="bs-stepper-header" role="tablist">
+                                                                        <!-- your steps here -->
+                                                                        <div class="step" data-target="#logins-part">
+                                                                            <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                                                                <span class="bs-stepper-circle">1</span>
+                                                                                <span class="bs-stepper-label">Basic Information</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="line"></div>
+                                                                        <div class="step" data-target="#information-part">
+                                                                            <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+                                                                                <span class="bs-stepper-circle">2</span>
+                                                                                <span class="bs-stepper-label">Property information</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="line"></div>
+                                                                        <div class="step" data-target="#photos-part">
+                                                                            <button type="button" class="step-trigger" role="tab" aria-controls="photos-part" id="photos-part-trigger">
+                                                                                <span class="bs-stepper-circle">3</span>
+                                                                                <span class="bs-stepper-label">Photos</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <form class="bs-stepper-content">
+                                                                        <!-- your steps content here -->
+                                                                        <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
 
-                                                                <!-- Basic Information -->
-                                                                <div class="frm_submit_block">
-{{--                                                                    <h3>Basic Information</h3>--}}
-                                                                    <div class="frm_submit_wrap">
-                                                                        <div class="row">
-
+                                                                            <div class="row">
                                                                             <div class="form-group col-md-12">
                                                                                 <strong>I want to <sup>*</sup></strong>
                                                                                 <div class="o-features mt-2">
                                                                                     <ul class="no-ul-list row">
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
                                                                                             <input id="a-1" class="form-check-input" name="property_type" type="radio">
-                                                                                            <label for="a-1" class="form-check-label">Rent</label>
+                                                                                            <label for="a-1" class="form-check-label">Sell</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
                                                                                             <input id="a-2" class="form-check-input" name="property_type" type="radio">
-                                                                                            <label for="a-2" class="form-check-label">Sell</label>
+                                                                                            <label for="a-2" class="form-check-label">Rent/Lease</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
                                                                                             <input id="a-3" class="form-check-input" name="property_type" type="radio">
@@ -131,272 +156,186 @@
 
                                                                             <div class="form-group col-md-6">
                                                                                 <label>City</label>
-                                                                                <select class="js-select2" name="city_id" id="city_id">
+                                                                                <select class="js-select2" name="city_id" id="city_dropdown">
                                                                                     <option value="" selected disabled>Select City</option>
-                                                                                    @foreach ($cities as $city)
-                                                                                        <option value="{{$city->id}}">{{$city->city}}</option>
-                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
 
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Locality</label>
+                                                                                <input type="text" class="form-control" placeholder="Enter Locality/Area">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Address</label>
+                                                                                <textarea class="form-control" placeholder="Describe Here..."></textarea>
+                                                                            </div>
+
+                                                                            </div>
+
+                                                                            <button type="button" class="btn btn-primary btn-sm"
+                                                                                    onclick="stepper.next()">Next Step</button><br><br>
+
+                                                                        </div>
+                                                                        <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+
+                                                                            <div class="row">
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Property Title<a href="#" class="tip-topdata" data-tip="Property Title"><i class="fa-solid fa-info"></i></a></label>
-                                                                                <input type="text" class="form-control">
+                                                                                <input type="text" class="form-control" placeholder="Enter Property Title">
                                                                             </div>
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Status</label>
-                                                                                <select id="status" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
-                                                                                    <option value="1">For Rent</option>
-                                                                                    <option value="2">For Sale</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Property Type</label>
-                                                                                <select id="ptypes" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
-                                                                                    <option value="1">Houses</option>
-                                                                                    <option value="2">Apartment</option>
-                                                                                    <option value="3">Villas</option>
-                                                                                    <option value="4">Commercial</option>
-                                                                                    <option value="5">Offices</option>
-                                                                                    <option value="6">Garage</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Price</label>
-                                                                                <input type="text" class="form-control" placeholder="USD">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Area</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Bedrooms</label>
-                                                                                <select class="form-control">
-                                                                                    <option value="">&nbsp;</option>
+                                                                            <div class="form-group col-md-3">
+                                                                                <label>Total Floors</label>
+                                                                                <select class="js-select2-disablesearch" name="total_floor" id="total_floor">
+                                                                                    <option value="" selected disabled>Select Total Number of Floor</option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
+                                                                                    <option value="6">6</option>
+                                                                                    <option value="7">7</option>
+                                                                                    <option value="8">8</option>
+                                                                                    <option value="9">9</option>
+                                                                                    <option value="10">10</option>
+                                                                                    <option value="11">11</option>
+                                                                                    <option value="12">12</option>
+                                                                                    <option value="13">13</option>
+                                                                                    <option value="14">14</option>
+                                                                                    <option value="15">15</option>
+                                                                                    <option value="16">16</option>
+                                                                                    <option value="17">17</option>
+                                                                                    <option value="18">18</option>
+                                                                                    <option value="19">19</option>
+                                                                                    <option value="20">20</option>
                                                                                 </select>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Bathrooms</label>
-                                                                                <select id="bathrooms" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
+                                                                            <div class="form-group col-md-3">
+                                                                                <label>Total Bedrooms</label>
+                                                                                <select class="js-select2-disablesearch" name="total_bedrooms" id="total_bedrooms">
+                                                                                    <option value="" selected disabled>Select Total Number of Bedrooms</option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
+                                                                                    <option value="6">6</option>
+                                                                                    <option value="7">7</option>
+                                                                                    <option value="8">8</option>
+                                                                                    <option value="9">9</option>
                                                                                 </select>
                                                                             </div>
 
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Gallery -->
-                                                                <div class="frm_submit_block">
-                                                                    <h3>Gallery</h3>
-                                                                    <div class="frm_submit_wrap">
-                                                                        <div class="row">
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <label>Upload Gallery</label>
-                                                                                <form action="https://themezhub.net/upload-target" class="dropzone dz-clickable primary-dropzone">
-                                                                                    <div class="dz-default dz-message">
-                                                                                        <i class="fa-solid fa-images"></i>
-                                                                                        <span>Drag & Drop To Change Logo</span>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Location -->
-                                                                <div class="frm_submit_block">
-                                                                    <h3>Location</h3>
-                                                                    <div class="frm_submit_wrap">
-                                                                        <div class="row">
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Address</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>City</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>State</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-6">
-                                                                                <label>Zip Code</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Detailed Information -->
-                                                                <div class="frm_submit_block">
-                                                                    <h3>Detailed Information</h3>
-                                                                    <div class="frm_submit_wrap">
-                                                                        <div class="row">
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <label>Description</label>
-                                                                                <textarea class="form-control h-120"></textarea>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Building Age (optional)</label>
-                                                                                <select id="bage" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
-                                                                                    <option value="1">0 - 5 Years</option>
-                                                                                    <option value="2">0 - 10Years</option>
-                                                                                    <option value="3">0 - 15 Years</option>
-                                                                                    <option value="4">0 - 20 Years</option>
-                                                                                    <option value="5">20+ Years</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Garage (optional)</label>
-                                                                                <select id="garage" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
+                                                                            <div class="form-group col-md-3">
+                                                                                <label>Total Balconies</label>
+                                                                                <select class="js-select2-disablesearch" name="total_balconies" id="total_balconies">
+                                                                                    <option value="" selected disabled>Select Total Number of Balconies</option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
+                                                                                    <option value="6">6</option>
                                                                                 </select>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Rooms (optional)</label>
-                                                                                <select id="rooms" class="form-control">
-                                                                                    <option value="">&nbsp;</option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <strong>Other Features (optional)</strong>
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-1" class="form-check-input" name="a-1" type="checkbox">
-                                                                                            <label for="a-1" class="form-check-label">Air Condition</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-2" class="form-check-input" name="a-2" type="checkbox">
-                                                                                            <label for="a-2" class="form-check-label">Bedding</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-3" class="form-check-input" name="a-3" type="checkbox">
-                                                                                            <label for="a-3" class="form-check-label">Heating</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-4" class="form-check-input" name="a-4" type="checkbox">
-                                                                                            <label for="a-4" class="form-check-label">Internet</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-5" class="form-check-input" name="a-5" type="checkbox">
-                                                                                            <label for="a-5" class="form-check-label">Microwave</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-6" class="form-check-input" name="a-6" type="checkbox">
-                                                                                            <label for="a-6" class="form-check-label">Smoking Allow</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-7" class="form-check-input" name="a-7" type="checkbox">
-                                                                                            <label for="a-7" class="form-check-label">Terrace</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-8" class="form-check-input" name="a-8" type="checkbox">
-                                                                                            <label for="a-8" class="form-check-label">Balcony</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-9" class="form-check-input" name="a-9" type="checkbox">
-                                                                                            <label for="a-9" class="form-check-label">Icon</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-10" class="form-check-input" name="a-10" type="checkbox">
-                                                                                            <label for="a-10" class="form-check-label">Wi-Fi</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-11" class="form-check-input" name="a-11" type="checkbox">
-                                                                                            <label for="a-11" class="form-check-label">Beach</label>
-                                                                                        </li>
-                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-12" class="form-check-input" name="a-12" type="checkbox">
-                                                                                            <label for="a-12" class="form-check-label">Parking</label>
-                                                                                        </li>
-                                                                                    </ul>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <label>Total Bathrooms</label>
+                                                                                    <select class="js-select2-disablesearch" name="total_bathrooms" id="total_bathrooms">
+                                                                                        <option value="" selected disabled>Select Total Number of Bathrooms</option>
+                                                                                        <option value="1">1</option>
+                                                                                        <option value="2">2</option>
+                                                                                        <option value="3">3</option>
+                                                                                        <option value="4">4</option>
+                                                                                        <option value="5">5</option>
+                                                                                        <option value="6">6</option>
+                                                                                    </select>
                                                                                 </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Description<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Description"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <textarea type="text" class="form-control" id="" placeholder="Describe Here..."></textarea>
                                                                             </div>
 
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Furnished Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Furnished Status"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="furnished_status"
+                                                                                        id="furnished_status" style="width: 100%;" required>
+                                                                                    <option value="" selected disabled>Select
+                                                                                        One
+                                                                                    </option>
+                                                                                    <option value="Fully Furnished">Fully Furnished</option>
+                                                                                    <option value="Unfurnished">Unfurnished</option>
+                                                                                    <option value="Semi Furnished">Semi Furnished</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Possession Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Possession Status"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="possession_status"
+                                                                                        id="possession_status" style="width: 100%;" required>
+                                                                                    <option value="" selected disabled>Select
+                                                                                        One
+                                                                                    </option>
+                                                                                    <option value="Under Construction">Under Construction</option>
+                                                                                    <option value="Ready to Move">Ready to Move</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12 time_duration" style="display: none;">
+                                                                                <label for="">Available From</label>
+                                                                                <input type="text" id="datepicker" class="form-control" placeholder="Select Date">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12 property_age" style="display: none;">
+                                                                                <label for="">Property Age<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Age in Years/Months"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="text" class="form-control" name="" placeholder="Enter Property Age">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="">Monthly Maintenance Charge</label>
+                                                                                <input type="text" class="form-control" name="" placeholder="Enter Maintenance Charge" name="maintenance">
+                                                                            </div>
+
+                                                                            </div>
+                                                                            <br>
+
+                                                                            <button type="button" class="btn btn-primary btn-sm"
+                                                                                    onclick="stepper.previous()">Previous Step</button>
+                                                                            <button type="button" class="btn btn-primary btn-sm" style="background-color: #dc3545; border: none;"
+                                                                                    onclick="stepper.next()">Next Step</button>
+                                                                        </div>
+                                                                    </form>
+
+                                                                        <div id="photos-part" class="content" role="tabpanel" aria-labelledby="photos-part-trigger">
+                                                                            <label for="">Banner Image<sup>*</sup></label>
+                                                                            <form action="{{route('uploadPropertyBannerImage')}}" method="post" id="bannerImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                            <div class="dz-default dz-message">
+                                                                                <i class="fa-solid fa-images"></i>
+                                                                                <span>Drag & Drop Files to Upload</span>
+                                                                            </div>
+                                                                            </form><br>
+
+                                                                            <label for="">Master Plan Image<sup>*</sup></label>
+                                                                            <form action="{{route('uploadPropertyBannerImage')}}" method="post" id="masterImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="dz-default dz-message">
+                                                                                    <i class="fa-solid fa-images"></i>
+                                                                                    <span>Drag & Drop Files to Upload</span>
+                                                                                </div>
+                                                                            </form>
+                                                                            <br>
+
+                                                                            <button type="button" class="btn btn-primary btn-sm"
+                                                                                    onclick="stepper.previous()">Previous Step</button>
+                                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color: #dc3545; border: none;"
+                                                                                    onclick="stepper.next()">Submit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <!-- Contact Information -->
-                                                                <div class="frm_submit_block">
-                                                                    <h3>Contact Information</h3>
-                                                                    <div class="frm_submit_wrap">
-                                                                        <div class="row">
-
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Name</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Email</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-4">
-                                                                                <label>Phone (optional)</label>
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group col-lg-12 col-md-12">
-                                                                    <div class="form-check form-check-inline">
-                                                                        <input class="form-check-input" type="checkbox" id="gdpr">
-                                                                        <label class="form-check-label" for="gdpr">I consent to having this website store my submitted information so they can respond to my inquiry.</label>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group col-lg-12 col-md-12">
-                                                                    <button class="btn btn-primary" type="submit">Submit & Preview</button>
-                                                                </div>
-
                                                             </div>
                                                         </div>
 
@@ -431,8 +370,19 @@
             $(".js-select2").select2({
                 closeOnSelect: false
             });
-            $(".js-select2-multi").select2({
-                closeOnSelect: false
+            $(".js-select2-disablesearch").select2({
+                minimumResultsForSearch: Infinity
+            });
+
+            $('#possession_status').on('change', function() {
+                var possession_status = $(this).val();
+                if (possession_status == 'Under Construction') {
+                    $('.time_duration').show();
+                    $('.property_age').hide();
+                } else {
+                    $('.time_duration').hide();
+                    $('.property_age').show();
+                }
             });
         });
     </script>
@@ -464,6 +414,74 @@
                 }
             });
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#city').hide();
+            $('#state_id').on('change', function() {
+                var state = this.value;
+                $("#city_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-city-list') }}",
+                    type: "GET",
+                    data: {
+                        state: state,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#city').show();
+                        $('#city_dropdown').html(
+                            '<option value="" selected disabled>-- Select City --</option>'
+                        );
+                        $.each(result.city, function(key, value) {
+                            $("#city_dropdown").append('<option value="' +
+                                value
+                                    .id + '">' + value.city +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function() {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+    </script>
+    <script>
+        // Initialize Summernote
+        $('#summernote').summernote({
+            height: 200,
+            minHeight: null,
+            maxHeight: null,
+            focus: true
+        });
+    </script>
+    <script>
+        Dropzone.options.bannerImageUpload={
+            maxFilesize:2,
+            acceptedFiles: '.jpg,.jpeg,.png,.webp',
+            maxFiles: 1,
+            addRemoveLinks: true,
+            // init: function() {
+            //     this.on("removedfile", function (file) {
+            //         //do something when file removed
+            //     });
+            // }
+        }
+    </script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd-mm-yy',
+            });
+        } );
     </script>
 
     </body>

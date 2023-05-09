@@ -138,7 +138,7 @@
                                             <form id="myForm" method="post" action="{{route('registerUser')}}">
                                             @csrf
                                                 <div class="form-floating mb-4">
-                                                    <select class="form-control" name="regsiter_as" id="register_as">
+                                                    <select class="form-control" name="regsiter_as" id="regsiter_as">
 {{--                                                        <option value="" disabled>Select One</option>--}}
                                                         @foreach($clientTypes as $clientType)
                                                             <option value="{{$clientType->id}}">{{$clientType->client_type}}</option>

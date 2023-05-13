@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('total_floor',10)->nullable();
             $table->string('floor_allowed_for_construction',10)->nullable();
             $table->string('total_open_side', 10)->nullable();
-            $table->string('width_of_road_facing_plot',10)->nullable();
+            $table->string('width_of_road_facing_plot',50)->nullable();
             $table->string('any_construction',10)->nullable();
             $table->string('boundary_wall_made',10)->nullable();
             $table->string('is_in_gated_colony',10)->nullable();

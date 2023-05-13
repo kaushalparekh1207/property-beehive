@@ -221,3 +221,6 @@ Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBanne
 Route::post('/upload_master_plan',[PropertyFileController::class,'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');
 Route::post('/upload_site_view',[PropertyFileController::class,'uploadPropertySiteViewImage'])->name('uploadPropertySiteViewImage');
 Route::post('/upload_floor_plan_image',[PropertyFileController::class,'uploadPropertyFloorPlanImage'])->name('uploadPropertyFloorPlanImage');
+
+// Property Data Insert with Ajax
+Route::post('/insert_property_data_ajax',[PropertyMasterController::class,'propertyDataInsertAjax'])->name('propertyDataInsertAjax');

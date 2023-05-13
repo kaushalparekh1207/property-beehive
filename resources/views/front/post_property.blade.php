@@ -74,9 +74,8 @@
                                                         <div class="col-lg-12 col-md-12">
 
                                                             <div class="submit-page">
-                                                                <form class="" method="POST" action="{{ route('front_property_master_insert') }}"
-                                                                      enctype="multipart/form-data">
-                                                                    @csrf
+                                                                <form class="" id="propertyForm" method="POST" action="{{ route('propertyDataInsertAjax') }}">
+                                                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                                                 <div class="bs-stepper">
                                                                     <div class="bs-stepper-header" role="tablist">
                                                                         <!-- your steps here -->
@@ -101,7 +100,6 @@
                                                                             </button>
                                                                         </div>
                                                                     </div>
-                                                                    <form class="bs-stepper-content">
                                                                         <!-- your steps content here -->
                                                                         <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
 
@@ -111,15 +109,15 @@
                                                                                 <div class="o-features mt-2">
                                                                                     <ul class="no-ul-list row">
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-1" class="form-check-input" name="property_status" type="radio" value="Sell">
+                                                                                            <input id="a-1" class="form-check-input propertyStatus" name="property_status" type="radio" value="Sell">
                                                                                             <label for="a-1" class="form-check-label">Sell</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-2" class="form-check-input" name="property_status" type="radio" value="Rent/Lease">
+                                                                                            <input id="a-2" class="form-check-input propertyStatus" name="property_status" type="radio" value="Rent/Lease">
                                                                                             <label for="a-2" class="form-check-label">Rent/Lease</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-3" class="form-check-input" name="property_status" type="radio" value="PG/Hostel">
+                                                                                            <input id="a-3" class="form-check-input propertyStatus" name="property_status" type="radio" value="PG/Hostel">
                                                                                             <label for="a-3" class="form-check-label">PG/Hostel</label>
                                                                                         </li>
                                                                                     </ul>
@@ -163,12 +161,12 @@
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Locality</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter Locality/Area" name="locality">
+                                                                                <input type="text" class="form-control" placeholder="Enter Locality/Area" id="locality" name="locality">
                                                                             </div>
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Address</label>
-                                                                                <textarea class="form-control" style="height: 100px;" placeholder="Describe Here..." name="address"></textarea>
+                                                                                <textarea class="form-control" style="height: 100px;" id="address" placeholder="Describe Here..." name="address"></textarea>
                                                                             </div>
 
                                                                             </div>
@@ -182,7 +180,7 @@
                                                                             <div class="row">
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Property Title<a href="#" class="tip-topdata" data-tip="Property Title"><i class="fa-solid fa-info"></i></a></label>
-                                                                                <input type="text" class="form-control" placeholder="Enter Property Title">
+                                                                                <input type="text" class="form-control" name="name_of_project" id="name_of_project" placeholder="Enter Property Title">
                                                                             </div>
 
                                                                             <div class="form-group col-md-12">
@@ -190,15 +188,15 @@
                                                                                 <div class="o-features mt-2">
                                                                                     <ul class="no-ul-list row">
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-1" class="form-check-input" name="no_of_flats" type="radio" value="<50">
+                                                                                            <input id="a-1" class="form-check-input no_of_flats" name="no_of_flats" type="radio" value="<50">
                                                                                             <label for="a-1" class="form-check-label"><50</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-2" class="form-check-input" name="no_of_flats" type="radio" value="50-100">
+                                                                                            <input id="a-2" class="form-check-input no_of_flats" name="no_of_flats" type="radio" value="50-100">
                                                                                             <label for="a-2" class="form-check-label">50-100</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-3" class="form-check-input" name="no_of_flats" type="radio" value=">100">
+                                                                                            <input id="a-3" class="form-check-input no_of_flats" name="no_of_flats" type="radio" value=">100">
                                                                                             <label for="a-3" class="form-check-label">>100</label>
                                                                                         </li>
                                                                                     </ul>
@@ -285,7 +283,7 @@
                                                                                     <ul class="no-ul-list row">
                                                                                         @foreach($amenities as $amenity)
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-1" class="form-check-input" name="amenities[]" value="{{$amenity->id}}" type="checkbox">
+                                                                                            <input id="a-1" class="form-check-input amenities" name="amenities[]" value="{{$amenity->id}}" type="checkbox">
                                                                                             <label for="a-1" class="form-check-label">{{$amenity->amenities}}</label>
                                                                                         </li>
                                                                                         @endforeach
@@ -384,7 +382,7 @@
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Furnished Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Furnished Status"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="furnished_status"
-                                                                                        id="furnished_status" style="width: 100%;" required>
+                                                                                        id="furnished_status" style="width: 100%;">
                                                                                     <option value="" selected disabled>Select
                                                                                         One
                                                                                     </option>
@@ -397,7 +395,7 @@
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Possession Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Possession Status"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="possession_status"
-                                                                                        id="possession_status" style="width: 100%;" required>
+                                                                                        id="possession_status" style="width: 100%;">
                                                                                     <option value="" selected disabled>Select
                                                                                         One
                                                                                     </option>
@@ -414,7 +412,7 @@
                                                                             <div class="form-group col-md-12 property_age" style="display: none;">
                                                                                 <label for="">Age<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Age"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="age"
-                                                                                        id="age" style="width: 100%;" required>
+                                                                                        id="age" style="width: 100%;">
                                                                                     <option value="" selected disabled>Select
                                                                                         One
                                                                                     </option>
@@ -429,7 +427,7 @@
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label for="">Monthly Maintenance Charge</label>
-                                                                                <input type="text" class="form-control" name="" placeholder="Enter Maintenance Charge" name="maintenance">
+                                                                                <input type="text" class="form-control" id="monthly_maintenance_charge" placeholder="Enter Maintenance Charge" name="maintenance">
                                                                             </div>
 
                                                                             </div>
@@ -437,8 +435,7 @@
 
                                                                             <button type="button" class="btn btn-primary btn-sm"
                                                                                     onclick="stepper.previous()">Previous Step</button>
-                                                                            <button type="button" class="btn btn-primary btn-sm" style="background-color: #dc3545; border: none;"
-                                                                                    onclick="stepper.next()">Next Step</button>
+                                                                            <button type="submit" class="btn btn-primary btn-sm" id="btn-submit" style="background-color: #dc3545; border: none;">Next Step</button>
                                                                         </div>
                                                                     </form>
 
@@ -482,8 +479,7 @@
 
                                                                             <button type="button" class="btn btn-primary btn-sm"
                                                                                     onclick="stepper.previous()">Previous Step</button>
-                                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color: #dc3545; border: none;"
-                                                                                    onclick="stepper.next()">Submit</button>
+                                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color: #dc3545; border: none;">Submit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -516,10 +512,11 @@
 
 
     @include('front.assets.scripts')
+    <script src="{{url('/')}}/front/assets/js/post_property.js"></script>
     <script>
         $(document).ready(function() {
             $(".js-select2").select2({
-                closeOnSelect: false
+                closeOnSelect: true
             });
             $(".js-select2-disablesearch").select2({
                 minimumResultsForSearch: Infinity

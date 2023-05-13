@@ -243,7 +243,7 @@ class PropertyMasterController extends Controller
         $propertyMasterModel = new PropertyMaster();
         $propertyMasterModel->property_status = $request->property_status;
         $propertyMasterModel->property_type_id = $request->property_type;
-        $propertyMasterModel->property_category_id = $request->property_category_dropdown;
+        $propertyMasterModel->property_category_id = $request->property_category;
         $propertyMasterModel->state_id = $request->state_id;
         $propertyMasterModel->city_id = $request->city_id;
         $propertyMasterModel->locality = $request->locality;
@@ -287,8 +287,8 @@ class PropertyMasterController extends Controller
         }
 
         // Add Property Amenities
-        $amenities = $request->amenities;
-        foreach ($amenities as $amenity) {
+        $amenitiesArray = $request->amenitiesArray;
+        foreach ($amenitiesArray as $amenity) {
             $propertyAmenities = new PropertyAmenities();
             $propertyAmenities->property_master_id = $lastInsertedId;
             $propertyAmenities->amenities_id = $amenity;
@@ -308,5 +308,65 @@ class PropertyMasterController extends Controller
         } else {
             return back()->with('error','Something Went Wrong');
         }
+    }
+
+    public function propertyDataInsertAjax(Request $request)
+    {
+        $propertyMasterModel = new PropertyMaster();
+        $propertyMasterModel->property_status = $request->property_status;
+        $propertyMasterModel->property_type_id = $request->property_type;
+        $propertyMasterModel->property_category_id = $request->property_category_dropdown;
+        $propertyMasterModel->state_id = $request->state_id;
+        $propertyMasterModel->city_id = $request->city_dropdown;
+        $propertyMasterModel->locality = $request->locality;
+        $propertyMasterModel->name_of_project = $request->name_of_project;
+        $propertyMasterModel->address = $request->address;
+        $propertyMasterModel->expected_price = $request->price;
+        $propertyMasterModel->booking_amount = $request->booking_amount;
+        $propertyMasterModel->save();
+        $lastInsertedPropertyMasterId = $propertyMasterModel->id;
+
+        if($request->property_type == 1){
+            // Residential Property Insert //
+            $residentialPropertyModel = new ResidentialProperty();
+            $residentialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+            $residentialPropertyModel->descr = $request->descr;
+            $residentialPropertyModel->no_of_flats = $request->no_of_flats;
+            $residentialPropertyModel->total_bedrooms = $request->total_bedrooms;
+            $residentialPropertyModel->total_balconies = $request->total_balconies;
+            $residentialPropertyModel->total_bathrooms = $request->total_bathrooms;
+            $residentialPropertyModel->total_floor = $request->total_floors;
+            $residentialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+            $residentialPropertyModel->total_open_side = $request->no_of_open_sides;
+            $residentialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+            $residentialPropertyModel->any_construction = $request->any_construction;
+            $residentialPropertyModel->boundary_wall_made = $request->boundary_wall;
+            $residentialPropertyModel->is_in_gated_colony = NULL;
+            $residentialPropertyModel->carpet_area = $request->carpet_area;
+            $residentialPropertyModel->super_area = $request->super_area;
+            $residentialPropertyModel->plot_area = $request->plot_area;
+            $residentialPropertyModel->plot_length = $request->plot_length;
+            $residentialPropertyModel->plot_breadth = $request->plot_breadth;
+            $residentialPropertyModel->furnished_status = $request->furnished_status;
+            $residentialPropertyModel->possession_status = $request->possession_status;
+            if ($request->possession_status == 'Under Construction') {
+                $residentialPropertyModel->time_duration = $request->available_from;
+            } elseif ($request->possession_status == 'Ready to Move') {
+                $residentialPropertyModel->age = $request->age;
+            }
+            $saveData = $residentialPropertyModel->save();
+            $lastInsertedId = $residentialPropertyModel->id;
+        }
+
+        // Add Property Amenities
+        $amenitiesArray = $request->amenitiesArray;
+        foreach ($amenitiesArray as $amenity) {
+            $propertyAmenities = new PropertyAmenities();
+            $propertyAmenities->property_master_id = $lastInsertedId;
+            $propertyAmenities->amenities_id = $amenity;
+            $propertyAmenities->save();
+        }
+
+        echo 'suceess';
     }
 }

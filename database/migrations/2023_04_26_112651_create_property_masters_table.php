@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('city_id');
             $table->string('name_of_project', 99);
             $table->string('locality', 99);
-            $table->string('landmark', 99);
+            $table->string('landmark', 99)->nullable();
             $table->text('address');
             $table->integer('expected_price');
             $table->integer('booking_amount');

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_masters', function (Blueprint $table) {
             $table->id();
+            $table->string('property_status',10)->nullable();
             $table->integer('property_type_id');
             $table->integer('property_category_id');
             $table->integer('state_id');

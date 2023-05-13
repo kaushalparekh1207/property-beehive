@@ -112,23 +112,23 @@
                                             <li class="@yield('dashboard')"><a href="{{route('front_dashboard')}}"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>
                                             <li class="@yield('profile')"><a href="{{route('userProfile',session('user')['id'])}}"><i class="fa fa-user-tie"></i>My Profile</a></li>
                                             <li><a href="my-property.html"><i class="fa fa-tasks"></i>My Properties</a></li>
-                                            <li><a href="submit-property-dashboard.html"><i class="fa fa-pen-nib"></i>Post New Property</a></li>
+                                            <li><a href="{{route('postProperty')}}"><i class="fa fa-pen-nib"></i>Post New Property</a></li>
                                             {{--                <li><a href="choose-package.html"><i class="fa fa-gift"></i>Choose Package<span class="expiration">10 days left</span></a></li>--}}
                                             <li class="@yield('changePassword')"><a href="{{route('changePassword')}}"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
-                                            <li><a href="change-password.html"><i class="fa fa-sign-out"></i>Logout</a></li>
+                                            <li><a href=""><i class="fa fa-sign-out"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
+                        <li class="list-buttons ms-2">
+                           <a href="{{route('postProperty')}}"><i class="fa-solid fa-upload me-2"></i>List Property</a>
+                        </li>
                     @else
                     <li class="list-buttons border">
                         <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
                                 class="fas fa-sign-in-alt me-2"></i>Log In</a>
                     </li>
                     @endif
-                        <li class="list-buttons ms-2">
-                            <a href="signup.php"><i class="fa-solid fa-upload me-2"></i>List Property</a>
-                        </li>
                 </ul>
                 @endif
 </div>

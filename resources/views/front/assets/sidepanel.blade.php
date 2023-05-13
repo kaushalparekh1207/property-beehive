@@ -31,7 +31,7 @@
                 <li class="@yield('post_property')"><a href="{{route('postProperty')}}"><i class="fa fa-pen-nib"></i>Post New Property</a></li>
 {{--                <li><a href="choose-package.html"><i class="fa fa-gift"></i>Choose Package<span class="expiration">10 days left</span></a></li>--}}
                 <li class="@yield('changePassword')"><a href="{{route('changePassword')}}"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
-                <li><a href="change-password.html"><i class="fa fa-sign-out"></i>Logout</a></li>
+                <li><a href="{{route('front_logout')}}"><i class="fa fa-sign-out"></i>Logout</a></li>
             </ul>
         </div><br>
     </div>

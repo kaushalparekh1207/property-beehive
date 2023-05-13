@@ -35,8 +35,8 @@ class AdminController extends Controller
             $request->session()->put('admin', ['id' => $admin_id, 'name' => $name, 'role' => $role_id, 'role_name' => $role_name]);
             return redirect('admin/dashboard');
         } else {
-            toastr()->error('Invalid Info !');
-            return redirect('admin/login')->with('failedmsg', 'Invalid Information');
+//            toastr()->error('Invalid Info !');
+            return redirect('admin/login')->with('error', 'Invalid Information');
         }
 
     }

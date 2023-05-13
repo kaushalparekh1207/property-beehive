@@ -218,4 +218,6 @@ Route::post('/post_property/insert',[PropertyMasterController::class,'frontPrope
 
 // Upload Documents/Images for Property
 Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
-Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
+Route::post('/upload_master_plan',[PropertyFileController::class,'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');
+Route::post('/upload_site_view',[PropertyFileController::class,'uploadPropertySiteViewImage'])->name('uploadPropertySiteViewImage');
+Route::post('/upload_floor_plan_image',[PropertyFileController::class,'uploadPropertyFloorPlanImage'])->name('uploadPropertyFloorPlanImage');

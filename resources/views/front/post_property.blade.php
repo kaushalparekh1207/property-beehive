@@ -111,15 +111,15 @@
                                                                                 <div class="o-features mt-2">
                                                                                     <ul class="no-ul-list row">
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-1" class="form-check-input" name="property_type" type="radio">
+                                                                                            <input id="a-1" class="form-check-input" name="property_status" type="radio" value="Sell">
                                                                                             <label for="a-1" class="form-check-label">Sell</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-2" class="form-check-input" name="property_type" type="radio">
+                                                                                            <input id="a-2" class="form-check-input" name="property_status" type="radio" value="Rent/Lease">
                                                                                             <label for="a-2" class="form-check-label">Rent/Lease</label>
                                                                                         </li>
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                                            <input id="a-3" class="form-check-input" name="property_type" type="radio">
+                                                                                            <input id="a-3" class="form-check-input" name="property_status" type="radio" value="PG/Hostel">
                                                                                             <label for="a-3" class="form-check-label">PG/Hostel</label>
                                                                                         </li>
                                                                                     </ul>
@@ -163,12 +163,12 @@
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Locality</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter Locality/Area">
+                                                                                <input type="text" class="form-control" placeholder="Enter Locality/Area" name="locality">
                                                                             </div>
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Address</label>
-                                                                                <textarea class="form-control" placeholder="Describe Here..."></textarea>
+                                                                                <textarea class="form-control" style="height: 100px;" placeholder="Describe Here..." name="address"></textarea>
                                                                             </div>
 
                                                                             </div>
@@ -185,9 +185,29 @@
                                                                                 <input type="text" class="form-control" placeholder="Enter Property Title">
                                                                             </div>
 
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Number of Flats in Your Society <sup>*</sup></label>
+                                                                                <div class="o-features mt-2">
+                                                                                    <ul class="no-ul-list row">
+                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
+                                                                                            <input id="a-1" class="form-check-input" name="no_of_flats" type="radio" value="<50">
+                                                                                            <label for="a-1" class="form-check-label"><50</label>
+                                                                                        </li>
+                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
+                                                                                            <input id="a-2" class="form-check-input" name="no_of_flats" type="radio" value="50-100">
+                                                                                            <label for="a-2" class="form-check-label">50-100</label>
+                                                                                        </li>
+                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
+                                                                                            <input id="a-3" class="form-check-input" name="no_of_flats" type="radio" value=">100">
+                                                                                            <label for="a-3" class="form-check-label">>100</label>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+
                                                                             <div class="form-group col-md-3">
                                                                                 <label>Total Floors</label>
-                                                                                <select class="js-select2-disablesearch" name="total_floor" id="total_floor">
+                                                                                <select class="js-select2-disablesearch" name="total_floors" id="total_floors">
                                                                                     <option value="" selected disabled>Select Total Number of Floor</option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
@@ -256,7 +276,109 @@
 
                                                                             <div class="form-group col-md-12">
                                                                                 <label>Description<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Description"><i class="fa-solid fa-info"></i></a></label>
-                                                                                <textarea type="text" class="form-control" id="" placeholder="Describe Here..."></textarea>
+                                                                                <textarea type="text" class="form-control" name="descr" id="descr" placeholder="Describe Here..."></textarea>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <strong>Facilities (Amenities)</strong>
+                                                                                <div class="o-features mt-2">
+                                                                                    <ul class="no-ul-list row">
+                                                                                        @foreach($amenities as $amenity)
+                                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
+                                                                                            <input id="a-1" class="form-check-input" name="amenities[]" value="{{$amenity->id}}" type="checkbox">
+                                                                                            <label for="a-1" class="form-check-label">{{$amenity->amenities}}</label>
+                                                                                        </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Floor Allowed for Construction<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Description"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="floors_allowed_for_construction" id="floors_allowed_for_construction">
+                                                                                    <option value="" selected disabled>Select Total Number of Bathrooms</option>
+                                                                                    <option value="1">1</option>
+                                                                                    <option value="2">2</option>
+                                                                                    <option value="3">3</option>
+                                                                                    <option value="4">4</option>
+                                                                                    <option value="5">5</option>
+                                                                                    <option value="6">6</option>
+                                                                                    <option value="7">7</option>
+                                                                                    <option value="8">8</option>
+                                                                                    <option value="9">9</option>
+                                                                                    <option value="10">10</option>
+                                                                                    <option value="11">11</option>
+                                                                                    <option value="12">12</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>No. of Open Sides<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Description"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="no_of_open_sides" id="no_of_open_sides">
+                                                                                    <option value="" selected disabled>Select Total Number of Open Sides</option>
+                                                                                    <option value="1">1</option>
+                                                                                    <option value="2">2</option>
+                                                                                    <option value="3">3</option>
+                                                                                    <option value="4">4</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Width of road Facing Plot<a href="javascript:void(0)" class="tip-topdata" data-tip="(in meters)"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="text" class="form-control" name="width_of_road_facing_plot" id="width_of_road_facing_plot" placeholder="Enter Width of Road Facing Plot">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Any Construction Made ?<a href="javascript:void(0)" class="tip-topdata" data-tip="Any Construction Made ?"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="any_construction" id="any_construction">
+                                                                                    <option value="" selected disabled>Select One</option>
+                                                                                    <option value="Yes">Yes</option>
+                                                                                    <option value="No">No</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12">
+                                                                                <label>Boundary Wall Made ?<a href="javascript:void(0)" class="tip-topdata" data-tip="Boundary Made ?"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="boundary_wall" id="boundary_wall">
+                                                                                    <option value="" selected disabled>Select One</option>
+                                                                                    <option value="Yes">Yes</option>
+                                                                                    <option value="No">No</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+                                                                                <label>Carpet Area<a href="javascript:void(0)" class="tip-topdata" data-tip="Enter Carpet Area"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="carpet_area" name="carpet_area" placeholder="Enter Carpet Area"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+                                                                                <label>Super Area<a href="javascript:void(0)" class="tip-topdata" data-tip="Enter Super Area"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="super_area" name="super_area" placeholder="Enter Super Area"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-4">
+                                                                                <label>Plot Area<a href="javascript:void(0)" class="tip-topdata" data-tip="Enter Plot Area"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="plot_area" name="plot_area" placeholder="Enter Plot Area"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-4">
+                                                                                <label>Plot Length<a href="javascript:void(0)" class="tip-topdata" data-tip="Enter Plot Length"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="plot_length" name="plot_length" placeholder="Enter Plot Length"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-4">
+                                                                                <label>Plot Breadth<a href="javascript:void(0)" class="tip-topdata" data-tip="Enter Plot Breadth"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="plot_breadth" name="plot_breadth" placeholder="Enter Plot Breadth"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+                                                                                <label>Property Price<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Price"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="price" name="price" placeholder="Enter Property Expected Price"></input>
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+                                                                                <label>Booking Amount (Token)<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Price"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <input type="number" class="form-control" id="booking_amount" name="booking_amount" placeholder="Enter Property Booking Amount"></input>
                                                                             </div>
 
                                                                             <div class="form-group col-md-12">
@@ -286,12 +408,23 @@
 
                                                                             <div class="form-group col-md-12 time_duration" style="display: none;">
                                                                                 <label for="">Available From</label>
-                                                                                <input type="text" id="datepicker" class="form-control" placeholder="Select Date">
+                                                                                <input type="text" id="datepicker" name="available_from" class="form-control" placeholder="Select Date">
                                                                             </div>
 
                                                                             <div class="form-group col-md-12 property_age" style="display: none;">
-                                                                                <label for="">Property Age<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Age in Years/Months"><i class="fa-solid fa-info"></i></a></label>
-                                                                                <input type="text" class="form-control" name="" placeholder="Enter Property Age">
+                                                                                <label for="">Age<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Age"><i class="fa-solid fa-info"></i></a></label>
+                                                                                <select class="js-select2-disablesearch" name="age"
+                                                                                        id="age" style="width: 100%;" required>
+                                                                                    <option value="" selected disabled>Select
+                                                                                        One
+                                                                                    </option>
+                                                                                    <option value="New Construction">New Construction</option>
+                                                                                    <option value="Less than 5 Years">Less than 5 Years</option>
+                                                                                    <option value="5 to 10 Years">5 to 10 Years</option>
+                                                                                    <option value="10 to 15 Years">10 to 15 Years</option>
+                                                                                    <option value="15 to 20 Years">15 to 20 Years</option>
+                                                                                    <option value="Above 20 Years">Above 20 Years</option>
+                                                                                </select>
                                                                             </div>
 
                                                                             <div class="form-group col-md-12">
@@ -310,7 +443,7 @@
                                                                     </form>
 
                                                                         <div id="photos-part" class="content" role="tabpanel" aria-labelledby="photos-part-trigger">
-                                                                            <label for="">Banner Image<sup>*</sup></label>
+                                                                            <label for="">Banner/Cover Image<sup>*</sup></label>
                                                                             <form action="{{route('uploadPropertyBannerImage')}}" method="post" id="bannerImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
                                                                                 @csrf
                                                                             <div class="dz-default dz-message">
@@ -320,7 +453,7 @@
                                                                             </form><br>
 
                                                                             <label for="">Master Plan Image<sup>*</sup></label>
-                                                                            <form action="{{route('uploadPropertyBannerImage')}}" method="post" id="masterImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
+                                                                            <form action="{{route('uploadPropertyMasterPlanImage')}}" method="post" id="masterImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <div class="dz-default dz-message">
                                                                                     <i class="fa-solid fa-images"></i>
@@ -328,6 +461,24 @@
                                                                                 </div>
                                                                             </form>
                                                                             <br>
+
+                                                                            <label for="">Site View Image<sup>*</sup></label>
+                                                                            <form action="{{route('uploadPropertySiteViewImage')}}" method="post" id="siteViewImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="dz-default dz-message">
+                                                                                    <i class="fa-solid fa-images"></i>
+                                                                                    <span>Drag & Drop Files to Upload</span>
+                                                                                </div>
+                                                                            </form><br>
+
+                                                                            <label for="">Floor Plan Image<sup>*</sup></label>
+                                                                            <form action="{{route('uploadPropertyFloorPlanImage')}}" method="post" id="floorPlanImageUpload" class="dropzone dz-clickable primary-dropzone" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="dz-default dz-message">
+                                                                                    <i class="fa-solid fa-images"></i>
+                                                                                    <span>Drag & Drop Files to Upload</span>
+                                                                                </div>
+                                                                            </form><br>
 
                                                                             <button type="button" class="btn btn-primary btn-sm"
                                                                                     onclick="stepper.previous()">Previous Step</button>
@@ -467,11 +618,24 @@
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
-            // init: function() {
-            //     this.on("removedfile", function (file) {
-            //         //do something when file removed
-            //     });
-            // }
+        }
+
+        Dropzone.options.masterImageUpload={
+            maxFilesize:2,
+            acceptedFiles: '.jpg,.jpeg,.png,.webp',
+            addRemoveLinks: true,
+        }
+
+        Dropzone.options.siteViewImageUpload={
+            maxFilesize:2,
+            acceptedFiles: '.jpg,.jpeg,.png,.webp',
+            addRemoveLinks: true,
+        }
+
+        Dropzone.options.siteViewImageUpload={
+            maxFilesize:2,
+            acceptedFiles: '.jpg,.jpeg,.png,.webp',
+            addRemoveLinks: true,
         }
     </script>
     <script>

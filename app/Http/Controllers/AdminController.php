@@ -235,7 +235,7 @@ class AdminController extends Controller
         $role_id = AdminUser::where('id', $request->id)->pluck('role_id')->first();
         $role_name = AdminRole::where('id', $role_id)->pluck('role_name')->first();
         session()->pull('admin');
-        $request->session()->put('admin', ['admin_id' => $request->id, 'name' => $request->name, 'role' => $role_id, 'role_name' => $role_name]);
+        $request->session()->put('admin', ['id' => $request->id, 'name' => $request->name, 'role' => $role_id, 'role_name' => $role_name]);
         if ($updateData) {
             toastr()->success('Profile Updated Successfully !');
         } else {

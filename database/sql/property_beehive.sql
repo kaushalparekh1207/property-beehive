@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 13, 2023 at 05:39 AM
+-- Generation Time: May 17, 2023 at 09:19 AM
 -- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- PHP Version: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,6 +68,44 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
 
 INSERT INTO `admin_users` (`id`, `role_id`, `name`, `email`, `contact`, `email_verified_at`, `admin_password`, `password`, `remember_token`, `flag`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Hackberry Softech', 'info@hackberrysoftech.com', '7948998877', NULL, '123', '$2y$10$jHkW8JR9QqbaJLWoSSiULOu8v1riVsJ0IgKqcPi5YahYk/vM40jwC', NULL, 1, '2023-05-03 13:01:55', '2023-05-03 13:01:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agricultural_properties`
+--
+
+DROP TABLE IF EXISTS `agricultural_properties`;
+CREATE TABLE IF NOT EXISTS `agricultural_properties` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_master_id` int NOT NULL,
+  `descr` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_floor` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_bedrooms` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_bathrooms` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_open_side` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_road_facing_plot` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boundary_wall_made` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carpet_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `super_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_entrance` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_length` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_breadth` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `furnished_status` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession_status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_duration` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currently_leased_out` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `leased_to` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monthly_rent` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -802,6 +840,93 @@ INSERT INTO `client_types` (`id`, `client_type`, `flag`, `created_by`, `updated_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `commercial_properties`
+--
+
+DROP TABLE IF EXISTS `commercial_properties`;
+CREATE TABLE IF NOT EXISTS `commercial_properties` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_master_id` int NOT NULL,
+  `descr` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `land_zone` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ideal_for_business` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nearby_business` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `floor_no` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_floor` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_washrooms` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `personal_washroom` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cafeteria` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `corner` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_main_road_facing` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `floor_allowed_for_construction` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_open_side` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_road_facing_plot` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_construction` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boundary_wall_made` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_in_gated_colony` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carpet_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `super_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_entrance` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_length` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_breadth` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `furnished_status` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession_status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_duration` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currently_leased_out` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `leased_to` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monthly_rent` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `industrial_properties`
+--
+
+DROP TABLE IF EXISTS `industrial_properties`;
+CREATE TABLE IF NOT EXISTS `industrial_properties` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_master_id` int NOT NULL,
+  `descr` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `land_zone` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_floor` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_main_road_facing` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `floor_allowed_for_construction` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_open_side` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_road_facing_plot` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_construction` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boundary_wall_made` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carpet_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `super_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_area` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_length` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plot_breadth` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `furnished_status` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession_status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_duration` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currently_leased_out` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `leased_to` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monthly_rent` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -811,7 +936,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -829,7 +954,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2023_04_26_124455_create_property_master_plan_images_table', 9),
 (10, '2023_04_26_112651_create_property_masters_table', 10),
 (11, '2023_05_03_065510_create_residential_properties_table', 11),
-(12, '2023_04_26_125414_create_property_amenities_table', 12);
+(12, '2023_04_26_125414_create_property_amenities_table', 12),
+(13, '2023_05_03_093957_create_property_site_view_images_table', 13),
+(14, '2023_05_03_095112_create_commercial_properties_table', 14),
+(15, '2023_05_03_104315_create_industrial_properties_table', 15),
+(16, '2023_05_03_110728_create_agricultural_properties_table', 16);
 
 -- --------------------------------------------------------
 
@@ -849,7 +978,45 @@ CREATE TABLE IF NOT EXISTS `property_amenities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `property_amenities`
+--
+
+INSERT INTO `property_amenities` (`id`, `property_master_id`, `amenities_id`, `amenities_image`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(2, 1, 3, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(3, 1, 4, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(4, 1, 5, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(5, 1, 7, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(6, 1, 12, NULL, 1, NULL, NULL, '2023-05-13 07:08:33', '2023-05-13 07:08:33'),
+(7, 2, 1, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(8, 2, 4, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(9, 2, 9, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(10, 2, 10, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(11, 2, 11, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(12, 2, 14, NULL, 1, NULL, NULL, '2023-05-13 13:37:42', '2023-05-13 13:37:42'),
+(13, 3, 1, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(14, 3, 4, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(15, 3, 9, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(16, 3, 10, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(17, 3, 11, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(18, 3, 14, NULL, 1, NULL, NULL, '2023-05-13 13:40:35', '2023-05-13 13:40:35'),
+(19, 4, 1, NULL, 1, NULL, NULL, '2023-05-13 13:42:56', '2023-05-13 13:42:56'),
+(20, 4, 2, NULL, 1, NULL, NULL, '2023-05-13 13:42:56', '2023-05-13 13:42:56'),
+(21, 4, 4, NULL, 1, NULL, NULL, '2023-05-13 13:42:56', '2023-05-13 13:42:56'),
+(22, 4, 6, NULL, 1, NULL, NULL, '2023-05-13 13:42:56', '2023-05-13 13:42:56'),
+(23, 4, 10, NULL, 1, NULL, NULL, '2023-05-13 13:42:56', '2023-05-13 13:42:56'),
+(24, 6, 1, NULL, 1, NULL, NULL, '2023-05-15 12:45:23', '2023-05-15 12:45:23'),
+(25, 7, 1, NULL, 1, NULL, NULL, '2023-05-15 12:46:39', '2023-05-15 12:46:39'),
+(26, 8, 1, NULL, 1, NULL, NULL, '2023-05-15 12:48:18', '2023-05-15 12:48:18'),
+(27, 8, 1, NULL, 1, NULL, NULL, '2023-05-15 12:48:18', '2023-05-15 12:48:18'),
+(28, 8, 1, NULL, 1, NULL, NULL, '2023-05-15 12:48:18', '2023-05-15 12:48:18'),
+(29, 8, 1, NULL, 1, NULL, NULL, '2023-05-15 12:48:18', '2023-05-15 12:48:18'),
+(30, 9, 1, NULL, 1, NULL, NULL, '2023-05-15 12:49:13', '2023-05-15 12:49:13'),
+(31, 9, 1, NULL, 1, NULL, NULL, '2023-05-15 12:49:13', '2023-05-15 12:49:13'),
+(32, 2, 1, NULL, 1, NULL, NULL, '2023-05-15 12:57:17', '2023-05-15 12:57:17');
 
 -- --------------------------------------------------------
 
@@ -910,17 +1077,26 @@ CREATE TABLE IF NOT EXISTS `property_masters` (
   `city_id` int NOT NULL,
   `name_of_project` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
   `locality` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `landmark` varchar(99) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `landmark` varchar(99) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `expected_price` int NOT NULL,
-  `booking_amount` int NOT NULL,
+  `booking_amount` int DEFAULT NULL,
+  `cover_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
   `created_by` int DEFAULT NULL,
   `updated_by` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `property_masters`
+--
+
+INSERT INTO `property_masters` (`id`, `property_status`, `property_type_id`, `property_category_id`, `state_id`, `city_id`, `name_of_project`, `locality`, `landmark`, `address`, `expected_price`, `booking_amount`, `cover_image`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Sell', 1, 1, 1, 5, 'fd', 'fd', NULL, 'fd', 52, 1, '', 1, NULL, NULL, '2023-05-15 13:23:15', '2023-05-15 13:23:15'),
+(2, 'Sell', 1, 2, 1, 5, 'f', 'sfdf', NULL, 'dsd', 5, NULL, '', 1, NULL, NULL, '2023-05-15 13:44:13', '2023-05-15 13:44:13');
 
 -- --------------------------------------------------------
 
@@ -933,6 +1109,32 @@ CREATE TABLE IF NOT EXISTS `property_master_plan_images` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `property_master_id` int NOT NULL,
   `master_plan_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `property_master_plan_images`
+--
+
+INSERT INTO `property_master_plan_images` (`id`, `property_master_id`, `master_plan_image`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, '646237330a2ca_accessgroup.png', 1, NULL, NULL, '2023-05-15 08:14:19', '2023-05-15 08:14:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_site_view_images`
+--
+
+DROP TABLE IF EXISTS `property_site_view_images`;
+CREATE TABLE IF NOT EXISTS `property_site_view_images` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `property_master_id` int NOT NULL,
+  `site_view_image` varchar(99) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `flag` int NOT NULL DEFAULT '1' COMMENT '1=Active, 2=>Inactive',
   `created_by` int DEFAULT NULL,
   `updated_by` int DEFAULT NULL,
@@ -967,8 +1169,8 @@ INSERT INTO `property_types` (`id`, `property_type`, `flag`, `created_by`, `upda
 (1, 'Residential', 1, NULL, NULL, NULL, NULL),
 (2, 'Commercial', 1, NULL, NULL, NULL, NULL),
 (3, 'Industrial', 1, NULL, NULL, NULL, NULL),
-(4, 'PG/Hostel', 1, NULL, NULL, NULL, NULL),
-(5, 'Agriculture', 1, NULL, NULL, NULL, NULL);
+(4, 'Agriculture', 1, NULL, NULL, NULL, NULL),
+(5, 'PG/Hostel', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -988,7 +1190,7 @@ CREATE TABLE IF NOT EXISTS `residential_properties` (
   `total_floor` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `floor_allowed_for_construction` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_open_side` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `width_of_road_facing_plot` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width_of_road_facing_plot` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `any_construction` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `boundary_wall_made` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_in_gated_colony` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1008,7 +1210,15 @@ CREATE TABLE IF NOT EXISTS `residential_properties` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `residential_properties`
+--
+
+INSERT INTO `residential_properties` (`id`, `property_master_id`, `descr`, `no_of_flats`, `total_bedrooms`, `total_balconies`, `total_bathrooms`, `total_floor`, `floor_allowed_for_construction`, `total_open_side`, `width_of_road_facing_plot`, `any_construction`, `boundary_wall_made`, `is_in_gated_colony`, `carpet_area`, `super_area`, `plot_area`, `plot_length`, `plot_breadth`, `furnished_status`, `possession_status`, `age`, `time_duration`, `cover_image`, `flag`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'fd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-05-15 13:23:15', '2023-05-15 13:23:15'),
+(2, 2, 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-05-15 13:44:13', '2023-05-15 13:44:13');
 
 -- --------------------------------------------------------
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AgricultureProperty;
 use App\Models\Amenities;
 use App\Models\City;
+use App\Models\CommercialProperty;
+use App\Models\IndustrialProperty;
 use App\Models\NonAgricultureProperty;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyBHKDetails;
@@ -238,82 +240,11 @@ class PropertyMasterController extends Controller
     /**
      * Insert Property Insert
      */
-    public function frontPropertyInsert(Request $request)
-    {
-        $propertyMasterModel = new PropertyMaster();
-        $propertyMasterModel->property_status = $request->property_status;
-        $propertyMasterModel->property_type_id = $request->property_type;
-        $propertyMasterModel->property_category_id = $request->property_category;
-        $propertyMasterModel->state_id = $request->state_id;
-        $propertyMasterModel->city_id = $request->city_id;
-        $propertyMasterModel->locality = $request->locality;
-        $propertyMasterModel->name_of_project = $request->name_of_project;
-        $propertyMasterModel->address = $request->address;
-        $propertyMasterModel->expected_price = $request->price;
-        $propertyMasterModel->booking_amount = $request->booking_amount;
-        $propertyMasterModel->save();
-        $lastInsertedPropertyMasterId = $propertyMasterModel->id;
-
-        if($request->property_type == 1){
-            // Residential Property Insert //
-            $residentialPropertyModel = new ResidentialProperty();
-            $residentialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
-            $residentialPropertyModel->descr = $request->descr;
-            $residentialPropertyModel->no_of_flats = $request->no_of_flats;
-            $residentialPropertyModel->total_bedrooms = $request->total_bedrooms;
-            $residentialPropertyModel->total_balconies = $request->total_balconies;
-            $residentialPropertyModel->total_bathrooms = $request->total_bathrooms;
-            $residentialPropertyModel->total_floor = $request->total_floors;
-            $residentialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
-            $residentialPropertyModel->total_open_side = $request->no_of_open_sides;
-            $residentialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $residentialPropertyModel->any_construction = $request->any_construction;
-            $residentialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $residentialPropertyModel->is_in_gated_colony = NULL;
-            $residentialPropertyModel->carpet_area = $request->carpet_area;
-            $residentialPropertyModel->super_area = $request->super_area;
-            $residentialPropertyModel->plot_area = $request->plot_area;
-            $residentialPropertyModel->plot_length = $request->plot_length;
-            $residentialPropertyModel->plot_breadth = $request->plot_breadth;
-            $residentialPropertyModel->furnished_status = $request->furnished_status;
-            $residentialPropertyModel->possession_status = $request->possession_status;
-            if ($request->possession_status == 'Under Construction') {
-                $residentialPropertyModel->time_duration = $request->available_from;
-            } elseif ($request->possession_status == 'Ready to Move') {
-                $residentialPropertyModel->age = $request->age;
-            }
-            $saveData = $residentialPropertyModel->save();
-            $lastInsertedId = $residentialPropertyModel->id;
-        }
-
-        // Add Property Amenities
-        $amenitiesArray = $request->amenitiesArray;
-        foreach ($amenitiesArray as $amenity) {
-            $propertyAmenities = new PropertyAmenities();
-            $propertyAmenities->property_master_id = $lastInsertedId;
-            $propertyAmenities->amenities_id = $amenity;
-            $propertyAmenities->save();
-        }
-
-//        // Add Property BHK Details
-//        $bhkDetails = $request->bhk_details;
-//        foreach ($bhkDetails as $bhkDetail) {
-//            $propertyBHKModel = new PropertyBHKDetails();
-//            $propertyBHKModel->property_id = $lastInsertedId;
-//            $propertyBHKModel->bhk_id = $bhkDetail;
-//            $propertyBHKModel->save();
-//        }
-        if ($saveData) {
-            return back()->with('success','Property Added Successfully');
-        } else {
-            return back()->with('error','Something Went Wrong');
-        }
-    }
 
     public function propertyDataInsertAjax(Request $request)
     {
         $propertyMasterModel = new PropertyMaster();
-        $propertyMasterModel->property_status = $request->property_status;
+        $propertyMasterModel->property_status = $request->propertystatus;
         $propertyMasterModel->property_type_id = $request->property_type;
         $propertyMasterModel->property_category_id = $request->property_category_dropdown;
         $propertyMasterModel->state_id = $request->state_id;
@@ -327,6 +258,7 @@ class PropertyMasterController extends Controller
         $lastInsertedPropertyMasterId = $propertyMasterModel->id;
 
         if($request->property_type == 1){
+
             // Residential Property Insert //
             $residentialPropertyModel = new ResidentialProperty();
             $residentialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
@@ -355,16 +287,126 @@ class PropertyMasterController extends Controller
                 $residentialPropertyModel->age = $request->age;
             }
             $saveData = $residentialPropertyModel->save();
-            $lastInsertedId = $residentialPropertyModel->id;
+            $lastInsertedTypeId = $residentialPropertyModel->id;
+            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+
+        } else if($request->property_type == 2){
+
+            // Commercial Property Insert //
+            $commercialPropertyModel = new CommercialProperty();
+            $commercialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+            $commercialPropertyModel->descr = $request->descr;
+            $commercialPropertyModel->land_zone = $request->land_zone;
+            $commercialPropertyModel->total_washrooms = $request->total_bathrooms;
+            $commercialPropertyModel->personal_washroom = $request->personal_washroom;
+            $commercialPropertyModel->total_floor = $request->total_floors;
+            $commercialPropertyModel->cafeteria = $request->cafeteria;
+            $commercialPropertyModel->corner = $request->corner_showroom;
+            $commercialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
+            $commercialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+            $commercialPropertyModel->total_open_side = $request->no_of_open_sides;
+            $commercialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+            $commercialPropertyModel->any_construction = $request->any_construction;
+            $commercialPropertyModel->boundary_wall_made = $request->boundary_wall;
+            $commercialPropertyModel->is_in_gated_colony = NULL;
+            $commercialPropertyModel->carpet_area = $request->carpet_area;
+            $commercialPropertyModel->super_area = $request->super_area;
+            $commercialPropertyModel->width_of_entrance = $request->width_of_entrance;
+            $commercialPropertyModel->plot_area = $request->plot_area;
+            $commercialPropertyModel->plot_length = $request->plot_length;
+            $commercialPropertyModel->plot_breadth = $request->plot_breadth;
+            $commercialPropertyModel->furnished_status = $request->furnished_status;
+            $commercialPropertyModel->possession_status = $request->possession_status;
+            if ($request->possession_status == 'Under Construction') {
+                $commercialPropertyModel->time_duration = $request->available_from;
+            } elseif ($request->possession_status == 'Ready to Move') {
+                $commercialPropertyModel->age = $request->age;
+            }
+            $commercialPropertyModel->currently_leased_out = $request->currently_leased_out;
+            $commercialPropertyModel->leased_to = $request->leased_to;
+            $commercialPropertyModel->monthly_rent = $request->monthly_rent;
+            $saveData = $commercialPropertyModel->save();
+            $lastInsertedTypeId = $commercialPropertyModel->id;
+            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+        }  else if($request->property_type == 3){
+
+            // Industrial Property Insert //
+            $industrialPropertyModel = new IndustrialProperty();
+            $industrialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+            $industrialPropertyModel->descr = $request->descr;
+            $industrialPropertyModel->land_zone = $request->land_zone;
+            $industrialPropertyModel->total_floor = $request->total_floors;
+            $industrialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
+            $industrialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+            $industrialPropertyModel->total_open_side = $request->no_of_open_sides;
+            $industrialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+            $industrialPropertyModel->any_construction = $request->any_construction;
+            $industrialPropertyModel->boundary_wall_made = $request->boundary_wall;
+            $industrialPropertyModel->carpet_area = $request->carpet_area;
+            $industrialPropertyModel->super_area = $request->super_area;
+            $industrialPropertyModel->width_of_entrance = $request->width_of_entrance;
+            $industrialPropertyModel->plot_area = $request->plot_area;
+            $industrialPropertyModel->plot_length = $request->plot_length;
+            $industrialPropertyModel->plot_breadth = $request->plot_breadth;
+            $industrialPropertyModel->furnished_status = $request->furnished_status;
+            $industrialPropertyModel->possession_status = $request->possession_status;
+            if ($request->possession_status == 'Under Construction') {
+                $industrialPropertyModel->time_duration = $request->available_from;
+            } elseif ($request->possession_status == 'Ready to Move') {
+                $industrialPropertyModel->age = $request->age;
+            }
+            $industrialPropertyModel->currently_leased_out = $request->currently_leased_out;
+            $industrialPropertyModel->leased_to = $request->leased_to;
+            $industrialPropertyModel->monthly_rent = $request->monthly_rent;
+            $saveData = $industrialPropertyModel->save();
+            $lastInsertedTypeId = $industrialPropertyModel->id;
+            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+
+        } else if($request->property_type == 4){
+
+            // Agricultural Property Insert //
+            $agriculturalPropertyModel = new AgricultureProperty();
+            $agriculturalPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+            $agriculturalPropertyModel->descr = $request->descr;
+            $agriculturalPropertyModel->total_floor = $request->total_floors;
+            $agriculturalPropertyModel->total_bedrooms = $request->total_bedrooms;
+            $agriculturalPropertyModel->total_bathrooms = $request->total_bathrooms;
+            $agriculturalPropertyModel->total_open_side = $request->no_of_open_sides;
+            $agriculturalPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+            $agriculturalPropertyModel->any_construction = $request->any_construction;
+            $agriculturalPropertyModel->boundary_wall_made = $request->boundary_wall;
+            $agriculturalPropertyModel->is_in_gated_colony = NULL;
+            $agriculturalPropertyModel->carpet_area = $request->carpet_area;
+            $agriculturalPropertyModel->super_area = $request->super_area;
+            $agriculturalPropertyModel->width_of_entrance = $request->width_of_entrance;
+            $agriculturalPropertyModel->plot_area = $request->plot_area;
+            $agriculturalPropertyModel->plot_length = $request->plot_length;
+            $agriculturalPropertyModel->plot_breadth = $request->plot_breadth;
+            $agriculturalPropertyModel->furnished_status = $request->furnished_status;
+            $agriculturalPropertyModel->possession_status = $request->possession_status;
+            if ($request->possession_status == 'Under Construction') {
+                $agriculturalPropertyModel->time_duration = $request->available_from;
+            } elseif ($request->possession_status == 'Ready to Move') {
+                $agriculturalPropertyModel->age = $request->age;
+            }
+            $agriculturalPropertyModel->currently_leased_out = $request->currently_leased_out;
+            $agriculturalPropertyModel->leased_to = $request->leased_to;
+            $agriculturalPropertyModel->monthly_rent = $request->monthly_rent;
+            $saveData = $agriculturalPropertyModel->save();
+            $lastInsertedTypeId = $agriculturalPropertyModel->id;
+            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
         }
 
         // Add Property Amenities
         $amenitiesArray = $request->amenitiesArray;
-        foreach ($amenitiesArray as $amenity) {
-            $propertyAmenities = new PropertyAmenities();
-            $propertyAmenities->property_master_id = $lastInsertedId;
-            $propertyAmenities->amenities_id = $amenity;
-            $propertyAmenities->save();
+        if($amenitiesArray <> [])
+        {
+            foreach ($amenitiesArray as $amenity) {
+                $propertyAmenities = new PropertyAmenities();
+                $propertyAmenities->property_master_id = $lastInsertedPropertyMasterId;
+                $propertyAmenities->amenities_id = $amenity;
+                $propertyAmenities->save();
+            }
         }
 
         echo 'suceess';

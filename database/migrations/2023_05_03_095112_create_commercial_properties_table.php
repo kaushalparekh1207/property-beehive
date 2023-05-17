@@ -42,7 +42,8 @@ return new class extends Migration
             $table->string('age', 50)->nullable();
             $table->string('time_duration', 99)->nullable();
             $table->string('currently_leased_out', 50)->nullable();
-            $table->string('cover_image', 255)->nullable();
+            $table->string('leased_to',50)->nullable();
+            $table->string('monthly_rent',10)->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

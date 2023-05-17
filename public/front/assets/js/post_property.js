@@ -1,7 +1,207 @@
-$("#btn-submit").click(function(e) {
+$(document).ready(function () {
+    /* Property Status Validation */
+    let propertyStatusError = false;
+    // $("#property_type").on('change',function () {
+    //     validatePropertyType();
+    // });
+    function validatePropertyStatus() {
+        var pstatus = $('.propertyStatus:checked').val();
+        if (pstatus == null || pstatus == "" || (!$('#propertyStatusRadio').is(':checked'))) {
+            $("#property_status_error").html('* Please Select One Option');
+            propertyStatusError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#property_status_error").html('');
+            propertyStatusError = false;
+        }
+    }
 
-    e.preventDefault();
+    /* Property Type Validation */
+    let propertyTypeError = false;
+    $("#property_type").on('change',function () {
+        validatePropertyType();
+    });
+    function validatePropertyType() {
+        var ptype = $("#property_type").val();
+        if (ptype == null) {
+            $("#property_type_error").html('* Please Select Property Type');
+            propertyTypeError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#property_type_error").html('');
+            propertyTypeError = false;
+        }
+    }
 
+    /* Property Category Validation */
+    let propertyCategoryError = false;
+    $("#property_category_dropdown").on('change',function () {
+        validatePropertyCategory();
+    });
+    function validatePropertyCategory() {
+        var pcat = $("#property_category_dropdown").val();
+        if (pcat == null) {
+            $("#property_category_error").html('* Please Select Property Category');
+            propertyCategoryError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#property_category_error").html('');
+            propertyCategoryError = false;
+        }
+    }
+
+    /* State Validation */
+    let stateError = false;
+    $("#state_id").on('change',function () {
+        validateState();
+    });
+    function validateState() {
+        var state = $("#state_id").val();
+        if (state == null) {
+            $("#state_error").html('* Please Select State');
+            stateError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#state_error").html('');
+            stateError = false;
+        }
+    }
+
+    /* City Validation */
+    let cityError = false;
+    $("#city_dropdown").on('change',function () {
+        validateCity();
+    });
+    function validateCity() {
+        var city = $("#city_dropdown").val();
+        if (city == null) {
+            $("#city_error").html('* Please Select City');
+            cityError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#city_error").html('');
+            cityError = false;
+        }
+    }
+
+    /* Property Locality/Area Validation */
+    let propertyLocalityError = false;
+    $("#locality").keyup(function () {
+        validateLocality();
+    });
+    function validateLocality() {
+        var locality = $("#locality").val();
+        if (locality == null || locality == "") {
+            $("#area_error").text('* Please Insert Property Locality');
+            propertyLocalityError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#area_error").text('');
+            propertyLocalityError = false;
+        }
+    }
+
+    /* Property Address Validation */
+    let addressError = false;
+    $("#address").keyup(function () {
+        validateAddress();
+    });
+    function validateAddress() {
+        var address = $("#address").val();
+        if (address == null || address == "") {
+            $("#address_error").html('* Please Insert Address');
+            addressError = true;
+            stepper.previous();
+            return false;
+        } else {
+            $("#address_error").html('');
+            addressError = false;
+        }
+    }
+
+    /* Property Name/Title Validation */
+    let nameError = false;
+    $("#name_of_project").keyup(function () {
+        validateName();
+    });
+    function validateName() {
+        var name = $("#name_of_project").val();
+        if (name == null || name == "") {
+            $("#name_error").html('* Please Insert Property Title');
+            nameError = true;
+            return false;
+        } else {
+            $("#name_error").html('');
+            nameError = false;
+        }
+    }
+
+    /* Property Description Validation */
+    let descrError = false;
+    $("#descr").keyup(function () {
+        validateDescription();
+    });
+    function validateDescription() {
+        var descr = $("#descr").val();
+        if (descr == null || descr == "") {
+            $("#descr_error").html('* Please Insert Property Description');
+            descrError = true;
+            return false;
+        } else {
+            $("#descr_error").html('');
+            descrError = false;
+        }
+    }
+
+    /* Property Price Validation */
+    let priceError = false;
+    $("#price").keyup(function () {
+        validatePrice();
+    });
+    function validatePrice() {
+        var price = $("#price").val();
+        if (price == null || price == "") {
+            $("#price_error").html('* Please Insert Property Expected Price');
+            priceError = true;
+            return false;
+        } else {
+            $("#price_error").html('');
+            priceError = false;
+        }
+    }
+
+    $("#btn-submit").click(function(e) {
+
+        e.preventDefault();
+
+        validatePropertyType();
+        validatePropertyCategory();
+        validateState();
+        validateCity();
+        validateLocality();
+        validateAddress();
+        validateName();
+        validateDescription();
+        validatePrice();
+        validatePropertyStatus();
+
+        if (propertyStatusError == false && propertyTypeError == false && propertyCategoryError == false && stateError == false && cityError == false && propertyLocalityError == false && addressError == false && nameError == false && descrError == false && priceError == false && propertyStatusError == false){
+            insertProperty();
+        } else {
+            return false;
+        }
+
+    });
+});
+
+function insertProperty()
+{
     var propertystatus = $('.propertyStatus:checked').val();
     var property_type = $('#property_type').val();
     var property_category_dropdown = $('#property_category_dropdown').val();
@@ -17,11 +217,17 @@ $("#btn-submit").click(function(e) {
     var total_bathrooms = $('#total_bathrooms').val();
     var descr = $('#descr').val();
     var amenitiesArray = new Array();
-    $('input[name="amenities[]"]:checked').each(function(){
-        amenitiesArray.push($(this).val());
+    var element = $("input[type='checkbox']");
+    $(element).each(function(i){
+        if ($($(element)[i]).prop('checked')) {
+            amenitiesArray.push($('input[name="amenities[]"').val());
+        }else{
+            amenitiesArray = [];
+        }
     });
+
     // Append Array to String
-    // var dataString = 'amenitiesArray='+ amenitiesArray;
+    var dataString = 'amenitiesArray='+ amenitiesArray;
     var floors_allowed_for_construction = $('#floors_allowed_for_construction').val();
     var no_of_open_sides = $('#no_of_open_sides').val();
     var width_of_road_facing_plot = $('#width_of_road_facing_plot').val();
@@ -36,7 +242,7 @@ $("#btn-submit").click(function(e) {
     var booking_amount = $('#booking_amount').val();
     var furnished_status = $('#furnished_status').val();
     var possession_status = $('#possession_status').val();
-    var datepicker = $('#datepicker').val();
+    var available_from = $('#available_from').val();
     var age = $('#age').val();
     var monthly_maintenance_charge = $('#monthly_maintenance_charge').val();
     var url = $('#propertyForm').attr('action');
@@ -74,20 +280,22 @@ $("#btn-submit").click(function(e) {
             booking_amount:booking_amount,
             furnished_status:furnished_status,
             possession_status:possession_status,
-            datepicker:datepicker,
+            available_from:available_from,
             age:age,
             monthly_maintenance_charge:monthly_maintenance_charge,
             _token: $('#token').val(),
         },
         beforeSend: function() {
             $('#btn-submit').html('Please Wait...');
+            $('#btn-submit').attr('disabled',true);
+            $('#prev_step1').attr('disabled',true);
         },
         success: function(data)
         {
             if(data = 'suceess'){
                 stepper.next();
+                $('#prev_step2').attr('disabled',true);
             }
         }
     });
-
-});
+}

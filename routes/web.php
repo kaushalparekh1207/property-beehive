@@ -212,15 +212,19 @@ Route::group(['middleware' => 'checkfrontsession'], function (){
     Route::post('/change-passwords', [UserController::class, 'changePasswordSave'])->name('postChangePassword');
 });
 
-// Post New Property
+// Property Data Insert with Ajax
 Route::get('/post_property',[PropertyMasterController::class,'postProperty'])->name('postProperty')->middleware('checkfrontsession');
-Route::post('/post_property/insert',[PropertyMasterController::class,'frontPropertyInsert'])->name('front_property_master_insert');
+Route::post('/insert_property_data_ajax',[PropertyMasterController::class,'propertyDataInsertAjax'])->name('propertyDataInsertAjax');
 
 // Upload Documents/Images for Property
 Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
 Route::post('/upload_master_plan',[PropertyFileController::class,'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');
 Route::post('/upload_site_view',[PropertyFileController::class,'uploadPropertySiteViewImage'])->name('uploadPropertySiteViewImage');
 Route::post('/upload_floor_plan_image',[PropertyFileController::class,'uploadPropertyFloorPlanImage'])->name('uploadPropertyFloorPlanImage');
-
-// Property Data Insert with Ajax
-Route::post('/insert_property_data_ajax',[PropertyMasterController::class,'propertyDataInsertAjax'])->name('propertyDataInsertAjax');
+Route::post('/upload_exterior_view_image', [PropertyFileController::class, 'uploadExteriorViewImage'])->name('uploadExteriorViewImage');
+Route::post('/upload_living_room_image', [PropertyFileController::class, 'uploadLivingRoomImage'])->name('uploadLivingRoomImage');
+Route::post('/upload_bedroom_image', [PropertyFileController::class, 'uploadBedRoomImage'])->name('uploadBedRoomImage');
+Route::post('/upload_kitchen_image', [PropertyFileController::class, 'uploadKitchenImage'])->name('uploadKitchenImage');
+Route::post('/upload_bathroom_image', [PropertyFileController::class, 'uploadBathroomImage'])->name('uploadBathroomImage');
+Route::post('/upload_location_map_image', [PropertyFileController::class, 'uploadLocationMapImage'])->name('uploadLocationMapImage');
+Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherImage'])->name('uploadOtherImage');

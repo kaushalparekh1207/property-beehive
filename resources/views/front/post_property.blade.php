@@ -337,7 +337,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-3 personalWashrooms">
+                                                                            <div class="form-group col-md-3 personalWashroom">
                                                                                 <label>Personal Washroom ?</label>
                                                                                 <select class="js-select2-disablesearch" name="personal_washroom" id="personal_washroom">
                                                                                     <option value="" selected disabled>Select One</option>
@@ -473,7 +473,7 @@
                                                                                 <input type="number" class="form-control" id="plot_breadth" name="plot_breadth" placeholder="Enter Plot Breadth"></input>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-12">
+                                                                            <div class="form-group col-md-12 furnishedStatus">
                                                                                 <label for="">Furnished Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Furnished Status"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="furnished_status"
                                                                                         id="furnished_status" style="width: 100%;">
@@ -486,7 +486,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-12">
+                                                                            <div class="form-group col-md-12 possessionStatus">
                                                                                 <label for="">Possession Status<a href="javascript:void(0)" class="tip-topdata" data-tip="Select Possession Status"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="possession_status"
                                                                                         id="possession_status" style="width: 100%;">
@@ -519,6 +519,7 @@
                                                                                 </select>
                                                                             </div>
 
+                                                                            <h3 class="rent_lease_details">Rent/ Lease Details</h3>
                                                                             <div class="form-group col-md-12 currentlyLeasedOut">
                                                                                 <label for="">Currently Leased Out ?<a href="javascript:void(0)" class="tip-topdata" data-tip="is Property Currently Leased Out"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <select class="js-select2-disablesearch" name="currently_leased_out"
@@ -539,6 +540,31 @@
                                                                             <div class="form-group col-md-6 monthlyRent">
                                                                                 <label for="">Monthly Rent</label>
                                                                                 <input type="text" class="form-control" id="monthly_rent" placeholder="Enter Monthly Rent" name="monthly_rent">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6 securityAmount">
+                                                                                <label for="">Security Amount (Optional)</label>
+                                                                                <input type="text" class="form-control" id="security_amount" placeholder="Enter Security Amount" name="security_amount">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6 maintenanceCharges">
+                                                                                <label for="">Maintenance Charges</label>
+                                                                                <input type="text" class="form-control" id="maintenance_charges" placeholder="Enter Maintenance Charges" name="maintenance_charges">
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6 perCharges">
+                                                                                <label for="">Charges Per</label>
+                                                                                <select class="js-select2-disablesearch" name="per_charges"
+                                                                                        id="per_charges" style="width: 100%;">
+                                                                                    <option value="" selected disabled>Select
+                                                                                        One
+                                                                                    </option>
+                                                                                    <option value="Monthly">Monthly</option>
+                                                                                    <option value="Quarterly">Quarterly</option>
+                                                                                    <option value="Yearly">Yearly</option>
+                                                                                    <option value="One-Time">One-Time</option>
+                                                                                    <option value="Per sq. Unit Monthly">Per sq. Unit Monthly</option>
+                                                                                </select>
                                                                             </div>
 
                                                                             </div>

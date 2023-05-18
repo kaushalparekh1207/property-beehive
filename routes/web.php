@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\MyPropertiesController;
 use App\Http\Controllers\NonAgriculturePropertyController;
 use App\Http\Controllers\PropertyMasterController;
 use App\Http\Controllers\PropertyTransactionController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\PropertyFileController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -190,7 +192,7 @@ Route::get('/logout', function () {
     return redirect()->route('front_home');
 })->name('front_logout');
 
-Route::view('/','front.index')->name('front_home');
+Route::get('/', [FrontController::class, 'index'])->name('front_home');
 
 // Signup Routes
 Route::get('/sign_up',[UserController::class,'sign_up'])->name('sign_up');
@@ -228,3 +230,11 @@ Route::post('/upload_kitchen_image', [PropertyFileController::class, 'uploadKitc
 Route::post('/upload_bathroom_image', [PropertyFileController::class, 'uploadBathroomImage'])->name('uploadBathroomImage');
 Route::post('/upload_location_map_image', [PropertyFileController::class, 'uploadLocationMapImage'])->name('uploadLocationMapImage');
 Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherImage'])->name('uploadOtherImage');
+
+// My Properties
+Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
+
+// Property Details
+
+Route::view('/property-details','front.property-details')->name('property_details');
+Route::view('/property-result','front.property-result')->name('property_result');

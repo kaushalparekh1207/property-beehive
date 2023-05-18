@@ -125,9 +125,9 @@
 
                                                 <div class="form-group col-md-4">
                                                     <label>City</label>
-                                                    <select class="js-select2" name="city_id" id="city_id">
+                                                    {{-- <select class="js-select2" name="city_id" id="city_id">
                                                         <option value="" selected disabled>Select City</option>
-                                                        @foreach ($cities as $city)
+                                                         @foreach ($cities as $city)
                                                             @php
                                                                 if ($city->id == $userData->city_id) {
                                                                     $selected = 'selected';
@@ -136,7 +136,14 @@
                                                                 }
                                                             @endphp
                                                             <option value="{{$city->id}}" {{$selected}}>{{$city->city}}</option>
-                                                        @endforeach
+                                                        @endforeach --}} 
+                                                        <select class="js-select2" name="city_id"
+                                                        id="city_dropdown" required>
+                                                        <option value="" selected disabled>Select
+                                                            City
+                                                        </option>
+
+                                                    </select>
                                                     </select>
                                                 </div>
 
@@ -192,6 +199,44 @@
             });
             $(".js-select2-multi").select2({
                 closeOnSelect: false
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            
+            
+
+            /*------------------------------------------
+            --------------------------------------------
+            State Dropdown Change Event
+            --------------------------------------------
+            --------------------------------------------*/
+            $('#state_id').on('change', function() {
+                var state = this.value;
+                $("#city_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-city-list') }}",
+                    type: "GET",
+                    data: {
+                        state: state,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#city').show();
+                        $('#city_dropdown').html(
+                            '<option value="" selected disabled>-- Select City --</option>'
+                        );
+                        $.each(result.city, function(key, value) {
+                            $("#city_dropdown").append('<option value="' +
+                                value
+                                .id + '">' + value.city +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
             });
         });
     </script>

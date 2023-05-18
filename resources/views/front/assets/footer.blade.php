@@ -5,7 +5,7 @@
 
                 <div class="col-lg-3 col-md-4">
                     <div class="footer-widget">
-                        <img src="{{url('/')}}/front/assets/img/logo-light.png" class="img-footer" alt="">
+                        <img src="{{url('/')}}/front/assets/img/brand/PROPERTY_BEEHIVE_LOGO.png" class="img-footer" alt="">
                         <div class="footer-add">
                             <p>Collins Street West, Victoria 8007, Australia.</p>
                             <p><span class="ftp-info"><i class="fa fa-phone" aria-hidden="true"></i>+1 246-345-0695</span></p>
@@ -72,7 +72,7 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-12 col-md-12">
-                    <p class="mb-0">© 2023 Veshm. Designd By <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
+                    <p class="mb-0">© 2023 Veshm. Designd By <a href="https://www.hackberrysoftech.com/">hackberry softech pvt. ltd</a> All Rights Reserved</p>
                 </div>
 
             </div>

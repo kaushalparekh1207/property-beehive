@@ -47,7 +47,11 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
 
-                        <h2 class="ipt-title">Hi, Harshvardhan</h2>
+                        <h2 class="ipt-title">@if(session('user')['name'] == NULL)
+                            Hi,{{session('user')['role']}}
+                        @else
+                            Hi,{{session('user')['name']}}
+                        @endif</h2>
                         <span class="ipn-subtitle">Manage your profile and view property</span>
 
                     </div>

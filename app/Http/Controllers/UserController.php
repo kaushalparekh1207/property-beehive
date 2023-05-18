@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -28,8 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $userType = UserType::where('flag',1)->get();
-        return view('admin.user_add',compact('userType'));
+        $userType = UserType::where('flag', 1)->get();
+        return view('admin.user_add', compact('userType'));
     }
     /**
      * Store a newly created resource in storage.
@@ -37,21 +37,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $formdata = new User();
-            $formdata->user_type_id = $request->user_type;
-            $formdata->name = $request->user_name;
-            $formdata->contact = $request->contact;
-            $formdata->email = $request->email;
-            $formdata->user_password = $request->password;
-            $formdata->password = Hash::make($request->password);
-            // $formdata->created_by = session('admin')['admin_id'];
-            // $formdata->updated_by = session('admin')['admin_id'];
-            $saveData = $formdata->save();
+        $formdata->user_type_id = $request->user_type;
+        $formdata->name = $request->user_name;
+        $formdata->contact = $request->contact;
+        $formdata->email = $request->email;
+        $formdata->user_password = $request->password;
+        $formdata->password = Hash::make($request->password);
+        // $formdata->created_by = session('admin')['admin_id'];
+        // $formdata->updated_by = session('admin')['admin_id'];
+        $saveData = $formdata->save();
 
-            if ($saveData) {
-                toastr()->success('User add !!!');
-            } else {
-                toastr()->error('Something went Wrong !');
-            }
+        if ($saveData) {
+            toastr()->success('User add !!!');
+        } else {
+            toastr()->error('Something went Wrong !');
+        }
 
         return redirect()->route('users');
     }
@@ -77,22 +77,22 @@ class UserController extends Controller
         $searchValue = $search_arr['value']; // Search value
 
         $totalRecords = User::select('count(*) as allcount')
-        ->join('user_types','user_types.id','=','users.user_type_id')
+            ->join('user_types', 'user_types.id', '=', 'users.user_type_id')
             ->where('users.flag', 1)
             ->where('user_types.flag', 1)
             ->where('users.name', 'like', '%' . $searchValue . '%')
             ->count();
 
         $totalRecordswithFilter = User::select('count(*) as allcount')
-        ->join('user_types','user_types.id','=','users.user_type_id')
-        ->where('users.flag', 1)
-        ->where('user_types.flag', 1)
+            ->join('user_types', 'user_types.id', '=', 'users.user_type_id')
+            ->where('users.flag', 1)
+            ->where('user_types.flag', 1)
             ->where('users.name', 'like', '%' . $searchValue . '%')
             ->count();
 
         // Fetch records
         $records = User::orderBy($columnName, $columnSortOrder)
-            ->join('user_types','user_types.id','=','users.user_type_id')
+            ->join('user_types', 'user_types.id', '=', 'users.user_type_id')
             ->where('users.flag', 1)
             ->where('user_types.flag', 1)
             ->where('users.name', 'like', '%' . $searchValue . '%')
@@ -105,7 +105,7 @@ class UserController extends Controller
             ->orWhere('user_types.user_type', 'like', '%' . $searchValue . '%')
             ->where('users.flag', 1)
             ->where('user_types.flag', 1)
-            ->select('users.*','user_types.user_type')
+            ->select('users.*', 'user_types.user_type')
             ->skip($start)
             ->take($rowperpage)
             ->get();
@@ -153,8 +153,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $userData = User::find($id);
-        $userType = UserType::where('flag',1)->get();
-        return view('admin.user_edit',compact('userType','userData'));
+        $userType = UserType::where('flag', 1)->get();
+        return view('admin.user_edit', compact('userType', 'userData'));
     }
 
     /**
@@ -165,11 +165,11 @@ class UserController extends Controller
 
         $formdata = User::find($request->user_id);
         $formdata->user_type_id = $request->user_type;
-            $formdata->name = $request->user_name;
-            $formdata->contact = $request->contact;
-            $formdata->email = $request->email;
-            $formdata->user_password = $request->password;
-            $formdata->password = Hash::make($request->password);
+        $formdata->name = $request->user_name;
+        $formdata->contact = $request->contact;
+        $formdata->email = $request->email;
+        $formdata->user_password = $request->password;
+        $formdata->password = Hash::make($request->password);
         $updateData = $formdata->save();
         if ($updateData) {
             toastr()->success('User Details Updated Successfully !');
@@ -186,7 +186,7 @@ class UserController extends Controller
     {
         $data = User::find($id);
         $data->flag = 2;
-       // $data->updated_by = session('admin')['admin_id'];
+        // $data->updated_by = session('admin')['admin_id'];
         $saveData = $data->save();
         if ($saveData) {
             toastr()->success('User Deleted !!!');
@@ -196,25 +196,24 @@ class UserController extends Controller
         return redirect()->route('users');
     }
 
-
     /**
      * Individual User Registration Call Blade File.
      */
 
     public function sign_up()
     {
-        $clientTypes = ClientType::where('flag',1)->get(['id','client_type']);
-        return view('front.sign_up',compact('clientTypes'));
+        $clientTypes = ClientType::where('flag', 1)->get(['id', 'client_type']);
+        return view('front.sign_up', compact('clientTypes'));
     }
 
     /**
      * Individual User Registration.
      */
-     public function registerUser(Request $request)
-     {
+    public function registerUser(Request $request)
+    {
         $formdata = new User();
         $formdata->client_type_id = $request->regsiter_as;
-     //   $formdata->name = $request->user_name;
+        //   $formdata->name = $request->user_name;
         $formdata->contact = $request->contact_no;
         $formdata->email = $request->email;
         $formdata->user_password = $request->password;
@@ -230,7 +229,7 @@ class UserController extends Controller
         }
 
         return redirect()->back();
-     }
+    }
 
     /**
      * Individual User Login.
@@ -242,6 +241,11 @@ class UserController extends Controller
         $client_type_id = User::where('contact', $input)->pluck('client_type_id')->first();
         $role_name = ClientType::where('id', $client_type_id)->pluck('client_type')->first();
         $user_id = User::where('contact', $input)->pluck('id')->first();
+        $user_name = User::where('contact', $input)->pluck('name')->first();
+        $city_id = User::where('contact', $input)->pluck('city_id')->first();
+        $city = City::where('id', $city_id)->pluck('city')->first();
+        $state_id = User::where('contact', $input)->pluck('state_id')->first();
+        $state = State::where('id', $state_id)->pluck('state')->first();
 
         $credentials = array(
             'contact' => $input,
@@ -254,7 +258,7 @@ class UserController extends Controller
                 Cookie::queue('saved_input', $input, 1440);
                 Cookie::queue('saved_password', $request->get('password'), 1440);
             }
-            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $input]);
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $input, 'name' => $user_name, 'city' => $city, 'state' => $state]);
             return redirect()->route('front_home');
         } else {
             toastr()->error('Invalid Info !');
@@ -268,12 +272,11 @@ class UserController extends Controller
     public function userProfile($id)
     {
         $userData = User::findOrFail($id);
-        $clientTypes = ClientType::where('flag',1)->get();
-        $states = State::where('flag',1)->get();
-        $cities = City::where('flag',1)->get();
-        return view('front.profile',compact('userData','clientTypes','states','cities'));
+        $clientTypes = ClientType::where('flag', 1)->get();
+        $states = State::where('flag', 1)->get();
+        $cities = City::where('flag', 1)->get();
+        return view('front.profile', compact('userData', 'clientTypes', 'states', 'cities'));
     }
-
 
     /**
      * Edit User Profile.
@@ -283,17 +286,25 @@ class UserController extends Controller
         $userData = User::find($request->id);
         $userData->client_type_id = $request->client_type_id;
         $userData->name = $request->name;
-        $userData->email=$request->email;
-        $userData->contact=$request->contact;
+        $userData->email = $request->email;
+        $userData->contact = $request->contact;
         $userData->state_id = $request->state_id;
         $userData->city_id = $request->city_id;
         $userData->zip = $request->zip;
         $userData->address = $request->address;
         $saveData = $userData->save();
+
         if ($saveData) {
-            return back()->with('success','Profile Details Updated Successfully');
+            $user_id = User::where('id', $request->id)->pluck('id')->first();
+            $client_type_id = User::where('contact', $request->contact)->pluck('client_type_id')->first();
+            $role_name = ClientType::where('id', $client_type_id)->pluck('client_type')->first();
+            $city = City::where('id', $request->city_id)->pluck('city')->first();
+            $state = State::where('id', $request->state_id)->pluck('state')->first();
+            session()->pull('user');
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $request->contact, 'name' => $request->name, 'city' => $city, 'state' => $state]);
+            return back()->with('success', 'Profile Details Updated Successfully');
         } else {
-            return back()->with('error','Something Went Wrong');
+            return back()->with('error', 'Something Went Wrong');
         }
     }
 

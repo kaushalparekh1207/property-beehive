@@ -26,7 +26,7 @@
 
                     <li><a href="JavaScript:Void(0);">Searches<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="{{ route('property_details') }}">Grid Layout<span
+                            <li><a href="">Grid Layout<span
                                         class="submenu-indicator"></span></a>
 
                             </li>

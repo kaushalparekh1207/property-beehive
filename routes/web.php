@@ -2,20 +2,18 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminRoleController;
-use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MyPropertiesController;
-use App\Http\Controllers\NonAgriculturePropertyController;
+use App\Http\Controllers\PropertyCategoryController;
+use App\Http\Controllers\PropertyFileController;
 use App\Http\Controllers\PropertyMasterController;
 use App\Http\Controllers\PropertyTransactionController;
+use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
-use App\Http\Controllers\PropertyTypeController;
-use App\Http\Controllers\PropertyCategoryController;
-use App\Http\Controllers\PropertyFileController;
-use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -177,12 +175,11 @@ Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])
 // Get Property Category Based on Property Type
 Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
 
-
 /*
 |--------------------------------------------------------------------------
 | Front Routes
 |--------------------------------------------------------------------------
-*/
+ */
 
 // Front Logout Routes
 Route::get('/logout', function () {
@@ -195,34 +192,34 @@ Route::get('/logout', function () {
 Route::get('/', [FrontController::class, 'index'])->name('front_home');
 
 // Signup Routes
-Route::get('/sign_up',[UserController::class,'sign_up'])->name('sign_up');
-Route::post('/sign_up/user',[UserController::class,'registerUser'])->name('registerUser');
+Route::get('/sign_up', [UserController::class, 'sign_up'])->name('sign_up');
+Route::post('/sign_up/user', [UserController::class, 'registerUser'])->name('registerUser');
 
 // Login Routes
-Route::post('/sign_in/user',[UserController::class,'loginUser'])->name('loginUser');
+Route::post('/sign_in/user', [UserController::class, 'loginUser'])->name('loginUser');
 
 // Dashboard Routes
-Route::get('/dashboard',[\App\Http\Controllers\FrontDashboardController::class,'dashboard'])->name('front_dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\FrontDashboardController::class, 'dashboard'])->name('front_dashboard');
 
 // User Profile Routes
-Route::get('/profile/{id}',[UserController::class,'userProfile'])->name('userProfile');
-Route::post('/profile/edit/updateprofile',[UserController::class,'editProfile'])->name('editProfile');
+Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('userProfile');
+Route::post('/profile/edit/updateprofile', [UserController::class, 'editProfile'])->name('editProfile');
 
 // change password
-Route::group(['middleware' => 'checkfrontsession'], function (){
+Route::group(['middleware' => 'checkfrontsession'], function () {
     Route::get('/change-password', [UserController::class, 'changePassword'])->name('changePassword');
     Route::post('/change-passwords', [UserController::class, 'changePasswordSave'])->name('postChangePassword');
 });
 
 // Property Data Insert with Ajax
-Route::get('/post_property',[PropertyMasterController::class,'postProperty'])->name('postProperty')->middleware('checkfrontsession');
-Route::post('/insert_property_data_ajax',[PropertyMasterController::class,'propertyDataInsertAjax'])->name('propertyDataInsertAjax');
+Route::get('/post_property', [PropertyMasterController::class, 'postProperty'])->name('postProperty')->middleware('checkfrontsession');
+Route::post('/insert_property_data_ajax', [PropertyMasterController::class, 'propertyDataInsertAjax'])->name('propertyDataInsertAjax');
 
 // Upload Documents/Images for Property
-Route::post('/upload_banner',[PropertyFileController::class,'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
-Route::post('/upload_master_plan',[PropertyFileController::class,'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');
-Route::post('/upload_site_view',[PropertyFileController::class,'uploadPropertySiteViewImage'])->name('uploadPropertySiteViewImage');
-Route::post('/upload_floor_plan_image',[PropertyFileController::class,'uploadPropertyFloorPlanImage'])->name('uploadPropertyFloorPlanImage');
+Route::post('/upload_banner', [PropertyFileController::class, 'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
+Route::post('/upload_master_plan', [PropertyFileController::class, 'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');
+Route::post('/upload_site_view', [PropertyFileController::class, 'uploadPropertySiteViewImage'])->name('uploadPropertySiteViewImage');
+Route::post('/upload_floor_plan_image', [PropertyFileController::class, 'uploadPropertyFloorPlanImage'])->name('uploadPropertyFloorPlanImage');
 Route::post('/upload_exterior_view_image', [PropertyFileController::class, 'uploadExteriorViewImage'])->name('uploadExteriorViewImage');
 Route::post('/upload_living_room_image', [PropertyFileController::class, 'uploadLivingRoomImage'])->name('uploadLivingRoomImage');
 Route::post('/upload_bedroom_image', [PropertyFileController::class, 'uploadBedRoomImage'])->name('uploadBedRoomImage');
@@ -235,6 +232,7 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
 
 // Property Details
-
-Route::view('/property-details','front.property-details')->name('property_details');
-Route::view('/property-result','front.property-result')->name('property_result');
+Route::get('/property-details/{id}/{type}/{name}', [FrontController::class, 'propertydetails'])->name('propertydetails');
+//Route::view('/property-details', 'front.property-details')->name('property_details');
+Route::view('/property-result', 'front.property-result')->name('property_result');
+Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');

@@ -63,14 +63,17 @@
 								<div class="vesh-detail-headup">
 									<div class="vesh-detail-headup-first">
 										<div class="prt-detail-title-desc">
-											<span class="label label-success">For Sale</span>
-											<h4>Jannat Graynight Mood In Siver Colony, London</h4>
-											<span class="text-mid"><i class="fa-solid fa-location-dot me-2"></i>778 Country St. Panama City, FL</span>
+											<span class="label label-success">For {{$propertis_details->property_status}}</span>
+											<h4>{{$propertis_details->name_of_project}}</h4>
+											<span class="text-mid"><i class="fa-solid fa-location-dot me-2"></i>{{$propertis_details->address}},{{$propertis_details->locality}}</span>
 											<div class="list-fx-features mt-2">
 												<div class="list-fx-fisrt">
-													<span class="label font--medium label-light-success me-2">3 Beds</span>
-													<span class="label font--medium label-light-info me-2">2 Bath</span>
-													<span class=" label font--medium label-light-danger">4500 Sqft</span>
+												
+													<span class="label font--medium label-light-success me-2">{{$allResidentialDetails->total_bedrooms}} Beds</span>
+													
+													<span class="label font--medium label-light-info me-2">{{$allResidentialDetails->total_bathrooms}} Bath</span>
+													<span class=" label font--medium label-light-danger">{{$allResidentialDetails->carpet_area}} Sqft</span>
+										
 												</div>
 												<div class="list-fx-last">
 
@@ -79,7 +82,7 @@
 										</div>
 									</div>
 									<div class="vesh-detail-headup-last">
-										<h3 class="prt-price-fix theme-cl">$10,76500<span>One Time</span></h3>
+										<h3 class="prt-price-fix theme-cl">₹{{$propertis_details->expected_price}}<span>One Time</span></h3>
 									</div>
 								</div>
 							</div>
@@ -92,7 +95,10 @@
 								<div class="vesh-detail-bloc-body">
 									<div class="row g-3">
 										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-											<p>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.</p>
+							
+												<p>{{$allResidentialDetails->descr}}</p>
+										
+											
 										</div>
 									</div>
 								</div>
@@ -106,18 +112,28 @@
 								<div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
 									<div class="vesh-detail-bloc-body">
 										<div class="row g-3">
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bed"></i></div><div class="ilio-text">3 Bedrooms</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bath"></i></div><div class="ilio-text">2 Bathrooms</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-layer-group"></i></div><div class="ilio-text">4,240 sq ft</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">Apartment</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i></div><div class="ilio-text">Built 1982</div></div></div>
+											@if ($allResidentialDetails->total_bedrooms != Null)
+												<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bed"></i></div><div class="ilio-text">{{$allResidentialDetails->total_bedrooms}} Bedrooms</div></div></div>
+											@endif
+											@if ($allResidentialDetails->total_bathrooms != Null)
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bath"></i></div><div class="ilio-text">{{$allResidentialDetails->total_bathrooms}} Bathrooms</div></div></div>
+											@endif
+											@if ($allResidentialDetails->carpet_area != Null)
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-layer-group"></i></div><div class="ilio-text">{{$allResidentialDetails->carpet_area}} sq ft</div></div></div>
+											@endif
+											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">Apartment</div></div></div> --}}
+											@if ($allResidentialDetails->age != Null)
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i></div><div class="ilio-text">{{$allResidentialDetails->age}} Age</div></div></div>
+											@endif
 											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-building-circle-check"></i></div><div class="ilio-text">Active</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">4 Floor</div></div></div>
+											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div> --}}
+											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> --}}
+											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div> --}}
+											@if ($allResidentialDetails->total_floor != Null)
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">{{$allResidentialDetails->total_floor}} Floor</div></div></div>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -131,8 +147,11 @@
 								<div id="amenitiesinfo" class="panel-collapse collapse show" aria-labelledby="amenitiesinfo">
 									<div class="vesh-detail-bloc-body">
 										<ul class="avl-features third color">
-											<li>Air Conditioning</li>
-											<li>Swimming Pool</li>
+											@foreach ($amenities as $amenitie)
+												<li>{{$amenitie->amenitie}}</li>
+											@endforeach
+											
+											{{-- <li>Swimming Pool</li>
 											<li>Central Heating</li>
 											<li>Laundry Room</li>
 											<li>Gym</li>
@@ -142,7 +161,7 @@
 											<li>Pets Allow</li>
 											<li>Free WiFi</li>
 											<li>Car Parking</li>
-											<li>Spa & Massage</li>
+											<li>Spa & Massage</li> --}}
 										</ul>
 									</div>
 								</div>
@@ -150,7 +169,7 @@
 
 
 							<!-- All features Detail -->
-							<div class="vesh-detail-bloc">
+							{{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<a data-bs-toggle="collapse" data-parent="#featuresinfo" data-bs-target="#featuresinfo" aria-controls="featuresinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Features</h4></a>
 								</div>
@@ -209,7 +228,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 
 							<!-- Floor Plan -->
 							<div class="vesh-detail-bloc">

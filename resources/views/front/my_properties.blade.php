@@ -127,8 +127,20 @@
                                                                             </td>
                                                                             <td class="m2_hide">
                                                                                 <div class="prt_leads">
-                                                                                    <h5>{{ $residential->property_status }}
-                                                                                    </h5>
+                                                                                    @if ($residential->property_status == 'Sale')
+                                                                                        <h6 style="color: red;">
+                                                                                            {{ $residential->property_status }}
+                                                                                        </h6>
+                                                                                    @elseif($residential->property_status == 'Rent/Lease')
+                                                                                        <h6
+                                                                                            style="color: rebeccapurple;">
+                                                                                            {{ $residential->property_status }}
+                                                                                        </h6>
+                                                                                    @elseif($residential->property_status == 'PG/Hostel')
+                                                                                        <h6 style="color:green;">
+                                                                                            {{ $residential->property_status }}
+                                                                                        </h6>
+                                                                                    @endif
                                                                                 </div>
                                                                                 {{-- <div class="prt_leads_list">
                                                                                     <ul>

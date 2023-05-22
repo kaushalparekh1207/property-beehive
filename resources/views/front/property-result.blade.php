@@ -169,14 +169,12 @@
                 <div class="row gx-3 gy-4">
 
                     <!-- Single Property -->
-                    @if ($count <= 0)
+                    @if ($resultSearch->count() == 0)
                         <div class="row justify-content-center">
                             <div class="col-lg-7 col-md-10 text-center">
                                 <div class="sec-heading center">
-                                    <h2>Properties on Beehive</h2>
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                        praesentium
-                                        voluptatum deleniti atque corrupti quos dolores</p>
+                                    <h2>Record Not Found</h2>
+                                    <p>Please enter correct details</p>
                                 </div>
                             </div>
                         </div>

@@ -168,10 +168,11 @@
                                             <div class="rlhc-price">
                                                 <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
                                                 </h4>
-                                                @if ($property->property_status == 'Rent/Lease')
+                                                @if ($property->property_status == 'Sale')
+                                                    <span class="monthly">One Time</span>
+                                                @elseif ($property->property_status == 'Rent/Lease')
                                                     <span class="monthly">/Months</span>
-                                                @endif
-                                                @if ($property->property_status == 'PG/Hostel')
+                                                @elseif ($property->property_status == 'PG/Hostel')
                                                     <span class="monthly">/Months</span>
                                                 @endif
                                             </div>

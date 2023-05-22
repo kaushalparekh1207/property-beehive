@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('property_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('property_status',10)->nullable();
+            $table->string('property_status', 10)->nullable();
             $table->integer('property_type_id');
+            $table->integer('client_master_id');
             $table->integer('property_category_id');
             $table->integer('state_id');
             $table->integer('city_id');
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->text('address');
             $table->integer('expected_price');
             $table->integer('booking_amount')->nullable();
-            $table->string('cover_image',255);
+            $table->string('cover_image', 255);
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

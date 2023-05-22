@@ -250,8 +250,11 @@
                                         <div class="veshm-list-ftr786">
                                             <div class="rlhc-price">
                                                 <h4 class="rlhc-price-name theme-cl">
-                                                    ${{ $result->expected_price }}
+                                                    ₹{{ $result->expected_price }}
                                                     @if ($result->property_status == 'Rent/Lease')
+                                                        <span class="monthly">/Months</span>
+                                                    @endif
+                                                    @if ($result->property_status == 'PG/Hostel')
                                                         <span class="monthly">/Months</span>
                                                     @endif
                                                 </h4>

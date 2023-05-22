@@ -3,6 +3,7 @@
 @endsection
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,144 +15,219 @@
 
 <body>
 
-<!-- ============================================================== -->
-<!-- Preloader - style you can find in spinners.css -->
-<!-- ============================================================== -->
-<div id="preloader">
-    <div class="preloader"><span></span><span></span></div>
-</div>
-
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
-<div id="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div id="preloader">
+        <div class="preloader"><span></span><span></span></div>
+    </div>
 
     <!-- ============================================================== -->
-    <!-- Top header  -->
+    <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <!-- Start Navigation -->
-    @include('front.assets.header')
+    <div id="main-wrapper">
+
+        <!-- ============================================================== -->
+        <!-- Top header  -->
+        <!-- ============================================================== -->
+        <!-- Start Navigation -->
+        @include('front.assets.header')
         <!-- End Navigation -->
-    <div class="clearfix"></div>
-    <!-- ============================================================== -->
+        <div class="clearfix"></div>
+        <!-- ============================================================== -->
 
 
 
-			<!-- ============================ Hero Banner  Start================================== -->
-			<div class="featured_slick_gallery gray">
-				<div class="featured_slick_gallery-slide">
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-1.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-1.jpg" class="img-fluid mx-auto" alt=""></a></div>
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-2.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-2.jpg" class="img-fluid mx-auto" alt=""></a></div>
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-3.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-3.jpg" class="img-fluid mx-auto" alt=""></a></div>
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-4.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-4.jpg" class="img-fluid mx-auto" alt=""></a></div>
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-5.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-5.jpg" class="img-fluid mx-auto" alt=""></a></div>
-					<div class="featured_slick_padd"><a href="{{url('/')}}/front/assets/img/gallery-6.jpg" class="mfp-gallery"><img src="{{url('/')}}/front/assets/img/gallery-6.jpg" class="img-fluid mx-auto" alt=""></a></div>
-				</div>
-			</div>
-			<!-- ============================ Hero Banner End ================================== -->
+        <!-- ============================ Hero Banner  Start================================== -->
+        <div class="featured_slick_gallery gray">
+            <div class="featured_slick_gallery-slide">
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-1.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-1.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-2.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-2.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-3.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-3.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-4.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-4.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-5.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-5.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-6.jpg"
+                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-6.jpg"
+                            class="img-fluid mx-auto" alt=""></a></div>
+            </div>
+        </div>
+        <!-- ============================ Hero Banner End ================================== -->
 
-			<!-- ============================ Property Detail Start ================================== -->
-			<section class="gray-simple">
-				<div class="container">
-					<div class="row">
+        <!-- ============================ Property Detail Start ================================== -->
+        <section class="gray-simple">
+            <div class="container">
+                <div class="row">
 
-						<!-- property main detail -->
-						<div class="col-lg-8 col-md-12 col-sm-12">
+                    <!-- property main detail -->
+                    <div class="col-lg-8 col-md-12 col-sm-12">
 
-							<!-- Main Info Detail -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-headup">
-									<div class="vesh-detail-headup-first">
-										<div class="prt-detail-title-desc">
-											<span class="label label-success">For {{$propertis_details->property_status}}</span>
-											<h4>{{$propertis_details->name_of_project}}</h4>
-											<span class="text-mid"><i class="fa-solid fa-location-dot me-2"></i>{{$propertis_details->address}},{{$propertis_details->locality}}</span>
-											<div class="list-fx-features mt-2">
-												<div class="list-fx-fisrt">
-												
-													<span class="label font--medium label-light-success me-2">{{$allResidentialDetails->total_bedrooms}} Beds</span>
-													
-													<span class="label font--medium label-light-info me-2">{{$allResidentialDetails->total_bathrooms}} Bath</span>
-													<span class=" label font--medium label-light-danger">{{$allResidentialDetails->carpet_area}} Sqft</span>
-										
-												</div>
-												<div class="list-fx-last">
+                        <!-- Main Info Detail -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-headup">
+                                <div class="vesh-detail-headup-first">
+                                    <div class="prt-detail-title-desc">
+                                        @if ($propertis_details->property_status == 'Sale')
+                                            <span class="label label-danger">For
+                                                {{ $propertis_details->property_status }}</span>
+                                        @elseif($propertis_details->property_status == 'Rent/Lease')
+                                            <span class="label label-purple">For
+                                                {{ $propertis_details->property_status }}</span>
+                                        @elseif($propertis_details->property_status == 'PG/Hostel')
+                                            <span class="label label-success">For
+                                                {{ $propertis_details->property_status }}</span>
+                                        @endif
+                                        <h4>{{ $propertis_details->name_of_project }}</h4>
+                                        <span class="text-mid"><i
+                                                class="fa-solid fa-location-dot me-2"></i>{{ $propertis_details->address }},{{ $propertis_details->locality }}</span>
+                                        <div class="list-fx-features mt-2">
+                                            <div class="list-fx-fisrt">
 
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="vesh-detail-headup-last">
-										<h3 class="prt-price-fix theme-cl">₹{{$propertis_details->expected_price}}<span>One Time</span></h3>
-									</div>
-								</div>
-							</div>
+                                                <span
+                                                    class="label font--medium label-light-success me-2">{{ $allResidentialDetails->total_bedrooms }}
+                                                    Beds</span>
 
-							<!-- About Property Detail -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<h4 class="property_block_title no-arrow">About Property</h4>
-								</div>
-								<div class="vesh-detail-bloc-body">
-									<div class="row g-3">
-										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							
-												<p>{{$allResidentialDetails->descr}}</p>
-										
-											
-										</div>
-									</div>
-								</div>
-							</div>
+                                                <span
+                                                    class="label font--medium label-light-info me-2">{{ $allResidentialDetails->total_bathrooms }}
+                                                    Bath</span>
+                                                <span
+                                                    class=" label font--medium label-light-danger">{{ $allResidentialDetails->carpet_area }}
+                                                    Sqft</span>
 
-							<!-- Basic Detail -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<a data-bs-toggle="collapse" data-parent="#basicinfo" data-bs-target="#basicinfo" aria-controls="basicinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Basic Detail</h4></a>
-								</div>
-								<div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
-									<div class="vesh-detail-bloc-body">
-										<div class="row g-3">
-											@if ($allResidentialDetails->total_bedrooms != Null)
-												<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bed"></i></div><div class="ilio-text">{{$allResidentialDetails->total_bedrooms}} Bedrooms</div></div></div>
-											@endif
-											@if ($allResidentialDetails->total_bathrooms != Null)
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bath"></i></div><div class="ilio-text">{{$allResidentialDetails->total_bathrooms}} Bathrooms</div></div></div>
-											@endif
-											@if ($allResidentialDetails->carpet_area != Null)
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-layer-group"></i></div><div class="ilio-text">{{$allResidentialDetails->carpet_area}} sq ft</div></div></div>
-											@endif
-											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
+                                            </div>
+                                            <div class="list-fx-last">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vesh-detail-headup-last">
+                                    <h3 class="prt-price-fix theme-cl">
+                                        ₹{{ $propertis_details->expected_price }}<span>One Time</span></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About Property Detail -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <h4 class="property_block_title no-arrow">About Property</h4>
+                            </div>
+                            <div class="vesh-detail-bloc-body">
+                                <div class="row g-3">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                        <p>{{ $allResidentialDetails->descr }}</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Basic Detail -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <a data-bs-toggle="collapse" data-parent="#basicinfo" data-bs-target="#basicinfo"
+                                    aria-controls="basicinfo" href="javascript:void(0);" aria-expanded="false">
+                                    <h4 class="property_block_title">Basic Detail</h4>
+                                </a>
+                            </div>
+                            <div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
+                                <div class="vesh-detail-bloc-body">
+                                    <div class="row g-3">
+                                        @if ($allResidentialDetails->total_bedrooms != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-bed"></i></div>
+                                                    <div class="ilio-text">{{ $allResidentialDetails->total_bedrooms }}
+                                                        Bedrooms</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if ($allResidentialDetails->total_bathrooms != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-bath"></i></div>
+                                                    <div class="ilio-text">
+                                                        {{ $allResidentialDetails->total_bathrooms }} Bathrooms</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if ($allResidentialDetails->carpet_area != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-layer-group"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allResidentialDetails->carpet_area }}
+                                                        sq ft</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
 											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">Apartment</div></div></div> --}}
-											@if ($allResidentialDetails->age != Null)
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i></div><div class="ilio-text">{{$allResidentialDetails->age}} Age</div></div></div>
-											@endif
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-building-circle-check"></i></div><div class="ilio-text">Active</div></div></div>
-											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
+                                        @if ($allResidentialDetails->age != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allResidentialDetails->age }} Age</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                            <div class="ilio-icon-wrap">
+                                                <div class="ilio-icon"><i
+                                                        class="fa-solid fa-building-circle-check"></i></div>
+                                                <div class="ilio-text">Active</div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
 											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div> --}}
-											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> --}}
-											{{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div> --}}
-											@if ($allResidentialDetails->total_floor != Null)
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">{{$allResidentialDetails->total_floor}} Floor</div></div></div>
-											@endif
-										</div>
-									</div>
-								</div>
-							</div>
+                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> --}}
+                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div> --}}
+                                        @if ($allResidentialDetails->total_floor != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-regular fa-building"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allResidentialDetails->total_floor }}
+                                                        Floor</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-							<!-- Amenties Detail -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<a data-bs-toggle="collapse" data-parent="#amenitiesinfo" data-bs-target="#amenitiesinfo" aria-controls="amenitiesinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Amenties</h4></a>
-								</div>
-								<div id="amenitiesinfo" class="panel-collapse collapse show" aria-labelledby="amenitiesinfo">
-									<div class="vesh-detail-bloc-body">
-										<ul class="avl-features third color">
-											@foreach ($amenities as $amenitie)
-												<li>{{$amenitie->amenitie}}</li>
-											@endforeach
-											
-											{{-- <li>Swimming Pool</li>
+                        <!-- Amenties Detail -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <a data-bs-toggle="collapse" data-parent="#amenitiesinfo"
+                                    data-bs-target="#amenitiesinfo" aria-controls="amenitiesinfo"
+                                    href="javascript:void(0);" aria-expanded="false">
+                                    <h4 class="property_block_title">Amenties</h4>
+                                </a>
+                            </div>
+                            <div id="amenitiesinfo" class="panel-collapse collapse show"
+                                aria-labelledby="amenitiesinfo">
+                                <div class="vesh-detail-bloc-body">
+                                    <ul class="avl-features third color">
+                                        @foreach ($amenities as $amenitie)
+                                            <li>{{ $amenitie->amenitie }}</li>
+                                        @endforeach
+
+                                        {{-- <li>Swimming Pool</li>
 											<li>Central Heating</li>
 											<li>Laundry Room</li>
 											<li>Gym</li>
@@ -162,14 +238,14 @@
 											<li>Free WiFi</li>
 											<li>Car Parking</li>
 											<li>Spa & Massage</li> --}}
-										</ul>
-									</div>
-								</div>
-							</div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
 
-							<!-- All features Detail -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- All features Detail -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<a data-bs-toggle="collapse" data-parent="#featuresinfo" data-bs-target="#featuresinfo" aria-controls="featuresinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Features</h4></a>
 								</div>
@@ -230,72 +306,103 @@
 								</div>
 							</div> --}}
 
-							<!-- Floor Plan -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo" aria-controls="floorinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Floor Plan</h4></a>
-								</div>
-								<div id="floorinfo" class="panel-collapse collapse show" aria-labelledby="floorinfo">
-									<div class="vesh-detail-bloc-body">
-										<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-											<li class="nav-item" role="presentation">
-											<button class="nav-link active" id="pills-2d-tab" data-bs-toggle="pill" data-bs-target="#pills-2d" type="button" role="tab" aria-controls="pills-2d" aria-selected="true">2D Plans</button>
-											</li>
-											<li class="nav-item" role="presentation">
-											<button class="nav-link" id="pills-3d-tab" data-bs-toggle="pill" data-bs-target="#pills-3d" type="button" role="tab" aria-controls="pills-3d" aria-selected="false">3D Plans</button>
-											</li>
-											<li class="nav-item" role="presentation">
-											<button class="nav-link" id="pills-elevation-tab" data-bs-toggle="pill" data-bs-target="#pills-elevation" type="button" role="tab" aria-controls="pills-elevation" aria-selected="false">Elevations</button>
-											</li>
-										</ul>
-										<div class="tab-content" id="pills-tabContent">
-											<div class="tab-pane fade show active" id="pills-2d" role="tabpanel" aria-labelledby="pills-2d-tab" tabindex="0">
-												<div class="row gx-3 gy-4">
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-1.jpg" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-2.jpg" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-1.jpg" class="img-fluid" alt=""></div>
-													</div>
-												</div>
-											</div>
+                        <!-- Floor Plan -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo"
+                                    aria-controls="floorinfo" href="javascript:void(0);" aria-expanded="false">
+                                    <h4 class="property_block_title">Floor Plan</h4>
+                                </a>
+                            </div>
+                            <div id="floorinfo" class="panel-collapse collapse show" aria-labelledby="floorinfo">
+                                <div class="vesh-detail-bloc-body">
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-2d-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-2d" type="button" role="tab"
+                                                aria-controls="pills-2d" aria-selected="true">2D Plans</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-3d-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-3d" type="button" role="tab"
+                                                aria-controls="pills-3d" aria-selected="false">3D Plans</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-elevation-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-elevation" type="button" role="tab"
+                                                aria-controls="pills-elevation"
+                                                aria-selected="false">Elevations</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-2d" role="tabpanel"
+                                            aria-labelledby="pills-2d-tab" tabindex="0">
+                                            <div class="row gx-3 gy-4">
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-1.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-2.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-1.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-											<div class="tab-pane fade" id="pills-3d" role="tabpanel" aria-labelledby="pills-3d-tab" tabindex="0">
-												<div class="row gx-3 gy-4">
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-3.jpg" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-4.jpg" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-3.jpg" class="img-fluid" alt=""></div>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane fade" id="pills-elevation" role="tabpanel" aria-labelledby="pills-elevation-tab" tabindex="0">
-												<div class="row gx-3 gy-4">
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-5.webp" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-6.jpg" class="img-fluid" alt=""></div>
-													</div>
-													<div class="col-xl-4 col-lg-4 col-md-4">
-														<div class="floor-thumb"><img src="{{url('/')}}/front/assets/img/fl-5.webp" class="img-fluid" alt=""></div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+                                        <div class="tab-pane fade" id="pills-3d" role="tabpanel"
+                                            aria-labelledby="pills-3d-tab" tabindex="0">
+                                            <div class="row gx-3 gy-4">
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-3.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-4.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-3.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-elevation" role="tabpanel"
+                                            aria-labelledby="pills-elevation-tab" tabindex="0">
+                                            <div class="row gx-3 gy-4">
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-5.webp"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-6.jpg"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                    <div class="floor-thumb"><img
+                                                            src="{{ url('/') }}/front/assets/img/fl-5.webp"
+                                                            class="img-fluid" alt=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-							<!-- Property History -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- Property History -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<a data-bs-toggle="collapse" data-parent="#historyinfo" data-bs-target="#historyinfo" aria-controls="historyinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Property History</h4></a>
 								</div>
@@ -441,142 +548,174 @@
 							</div> --}}
 
 
-							<!-- All over Review -->
-							<div class="veshm-fl-rate-box">
-								<div class="fl-rate-box-head theme-bg">
-									<div class="flt-yuo10">
-										<h4>5.0</h4>
-										<p>Excellent</p>
-									</div>
-									<div class="flt-yuo12">
-										<span>Out of 5</span>
-									</div>
-								</div>
-								<div class="fl-rate-box-caption">
-									<div class="fls-by1">
-										<div class="fls-by2">
-											<div class="fls-bystar">
-												<span class="fas fa-star fill"></span>
-												<span class="fas fa-star fill"></span>
-												<span class="fas fa-star fill"></span>
-												<span class="fas fa-star fill"></span>
-												<span class="fas fa-star fill"></span>
-											</div>
-											<div class="fls-byheadline">
-												<h5>Wonderful Score</h5>
-											</div>
-											<div class="fls-bycaps">
-												<p>112 Total Reviews</p>
-											</div>
-										</div>
-										<div class="fls-by3">
-											<button type="button" class="btn btn-success font--medium">Submit Review</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- All over Review -->
+                        <!-- All over Review -->
+                        <div class="veshm-fl-rate-box">
+                            <div class="fl-rate-box-head theme-bg">
+                                <div class="flt-yuo10">
+                                    <h4>5.0</h4>
+                                    <p>Excellent</p>
+                                </div>
+                                <div class="flt-yuo12">
+                                    <span>Out of 5</span>
+                                </div>
+                            </div>
+                            <div class="fl-rate-box-caption">
+                                <div class="fls-by1">
+                                    <div class="fls-by2">
+                                        <div class="fls-bystar">
+                                            <span class="fas fa-star fill"></span>
+                                            <span class="fas fa-star fill"></span>
+                                            <span class="fas fa-star fill"></span>
+                                            <span class="fas fa-star fill"></span>
+                                            <span class="fas fa-star fill"></span>
+                                        </div>
+                                        <div class="fls-byheadline">
+                                            <h5>Wonderful Score</h5>
+                                        </div>
+                                        <div class="fls-bycaps">
+                                            <p>112 Total Reviews</p>
+                                        </div>
+                                    </div>
+                                    <div class="fls-by3">
+                                        <button type="button" class="btn btn-success font--medium">Submit
+                                            Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- All over Review -->
 
-							<!-- Property Reviews Detail -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<h4 class="property_block_title no-arrow">Property Reviews</h4>
-								</div>
-								<div class="panels">
-									<div class="vesh-detail-bloc-body">
-										<div class="prt-reviews-groups">
+                        <!-- Property Reviews Detail -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <h4 class="property_block_title no-arrow">Property Reviews</h4>
+                            </div>
+                            <div class="panels">
+                                <div class="vesh-detail-bloc-body">
+                                    <div class="prt-reviews-groups">
 
-											<div class="prt-reviews-single">
-												<div class="prt-reviews-single-thumb">
-													<div class="prt-rvs-head">
-														<div class="prt-rvs-head-img">
-															<img src="assets/img/team-1.jpg" class="img-fluid circle" alt="">
-														</div>
-														<div class="prt-rvs-head-caption">
-															<div class="prt-ves-ratting">
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-regular fa-star"></span>
-															</div>
-															<div class="prt-ves-reviewer"><h4>By: Shuryabhan Singh</h4></div>
-															<div class="prt-ves-ratting-title"><h5 class="text-success">Superb</h5></div>
-														</div>
-													</div>
-												</div>
-												<div class="prt-reviews-single-content">
-													<div class="prt-ves-paragraph">
-														<p>Overall a wonderful building. The apartments are great. The reviews are second to none. I find the staff largely very friendly and helpful. The amenity space is clean and well appointed. The gym is convenient. The neighborhood is hard to be. Very pet friendly. I’ve been here for 2 1/2 years and really have had zero complaints.</p>
-													</div>
-													<div class="prt-post-date"><span>Posted on 10 Jan 2023</span></div>
-												</div>
-											</div>
+                                        <div class="prt-reviews-single">
+                                            <div class="prt-reviews-single-thumb">
+                                                <div class="prt-rvs-head">
+                                                    <div class="prt-rvs-head-img">
+                                                        <img src="assets/img/team-1.jpg" class="img-fluid circle"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="prt-rvs-head-caption">
+                                                        <div class="prt-ves-ratting">
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-regular fa-star"></span>
+                                                        </div>
+                                                        <div class="prt-ves-reviewer">
+                                                            <h4>By: Shuryabhan Singh</h4>
+                                                        </div>
+                                                        <div class="prt-ves-ratting-title">
+                                                            <h5 class="text-success">Superb</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="prt-reviews-single-content">
+                                                <div class="prt-ves-paragraph">
+                                                    <p>Overall a wonderful building. The apartments are great. The
+                                                        reviews are second to none. I find the staff largely very
+                                                        friendly and helpful. The amenity space is clean and well
+                                                        appointed. The gym is convenient. The neighborhood is hard to
+                                                        be. Very pet friendly. I’ve been here for 2 1/2 years and really
+                                                        have had zero complaints.</p>
+                                                </div>
+                                                <div class="prt-post-date"><span>Posted on 10 Jan 2023</span></div>
+                                            </div>
+                                        </div>
 
-											<div class="prt-reviews-single">
-												<div class="prt-reviews-single-thumb">
-													<div class="prt-rvs-head">
-														<div class="prt-rvs-head-img">
-															<img src="assets/img/team-2.jpg" class="img-fluid circle" alt="">
-														</div>
-														<div class="prt-rvs-head-caption">
-															<div class="prt-ves-ratting">
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-regular fa-star"></span>
-															</div>
-															<div class="prt-ves-reviewer"><h4>By: Maithali Gupta</h4></div>
-															<div class="prt-ves-ratting-title"><h5 class="text-warning">Middle</h5></div>
-														</div>
-													</div>
-												</div>
-												<div class="prt-reviews-single-content">
-													<div class="prt-ves-paragraph">
-														<p>Overall a wonderful building. The apartments are great. The reviews are second to none. I find the staff largely very friendly and helpful. The amenity space is clean and well appointed. The gym is convenient. The neighborhood is hard to be. Very pet friendly. I’ve been here for 2 1/2 years and really have had zero complaints.</p>
-													</div>
-													<div class="prt-post-date"><span>Posted on 18 Jan 2023</span></div>
-												</div>
-											</div>
+                                        <div class="prt-reviews-single">
+                                            <div class="prt-reviews-single-thumb">
+                                                <div class="prt-rvs-head">
+                                                    <div class="prt-rvs-head-img">
+                                                        <img src="assets/img/team-2.jpg" class="img-fluid circle"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="prt-rvs-head-caption">
+                                                        <div class="prt-ves-ratting">
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-regular fa-star"></span>
+                                                        </div>
+                                                        <div class="prt-ves-reviewer">
+                                                            <h4>By: Maithali Gupta</h4>
+                                                        </div>
+                                                        <div class="prt-ves-ratting-title">
+                                                            <h5 class="text-warning">Middle</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="prt-reviews-single-content">
+                                                <div class="prt-ves-paragraph">
+                                                    <p>Overall a wonderful building. The apartments are great. The
+                                                        reviews are second to none. I find the staff largely very
+                                                        friendly and helpful. The amenity space is clean and well
+                                                        appointed. The gym is convenient. The neighborhood is hard to
+                                                        be. Very pet friendly. I’ve been here for 2 1/2 years and really
+                                                        have had zero complaints.</p>
+                                                </div>
+                                                <div class="prt-post-date"><span>Posted on 18 Jan 2023</span></div>
+                                            </div>
+                                        </div>
 
-											<div class="prt-reviews-single">
-												<div class="prt-reviews-single-thumb">
-													<div class="prt-rvs-head">
-														<div class="prt-rvs-head-img">
-															<img src="assets/img/team-3.jpg" class="img-fluid circle" alt="">
-														</div>
-														<div class="prt-rvs-head-caption">
-															<div class="prt-ves-ratting">
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-solid fa-star"></span>
-																<span class="fa-regular fa-star"></span>
-															</div>
-															<div class="prt-ves-reviewer"><h4>By: Rajvanshi Patel</h4></div>
-															<div class="prt-ves-ratting-title"><h5 class="text-success">Superb</h5></div>
-														</div>
-													</div>
-												</div>
-												<div class="prt-reviews-single-content">
-													<div class="prt-ves-paragraph">
-														<p>Overall a wonderful building. The apartments are great. The reviews are second to none. I find the staff largely very friendly and helpful. The amenity space is clean and well appointed. The gym is convenient. The neighborhood is hard to be. Very pet friendly. I’ve been here for 2 1/2 years and really have had zero complaints.</p>
-													</div>
-													<div class="prt-post-date"><span>Posted on 20 Jan 2023</span></div>
-												</div>
-											</div>
+                                        <div class="prt-reviews-single">
+                                            <div class="prt-reviews-single-thumb">
+                                                <div class="prt-rvs-head">
+                                                    <div class="prt-rvs-head-img">
+                                                        <img src="assets/img/team-3.jpg" class="img-fluid circle"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="prt-rvs-head-caption">
+                                                        <div class="prt-ves-ratting">
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-solid fa-star"></span>
+                                                            <span class="fa-regular fa-star"></span>
+                                                        </div>
+                                                        <div class="prt-ves-reviewer">
+                                                            <h4>By: Rajvanshi Patel</h4>
+                                                        </div>
+                                                        <div class="prt-ves-ratting-title">
+                                                            <h5 class="text-success">Superb</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="prt-reviews-single-content">
+                                                <div class="prt-ves-paragraph">
+                                                    <p>Overall a wonderful building. The apartments are great. The
+                                                        reviews are second to none. I find the staff largely very
+                                                        friendly and helpful. The amenity space is clean and well
+                                                        appointed. The gym is convenient. The neighborhood is hard to
+                                                        be. Very pet friendly. I’ve been here for 2 1/2 years and really
+                                                        have had zero complaints.</p>
+                                                </div>
+                                                <div class="prt-post-date"><span>Posted on 20 Jan 2023</span></div>
+                                            </div>
+                                        </div>
 
-										</div>
-										<div class="alert alert-info mt-3" role="alert">
-											<span class="font--medium small">You need to login in order to post a review</span>
-										</div>
-									</div>
-								</div>
-							</div>
+                                    </div>
+                                    <div class="alert alert-info mt-3" role="alert">
+                                        <span class="font--medium small">You need to login in order to post a
+                                            review</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-							<!-- Nearby School -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- Nearby School -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<a data-bs-toggle="collapse" data-parent="#schoolsinfo" data-bs-target="#schoolsinfo" aria-controls="schoolsinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Nearby Grat Schools</h4></a>
 								</div>
@@ -685,8 +824,8 @@
 								</div>
 							</div> --}}
 
-							<!-- Property Graph Detail -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- Property Graph Detail -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<h4 class="property_block_title no-arrow">View property Graph</h4>
 								</div>
@@ -709,8 +848,8 @@
 							</div> --}}
 
 
-							<!-- Repayments Mortgage Calculator -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- Repayments Mortgage Calculator -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<h4 class="property_block_title no-arrow">Repayments Mortgage Calculator</h4>
 								</div>
@@ -823,8 +962,8 @@
 							</div> --}}
 
 
-							<!-- Nearby Other Places -->
-							{{-- <div class="vesh-detail-bloc">
+                        <!-- Nearby Other Places -->
+                        {{-- <div class="vesh-detail-bloc">
 								<div class="vesh-detail-bloc_header">
 									<a data-bs-toggle="collapse" data-parent="#otherplaces" data-bs-target="#otherplaces" aria-controls="otherplaces" href="javascript:void(0);" aria-expanded="false" class="clps"><h4 class="property_block_title">Nearby Others Places</h4></a>
 								</div>
@@ -1147,146 +1286,177 @@
 								</div>
 							</div> --}}
 
-							<!-- Submit Reviews -->
-							<div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<h4 class="property_block_title no-arrow">Submit Review</h4>
-								</div>
-								<div class="panels">
-									<div class="vesh-detail-bloc-body">
-										<form class="simple-form">
-											<div class="row">
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label>Name</label>
-														<input type="text" class="form-control" placeholder="Your Name">
-													</div>
-												</div>
+                        <!-- Submit Reviews -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <h4 class="property_block_title no-arrow">Submit Review</h4>
+                            </div>
+                            <div class="panels">
+                                <div class="vesh-detail-bloc-body">
+                                    <form class="simple-form">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Your Name">
+                                                </div>
+                                            </div>
 
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label>Email</label>
-														<input type="email" class="form-control" placeholder="Your eMail">
-													</div>
-												</div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control"
+                                                        placeholder="Your eMail">
+                                                </div>
+                                            </div>
 
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label>Phone No.</label>
-														<input type="text" class="form-control" placeholder="Your Contact">
-													</div>
-												</div>
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label>Ratting</label>
-														<select class="form-control">
-															<option value="1">1 : Very Poor</option>
-															<option value="2">2 : Poor</option>
-															<option value="3">3 : Good</option>
-															<option value="4">4 : Very Good</option>
-															<option value="5">5 : Superb</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label>Your Message</label>
-														<textarea class="form-control ht-80" placeholder="Messages"></textarea>
-													</div>
-												</div>
-												<div class="col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<button class="btn btn-theme" type="submit">Submit Review</button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Phone No.</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Your Contact">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Ratting</label>
+                                                    <select class="form-control">
+                                                        <option value="1">1 : Very Poor</option>
+                                                        <option value="2">2 : Poor</option>
+                                                        <option value="3">3 : Good</option>
+                                                        <option value="4">4 : Very Good</option>
+                                                        <option value="5">5 : Superb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Your Message</label>
+                                                    <textarea class="form-control ht-80" placeholder="Messages"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <button class="btn btn-theme" type="submit">Submit
+                                                        Review</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
-						</div>
-						<!-- property main detail -->
-
-
-						<!-- Property Sidebar -->
-						<div class="col-lg-4 col-md-12 col-sm-12">
-
-							<!-- Like And Share -->
-							<div class="vesh-detail-bloc">
-								<ul class="like_share_list">
-									<li><a href="JavaScript:Void(0);" class="btn btn-light-success" data-toggle="tooltip" data-original-title="Share"><i class="fa-solid fa-share-from-square me-2"></i>Share</a></li>
-									<li><a href="JavaScript:Void(0);" class="btn btn-light-danger" data-toggle="tooltip" data-original-title="Save"><i class="fa-solid fa-heart-circle-check me-2"></i>Save</a></li>
-									<li><a href="JavaScript:Void(0);" class="btn btn-light-primary" data-toggle="tooltip" data-original-title="Save"><i class="fa-solid fa-print me-2"></i>Print</a></li>
-								</ul>
-							</div>
-
-							<div class="pg-side-groups">
-
-								<div class="pg-side-block">
-									<div class="pg-side-block-head">
-										<div class="pg-side-left">
-											<div class="pg-side-thumb"><img src="{{url('/')}}/front/assets/img/team-1.jpg" class="img-fluid circle" alt=""></div>
-										</div>
-										<div class="pg-side-right">
-											<div class="pg-side-right-caption">
-												<h4>{{$client_data->name}}</h4>
-												      @if ($client_data->city != Null & $client_data->state != Null )
-														<span><i class="fa-solid fa-location-dot me-2"></i>{{$client_data->city}}, {{$client_data->state}}</span>
-													  @endif
-												
-											</div>
-										</div>
-									</div>
-									<div class="pg-side-block-body">
-										<div class="pg-side-block-info">
-											<div class="vl-elfo-group">
-												<div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i></div>
-												@if($client_data->contact != Null)
-												<div class="vl-elfo-caption"><h6>Call Us</h6><p>+91 {{$client_data->contact}}</p></div>
-												@endif
-											</div>@if($client_data->email != Null)
-											<div class="vl-elfo-group">
-												<div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i></div>
-												
-												<div class="vl-elfo-caption"><h6>Drop A Mail</h6><p>{{$client_data->email}}</p></div>
-												
-											</div>@endif
-											<div class="vl-elfo-group">
-												<div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
-												<div class="vl-elfo-caption"><h6>Website</h6><p>Https://themezhub.com</p></div>
-											</div>
-										</div>
-										<div class="pg-side-block-buttons">
-											<div class="single-button"><a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer" class="btn font--medium btn-light-success full-width"><i class="fa-solid fa-paper-plane me-2"></i>Send An offer</a></div>
-											<div class="single-button"><a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#message" class="btn font--medium btn-theme full-width"><i class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</section>
+                    </div>
+                    <!-- property main detail -->
 
 
+                    <!-- Property Sidebar -->
+                    <div class="col-lg-4 col-md-12 col-sm-12">
 
-    @include('front.assets.footer')
+                        <!-- Like And Share -->
+                        <div class="vesh-detail-bloc">
+                            <ul class="like_share_list">
+                                <li><a href="JavaScript:Void(0);" class="btn btn-light-success" data-toggle="tooltip"
+                                        data-original-title="Share"><i
+                                            class="fa-solid fa-share-from-square me-2"></i>Share</a></li>
+                                <li><a href="JavaScript:Void(0);" class="btn btn-light-danger" data-toggle="tooltip"
+                                        data-original-title="Save"><i
+                                            class="fa-solid fa-heart-circle-check me-2"></i>Save</a></li>
+                                <li><a href="JavaScript:Void(0);" class="btn btn-light-primary" data-toggle="tooltip"
+                                        data-original-title="Save"><i class="fa-solid fa-print me-2"></i>Print</a>
+                                </li>
+                            </ul>
+                        </div>
 
-    @include('front.assets.modal')
+                        <div class="pg-side-groups">
 
-    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+                            <div class="pg-side-block">
+                                <div class="pg-side-block-head">
+                                    <div class="pg-side-left">
+                                        <div class="pg-side-thumb"><img
+                                                src="{{ url('/') }}/front/assets/img/team-1.jpg"
+                                                class="img-fluid circle" alt=""></div>
+                                    </div>
+                                    <div class="pg-side-right">
+                                        <div class="pg-side-right-caption">
+                                            <h4>{{ $client_data->name }}</h4>
+                                            @if (($client_data->city != null) & ($client_data->state != null))
+                                                <span><i
+                                                        class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
+                                                    {{ $client_data->state }}</span>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pg-side-block-body">
+                                    <div class="pg-side-block-info">
+                                        <div class="vl-elfo-group">
+                                            <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                            @if ($client_data->contact != null)
+                                                <div class="vl-elfo-caption">
+                                                    <h6>Call Us</h6>
+                                                    <p>+91 {{ $client_data->contact }}</p>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        @if ($client_data->email != null)
+                                            <div class="vl-elfo-group">
+                                                <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i></div>
+
+                                                <div class="vl-elfo-caption">
+                                                    <h6>Drop A Mail</h6>
+                                                    <p>{{ $client_data->email }}</p>
+                                                </div>
+
+                                            </div>
+                                        @endif
+                                        <div class="vl-elfo-group">
+                                            <div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
+                                            <div class="vl-elfo-caption">
+                                                <h6>Website</h6>
+                                                <p>Https://themezhub.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pg-side-block-buttons">
+                                        <div class="single-button"><a href="JavaScript:Void(0);"
+                                                data-bs-toggle="modal" data-bs-target="#offer"
+                                                class="btn font--medium btn-light-success full-width"><i
+                                                    class="fa-solid fa-paper-plane me-2"></i>Send An offer</a></div>
+                                        <div class="single-button"><a href="JavaScript:Void(0);"
+                                                data-bs-toggle="modal" data-bs-target="#message"
+                                                class="btn font--medium btn-theme full-width"><i
+                                                    class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
 
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
+
+        @include('front.assets.footer')
+
+        @include('front.assets.modal')
+
+        <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 
 
-@include('front.assets.scripts')
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+
+    @include('front.assets.scripts')
 
 </body>
 

@@ -141,7 +141,8 @@
                                 @elseif($property->property_status == 'Rent/Lease')
                                     <div class="veshm-type"><span>For {{ $property->property_status }}</span></div>
                                 @elseif($property->property_status == 'PG/Hostel')
-                                    <div class="veshm-type fr-pg"><span>For {{ $property->property_status }}</span></div>
+                                    <div class="veshm-type fr-pg"><span>For {{ $property->property_status }}</span>
+                                    </div>
                                 @endif
 
                                 <div class="veshm-list-thumb">
@@ -167,10 +168,16 @@
                                             <div class="rlhc-price">
                                                 <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
                                                 </h4>
+                                                @if ($property->property_status == 'Rent/Lease')
+                                                    <span class="monthly">/Months</span>
+                                                @endif
+                                                @if ($property->property_status == 'PG/Hostel')
+                                                    <span class="monthly">/Months</span>
+                                                @endif
                                             </div>
                                             <div class="listing-short-detail-flex">
                                                 <h5 class="rlhc-title-name verified"><a
-                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project,$property->client_master_id]) }}"
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
                                                         class="prt-link-detail">{{ $property->name_of_project }}</a>
                                                 </h5>
                                             </div>

@@ -1230,8 +1230,11 @@
 										</div>
 										<div class="pg-side-right">
 											<div class="pg-side-right-caption">
-												<h4>Ht. Mickle Hussy</h4>
-												<span><i class="fa-solid fa-location-dot me-2"></i>Liverpool, UK</span>
+												<h4>{{$client_data->name}}</h4>
+												      @if ($client_data->city != Null & $client_data->state != Null )
+														<span><i class="fa-solid fa-location-dot me-2"></i>{{$client_data->city}}, {{$client_data->state}}</span>
+													  @endif
+												
 											</div>
 										</div>
 									</div>
@@ -1239,12 +1242,16 @@
 										<div class="pg-side-block-info">
 											<div class="vl-elfo-group">
 												<div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i></div>
-												<div class="vl-elfo-caption"><h6>Call Us</h6><p>+91 856 457 5243</p></div>
-											</div>
+												@if($client_data->contact != Null)
+												<div class="vl-elfo-caption"><h6>Call Us</h6><p>+91 {{$client_data->contact}}</p></div>
+												@endif
+											</div>@if($client_data->email != Null)
 											<div class="vl-elfo-group">
 												<div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i></div>
-												<div class="vl-elfo-caption"><h6>Drop A Mail</h6><p>paythemezhub@gmail.com</p></div>
-											</div>
+												
+												<div class="vl-elfo-caption"><h6>Drop A Mail</h6><p>{{$client_data->email}}</p></div>
+												
+											</div>@endif
 											<div class="vl-elfo-group">
 												<div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
 												<div class="vl-elfo-caption"><h6>Website</h6><p>Https://themezhub.com</p></div>

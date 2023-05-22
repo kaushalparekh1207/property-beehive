@@ -141,7 +141,7 @@
                                 @elseif($property->property_status == 'Rent/Lease')
                                     <div class="veshm-type"><span>For {{ $property->property_status }}</span></div>
                                 @elseif($property->property_status == 'PG/Hostel')
-                                    <div class="veshm-type"><span>For {{ $property->property_status }}</span></div>
+                                    <div class="veshm-type fr-pg"><span>For {{ $property->property_status }}</span></div>
                                 @endif
 
                                 <div class="veshm-list-thumb">
@@ -170,7 +170,7 @@
                                             </div>
                                             <div class="listing-short-detail-flex">
                                                 <h5 class="rlhc-title-name verified"><a
-                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project]) }}"
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project,$property->client_master_id]) }}"
                                                         class="prt-link-detail">{{ $property->name_of_project }}</a>
                                                 </h5>
                                             </div>

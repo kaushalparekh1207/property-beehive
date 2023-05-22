@@ -232,7 +232,7 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
 
 // Property Details
-Route::get('/property-detail/{id}/{type}/{name}', [FrontController::class, 'propertydetails'])->name('propertydetails');
+Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
 //Route::view('/property-details', 'front.property-details')->name('property_details');
 Route::view('/property-result', 'front.property-result')->name('property_result');
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');

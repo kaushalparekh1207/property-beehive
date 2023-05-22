@@ -26,12 +26,10 @@
 
                     <li><a href="JavaScript:Void(0);">Searches<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="">Grid Layout<span
-                                        class="submenu-indicator"></span></a>
+                            <li><a href="">Grid Layout<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="{{ route('property_result') }}">List Layout<span
-                                        class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">List Layout<span class="submenu-indicator"></span></a>
 
                             </li>
                             <li><a href="JavaScript:Void(0);">Search With Map<span class="submenu-indicator"></span></a>

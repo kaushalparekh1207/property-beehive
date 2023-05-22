@@ -15,6 +15,8 @@ class MyPropertiesController extends Controller
 
         $allPropertyDetails = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
             ->join('property_categories', 'property_categories.id', '=', 'property_masters.property_category_id')
+            ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+            ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
             ->where('property_categories.flag', 1)

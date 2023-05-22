@@ -128,16 +128,15 @@
                                                                             <td class="m2_hide">
                                                                                 <div class="prt_leads">
                                                                                     @if ($residential->property_status == 'Sale')
-                                                                                        <h6 style="color: red;">
+                                                                                        <h6 style="color: #dc3545;">
                                                                                             {{ $residential->property_status }}
                                                                                         </h6>
                                                                                     @elseif($residential->property_status == 'Rent/Lease')
-                                                                                        <h6
-                                                                                            style="color: rebeccapurple;">
+                                                                                        <h6 style="color: #003e70;">
                                                                                             {{ $residential->property_status }}
                                                                                         </h6>
                                                                                     @elseif($residential->property_status == 'PG/Hostel')
-                                                                                        <h6 style="color:green;">
+                                                                                        <h6 style="color:#009245;">
                                                                                             {{ $residential->property_status }}
                                                                                         </h6>
                                                                                     @endif
@@ -175,16 +174,22 @@
                                                                                     </h5>
                                                                                 </div>
                                                                                 <div class="_leads_view_title">
-                                                                                    <span>{{ $residential->total_bedrooms }}
-                                                                                        Rooms
-                                                                                        {{ $residential->total_bathrooms }}
-                                                                                        Bathrooms</span>
+                                                                                    @if ($residential->total_bedrooms != null)
+                                                                                        <span>{{ $residential->total_bedrooms }}
+                                                                                            Rooms</span>
+                                                                                    @endif
+                                                                                    @if ($residential->total_bathrooms != null)
+                                                                                        <span>{{ $residential->total_bathrooms }}
+                                                                                            Bathrooms</span>
+                                                                                    @endif
                                                                                 </div>
                                                                             </td>
                                                                             <td class="m2_hide">
                                                                                 <div class="_leads_posted">
-                                                                                    <h5>{{ $residential->carpet_area }}
-                                                                                    </h5>
+                                                                                    @if ($residential->carpet_area != null)
+                                                                                        <h5>{{ $residential->carpet_area }}
+                                                                                        </h5>
+                                                                                    @endif
                                                                                 </div>
                                                                                 {{-- <div class="_leads_view_title"><span>12
                                                                                         Days

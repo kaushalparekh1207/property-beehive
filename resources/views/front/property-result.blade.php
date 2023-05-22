@@ -203,12 +203,13 @@
                                                 <div class="veshm-type"><span>For
                                                         {{ $result->property_status }}</span></div>
                                             @elseif($result->property_status == 'PG/Hostel')
-                                                <div class="veshm-type"><span>For
+                                                <div class="veshm-type fr-pg"><span>For
                                                         {{ $result->property_status }}</span></div>
                                             @endif
                                             {{-- <span>For {{ $result->property_status }}</span> --}}
                                             {{-- </div> --}}
-                                            <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
+                                            <h5 class="rlhc-title-name verified"><a
+                                                    href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project]) }}"
                                                     class="prt-link-detail">{{ $result->name_of_project }}</a></h5>
                                             <div class="vesh-aget-rates">
                                                 <i class="fa-solid fa-star"></i>
@@ -227,12 +228,18 @@
                                     <div class="veshm-list-middle">
                                         <div class="veshm-list-icons">
                                             <ul>
-                                                <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
-                                                        Bed</span></li>
-                                                <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
-                                                        Bath</span></li>
-                                                <li><i class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
-                                                        Sqft</span>
+                                                @if ($result->total_bedrooms != null)
+                                                    <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
+                                                            Bed</span></li>
+                                                @endif
+                                                @if ($result->total_bathrooms != null)
+                                                    <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
+                                                            Bath</span></li>
+                                                @endif
+                                                @if ($result->carpet_area != null)
+                                                    <li><i class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
+                                                            Sqft</span>
+                                                @endif
                                                 </li>
                                                 <li><i class="fa-solid fa-calendar-days"></i><span>Built 2017</span>
                                                 </li>

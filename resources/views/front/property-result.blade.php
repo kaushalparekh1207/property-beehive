@@ -209,7 +209,7 @@
                                             {{-- <span>For {{ $result->property_status }}</span> --}}
                                             {{-- </div> --}}
                                             <h5 class="rlhc-title-name verified"><a
-                                                    href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project]) }}"
+                                                    href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
                                                     class="prt-link-detail">{{ $result->name_of_project }}</a></h5>
                                             <div class="vesh-aget-rates">
                                                 <i class="fa-solid fa-star"></i>

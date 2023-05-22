@@ -238,7 +238,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="form-group col-md-6">
+                                                                            <div class="form-group col-md-6 exceptedprice">
                                                                                 <label>Property Price<a href="javascript:void(0)" class="tip-topdata" data-tip="Property Price"><i class="fa-solid fa-info"></i></a></label>
                                                                                 <input type="number" class="form-control" id="price" name="price" placeholder="Enter Property Expected Price"></input>
                                                                                 <small id="price_error"></small>
@@ -374,14 +374,14 @@
                                                                                     </select>
                                                                                 </div>
 
-                                                                            <div class="form-group col-md-12">
+                                                                            <div class="form-group col-md-12 facilitiesamenities">
                                                                                 <strong>Facilities (Amenities)</strong>
                                                                                 <div class="o-features mt-2">
                                                                                     <ul class="no-ul-list row">
                                                                                         @foreach($amenities as $amenity)
                                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
                                                                                             <input id="a-1" class="form-check-input amenities" name="amenities[]" value="{{$amenity->id}}" type="checkbox">
-                                                                                            <label for="a-1" class="form-check-label">{{$amenity->amenities}}</label>
+                                                                                            <label for="a-1" class="form-check-label">{{$amenity->amenitie}}</label>
                                                                                         </li>
                                                                                         @endforeach
                                                                                     </ul>

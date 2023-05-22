@@ -28,9 +28,89 @@ $(document).ready(function () {
     $('.perCharges').hide();
     $('.furnishedStatus').hide();
 
+    // add new
+    $('.possessionStatus').hide();
+    $('.facilitiesamenities').hide();
+    $('.property_age').hide();
+
     $("#property_category_dropdown").on('change',function () {
         var property_category_id = $(this).val();
+        console.log(property_category_id);
         if(property_category_id === '1')
+        { 
+
+            $('.numberOfFlats').show();
+            $('.totalBedrooms').show();
+            $('.totalBalconies').show();
+            $('.totalFloors').show();
+            $('.totalBathrooms').show();
+            $('.furnishedStatus').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
+            $('.property_age').show();
+
+        }
+        if(property_category_id === '2')
+        {   
+            // $('.numberOfFlats').show();
+            $('.totalBedrooms').show();
+            $('.totalBalconies').show();
+            $('.totalFloors').show();
+            $('.totalBathrooms').show();
+            $('.furnishedStatus').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
+            $('.floorAllowedForConstruction').show();
+            $('.noOfOpenSides').show();
+            $('.widthOfRoadFacing').show();
+            $('.property_age').show();
+            
+        }
+        if(property_category_id === '3')
+        {
+            
+            $('.totalBedrooms').show();
+            $('.totalBalconies').show();
+            $('.totalFloors').show();
+            $('.furnishedStatus').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
+            $('.totalBathrooms').show();
+            $('.noOfOpenSides').show();
+            $('.widthOfRoadFacing').show();
+            $('.property_age').show();
+        }
+        if(property_category_id === '4')
+        {
+            
+            $('.totalBedrooms').show();
+            $('.totalBalconies').show();
+            $('.totalFloors').show();
+            $('.totalBathrooms').show();
+            $('.furnishedStatus').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
+            $('.property_age').show();
+        }
+
+        if(property_category_id === '5')
+        {
+            $('.floorAllowedForConstruction').show();
+            $('.noOfOpenSides').show();
+            $('.anyConstructionMade').show();
+            $('.widthOfRoadFacing').show();
+            $('.boundaryWallMade').show();
+            $('.plotArea').show();
+            $('.plotLength').show();
+            $('.plotBreadth').show();
+            
+        }
+
+        if(property_category_id === '6')
         {
             $('.numberOfFlats').show();
             $('.totalBedrooms').show();
@@ -38,18 +118,22 @@ $(document).ready(function () {
             $('.totalFloors').show();
             $('.furnishedStatus').show();
             $('.totalBalconies').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
         }
-        if(property_category_id === '2')
+        
+        if(property_category_id === '7')
         {
-
-        }
-        if(property_category_id === '3')
-        {
-
-        }
-        if(property_category_id === '4')
-        {
-
+            $('.numberOfFlats').show();
+            $('.totalBedrooms').show();
+            $('.totalBalconies').show();
+            $('.totalFloors').show();
+            $('.furnishedStatus').show();
+            $('.totalBalconies').show();
+            $('.carpetArea').show();
+            $('.superArea').show();
+            $('.possessionStatus').show();
         }
     });
 });

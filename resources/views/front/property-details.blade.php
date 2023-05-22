@@ -91,17 +91,23 @@
                                                 class="fa-solid fa-location-dot me-2"></i>{{ $propertis_details->address }},{{ $propertis_details->locality }}</span>
                                         <div class="list-fx-features mt-2">
                                             <div class="list-fx-fisrt">
+                                                @if ($allResidentialDetails->total_bedrooms != null)
+                                                    <span
+                                                        class="label font--medium label-light-success me-2">{{ $allResidentialDetails->total_bedrooms }}
+                                                        Beds</span>
+                                                @endif
 
-                                                <span
-                                                    class="label font--medium label-light-success me-2">{{ $allResidentialDetails->total_bedrooms }}
-                                                    Beds</span>
+                                                @if ($allResidentialDetails->total_bathrooms != null)
+                                                    <span
+                                                        class="label font--medium label-light-info me-2">{{ $allResidentialDetails->total_bathrooms }}
+                                                        Bath</span>
+                                                @endif
 
-                                                <span
-                                                    class="label font--medium label-light-info me-2">{{ $allResidentialDetails->total_bathrooms }}
-                                                    Bath</span>
-                                                <span
-                                                    class=" label font--medium label-light-danger">{{ $allResidentialDetails->carpet_area }}
-                                                    Sqft</span>
+                                                @if ($allResidentialDetails->carpet_area != null)
+                                                    <span
+                                                        class=" label font--medium label-light-danger">{{ $allResidentialDetails->carpet_area }}
+                                                        Sqft</span>
+                                                @endif
 
                                             </div>
                                             <div class="list-fx-last">
@@ -112,7 +118,14 @@
                                 </div>
                                 <div class="vesh-detail-headup-last">
                                     <h3 class="prt-price-fix theme-cl">
-                                        ₹{{ $propertis_details->expected_price }}<span>One Time</span></h3>
+                                        ₹{{ $propertis_details->expected_price }}</h3>
+                                    @if ($propertis_details->property_status == 'Sale')
+                                        <h3 class="prt-price-fix theme-cl"><span>One Time</span></h3>
+                                    @elseif ($propertis_details->property_status == 'Rent/Lease')
+                                        <h3 class="prt-price-fix theme-cl"><span>/Months</span></h3>
+                                    @elseif ($propertis_details->property_status == 'PG/Hostel')
+                                        <h3 class="prt-price-fix theme-cl"><span>/Months</span></h3>
+                                    @endif
                                 </div>
                             </div>
                         </div>

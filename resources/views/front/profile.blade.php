@@ -3,20 +3,21 @@
 @endsection
 @section('profile')
     active
-    @endsection
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@endsection
+<!doctype html>
+<html lang="en">
 
-        <title>Property Beehive</title>
-        @include('front.assets.links')
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
+    <title>Property Beehive</title>
+    @include('front.assets.links')
+
+</head>
 
 
-    <body>
+<body>
 
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -43,12 +44,13 @@
 
 
         <!-- ============================ Top Banner Start================================== -->
-        <div class="page-title" style="background:#017efa url({{url('/')}}/front/assets/img/page-title.png) no-repeat;">
+        <div class="page-title"
+            style="background:#017efa url({{ url('/') }}/front/assets/img/page-title.png) no-repeat;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
 
-                        <h2 class="ipt-title">Hi, {{session('user')['role']}}</h2>
+                        <h2 class="ipt-title">Hi, {{ session('user')['role'] }}</h2>
                         <span class="ipn-subtitle">Manage your profile and view property</span>
 
                     </div>
@@ -72,7 +74,7 @@
 
                                 <!-- Basic Information -->
                                 <div class="frm_submit_block">
-                                    <form id="editProfile" method="post" action="{{route('editProfile')}}">
+                                    <form id="editProfile" method="post" action="{{ route('editProfile') }}">
                                         <h4>My Account</h4>
                                         <div class="frm_submit_wrap">
                                             <div class="row">
@@ -80,30 +82,36 @@
                                                 @csrf
                                                 <div class="form-group col-md-6">
                                                     <label>Role</label>
-                                                    <input type="hidden" value="{{$userData->id}}" name="id" id="id">
-                                                    <select class="form-control js-select2" name="client_type_id" id="client_type_id">
-                                                        @foreach($clientTypes as $clientType)
+                                                    <input type="hidden" value="{{ $userData->id }}" name="id"
+                                                        id="id">
+                                                    <select class="form-control js-select2" name="client_type_id"
+                                                        id="client_type_id">
+                                                        @foreach ($clientTypes as $clientType)
                                                             @php
-                                                                $userData->client_type_id == $clientType->id ? $selected = 'selected' : $selected = '';
+                                                                $userData->client_type_id == $clientType->id ? ($selected = 'selected') : ($selected = '');
                                                             @endphp
-                                                            <option value="{{$clientType->id}}" {{$selected}}>{{$clientType->client_type}}</option>
+                                                            <option value="{{ $clientType->id }}" {{ $selected }}>
+                                                                {{ $clientType->client_type }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label>Your Name</label>
-                                                    <input type="text" class="form-control" name="name" value="{{$userData->name}}" placeholder="Enter Your Name">
+                                                    <input type="text" class="form-control" name="name"
+                                                        value="{{ $userData->name }}" placeholder="Enter Your Name">
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label>Email</label>
-                                                    <input type="email" class="form-control" name="email" value="{{$userData->email}}" placeholder="Enter Email">
+                                                    <input type="email" class="form-control" name="email"
+                                                        value="{{ $userData->email }}" placeholder="Enter Email">
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label>Phone</label>
-                                                    <input type="number" name="contact" class="form-control" value="{{$userData->contact}}">
+                                                    <input type="number" name="contact" class="form-control"
+                                                        value="{{ $userData->contact }}">
                                                 </div>
 
                                                 <div class="form-group col-md-4">
@@ -118,16 +126,17 @@
                                                                     $selected = '';
                                                                 }
                                                             @endphp
-                                                            <option value="{{$state->id}}" {{$selected}}>{{$state->state}}</option>
+                                                            <option value="{{ $state->id }}" {{ $selected }}>
+                                                                {{ $state->state }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label>City</label>
-                                                    {{-- <select class="js-select2" name="city_id" id="city_id">
+                                                    <select class="js-select2" name="city_id" id="city_id">
                                                         <option value="" selected disabled>Select City</option>
-                                                         @foreach ($cities as $city)
+                                                        @foreach ($cities as $city)
                                                             @php
                                                                 if ($city->id == $userData->city_id) {
                                                                     $selected = 'selected';
@@ -135,13 +144,14 @@
                                                                     $selected = '';
                                                                 }
                                                             @endphp
-                                                            <option value="{{$city->id}}" {{$selected}}>{{$city->city}}</option>
-                                                        @endforeach --}} 
-                                                        <select class="js-select2" name="city_id"
+                                                            <option value="{{ $city->id }}" {{ $selected }}>
+                                                                {{ $city->city }}</option>
+                                                        @endforeach
+                                                        {{-- <select class="js-select2" name="city_id"
                                                         id="city_dropdown" required>
                                                         <option value="" selected disabled>Select
                                                             City
-                                                        </option>
+                                                        </option> --}}
 
                                                     </select>
                                                     </select>
@@ -149,17 +159,21 @@
 
                                                 <div class="form-group col-md-4">
                                                     <label>Zip</label>
-                                                    <input type="text" class="form-control" name="zip" value="{{$userData->zip}}" placeholder="Enter Zip Code">
+                                                    <input type="text" class="form-control" name="zip"
+                                                        value="{{ $userData->zip }}" placeholder="Enter Zip Code">
                                                 </div>
 
                                                 <div class="form-group col-md-12">
                                                     <label>Address</label>
-                                                    <textarea class="form-control" name="address" placeholder="Describe Here...">{{$userData->address}}</textarea>
+                                                    <textarea class="form-control" name="address" placeholder="Describe Here...">{{ $userData->address }}</textarea>
                                                 </div>
 
                                                 <div class="form-group col-lg-12 col-md-12 mt-4">
-                                                    <button class="btn btn-theme btn-lg" type="submit" style="background-color: #017efa; border: none;">Save Changes</button>
-                                                    <button class="btn btn-theme btn-lg" type="submit" style="background-color: #dc3545; border: none;">Cancel</button>
+                                                    <button class="btn btn-theme btn-lg" type="submit"
+                                                        style="background-color: #017efa; border: none;">Save
+                                                        Changes</button>
+                                                    <button class="btn btn-theme btn-lg" type="submit"
+                                                        style="background-color: #dc3545; border: none;">Cancel</button>
                                                 </div>
 
 
@@ -202,10 +216,10 @@
             });
         });
     </script>
-     <script>
+    <script>
         $(document).ready(function() {
-            
-            
+
+
 
             /*------------------------------------------
             --------------------------------------------
@@ -241,6 +255,6 @@
         });
     </script>
 
-    </body>
+</body>
 
-    </html>
+</html>

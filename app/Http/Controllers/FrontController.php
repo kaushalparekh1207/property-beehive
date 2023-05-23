@@ -81,6 +81,6 @@ class FrontController extends Controller
         $count = PropertyMaster::where('flag', 1)->count();
         // echo $resultSearch;
         // exit;
-        return view('front.property-result', compact('resultSearch', 'count'));
+        return view('front.property-result', compact('resultSearch', 'count', 'category_id', 'city_id'));
     }
 }

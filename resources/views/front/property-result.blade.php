@@ -1,3 +1,7 @@
+@php
+    $city = city();
+    $propertyType = propertyType();
+@endphp
 @section('home_page')
     active
 @endsection
@@ -66,68 +70,81 @@
                         <div class="full-search-2 mt-2">
                             <div class="hero-search-content colored">
 
-                                <div class="row classic-search-box m-0 gx-2">
-
-                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                        <div class="form-group briod">
-                                            <div class="input-with-icon">
-                                                <input type="text" class="form-control"
-                                                    placeholder="Ex. villa, town etc.">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <form id="property_result" action="{{ route('property_result_search') }}"
+                                    method="post">
+                                    @csrf
+                                    <div class="row classic-search-box m-0 gx-2">
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="form-group briod">
+                                                <div class="input-with-icon">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Ex. villa, town etc.">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <input type="hidden" id="id" value="">
-                                    {{-- <input type="hidden" id="typeid" value=""> --}}
-                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                        <div class="form-group briod">
-                                            <div class="input-with-icon">
-                                                <select class="form-control">
-                                                    <option value="1">Property types</option>
-                                                    <option value="2">Townhome</option>
-                                                    <option value="3">Office & Studio</option>
-                                                    <option value="4">Apartments</option>
-                                                    <option value="5">Condos</option>
-                                                    <option value="6">Bungalow</option>
-                                                    <option value="7">Farmhouse</option>
-                                                    <option value="8">Tiny House</option>
-                                                </select>
-                                                <i class="fa-solid fa-house-crack"></i>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="form-group briod">
+                                                <div class="input-with-icon">
+                                                    {{-- <select class="form-control" name="property_type_id"> --}}
+                                                    <select class="js-select2" name="property_type_id"
+                                                        id="property_type_dropdown">
+                                                        <option value="">Property types</option>
+                                                        @foreach ($propertyType as $type)
+                                                            @php
+                                                                if ($type->id == $category_id) {
+                                                                    $selected = 'selected';
+                                                                } else {
+                                                                    $selected = '';
+                                                                }
+                                                            @endphp
+                                                            <option value="{{ $type->id }}" {{ $selected }}>
+                                                                {{ $type->property_category_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <i class="fa-solid fa-house-crack"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <div class="input-with-icon">
-                                                <select class="form-control">
-                                                    <option value="1">Select City</option>
-                                                    <option value="2">Huntingdon</option>
-                                                    <option value="3">Fenland</option>
-                                                    <option value="4">Aylesbury</option>
-                                                    <option value="5">Amersham</option>
-                                                    <option value="6">Macclesfield</option>
-                                                    <option value="7">Congleton</option>
-                                                    <option value="8">UNantwich</option>
-                                                </select>
-                                                <i class="fa-solid fa-location-crosshairs"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                        <div class="fliox-search-wiop">
-                                            <div class="form-group me-2">
-                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#filter" class="btn btn-filter-search"><i
-                                                        class="fa-solid fa-filter"></i>Filter</a>
-                                            </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <button type="submit"
-                                                    class="btn btn-primary full-width">Search</button>
+                                                <div class="input-with-icon">
+                                                    <select class="js-select2" name="city_id" id="city_id_dropdown">
+                                                        <option value="">Select City</option>
+                                                        @foreach ($city as $cities)
+                                                            @php
+                                                                if ($cities->id == $city_id) {
+                                                                    $selected = 'selected';
+                                                                } else {
+                                                                    $selected = '';
+                                                                }
+                                                            @endphp
+                                                            <option value="{{ $cities->id }}" {{ $selected }}>
+                                                                {{ $cities->city }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <i class="fa-solid fa-location-crosshairs"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="fliox-search-wiop">
+                                                <div class="form-group me-2">
+                                                    <a href="JavaScript:Void(0);" data-bs-toggle="modal"
+                                                        data-bs-target="#filter" class="btn btn-filter-search"><i
+                                                            class="fa-solid fa-filter"></i>Filter</a>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit"
+                                                        class="btn btn-primary full-width">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
+                                    </div>
+                                </form>
 
                             </div>
                         </div>
@@ -808,6 +825,13 @@
 
 
     @include('front.assets.scripts')
+    <script>
+        $(document).ready(function() {
+            $(".js-select2").select2({
+                closeOnSelect: true
+            });
+        });
+    </script>
 
 </body>
 

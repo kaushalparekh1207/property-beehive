@@ -236,8 +236,11 @@
                                 aria-labelledby="amenitiesinfo">
                                 <div class="vesh-detail-bloc-body">
                                     <ul class="avl-features third color">
+										
                                         @foreach ($amenities as $amenitie)
+											@if($amenitie->amenitie != Null)
                                             <li>{{ $amenitie->amenitie }}</li>
+											@endif
                                         @endforeach
 
                                         {{-- <li>Swimming Pool</li>

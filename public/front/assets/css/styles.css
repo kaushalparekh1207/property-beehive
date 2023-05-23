@@ -3714,7 +3714,7 @@ span.noti-status {
 /*----------- Classic Search ------------*/
 .classic-search-box {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     position: relative;
 }
 
@@ -10321,4 +10321,23 @@ small {
 
 sup {
     color: red;
+}
+.btn-check:checked+.btn,.btn.active,.btn.show,.btn:first-child:active,:not(.btn-check)+.btn:active {
+    /* color: var(--bs-btn-active-color); */
+    background-color: #fa962a;
+    border-color: #fa962a;
+}
+/* .btn {
+    background: #fa962a ;
+    border-color: #fa962a ;
+    color: #fff ;
+}
+.btn:hover{
+    background:  #000000 ;
+    border-color: #fa962a ;
+    color: #000;
+} */
+.btn-check:checked+.btn,.btn.active,.btn.show,.btn:first-child:active,:not(.btn-check)+.btn:active:hover{
+    background-color: #fa962a;
+    color: #fff;
 }

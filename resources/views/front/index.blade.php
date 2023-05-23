@@ -10,6 +10,10 @@
 
     <title>Property Beehive</title>
     @include('front.assets.links')
+    <script>
+      
+
+    </script>
 </head>
 
 
@@ -52,11 +56,24 @@
                 </div>
 
                 <div class="full-search-2 mt-5">
+                    <div class="btn-group-horizontal " role="group" aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
+                        <label class="btn"  for="vbtn-radio1">Buy</label>
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                        <label class="btn"  for="vbtn-radio2">Rent</label>
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+                        <label class="btn"  for="vbtn-radio3">PG</label>
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+                        <label class="btn"  for="vbtn-radio4">Land</label>
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off">
+                        <label class="btn"  for="vbtn-radio5">Commercial</label>
+                      </div>
                     <div class="hero-search-content colored">
                         <form id="property_result" action="{{ route('property_result_search') }}" method="post">
                             @csrf
                             <div class="row classic-search-box m-0 gx-2">
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             <input type="text" class="form-control"
@@ -78,7 +95,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-house-crack"></i>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +108,7 @@
                                                     <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-location-crosshairs"></i>
+                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
                                     </div>
                                 </div>

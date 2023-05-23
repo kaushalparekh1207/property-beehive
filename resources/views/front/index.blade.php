@@ -68,7 +68,9 @@
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            <select class="form-control" name="property_type_id">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
+                                            <select class="js-select2" name="property_type_id"
+                                                id="property_type_dropdown">
                                                 <option value="">Property types</option>
                                                 @foreach ($propertyType as $type)
                                                     <option value="{{ $type->id }}">
@@ -83,7 +85,7 @@
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
-                                            <select class="form-control" name="city_id">
+                                            <select class="js-select2" name="city_id" id="city_id_dropdown">
                                                 <option value="">Select City</option>
                                                 @foreach ($city as $cities)
                                                     <option value="{{ $cities->id }}">{{ $cities->city }}</option>
@@ -235,6 +237,13 @@
 
 
     @include('front.assets.scripts')
+    <script>
+        $(document).ready(function() {
+            $(".js-select2").select2({
+                closeOnSelect: true
+            });
+        });
+    </script>
 
 </body>
 

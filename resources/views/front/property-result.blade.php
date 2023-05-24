@@ -103,7 +103,7 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <i class="fa-solid fa-house-crack"></i>
+                                                    <i class="fa-solid fa-house-crack mb-2"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <i class="fa-solid fa-location-crosshairs"></i>
+                                                    <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                                 </div>
                                             </div>
                                         </div>

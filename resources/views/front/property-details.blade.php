@@ -91,21 +91,21 @@
                                                 class="fa-solid fa-location-dot me-2"></i>{{ $propertis_details->address }},{{ $propertis_details->locality }}</span>
                                         <div class="list-fx-features mt-2">
                                             <div class="list-fx-fisrt">
-                                                @if ($allResidentialDetails->total_bedrooms != null)
+                                                @if ($allDetails->total_bedrooms != null)
                                                     <span
-                                                        class="label font--medium label-light-success me-2">{{ $allResidentialDetails->total_bedrooms }}
+                                                        class="label font--medium label-light-success me-2">{{ $allDetails->total_bedrooms }}
                                                         Beds</span>
                                                 @endif
 
-                                                @if ($allResidentialDetails->total_bathrooms != null)
+                                                @if ($allDetails->total_bathrooms != null)
                                                     <span
-                                                        class="label font--medium label-light-info me-2">{{ $allResidentialDetails->total_bathrooms }}
+                                                        class="label font--medium label-light-info me-2">{{ $allDetails->total_bathrooms }}
                                                         Bath</span>
                                                 @endif
 
-                                                @if ($allResidentialDetails->carpet_area != null)
+                                                @if ($allDetails->carpet_area != null)
                                                     <span
-                                                        class=" label font--medium label-light-danger">{{ $allResidentialDetails->carpet_area }}
+                                                        class=" label font--medium label-light-danger">{{ $allDetails->carpet_area }}
                                                         Sqft</span>
                                                 @endif
 
@@ -139,7 +139,7 @@
                                 <div class="row g-3">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                        <p>{{ $allResidentialDetails->descr }}</p>
+                                        <p>{{ $allDetails->descr }}</p>
 
 
                                     </div>
@@ -158,42 +158,42 @@
                             <div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
                                 <div class="vesh-detail-bloc-body">
                                     <div class="row g-3">
-                                        @if ($allResidentialDetails->total_bedrooms != null)
+                                        @if ($allDetails->total_bedrooms != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
                                                     <div class="ilio-icon"><i class="fa-solid fa-bed"></i></div>
-                                                    <div class="ilio-text">{{ $allResidentialDetails->total_bedrooms }}
+                                                    <div class="ilio-text">{{ $allDetails->total_bedrooms }}
                                                         Bedrooms</div>
                                                 </div>
                                             </div>
                                         @endif
-                                        @if ($allResidentialDetails->total_bathrooms != null)
+                                        @if ($allDetails->total_bathrooms != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
                                                     <div class="ilio-icon"><i class="fa-solid fa-bath"></i></div>
                                                     <div class="ilio-text">
-                                                        {{ $allResidentialDetails->total_bathrooms }} Bathrooms</div>
+                                                        {{ $allDetails->total_bathrooms }} Bathrooms</div>
                                                 </div>
                                             </div>
                                         @endif
-                                        @if ($allResidentialDetails->carpet_area != null)
+                                        @if ($allDetails->carpet_area != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
                                                     <div class="ilio-icon"><i class="fa-solid fa-layer-group"></i>
                                                     </div>
-                                                    <div class="ilio-text">{{ $allResidentialDetails->carpet_area }}
+                                                    <div class="ilio-text">{{ $allDetails->carpet_area }}
                                                         sq ft</div>
                                                 </div>
                                             </div>
                                         @endif
                                         {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
 											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">Apartment</div></div></div> --}}
-                                        @if ($allResidentialDetails->age != null)
+                                        @if ($allDetails->age != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
                                                     <div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i>
                                                     </div>
-                                                    <div class="ilio-text">{{ $allResidentialDetails->age }} Age</div>
+                                                    <div class="ilio-text">{{ $allDetails->age }} Age</div>
                                                 </div>
                                             </div>
                                         @endif
@@ -208,12 +208,12 @@
 											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div> --}}
                                         {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> --}}
                                         {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div> --}}
-                                        @if ($allResidentialDetails->total_floor != null)
+                                        @if ($allDetails->total_floor != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
                                                     <div class="ilio-icon"><i class="fa-regular fa-building"></i>
                                                     </div>
-                                                    <div class="ilio-text">{{ $allResidentialDetails->total_floor }}
+                                                    <div class="ilio-text">{{ $allDetails->total_floor }}
                                                         Floor</div>
                                                 </div>
                                             </div>

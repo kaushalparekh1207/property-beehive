@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\CommercialProperty;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
@@ -16,7 +17,7 @@ class FrontController extends Controller
     public function index()
     {
         $properties = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
-            // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
+        // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
 
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
@@ -29,15 +30,10 @@ class FrontController extends Controller
     public function propertydetails(Request $request, $id, $type, $name, $owner)
     {
         if ($type == 1) {
-
             $propertis_details = PropertyMaster::findOrFail($id);
-
-            // $allResidentialDetails = ResidentialProperty::join('property_masters', 'property_masters.id', '=', 'residential_properties.property_master_id')->select('property_masters.*', 'residential_properties.*')->where('property_masters.flag', 1)->where('property_masters.property_type_id', '=', 1)->get();
-
-            $allResidentialDetails = ResidentialProperty::where('property_master_id', $id)->first();
+            $allDetails = ResidentialProperty::where('property_master_id', $id)->first();
             $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
                 ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
-
             $client_data = User::where('client_master.id', $owner)
                 ->join('cities', 'cities.id', '=', 'client_master.city_id')
                 ->join('states', 'states.id', '=', 'client_master.state_id')
@@ -47,7 +43,21 @@ class FrontController extends Controller
             // echo '<pre>';
             // print_r($client_data);
             // echo '</pre>';exit;
-            return view('front.property-details', compact('propertis_details', 'allResidentialDetails', 'amenities', 'client_data'));
+            return view('front.property-details', compact('propertis_details', 'allDetails', 'amenities', 'client_data'));
+        } elseif ($type == 2) {
+
+            $propertis_details = PropertyMaster::findOrFail($id);
+            $allDetails = CommercialProperty::where('property_master_id', $id)->first();
+            $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
+                ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
+            $client_data = User::where('client_master.id', $owner)
+                ->join('cities', 'cities.id', '=', 'client_master.city_id')
+                ->join('states', 'states.id', '=', 'client_master.state_id')
+                ->where('client_master.flag', 1)
+                ->select('client_master.*', 'cities.city', 'states.state')
+                ->first();
+            return view('front.property-details', compact('propertis_details', 'allDetails', 'amenities', 'client_data'));
+
         }
     }
     public function propertyResultSearch(Request $request, $type = null, $city = null)
@@ -60,7 +70,7 @@ class FrontController extends Controller
                 ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                 ->where('property_masters.flag', 1)
                 ->where('residential_properties.flag', 1)
-                // ->where('city_id', $city_id)
+            // ->where('city_id', $city_id)
                 ->where('property_category_id', $category_id)
                 ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id']);
         } elseif ($category_id == null && $city_id) {
@@ -68,7 +78,7 @@ class FrontController extends Controller
                 ->where('property_masters.flag', 1)
                 ->where('residential_properties.flag', 1)
                 ->where('city_id', $city_id)
-                // ->where('property_category_id', $category_id)
+            // ->where('property_category_id', $category_id)
                 ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id']);
         } else {
             $resultSearch = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')

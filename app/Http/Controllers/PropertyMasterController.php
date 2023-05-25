@@ -236,7 +236,6 @@ class PropertyMasterController extends Controller
         return view('front.post_property',compact('propertyTypes','states','cities','amenities'));
     }
 
-
     /**
      * Insert Property Insert
      */

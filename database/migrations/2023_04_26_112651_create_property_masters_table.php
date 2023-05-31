@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('address');
             $table->integer('expected_price');
             $table->integer('booking_amount')->nullable();
-            $table->string('cover_image', 255);
+            $table->string('cover_image', 255)->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

@@ -1,8 +1,8 @@
 @section('home_page')
-active
+    active
 @endsection
 @section('post_property')
-active
+    active
 @endsection
 <!doctype html>
 <html lang="en">
@@ -44,18 +44,18 @@ active
 
         <!-- ============================ Top Banner Start================================== -->
         {{-- <div class="page-title"
-            style="background:#017efa url({{url('/')}}/front/assets/img/page-title.png) no-repeat;">--}}
-            {{-- <div class="container">--}}
-                {{-- <div class="row">--}}
-                    {{-- <div class="col-lg-12 col-md-12">--}}
+            style="background:#017efa url({{url('/')}}/front/assets/img/page-title.png) no-repeat;"> --}}
+        {{-- <div class="container"> --}}
+        {{-- <div class="row"> --}}
+        {{-- <div class="col-lg-12 col-md-12"> --}}
 
-                        {{-- <h2 class="ipt-title">Hi, Harshvardhan</h2>--}}
-                        {{-- <span class="ipn-subtitle">Manage your profile and view property</span>--}}
+        {{-- <h2 class="ipt-title">Hi, Harshvardhan</h2> --}}
+        {{-- <span class="ipn-subtitle">Manage your profile and view property</span> --}}
 
-                        {{-- </div>--}}
-                    {{-- </div>--}}
-                {{-- </div>--}}
-            {{-- </div>--}}
+        {{-- </div> --}}
+        {{-- </div> --}}
+        {{-- </div> --}}
+        {{-- </div> --}}
         <!-- ============================ Top Banner End ================================== -->
 
         <!-- ============================= Explore Dashboard =============================== -->
@@ -121,7 +121,7 @@ active
                                                                             <label>I want to <sup>*</sup></label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio1"
+                                                                            <input id="propertyStatusRadio"
                                                                                 class="form-check-input propertyStatus"
                                                                                 name="property_status" type="radio"
                                                                                 value="Sale">
@@ -129,7 +129,7 @@ active
                                                                                 class="form-check-label">Sale</label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio2"
+                                                                            <input id="propertyStatusRadio"
                                                                                 class="form-check-input propertyStatus"
                                                                                 name="property_status" type="radio"
                                                                                 value="Rent/Lease">
@@ -137,7 +137,7 @@ active
                                                                                 class="form-check-label">Rent/Lease</label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio3"
+                                                                            <input id="propertyStatusRadio"
                                                                                 class="form-check-input propertyStatus"
                                                                                 name="property_status" type="radio"
                                                                                 value="PG/Hostel">
@@ -155,11 +155,12 @@ active
                                                                             class="fa-solid fa-info"></i></a></label>
                                                                 <select class="js-select2" name="property_type"
                                                                     id="property_type">
-                                                                    <option value="" selected disabled>Select Property
+                                                                    <option value="" selected disabled>Select
+                                                                        Property
                                                                         Type</option>
                                                                     @foreach ($propertyTypes as $propertyType)
-                                                                    <option value="{{ $propertyType->id }}">
-                                                                        {{ $propertyType->property_type }}</option>
+                                                                        <option value="{{ $propertyType->id }}">
+                                                                            {{ $propertyType->property_type }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <small id="property_type_error"></small>
@@ -172,7 +173,8 @@ active
                                                                             class="fa-solid fa-info"></i></a></label>
                                                                 <select class="js-select2" name="property_category"
                                                                     id="property_category_dropdown">
-                                                                    <option value="" selected disabled>Select Property
+                                                                    <option value="" selected disabled>Select
+                                                                        Property
                                                                         Category</option>
                                                                 </select>
                                                                 <small id="property_category_error"></small>
@@ -183,11 +185,13 @@ active
                                                                 <label>State</label>
                                                                 <select class="js-select2" name="state_id"
                                                                     id="state_id">
-                                                                    <option value="" selected disabled>Select State
+                                                                    <option value="" selected disabled>Select
+                                                                        State
                                                                     </option>
                                                                     @foreach ($states as $state)
-                                                                    <option value="{{$state->id}}">{{$state->state}}
-                                                                    </option>
+                                                                        <option value="{{ $state->id }}">
+                                                                            {{ $state->state }}
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 <small id="state_error"></small>
@@ -197,7 +201,8 @@ active
                                                                 <label>City</label>
                                                                 <select class="js-select2" name="city_id"
                                                                     id="city_dropdown">
-                                                                    <option value="" selected disabled>Select City
+                                                                    <option value="" selected disabled>Select
+                                                                        City
                                                                     </option>
                                                                 </select>
                                                                 <small id="city_error"></small>
@@ -239,16 +244,15 @@ active
 
                                                             <div class="form-group col-md-12">
                                                                 <label>Address</label>
-                                                                <textarea class="form-control" style="height: 100px;"
-                                                                    id="address" placeholder="Describe Here..."
-                                                                    name="address"></textarea>
+                                                                <textarea class="form-control" style="height: 100px;" id="address" placeholder="Describe Here..." name="address"></textarea>
                                                                 <small id="address_error"></small>
                                                             </div>
 
                                                         </div>
 
                                                         <button type="button" id="firstBtn"
-                                                            class="btn btn-primary btn-sm" onclick="stepper.next()">Next
+                                                            class="btn btn-primary btn-sm"
+                                                            onclick="stepper.next()">Next
                                                             Step</button><br><br>
 
                                                     </div>
@@ -258,7 +262,8 @@ active
                                                         <h3>Property Details</h3>
                                                         <div class="row">
                                                             <div class="form-group col-md-12">
-                                                                <label>Property Title<a href="#" class="tip-topdata"
+                                                                <label>Property Title<a href="#"
+                                                                        class="tip-topdata"
                                                                         data-tip="Property Title"><i
                                                                             class="fa-solid fa-info"></i></a></label>
                                                                 <input type="text" class="form-control"
@@ -272,9 +277,7 @@ active
                                                                         class="tip-topdata"
                                                                         data-tip="Property Description"><i
                                                                             class="fa-solid fa-info"></i></a></label>
-                                                                <textarea type="text" class="form-control" name="descr"
-                                                                    id="descr"
-                                                                    placeholder="Describe Here..."></textarea>
+                                                                <textarea type="text" class="form-control" name="descr" id="descr" placeholder="Describe Here..."></textarea>
                                                                 <small id="descr_error"></small>
                                                             </div>
 
@@ -288,7 +291,8 @@ active
                                                                                 class="form-check-input no_of_flats"
                                                                                 name="no_of_flats" type="radio"
                                                                                 value="<50">
-                                                                            <label for="a-1" class="form-check-label">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">
                                                                                 <50< /label>
                                                                         </li>
                                                                         <li class="col-xl-4 col-lg-4 col-md-6 col-6">
@@ -313,10 +317,11 @@ active
 
                                                             <div class="form-group col-md-6">
                                                                 <label>Property Price<a href="javascript:void(0)"
-                                                                        class="tip-topdata" data-tip="Property Price"><i
+                                                                        class="tip-topdata"
+                                                                        data-tip="Property Price"><i
                                                                             class="fa-solid fa-info"></i></a></label>
-                                                                <input type="number" class="form-control" id="price"
-                                                                    name="price"
+                                                                <input type="number" class="form-control"
+                                                                    id="price" name="price"
                                                                     placeholder="Enter Property Expected Price"></input>
                                                                 <small id="price_error"></small>
                                                             </div>
@@ -337,7 +342,8 @@ active
                                                                 <label>Total Floors</label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="total_floors" id="total_floors">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Floor</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -366,7 +372,8 @@ active
                                                                 <label>Total Bedrooms</label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="total_bedrooms" id="total_bedrooms">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Bedrooms</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -384,7 +391,8 @@ active
                                                                 <label>Total Balconies</label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="total_balconies" id="total_balconies">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Balconies</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -399,7 +407,8 @@ active
                                                                 <label>Total Bathrooms</label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="total_bathrooms" id="total_bathrooms">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Bathrooms</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -414,7 +423,8 @@ active
                                                                 <label>Total Washrooms</label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="total_washrooms" id="total_washrooms">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Washrooms</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -448,7 +458,8 @@ active
                                                                     </option>
                                                                     <option value="Dry">Dry</option>
                                                                     <option value="Wet">Wet</option>
-                                                                    <option value="Not Available">Not Available</option>
+                                                                    <option value="Not Available">Not Available
+                                                                    </option>
                                                                 </select>
                                                             </div>
 
@@ -466,7 +477,8 @@ active
                                                             <div class="form-group col-md-6 isMainRoadFacing">
                                                                 <label>Is Main Road Facing ?</label>
                                                                 <select class="js-select2-disablesearch"
-                                                                    name="is_main_road_facing" id="is_main_road_facing">
+                                                                    name="is_main_road_facing"
+                                                                    id="is_main_road_facing">
                                                                     <option value="" selected disabled>Select One
                                                                     </option>
                                                                     <option value="Yes">Yes</option>
@@ -478,16 +490,17 @@ active
                                                                 <strong>Facilities (Amenities)</strong>
                                                                 <div class="o-features mt-2">
                                                                     <ul class="no-ul-list row">
-                                                                        @foreach($amenities as $amenity)
-                                                                        <li class="col-xl-4 col-lg-4 col-md-6 col-6">
-                                                                            <input id="a-1"
-                                                                                class="form-check-input amenities"
-                                                                                name="amenities[]"
-                                                                                value="{{$amenity->id}}"
-                                                                                type="checkbox">
-                                                                            <label for="a-1"
-                                                                                class="form-check-label">{{$amenity->amenities}}</label>
-                                                                        </li>
+                                                                        @foreach ($amenities as $amenity)
+                                                                            <li
+                                                                                class="col-xl-4 col-lg-4 col-md-6 col-6">
+                                                                                <input id="a-1"
+                                                                                    class="form-check-input amenities"
+                                                                                    name="amenities[]"
+                                                                                    value="{{ $amenity->id }}"
+                                                                                    type="checkbox">
+                                                                                <label for="a-1"
+                                                                                    class="form-check-label">{{ $amenity->amenities }}</label>
+                                                                            </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </div>
@@ -502,7 +515,8 @@ active
                                                                 <select class="js-select2-disablesearch"
                                                                     name="floors_allowed_for_construction"
                                                                     id="floors_allowed_for_construction">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Bathrooms</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -526,7 +540,8 @@ active
                                                                             class="fa-solid fa-info"></i></a></label>
                                                                 <select class="js-select2-disablesearch"
                                                                     name="no_of_open_sides" id="no_of_open_sides">
-                                                                    <option value="" selected disabled>Select Total
+                                                                    <option value="" selected disabled>Select
+                                                                        Total
                                                                         Number of Open Sides</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -611,8 +626,8 @@ active
                                                                         class="tip-topdata"
                                                                         data-tip="Enter Plot Area"><i
                                                                             class="fa-solid fa-info"></i></a></label>
-                                                                <input type="number" class="form-control" id="plot_area"
-                                                                    name="plot_area"
+                                                                <input type="number" class="form-control"
+                                                                    id="plot_area" name="plot_area"
                                                                     placeholder="Enter Plot Area"></input>
                                                             </div>
 
@@ -670,7 +685,8 @@ active
                                                                     </option>
                                                                     <option value="Under Construction">Under
                                                                         Construction</option>
-                                                                    <option value="Ready to Move">Ready to Move</option>
+                                                                    <option value="Ready to Move">Ready to Move
+                                                                    </option>
                                                                 </select>
                                                             </div>
 
@@ -680,8 +696,9 @@ active
                                                                 <input type="text" id="available_from"
                                                                     name="available_from" class="form-control"
                                                                     placeholder="Select Date">
-                                                                <select class="js-select2-disablesearch" name="age"
-                                                                    id="age" style="width: 100%;">
+                                                                <select class="js-select2-disablesearch"
+                                                                    name="age" id="age"
+                                                                    style="width: 100%;">
                                                                     <option value="" selected disabled>Select
                                                                         One
                                                                     </option>
@@ -689,7 +706,8 @@ active
                                                                     </option>
                                                                     <option value="Less than 5 Years">Less than 5 Years
                                                                     </option>
-                                                                    <option value="5 to 10 Years">5 to 10 Years</option>
+                                                                    <option value="5 to 10 Years">5 to 10 Years
+                                                                    </option>
                                                                     <option value="10 to 15 Years">10 to 15 Years
                                                                     </option>
                                                                     <option value="15 to 20 Years">15 to 20 Years
@@ -704,8 +722,9 @@ active
                                                                 <label for="">Age<a href="javascript:void(0)"
                                                                         class="tip-topdata" data-tip="Property Age"><i
                                                                             class="fa-solid fa-info"></i></a></label>
-                                                                <select class="js-select2-disablesearch" name="age"
-                                                                    id="age" style="width: 100%;">
+                                                                <select class="js-select2-disablesearch"
+                                                                    name="age" id="age"
+                                                                    style="width: 100%;">
                                                                     <option value="" selected disabled>Select
                                                                         One
                                                                     </option>
@@ -713,7 +732,8 @@ active
                                                                     </option>
                                                                     <option value="Less than 5 Years">Less than 5 Years
                                                                     </option>
-                                                                    <option value="5 to 10 Years">5 to 10 Years</option>
+                                                                    <option value="5 to 10 Years">5 to 10 Years
+                                                                    </option>
                                                                     <option value="10 to 15 Years">10 to 15 Years
                                                                     </option>
                                                                     <option value="15 to 20 Years">15 to 20 Years
@@ -743,10 +763,12 @@ active
                                                             </div>
 
                                                             <div class="form-group col-md-6 leasedTo">
-                                                                <label for="">Please Specify whether your Property has
+                                                                <label for="">Please Specify whether your
+                                                                    Property has
                                                                     been leased to Company or an Individual</label>
-                                                                <input type="text" class="form-control" id="leased_to"
-                                                                    placeholder="Describe here.." name="leased_to">
+                                                                <input type="text" class="form-control"
+                                                                    id="leased_to" placeholder="Describe here.."
+                                                                    name="leased_to">
                                                             </div>
 
                                                             <div class="form-group col-md-6 monthlyRent">
@@ -757,7 +779,8 @@ active
                                                             </div>
 
                                                             <div class="form-group col-md-6 securityAmount">
-                                                                <label for="">Security Amount (Optional)</label>
+                                                                <label for="">Security Amount
+                                                                    (Optional)</label>
                                                                 <input type="text" class="form-control"
                                                                     id="security_amount"
                                                                     placeholder="Enter Security Amount"
@@ -805,7 +828,7 @@ active
                                             <div id="photos-part" class="content" role="tabpanel"
                                                 aria-labelledby="photos-part-trigger">
                                                 <label for="">Banner/Cover Image<sup>*</sup></label>
-                                                <form action="{{route('uploadPropertyBannerImage')}}" method="post"
+                                                <form action="{{ route('uploadPropertyBannerImage') }}" method="post"
                                                     id="bannerImageUpload"
                                                     class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
@@ -817,8 +840,8 @@ active
                                                 </form><br>
 
                                                 <label for="">Master Plan Image<sup>*</sup></label>
-                                                <form action="{{route('uploadPropertyMasterPlanImage')}}" method="post"
-                                                    id="masterImageUpload"
+                                                <form action="{{ route('uploadPropertyMasterPlanImage') }}"
+                                                    method="post" id="masterImageUpload"
                                                     class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
                                                     @csrf
@@ -830,8 +853,8 @@ active
                                                 <br>
 
                                                 <label for="">Site View Image<sup>*</sup></label>
-                                                <form action="{{route('uploadPropertySiteViewImage')}}" method="post"
-                                                    id="siteViewImageUpload"
+                                                <form action="{{ route('uploadPropertySiteViewImage') }}"
+                                                    method="post" id="siteViewImageUpload"
                                                     class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
                                                     @csrf
@@ -842,8 +865,8 @@ active
                                                 </form><br>
 
                                                 <label for="">Floor Plan Image<sup>*</sup></label>
-                                                <form action="{{route('uploadPropertyFloorPlanImage')}}" method="post"
-                                                    id="floorPlanImageUpload"
+                                                <form action="{{ route('uploadPropertyFloorPlanImage') }}"
+                                                    method="post" id="floorPlanImageUpload"
                                                     class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
                                                     @csrf
@@ -867,7 +890,8 @@ active
 
                                                 <label for="">Living Room Image<sup>*</sup></label>
                                                 <form action="{{ route('uploadLivingRoomImage') }}" method="post"
-                                                    id="livingRoomImage" class="dropzone dz-clickable primary-dropzone"
+                                                    id="livingRoomImage"
+                                                    class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="dz-default dz-message">
@@ -911,7 +935,8 @@ active
 
                                                 <label for="">Location Map Image<sup>*</sup></label>
                                                 <form action="{{ route('uploadLocationMapImage') }}" method="post"
-                                                    id="locationMapImage" class="dropzone dz-clickable primary-dropzone"
+                                                    id="locationMapImage"
+                                                    class="dropzone dz-clickable primary-dropzone"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="dz-default dz-message">
@@ -932,7 +957,7 @@ active
                                                 </form><br>
 
                                                 {{-- <button type="button" id="prev_step" class="btn btn-primary btn-sm"
-                                                    --}} {{-- onclick="stepper.previous()">Previous Step</button>--}}
+                                                    --}} {{-- onclick="stepper.previous()">Previous Step</button> --}}
                                                 <button type="submit" class="btn btn-primary btn-sm"
                                                     style="background-color: #dc3545; border: none;">Submit</button>
                                             </div>
@@ -970,8 +995,8 @@ active
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
         integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{url('/')}}/front/assets/js/property_category_fields.js"></script>
-    <script src="{{url('/')}}/front/assets/js/post_property.js"></script>
+    <script src="{{ url('/') }}/front/assets/js/property_category_fields.js"></script>
+    <script src="{{ url('/') }}/front/assets/js/post_property.js"></script>
     <script>
         $(document).ready(function() {
             $(".js-select2").select2({
@@ -1014,7 +1039,7 @@ active
                         $("#property_category_dropdown").append(
                             '<option value="' +
                             value
-                                .id + '">' + value.property_category_name +
+                            .id + '">' + value.property_category_name +
                             '</option>');
 
                     });
@@ -1044,7 +1069,7 @@ active
                         $.each(result.city, function(key, value) {
                             $("#city_dropdown").append('<option value="' +
                                 value
-                                    .id + '">' + value.city +
+                                .id + '">' + value.city +
                                 '</option>');
                         });
                         // $('#sd').show();
@@ -1069,27 +1094,27 @@ active
         });
     </script>
     <script>
-        Dropzone.options.bannerImageUpload={
-            maxFilesize:2,
+        Dropzone.options.bannerImageUpload = {
+            maxFilesize: 2,
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
         }
 
-        Dropzone.options.masterImageUpload={
-            maxFilesize:2,
+        Dropzone.options.masterImageUpload = {
+            maxFilesize: 2,
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             addRemoveLinks: true,
         }
 
-        Dropzone.options.siteViewImageUpload={
-            maxFilesize:2,
+        Dropzone.options.siteViewImageUpload = {
+            maxFilesize: 2,
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             addRemoveLinks: true,
         }
 
-        Dropzone.options.floorPlanImageUpload={
-            maxFilesize:2,
+        Dropzone.options.floorPlanImageUpload = {
+            maxFilesize: 2,
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             addRemoveLinks: true,
         }
@@ -1137,14 +1162,14 @@ active
         }
     </script>
     <script>
-        $( function() {
-            $( "#available_from" ).datepicker({
+        $(function() {
+            $("#available_from").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 minDate: 0,
                 dateFormat: 'dd-mm-yy',
             });
-        } );
+        });
     </script>
 
 </body>

@@ -157,7 +157,7 @@ $(document).ready(function () {
             $("#descr_error").html('');
             descrError = false;
         }
-    }
+    }2
 
     /* Property Price Validation */
     let priceError = false;

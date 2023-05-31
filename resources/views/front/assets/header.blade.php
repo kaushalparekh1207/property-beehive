@@ -11,7 +11,7 @@
                     <ul>
                         <li class="list-buttons">
                             <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
-                                    class="fas fa-sign-in-alt me-2"></i>Log In</a>
+                                    class="fas fa-user me-2"></i>Log In</a>
                         </li>
                     </ul>
                 </div>
@@ -24,28 +24,54 @@
 
                     </li>
 
-                    <li><a href="JavaScript:Void(0);">Searches<span class="submenu-indicator"></span></a>
+                    <li><a href="JavaScript:Void(0);">Buy<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="">Grid Layout<span class="submenu-indicator"></span></a>
+                            <li><a href="">Ready to Move<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">List Layout<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Owner Properties<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Search With Map<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Newly Launched<span class="submenu-indicator"></span></a>
 
                             </li>
                         </ul>
                     </li>
-                    <li><a href="JavaScript:Void(0);">Home Loan<span class="submenu-indicator"></span></a>
+                    <li><a href="JavaScript:Void(0);">Rent<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="JavaScript:Void(0);">Grid Layout<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Owner Properties<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">List Layout<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Verified Properties<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Search With Map<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Furnished Homes<span class="submenu-indicator"></span></a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="JavaScript:Void(0);">Sell<span class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="JavaScript:Void(0);">Post Property<span class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="JavaScript:Void(0);">My Dashboard<span class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="JavaScript:Void(0);">Ad Packages<span class="submenu-indicator"></span></a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="JavaScript:Void(0);">Property Services<span class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="JavaScript:Void(0);">Rent Agreement<span class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="JavaScript:Void(0);">Tenant Verification<span class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="JavaScript:Void(0);">Property Lawyers<span class="submenu-indicator"></span></a>
 
                             </li>
                         </ul>
@@ -142,9 +168,14 @@
                                 Property</a>
                         </li>
                     @else
+                    <li class="list-buttons border">
+                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
+                                class="fas fa-home me-2"></i>Post New
+                                Property</a>
+                    </li>
                         <li class="list-buttons border">
                             <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
-                                    class="fas fa-sign-in-alt me-2"></i>Log In</a>
+                                    class="fas fa-user me-2"></i>Log In</a>
                         </li>
                     @endif
                 </ul>

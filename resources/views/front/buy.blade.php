@@ -45,28 +45,28 @@
 
         <!-- ============================ Hero Banner  Start================================== -->
         <div class="image-cover hero-header"
-            style="background:url({{ url('/') }}/front/assets/img/brand/banner-image.jpg) no-repeat;"
+            style="background:url({{ url('/') }}/front/assets/img/brand/buy.jpg) no-repeat;"
             data-overlay="6">
             <div class="container">
 
                 <div class="inner-banner-text text-center">
-                    <h1>Discover A Beautiful<br>Place With Us</h1>
-                    <p class="text-light">Would you explore nature paradise in the world, let't find the best property
-                        in California withus.</p>
+                    <h1>Properties to buy in <br>Ahmedabad</h1>
+                    {{-- <p class="text-light">Would you explore nature paradise in the world, let't find the best property
+                        in California withus.</p> --}}
                 </div>
 
                 <div class="full-search-2 mt-5">
                     <div class="btn-group-horizontal " role="group" aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
                         
                         <label class="btn"  for="vbtn-radio1"><a style="color: #fff;" href="{{url('/')}}/buy" >Buy</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" >
                         <label class="btn"  for="vbtn-radio2"><a style="color: #fff;" href="{{url('/')}}/rent" >Rent</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" >
                         <label class="btn"  for="vbtn-radio3"><a style="color: #fff;" href="{{url('/')}}/pg" >PG</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" >
                         <label class="btn"  for="vbtn-radio4"><a style="color: #fff;" href="{{url('/')}}/land" >Land</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off">
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" >
                         <label class="btn"  for="vbtn-radio5"><a style="color: #fff;" href="{{url('/')}}/commercial" >Commercial</a></label>
                       </div>
                     <div class="hero-search-content colored">
@@ -142,7 +142,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-10 text-center">
                         <div class="sec-heading center">
-                            <h2>Properties on Beehive</h2>
+                            <h2>Properties on Buy</h2>
                             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
                                 voluptatum deleniti atque corrupti quos dolores</p>
                         </div>

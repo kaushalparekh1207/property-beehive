@@ -191,6 +191,12 @@ Route::get('/logout', function () {
 
 Route::get('/', [FrontController::class, 'index'])->name('front_home');
 
+Route::get('/buy', [FrontController::class, 'buy'])->name('front_buy');
+Route::get('/rent', [FrontController::class, 'rent'])->name('front_rent');
+Route::get('/pg', [FrontController::class, 'pg'])->name('front_pg');
+Route::get('/land', [FrontController::class, 'land'])->name('front_land');
+Route::get('/commercial', [FrontController::class, 'commercial'])->name('front_commercial');
+
 // Signup Routes
 Route::get('/sign_up', [UserController::class, 'sign_up'])->name('sign_up');
 Route::post('/sign_up/user', [UserController::class, 'registerUser'])->name('registerUser');

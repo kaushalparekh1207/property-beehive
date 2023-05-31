@@ -8,7 +8,6 @@ use App\Models\Amenities;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
-use App\Models\NonAgricultureProperty;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyBHKDetails;
 use App\Models\PropertyExteriorViewImage;
@@ -22,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
+
 date_default_timezone_set("Asia/Kolkata");
 
 class PropertyMasterController extends Controller
@@ -43,7 +43,7 @@ class PropertyMasterController extends Controller
         $states = State::where('flag', 1)->get();
         $cities = City::where('flag', 1)->get();
         $propertyTypes = PropertyType::where('flag', 1)->get(['id', 'property_type']);
-        return view('admin.property_add', compact( 'propertyTypes', 'states', 'cities', 'amenities'));
+        return view('admin.property_add', compact('propertyTypes', 'states', 'cities', 'amenities'));
     }
 
     /**
@@ -52,6 +52,7 @@ class PropertyMasterController extends Controller
     public function store(Request $request)
     {
         $propertyMasterModel = new PropertyMaster();
+        $propertyMasterModel->client_master_id = session('user')['id'];
         $propertyMasterModel->property_id = $request->property;
         $propertyMasterModel->property_type_id = $request->propertytype;
         $propertyMasterModel->state_id = $request->state;
@@ -211,7 +212,7 @@ class PropertyMasterController extends Controller
     public function fetchPropertyCategory(Request $request)
     {
         $property_type_id = $request->property_type_id;
-        $data['property_category'] = DB::table('property_categories')->where('property_type_id',$property_type_id)->where("flag", 1)->get(['id', 'property_category_name']);
+        $data['property_category'] = DB::table('property_categories')->where('property_type_id', $property_type_id)->where("flag", 1)->get(['id', 'property_category_name']);
         return response()->json($data);
     }
 
@@ -229,11 +230,11 @@ class PropertyMasterController extends Controller
      */
     public function postProperty()
     {
-        $amenities = Amenities::where('flag',1)->get();
-        $propertyTypes = PropertyType::where('flag',1)->get();
-        $states = State::where('flag',1)->get();
-        $cities = City::where('flag',1)->get();
-        return view('front.post_property',compact('propertyTypes','states','cities','amenities'));
+        $amenities = Amenities::where('flag', 1)->get();
+        $propertyTypes = PropertyType::where('flag', 1)->get();
+        $states = State::where('flag', 1)->get();
+        $cities = City::where('flag', 1)->get();
+        return view('front.post_property', compact('propertyTypes', 'states', 'cities', 'amenities'));
     }
 
     /**
@@ -243,6 +244,7 @@ class PropertyMasterController extends Controller
     public function propertyDataInsertAjax(Request $request)
     {
         $propertyMasterModel = new PropertyMaster();
+        $propertyMasterModel->client_master_id = session('user')['id'];
         $propertyMasterModel->property_status = $request->propertystatus;
         $propertyMasterModel->property_type_id = $request->property_type;
         $propertyMasterModel->property_category_id = $request->property_category_dropdown;
@@ -256,7 +258,7 @@ class PropertyMasterController extends Controller
         $propertyMasterModel->save();
         $lastInsertedPropertyMasterId = $propertyMasterModel->id;
 
-        if($request->property_type == 1){
+        if ($request->property_type == 1) {
 
             // Residential Property Insert //
             $residentialPropertyModel = new ResidentialProperty();
@@ -272,7 +274,7 @@ class PropertyMasterController extends Controller
             $residentialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
             $residentialPropertyModel->any_construction = $request->any_construction;
             $residentialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $residentialPropertyModel->is_in_gated_colony = NULL;
+            $residentialPropertyModel->is_in_gated_colony = null;
             $residentialPropertyModel->carpet_area = $request->carpet_area;
             $residentialPropertyModel->super_area = $request->super_area;
             $residentialPropertyModel->plot_area = $request->plot_area;
@@ -287,9 +289,9 @@ class PropertyMasterController extends Controller
             }
             $saveData = $residentialPropertyModel->save();
             $lastInsertedTypeId = $residentialPropertyModel->id;
-            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
 
-        } else if($request->property_type == 2){
+        } else if ($request->property_type == 2) {
 
             // Commercial Property Insert //
             $commercialPropertyModel = new CommercialProperty();
@@ -307,7 +309,7 @@ class PropertyMasterController extends Controller
             $commercialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
             $commercialPropertyModel->any_construction = $request->any_construction;
             $commercialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $commercialPropertyModel->is_in_gated_colony = NULL;
+            $commercialPropertyModel->is_in_gated_colony = null;
             $commercialPropertyModel->carpet_area = $request->carpet_area;
             $commercialPropertyModel->super_area = $request->super_area;
             $commercialPropertyModel->width_of_entrance = $request->width_of_entrance;
@@ -326,8 +328,8 @@ class PropertyMasterController extends Controller
             $commercialPropertyModel->monthly_rent = $request->monthly_rent;
             $saveData = $commercialPropertyModel->save();
             $lastInsertedTypeId = $commercialPropertyModel->id;
-            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
-        }  else if($request->property_type == 3){
+            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+        } else if ($request->property_type == 3) {
 
             // Industrial Property Insert //
             $industrialPropertyModel = new IndustrialProperty();
@@ -359,9 +361,9 @@ class PropertyMasterController extends Controller
             $industrialPropertyModel->monthly_rent = $request->monthly_rent;
             $saveData = $industrialPropertyModel->save();
             $lastInsertedTypeId = $industrialPropertyModel->id;
-            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
 
-        } else if($request->property_type == 4){
+        } else if ($request->property_type == 4) {
 
             // Agricultural Property Insert //
             $agriculturalPropertyModel = new AgricultureProperty();
@@ -374,7 +376,7 @@ class PropertyMasterController extends Controller
             $agriculturalPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
             $agriculturalPropertyModel->any_construction = $request->any_construction;
             $agriculturalPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $agriculturalPropertyModel->is_in_gated_colony = NULL;
+            $agriculturalPropertyModel->is_in_gated_colony = null;
             $agriculturalPropertyModel->carpet_area = $request->carpet_area;
             $agriculturalPropertyModel->super_area = $request->super_area;
             $agriculturalPropertyModel->width_of_entrance = $request->width_of_entrance;
@@ -393,13 +395,12 @@ class PropertyMasterController extends Controller
             $agriculturalPropertyModel->monthly_rent = $request->monthly_rent;
             $saveData = $agriculturalPropertyModel->save();
             $lastInsertedTypeId = $agriculturalPropertyModel->id;
-            $request->session()->put('property_master_id',$lastInsertedPropertyMasterId);
+            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
         }
 
         // Add Property Amenities
         $amenitiesArray = $request->amenitiesArray;
-        if($amenitiesArray <> [])
-        {
+        if ($amenitiesArray != []) {
             foreach ($amenitiesArray as $amenity) {
                 $propertyAmenities = new PropertyAmenities();
                 $propertyAmenities->property_master_id = $lastInsertedPropertyMasterId;

@@ -186,4 +186,19 @@ class FrontController extends Controller
 
         return redirect()->back();
     }
+
+    public function showInquiryList()
+    {
+        $InquiryList = Inquiry::join('client_master', 'client_master.id', '=', 'inquiries.client_master_id')
+            ->join('property_masters', 'property_masters.id', '=', 'inquiries.property_master_id')
+            ->where('inquiries.client_master_id', '=', session('user')['id'])
+            ->where('inquiries.flag', 1)
+            ->where('client_master.flag', 1)
+            ->where('property_masters.flag', 1)
+            ->get(['inquiries.name', 'inquiries.contact', 'inquiries.email', 'property_masters.name_of_project',]);
+
+        // echo $InquiryList;
+        // exit;
+        return view('front.inquiry_property_list', compact('InquiryList'));
+    }
 }

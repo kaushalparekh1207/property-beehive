@@ -499,7 +499,7 @@
                                                                                     value="{{ $amenity->id }}"
                                                                                     type="checkbox">
                                                                                 <label for="a-1"
-                                                                                    class="form-check-label">{{ $amenity->amenitie }}</label>
+                                                                                    class="form-check-label">{{ $amenity->amenities }}</label>
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>

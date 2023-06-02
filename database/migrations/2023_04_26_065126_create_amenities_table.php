@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('amenities', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('amenities', 100);
-        //     $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
-        //     $table->integer('created_by')->nullable();
-        //     $table->integer('updated_by')->nullable();
-        //     $table->timestamps();
-        // });
+        Schema::create('amenities', function (Blueprint $table) {
+            $table->id();
+            $table->string('amenities', 100);
+            $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

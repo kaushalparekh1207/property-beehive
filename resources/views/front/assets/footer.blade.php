@@ -5,11 +5,14 @@
 
                 <div class="col-lg-3 col-md-4">
                     <div class="footer-widget">
-                        <img src="{{url('/')}}/front/assets/img/brand/PROPERTY_BEEHIVE_LOGO.png" class="img-footer" alt="">
+                        <img src="{{ url('/') }}/front/assets/img/brand/pROPERTY_bEEHIVE_white.png"
+                            class="img-footer" alt="">
                         <div class="footer-add">
                             <p>Collins Street West, Victoria 8007, Australia.</p>
-                            <p><span class="ftp-info"><i class="fa fa-phone" aria-hidden="true"></i>+1 246-345-0695</span></p>
-                            <p><span class="ftp-info"><i class="fa fa-envelope" aria-hidden="true"></i>info@example.com</span></p>
+                            <p><span class="ftp-info"><i class="fa fa-phone" aria-hidden="true"></i>+1
+                                    246-345-0695</span></p>
+                            <p><span class="ftp-info"><i class="fa fa-envelope"
+                                        aria-hidden="true"></i>info@example.com</span></p>
                         </div>
 
                     </div>
@@ -46,7 +49,7 @@
                         <ul class="footer-menu">
                             <li><a href="JavaScript:Void(0);">My Profile</a></li>
                             <li><a href="JavaScript:Void(0);">My account</a></li>
-                            <li><a href="JavaScript:Void(0);">My Property</a></li>
+                            <li><a href="{{ route('myProperties') }}">My Property</a></li>
                             <li><a href="JavaScript:Void(0);">Favorites</a></li>
                             <li><a href="JavaScript:Void(0);">Cart</a></li>
                         </ul>
@@ -57,8 +60,12 @@
                     <div class="footer-widget">
                         <h4 class="widget-title">Download Apps</h4>
                         <div class="app-wrap">
-                            <p><a href="JavaScript:Void(0);"><img src="{{url('/')}}/front/assets/img/Google-Play-Badge.svg" class="img-fluid" alt=""></a></p>
-                            <p><a href="JavaScript:Void(0);"><img src="{{url('/')}}/front/assets/img/App-Store-Badge.svg" class="img-fluid" alt=""></a></p>
+                            <p><a href="JavaScript:Void(0);"><img
+                                        src="{{ url('/') }}/front/assets/img/Google-Play-Badge.svg"
+                                        class="img-fluid" alt=""></a></p>
+                            <p><a href="JavaScript:Void(0);"><img
+                                        src="{{ url('/') }}/front/assets/img/App-Store-Badge.svg" class="img-fluid"
+                                        alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +79,8 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-12 col-md-12">
-                    <p class="mb-0">© 2023 Veshm. Designd By <a href="https://www.hackberrysoftech.com/">hackberry softech pvt. ltd</a> All Rights Reserved</p>
+                    <p class="mb-0">© 2023 Veshm. Designd By <a href="https://www.hackberrysoftech.com/">hackberry
+                            softech pvt. ltd</a> All Rights Reserved</p>
                 </div>
 
             </div>

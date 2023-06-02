@@ -237,7 +237,7 @@ class UserController extends Controller
     public function loginUser(Request $request)
     {
         $input = $request->input('contact_no');
-//        $name = User::where('contact', $input)->pluck('name')->first();
+        $email = User::where('contact', $input)->pluck('email')->first();
         $client_type_id = User::where('contact', $input)->pluck('client_type_id')->first();
         $role_name = ClientType::where('id', $client_type_id)->pluck('client_type')->first();
         $user_id = User::where('contact', $input)->pluck('id')->first();
@@ -258,7 +258,7 @@ class UserController extends Controller
                 Cookie::queue('saved_input', $input, 1440);
                 Cookie::queue('saved_password', $request->get('password'), 1440);
             }
-            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $input, 'name' => $user_name, 'city' => $city, 'state' => $state]);
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $input, 'email' => $email, 'name' => $user_name, 'city' => $city, 'state' => $state]);
             return redirect()->route('front_home');
         } else {
             toastr()->error('Invalid Info !');

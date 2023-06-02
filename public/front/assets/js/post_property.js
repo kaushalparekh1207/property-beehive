@@ -5,15 +5,26 @@ $(document).ready(function () {
     //     validatePropertyType();
     // });
     function validatePropertyStatus() {
-        var pstatus = $('.propertyStatus:checked').val();
-        if (pstatus == null || pstatus == "" || (!$('#propertyStatusRadio').is(':checked'))) {
+        var pstatusSale = $('.propertyStatusSale:checked').val();
+        var pstatusRent = $('.propertyStatusRent:checked').val();
+        var pstatusPg = $('.propertyStatusPg:checked').val();
+        if (pstatusSale == null || pstatusSale == "" || (!$('#propertyStatusSaleRadio').is(':checked'))) {
+            $("#property_status_error").html('');
+            propertyStatusError = false;
+        } else if (pstatusRent == null || pstatusRent == "" || (!$('#propertyStatusRentRadio').is(':checked'))) {
+            $("#property_status_error").html('');
+            propertyStatusError = false;
+        }else if (pstatusPg == null || pstatusPg == "" || (!$('#propertyStatusPgRadio').is(':checked'))) {
+            $("#property_status_error").html('');
+            propertyStatusError = false;
+            
+        }else{
             $("#property_status_error").html('* Please Select One Option');
             propertyStatusError = true;
             stepper.previous();
             return false;
-        } else {
-            $("#property_status_error").html('');
-            propertyStatusError = false;
+
+           
         }
     }
 
@@ -202,7 +213,7 @@ $(document).ready(function () {
 
 function insertProperty()
 {
-    var propertystatus = $('.propertyStatus:checked').val();
+    var propertystatus = $('.property_status:checked').val();
     var property_type = $('#property_type').val();
     var property_category_dropdown = $('#property_category_dropdown').val();
     var state_id = $('#state_id').val();
@@ -211,6 +222,8 @@ function insertProperty()
     var address = $('#address').val();
     var name_of_project = $('#name_of_project').val();
     var no_of_flats = $('.no_of_flats:checked').val();
+    console.log("no_of_flats");
+    console.log(no_of_flats);
     var total_floors = $('#total_floors').val();
     var total_bedrooms = $('#total_bedrooms').val();
     var total_balconies = $('#total_balconies').val();

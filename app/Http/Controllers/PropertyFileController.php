@@ -7,6 +7,13 @@ use App\Models\PropertyFloorPlanImage;
 use App\Models\PropertyMaster;
 use App\Models\PropertyMasterPlanImage;
 use App\Models\PropertySiteViewImage;
+use App\Models\PropertyExteriorViewImage;
+use App\Models\PropertyLivingRoomImage;
+use App\Models\PropertyBedroomImage;
+use App\Models\PropertyKitchenImage;
+use App\Models\PropertyBathroomImage;
+use App\Models\PropertyLocationMapImage;
+use App\Models\PropertyOtherImage;
 use Illuminate\Http\Request;
 
 class PropertyFileController extends Controller
@@ -42,10 +49,10 @@ class PropertyFileController extends Controller
     public function uploadPropertySiteViewImage(Request $request)
     {
         $siteViewImageModel = new PropertySiteViewImage();
-        $siteViewImageModel = $request->file('file');
-        $site_view_image_name = uniqid() . '_' . $siteViewImageModel->getClientOriginalName();
+        $siteViewImage = $request->file('file');
+        $site_view_image_name = uniqid() . '_' . $siteViewImage->getClientOriginalName();
         $path = storage_path('app/public/property/site_view_image/');
-        $site_view_image_name->move($path, $site_view_image_name);
+        $siteViewImage->move($path, $site_view_image_name);
         $siteViewImageModel->property_master_id = session('property_master_id');
         $siteViewImageModel->site_view_image = $site_view_image_name;
         $siteViewImageModel->save();
@@ -55,14 +62,15 @@ class PropertyFileController extends Controller
     public function uploadPropertyFloorPlanImage(Request $request)
     {
         $floorPlanImageModel = new PropertyFloorPlanImage();
-        $floorPlanImage = $request->file('file');
-        $floor_plan_image_name = uniqid() . '_' . $floorPlanImage->getClientOriginalName();
+        $floorPlanImage= $request->file('file');
+        $site_view_image_name = uniqid() . '_' . $floorPlanImage->getClientOriginalName();
         $path = storage_path('app/public/property/floor_plan_image/');
-        $floor_plan_image_name->move($path, $floor_plan_image_name);
+        $floorPlanImage->move($path, $site_view_image_name);
         $floorPlanImageModel->property_master_id = session('property_master_id');
-        $floorPlanImageModel->site_view_image = $floor_plan_image_name;
+        $floorPlanImageModel->floor_plan_image = $site_view_image_name;
         $floorPlanImageModel->save();
-        return response()->json(['success' => $floor_plan_image_name]);
+        return response()->json(['success' => $site_view_image_name]);
+
     }
 
     public function uploadExteriorViewImage(Request $request)

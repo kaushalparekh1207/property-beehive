@@ -169,15 +169,15 @@
                                
                                 <div class="veshm-list-img-slide">
                                     <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-1.png"
+                                        <div><a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                    src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
+                                                    class="img-fluid mx-auto"  alt=""></a></div>
+                                        {{-- <div><a href="single-property-1.html"><img
+                                                    src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
                                                     class="img-fluid mx-auto" alt=""></a></div>
                                         <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
+                                                    src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
+                                                    class="img-fluid mx-auto" alt=""></a></div> --}}
                                     </div>
                                 </div>
                             </div>

@@ -121,24 +121,24 @@
                                                                             <label>I want to <sup>*</sup></label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio"
-                                                                                class="form-check-input propertyStatus"
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input property_status propertyStatusSale"
                                                                                 name="property_status" type="radio"
                                                                                 value="Sale">
                                                                             <label for="a-1"
                                                                                 class="form-check-label">Sale</label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio"
-                                                                                class="form-check-input propertyStatus"
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input property_status propertyStatusRent"
                                                                                 name="property_status" type="radio"
                                                                                 value="Rent/Lease">
                                                                             <label for="a-2"
                                                                                 class="form-check-label">Rent/Lease</label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                            <input id="propertyStatusRadio"
-                                                                                class="form-check-input propertyStatus"
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input property_status propertyStatusPg"
                                                                                 name="property_status" type="radio"
                                                                                 value="PG/Hostel">
                                                                             <label for="a-3"
@@ -499,7 +499,7 @@
                                                                                     value="{{ $amenity->id }}"
                                                                                     type="checkbox">
                                                                                 <label for="a-1"
-                                                                                    class="form-check-label">{{ $amenity->amenities }}</label>
+                                                                                    class="form-check-label">{{ $amenity->amenitie }}</label>
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
@@ -696,25 +696,7 @@
                                                                 <input type="text" id="available_from"
                                                                     name="available_from" class="form-control"
                                                                     placeholder="Select Date">
-                                                                <select class="js-select2-disablesearch"
-                                                                    name="age" id="age"
-                                                                    style="width: 100%;">
-                                                                    <option value="" selected disabled>Select
-                                                                        One
-                                                                    </option>
-                                                                    <option value="New Construction">Select Date
-                                                                    </option>
-                                                                    <option value="Less than 5 Years">Less than 5 Years
-                                                                    </option>
-                                                                    <option value="5 to 10 Years">5 to 10 Years
-                                                                    </option>
-                                                                    <option value="10 to 15 Years">10 to 15 Years
-                                                                    </option>
-                                                                    <option value="15 to 20 Years">15 to 20 Years
-                                                                    </option>
-                                                                    <option value="Above 20 Years">Above 20 Years
-                                                                    </option>
-                                                                </select>
+                                                               
                                                             </div>
 
                                                             <div class="form-group col-md-12 property_age"
@@ -958,8 +940,8 @@
 
                                                 {{-- <button type="button" id="prev_step" class="btn btn-primary btn-sm"
                                                     --}} {{-- onclick="stepper.previous()">Previous Step</button> --}}
-                                                <button type="submit" class="btn btn-primary btn-sm"
-                                                    style="background-color: #dc3545; border: none;">Submit</button>
+                                                <a href="{{ route('myProperties') }}" class="btn btn-primary btn-sm"
+                                                    style="background-color: #dc3545; border: none;">Submit</a>
                                             </div>
                                         </div>
                                     </div>

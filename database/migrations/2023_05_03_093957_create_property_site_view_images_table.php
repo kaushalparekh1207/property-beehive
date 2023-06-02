@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_site_view_images', function (Blueprint $table) {
+        Schema::create('property_site_view_image', function (Blueprint $table) {
             $table->id();
             $table->integer('property_master_id');
             $table->string('site_view_image', 99)->nullable();

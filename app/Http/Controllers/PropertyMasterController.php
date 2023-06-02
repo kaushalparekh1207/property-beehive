@@ -242,7 +242,9 @@ class PropertyMasterController extends Controller
      */
 
     public function propertyDataInsertAjax(Request $request)
-    {
+    {  
+
+    
         $propertyMasterModel = new PropertyMaster();
         $propertyMasterModel->client_master_id = session('user')['id'];
         $propertyMasterModel->property_status = $request->propertystatus;

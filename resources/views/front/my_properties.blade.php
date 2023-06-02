@@ -102,11 +102,11 @@
                                                                                 <div class="dash_prt_wrap">
                                                                                     <div class="dash_prt_thumb">
                                                                                         @if ($residential->cover_image == null)
-                                                                                            <img src={{ url('storage/public/property/banner_image/no.jpg') }}
+                                                                                            <img src={{ url('front\assets\img\ag-10.png') }}
                                                                                                 class="img-fluid"
                                                                                                 alt="">
                                                                                         @else
-                                                                                            <img src={{ url('storage/public/property/banner_image/' . $residential->cover_image) }}
+                                                                                            <img src="{{asset('storage/property/banner_image/'. $residential->cover_image) }}"
                                                                                                 class="img-fluid"
                                                                                                 alt="">
                                                                                         @endif

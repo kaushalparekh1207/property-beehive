@@ -29,7 +29,8 @@
                             <li><a href="">Ready to Move<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Owner Properties<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Owner Properties<span
+                                        class="submenu-indicator"></span></a>
 
                             </li>
                             <li><a href="JavaScript:Void(0);">Newly Launched<span class="submenu-indicator"></span></a>
@@ -39,10 +40,12 @@
                     </li>
                     <li><a href="JavaScript:Void(0);">Rent<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="JavaScript:Void(0);">Owner Properties<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Owner Properties<span
+                                        class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Verified Properties<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Verified Properties<span
+                                        class="submenu-indicator"></span></a>
 
                             </li>
                             <li><a href="JavaScript:Void(0);">Furnished Homes<span class="submenu-indicator"></span></a>
@@ -68,10 +71,12 @@
                             <li><a href="JavaScript:Void(0);">Rent Agreement<span class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Tenant Verification<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Tenant Verification<span
+                                        class="submenu-indicator"></span></a>
 
                             </li>
-                            <li><a href="JavaScript:Void(0);">Property Lawyers<span class="submenu-indicator"></span></a>
+                            <li><a href="JavaScript:Void(0);">Property Lawyers<span
+                                        class="submenu-indicator"></span></a>
 
                             </li>
                         </ul>
@@ -152,6 +157,8 @@
                                                     class="fa fa-user-tie"></i>My Profile</a></li>
                                         <li class="@yield('my_properties')"><a href="{{ route('myProperties') }}"><i
                                                     class="fa fa-tasks"></i>My Properties</a></li>
+                                        <li class="@yield('inqury_list')"><a href="{{ route('showInquiryList') }}"><i
+                                                    class="fa fa-list"></i>Inquiry List</a></li>
                                         <li><a href="{{ route('postProperty') }}"><i class="fa fa-pen-nib"></i>Post New
                                                 Property</a></li>
                                         {{--                <li><a href="choose-package.html"><i class="fa fa-gift"></i>Choose Package<span class="expiration">10 days left</span></a></li> --}}
@@ -168,11 +175,11 @@
                                 Property</a>
                         </li>
                     @else
-                    <li class="list-buttons border">
-                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
-                                class="fas fa-home me-2"></i>Post New
+                        <li class="list-buttons border">
+                            <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
+                                    class="fas fa-home me-2"></i>Post New
                                 Property</a>
-                    </li>
+                        </li>
                         <li class="list-buttons border">
                             <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><i
                                     class="fas fa-user me-2"></i>Log In</a>

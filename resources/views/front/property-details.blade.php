@@ -236,11 +236,11 @@
                                 aria-labelledby="amenitiesinfo">
                                 <div class="vesh-detail-bloc-body">
                                     <ul class="avl-features third color">
-										
+
                                         @foreach ($amenities as $amenitie)
-											@if($amenitie->amenitie != Null)
-                                            <li>{{ $amenitie->amenitie }}</li>
-											@endif
+                                            @if ($amenitie->amenitie != null)
+                                                <li>{{ $amenitie->amenitie }}</li>
+                                            @endif
                                         @endforeach
 
                                         {{-- <li>Swimming Pool</li>
@@ -1443,7 +1443,7 @@
                                                 class="btn font--medium btn-light-success full-width"><i
                                                     class="fa-solid fa-paper-plane me-2"></i>Send An offer</a></div>
                                         <div class="single-button"><a href="JavaScript:Void(0);"
-                                                data-bs-toggle="modal" data-bs-target="#message"
+                                                data-bs-toggle="modal" data-bs-target="#inquiry"
                                                 class="btn font--medium btn-theme full-width"><i
                                                     class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
                                     </div>
@@ -1477,3 +1477,92 @@
 </body>
 
 </html>
+
+
+<!--
+|--------------------------------------------------------------------------
+| Inquiry Modal Starts
+|--------------------------------------------------------------------------
+-->
+<div class="modal fade" id="inquiry" tabindex="-1" role="dialog" aria-labelledby="inquirymodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered inquiry-pop-form" role="document">
+        <div class="modal-content" id="inquirymodal">
+            <span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="fas fa-close"></i></span>
+            <div class="modal-header">
+                <div class="mdl-thumb"><img
+                        src="{{ url('/') }}/front/assets/img/brand/PROPERTY_BEEHIVE_LOGO.png" class="img-fluid"
+                        width="200" alt=""></div>
+                <div class="sec-heading center">
+                    <h3>Inquiry Form</h3>
+                    {{-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                voluptatum deleniti atque corrupti quos dolores</p> --}}
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-inquiry-form">
+                    <form id="inquiryForm" method="post" action="{{ route('inquiryDetails') }}">
+                        @csrf
+                        <input type="hidden" name="property_master_id" value="{{ $propertis_details->id }}">
+                        <input type="hidden" name="client_master_id" value="{{ $client_data->id }}">
+
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" placeholder="Name" name="name"
+                                id="inquiry_name" value="{{ session('user')['name'] }}" required>
+                            <label>Name</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="number" class="form-control" placeholder="Contact Number"
+                                name="contact_no" id="inquiry_contact" value="{{ session('user')['contact_no'] }}"
+                                required>
+                            <label>Contact Number</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" placeholder="Email" name="email"
+                                id="inquiry_email" value="{{ session('user')['email'] }}" required>
+                            <label>Email
+                                Id</label>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit"
+                                class="btn btn-primary full-width font--bold btn-lg">Submit</button>
+                        </div>
+
+                        {{-- <div class="modal-flex-item mb-3">
+                            <div class="modal-flex-first">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="remember"
+                                        id="remember" @if (Cookie::has('saved_name')) checked @endif>
+                                    <label class="form-check-label" for="remember">Save Password</label>
+                                </div>
+                            </div>
+                            <div class="modal-flex-last">
+                                <a href="JavaScript:Void(0);">Forget Password?</a>
+                            </div>
+                        </div> --}}
+                    </form>
+                </div>
+                {{-- <div class="social-login">
+                    <ul>
+                        <li><a href="JavaScript:Void(0);" class="btn connect-fb"><i
+                                    class="fa-brands fa-facebook"></i>Facebook</a></li>
+                        <li><a href="JavaScript:Void(0);" class="btn connect-google"><i
+                                    class="fa-brands fa-google"></i>Google+</a></li>
+                    </ul>
+                </div> --}}
+            </div>
+            {{-- <div class="modal-footer">
+                <p>Don't have an account yet?<a href="{{ route('sign_up') }}" class="theme-cl font--bold ms-1">Sign
+                        Up</a>
+                </p>
+            </div> --}}
+        </div>
+    </div>
+</div>
+<!--
+|--------------------------------------------------------------------------
+| Inquiry Modal Ends
+|--------------------------------------------------------------------------
+-->

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
+
 Route::get('/admin', function () {
     return redirect('admin/login');
 });
@@ -237,8 +238,12 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 // My Properties
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
 
+// Inquiry Property List
+Route::get('/inquiry_list', [FrontController::class, 'showInquiryList'])->name('showInquiryList');
+
 // Property Details
 Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
+Route::post('/property-detail/inquiry', [FrontController::class, 'inquiryDetails'])->name('inquiryDetails');
 //Route::view('/property-details', 'front.property-details')->name('property_details');
 Route::view('/property-result', 'front.property-result')->name('property_result');
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');

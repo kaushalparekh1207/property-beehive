@@ -1386,71 +1386,83 @@
                             </ul>
                         </div>
 
-                        <div class="pg-side-groups">
-
-                            <div class="pg-side-block">
-                                <div class="pg-side-block-head">
-                                    <div class="pg-side-left">
-                                        <div class="pg-side-thumb"><img
-                                                src="{{ url('/') }}/front/assets/img/team-1.jpg"
-                                                class="img-fluid circle" alt=""></div>
-                                    </div>
-                                    <div class="pg-side-right">
-                                        <div class="pg-side-right-caption">
-                                            <h4>{{ $client_data->name }}</h4>
-                                            @if (($client_data->city != null) & ($client_data->state != null))
-                                                <span><i
-                                                        class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
-                                                    {{ $client_data->state }}</span>
-                                            @endif
-
+                            <div class="pg-side-groups">
+                                <div class="pg-side-block">
+                                    <div class="pg-side-block-head">
+                                        <div class="pg-side-left">
+                                            <div class="pg-side-thumb"><img
+                                                    src="{{ url('/') }}/front/assets/img/team-1.jpg"
+                                                    class="img-fluid circle" alt=""></div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="pg-side-block-body">
-                                    <div class="pg-side-block-info">
-                                        <div class="vl-elfo-group">
-                                            <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                                            @if ($client_data->contact != null)
-                                                <div class="vl-elfo-caption">
-                                                    <h6>Call Us</h6>
-                                                    <p>+91 {{ $client_data->contact }}</p>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        @if ($client_data->email != null)
-                                            <div class="vl-elfo-group">
-                                                <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i></div>
+                                        <div class="pg-side-right">
+                                            <div class="pg-side-right-caption">
+                                                <h4>{{ $client_data->name }}</h4>
+                                                @if (($client_data->city != null) & ($client_data->state != null))
+                                                    <span><i
+                                                            class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
+                                                        {{ $client_data->state }}</span>
+                                                @endif
 
-                                                <div class="vl-elfo-caption">
-                                                    <h6>Drop A Mail</h6>
-                                                    <p>{{ $client_data->email }}</p>
-                                                </div>
-
-                                            </div>
-                                        @endif
-                                        <div class="vl-elfo-group">
-                                            <div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
-                                            <div class="vl-elfo-caption">
-                                                <h6>Website</h6>
-                                                <p>Https://themezhub.com</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pg-side-block-buttons">
-                                        <div class="single-button"><a href="JavaScript:Void(0);"
-                                                data-bs-toggle="modal" data-bs-target="#offer"
-                                                class="btn font--medium btn-light-success full-width"><i
-                                                    class="fa-solid fa-paper-plane me-2"></i>Send An offer</a></div>
-                                        <div class="single-button"><a href="JavaScript:Void(0);"
-                                                data-bs-toggle="modal" data-bs-target="#inquiry"
-                                                class="btn font--medium btn-theme full-width"><i
-                                                    class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
-                                    </div>
+
+                                    @if (session()->has('user'))
+                                        <div class="pg-side-block-body">
+                                            <div class="pg-side-block-info">
+                                                <div class="vl-elfo-group">
+                                                    <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i>
+                                                    </div>
+                                                    @if ($client_data->contact != null)
+                                                        <div class="vl-elfo-caption">
+                                                            <h6>Call Us</h6>
+                                                            <p>+91 {{ $client_data->contact }}</p>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                @if ($client_data->email != null)
+                                                    <div class="vl-elfo-group">
+                                                        <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i>
+                                                        </div>
+
+                                                        <div class="vl-elfo-caption">
+                                                            <h6>Drop A Mail</h6>
+                                                            <p>{{ $client_data->email }}</p>
+                                                        </div>
+
+                                                    </div>
+                                                @endif
+                                                {{-- <div class="vl-elfo-group">
+                                                    <div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
+                                                    <div class="vl-elfo-caption">
+                                                        <h6>Website</h6>
+                                                        <p>Https://themezhub.com</p>
+                                                    </div>
+                                                </div> --}}
+                                            </div>
+                                    @endif
+                                            <div class="pg-side-block-buttons">
+                                                {{-- <div class="single-button"><a href="JavaScript:Void(0);"
+                                                        data-bs-toggle="modal" data-bs-target="#offer"
+                                                        class="btn font--medium btn-light-success full-width"><i
+                                                            class="fa-solid fa-paper-plane me-2"></i>Send An offer</a>
+                                                </div> --}}
+                                                @if(session()->has('user'))
+                                                    <div class="single-button"><a href="JavaScript:Void(0);"
+                                                            data-bs-toggle="modal" data-bs-target="#inquiry"
+                                                            class="btn font--medium btn-theme full-width"><i
+                                                                class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
+                                                @else
+                                                    <div class="single-button"><a href="JavaScript:Void(0);"
+                                                        data-bs-toggle="modal" data-bs-target="#login"
+                                                        class="btn font--medium btn-theme full-width"><i
+                                                            class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
+                                                @endif
+                                            </div>
+                                        </div>
                                 </div>
+
                             </div>
-
-                        </div>
                     </div>
 
                 </div>
@@ -1507,22 +1519,39 @@
                         <input type="hidden" name="client_master_id" value="{{ $client_data->id }}">
 
                         <div class="form-floating mb-4">
-                            <input type="text" class="form-control" placeholder="Name" name="name"
-                                id="inquiry_name" value="{{ session('user')['name'] }}" required>
-                            <label>Name</label>
+                            @if (session()->has('user'))
+                                <input type="text" class="form-control" placeholder="Name" name="name"
+                                    id="inquiry_name" value="{{ session('user')['name'] }}" required>
+                                <label>Name</label>
+                            @else
+                                <input type="text" class="form-control" placeholder="Name" name="name"
+                                    id="inquiry_name" value="" required>
+                                <label>Name</label>
+                            @endif
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="number" class="form-control" placeholder="Contact Number"
-                                name="contact_no" id="inquiry_contact" value="{{ session('user')['contact_no'] }}"
-                                required>
-                            <label>Contact Number</label>
+                            @if (session()->has('user'))
+                                <input type="number" class="form-control" placeholder="Contact Number"
+                                    name="contact_no" id="inquiry_contact"
+                                    value="{{ session('user')['contact_no'] }}" required>
+                                <label>Contact Number</label>
+                            @else
+                                <input type="number" class="form-control" placeholder="Contact Number"
+                                    name="contact_no" id="inquiry_contact" value="" required>
+                                <label>Contact Number</label>
+                            @endif
                         </div>
 
                         <div class="form-floating mb-4">
-                            <input type="text" class="form-control" placeholder="Email" name="email"
-                                id="inquiry_email" value="{{ session('user')['email'] }}" required>
-                            <label>Email
-                                Id</label>
+                            @if (session()->has('user'))
+                                <input type="text" class="form-control" placeholder="Email" name="email"
+                                    id="inquiry_email" value="{{ session('user')['email'] }}" required>
+                                <label>Email Id</label>
+                            @else
+                                <input type="text" class="form-control" placeholder="Email" name="email"
+                                    id="inquiry_email" value="" required>
+                                <label>Email Id</label>
+                            @endif
                         </div>
 
                         <div class="form-group">

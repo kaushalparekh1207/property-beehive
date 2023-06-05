@@ -171,8 +171,7 @@ class FrontController extends Controller
         // $client_name = User::where('id', $request->client_master_id)->pluck('name')->first();
         $inquirydata->property_master_id = $request->property_master_id;
         $propertis_name = PropertyMaster::where('id', $request->property_master_id)->pluck('name_of_project')->first();
-        $name = session('user')['name'];
-        $inquirydata->inqury_type = $propertis_name . ' Property Inquiry By ' . $name;
+        $inquirydata->inqury_type = $propertis_name . ' Property Inquiry By ' . session('user')['name'];
         $inquirydata->name = $request->name;
         $inquirydata->contact = $request->contact_no;
         $inquirydata->email = $request->email;

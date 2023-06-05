@@ -106,7 +106,7 @@
                                                                                                 class="img-fluid"
                                                                                                 alt="">
                                                                                         @else
-                                                                                            <img src="{{asset('storage/property/banner_image/'. $residential->cover_image) }}"
+                                                                                            <img src="{{ asset('storage/property/banner_image/' . $residential->cover_image) }}"
                                                                                                 class="img-fluid"
                                                                                                 alt="">
                                                                                         @endif
@@ -208,7 +208,8 @@
                                                                                 <div class="_leads_action">
                                                                                     <a href="#"><i
                                                                                             class="fas fa-edit"></i></a>
-                                                                                    <a href="#"><i
+                                                                                    <a
+                                                                                        href="{{ route('destroyMyProperties', $residential->id) }}"><i
                                                                                             class="fas fa-trash"></i></a>
                                                                                 </div>
                                                                             </td>

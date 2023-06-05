@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PropertyMaster;
 use App\Models\ResidentialProperty;
+use Illuminate\Support\Facades\DB;
 
 
 class MyPropertiesController extends Controller
@@ -21,9 +22,19 @@ class MyPropertiesController extends Controller
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
             ->where('property_categories.flag', 1)
-            ->get(['property_masters.name_of_project', 'property_masters.property_status', 'property_masters.expected_price', 'property_masters.locality', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_categories.property_category_name', 'property_masters.cover_image']);
+            ->get(['property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.expected_price', 'property_masters.locality', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_categories.property_category_name', 'property_masters.cover_image']);
         // echo $allPropertyDetails;
         // exit;
         return view('front.my_properties', compact('allPropertyDetails'));
+    }
+
+    public function destroyMyProperties($id)
+    {
+        $data = DB::table('property_masters')
+            ->leftJoin('residential_properties', 'property_masters.id', '=', 'residential_properties.property_master_id')
+            ->where('property_masters.id', $id);
+        DB::table('residential_properties')->where('property_master_id', $id)->delete();
+        $data->delete();
+        return redirect()->back();
     }
 }

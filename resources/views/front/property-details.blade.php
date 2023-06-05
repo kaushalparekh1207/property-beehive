@@ -593,8 +593,13 @@
                                         </div>
                                     </div>
                                     <div class="fls-by3">
-                                        <button type="button" class="btn btn-success font--medium">Submit
-                                            Review</button>
+                                        {{-- <button type="button" class="btn btn-success font--medium">Submit
+                                            Review</button> --}}
+                                            <div class="single-button">
+                                                <a class="btn btn-success font--medium" data-bs-toggle="modal" data-bs-target="#review"
+                                                class="btn font--medium btn-theme full-width">Submit
+                                                    Review</a>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -1302,8 +1307,9 @@
 								</div>
 							</div> --}}
 
-                        <!-- Submit Reviews -->
-                        <div class="vesh-detail-bloc">
+
+                            <!-- Submit Reviews -->
+                        {{-- <div class="vesh-detail-bloc">
                             <div class="vesh-detail-bloc_header">
                                 <h4 class="property_block_title no-arrow">Submit Review</h4>
                             </div>
@@ -1362,7 +1368,9 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div>  --}}
+                            <!-- End Reviews -->
+
 
                     </div>
                     <!-- property main detail -->
@@ -1374,14 +1382,14 @@
                         <!-- Like And Share -->
                         <div class="vesh-detail-bloc">
                             <ul class="like_share_list">
-                                <li><a href="JavaScript:Void(0);" class="btn btn-light-success" data-toggle="tooltip"
-                                        data-original-title="Share"><i
-                                            class="fa-solid fa-share-from-square me-2"></i>Share</a></li>
+                                <li><a href="https://wa.me/?text={{url()->current()}}" class="btn btn-light-success" data-toggle="tooltip"
+                                        target="_blank" data-original-title="Share" data-action="share/whatsapp/share"><i
+                                            class="fa-brands fa-whatsapp me-2"></i>Share</a></li>
                                 <li><a href="JavaScript:Void(0);" class="btn btn-light-danger" data-toggle="tooltip"
                                         data-original-title="Save"><i
                                             class="fa-solid fa-heart-circle-check me-2"></i>Save</a></li>
-                                <li><a href="JavaScript:Void(0);" class="btn btn-light-primary" data-toggle="tooltip"
-                                        data-original-title="Save"><i class="fa-solid fa-print me-2"></i>Print</a>
+                                <li><button id="copyBtn" data-text="{{url()->current()}}" class="btn btn-light-primary" data-toggle="tooltip"
+                                        data-original-title="Save"><i class="fa-solid fa-copy me-2"></i>Copy Link</button>
                                 </li>
                             </ul>
                         </div>
@@ -1448,12 +1456,12 @@
                                                             class="fa-solid fa-paper-plane me-2"></i>Send An offer</a>
                                                 </div> --}}
                                                 @if(session()->has('user'))
-                                                    <div class="single-button"><a href="JavaScript:Void(0);"
+                                                    <div class="single-button"><a
                                                             data-bs-toggle="modal" data-bs-target="#inquiry"
                                                             class="btn font--medium btn-theme full-width"><i
                                                                 class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
                                                 @else
-                                                    <div class="single-button"><a href="JavaScript:Void(0);"
+                                                    <div class="single-button"><a
                                                         data-bs-toggle="modal" data-bs-target="#login"
                                                         class="btn font--medium btn-theme full-width"><i
                                                             class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
@@ -1485,6 +1493,19 @@
 
 
     @include('front.assets.scripts')
+    <script>
+        const copyBtn = document.querySelector('#copyBtn');
+        copyBtn.addEventListener('click', e => {
+            const input = document.createElement('input');
+            input.value = copyBtn.dataset.text;
+            document.body.appendChild(input);
+            input.select();
+            if(document.execCommand('copy')) {
+                alert('Link Copied: ' + input.value);
+                document.body.removeChild(input);
+            }
+        });
+    </script>
 
 </body>
 
@@ -1593,5 +1614,85 @@
 <!--
 |--------------------------------------------------------------------------
 | Inquiry Modal Ends
+|--------------------------------------------------------------------------
+-->
+
+
+<!--
+|--------------------------------------------------------------------------
+| Review Modal Starts
+|--------------------------------------------------------------------------
+-->
+<div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="reviewmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered review-pop-form" role="document">
+        <div class="modal-content" id="reviewmodal">
+            <span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="fas fa-close"></i></span>
+        <!-- Submit Reviews -->
+        <div class="vesh-detail-bloc">
+            <div class="vesh-detail-bloc_header">
+                <h4 class="property_block_title no-arrow">Submit Review</h4>
+            </div>
+            <div class="panels">
+                <div class="vesh-detail-bloc-body">
+                    <form class="simple-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="Your Name">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control"
+                                        placeholder="Your eMail">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Phone No.</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="Your Contact">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Ratting</label>
+                                    <select class="form-control">
+                                        <option value="1">1 : Very Poor</option>
+                                        <option value="2">2 : Poor</option>
+                                        <option value="3">3 : Good</option>
+                                        <option value="4">4 : Very Good</option>
+                                        <option value="5">5 : Superb</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Your Message</label>
+                                    <textarea class="form-control ht-80" placeholder="Messages"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <button class="btn btn-theme" type="submit">Submit
+                                        Review</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+|--------------------------------------------------------------------------
+| Review Modal Ends
 |--------------------------------------------------------------------------
 -->

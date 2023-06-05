@@ -43,7 +43,7 @@ Route::get('/admin/logout', function () {
     return redirect('admin/login');
 })->name('admin_logout');
 
-Route::view('/admin/dashboard', 'admin.index')->name('index')->middleware('checksession');
+Route::get('/admin/dashboard', [AdminController::class, 'Dashboard_data'])->name('index')->middleware('checksession');
 // Route::get('/admin/dashboard', function () {
 //     if (!session()->has('admin')) {
 //         return redirect()->route('login');
@@ -172,7 +172,7 @@ Route::group(['middleware' => 'checksession'], function () {
 
 // Get City Name Based on State Drop Down
 Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
-
+Route::get('/admin/inquiry/', [PropertyMasterController::class, 'inquiry_Show'])->name('inquiry_listing');
 // Get Property Category Based on Property Type
 Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
 
@@ -237,7 +237,7 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 
 // My Properties
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
-
+Route::get('/my_properties/delete/{id}', [MyPropertiesController::class, 'destroyMyProperties'])->name('destroyMyProperties')->middleware('checkfrontsession');
 // Inquiry Property List
 Route::get('/inquiry_list', [FrontController::class, 'showInquiryList'])->name('showInquiryList');
 

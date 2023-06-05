@@ -321,6 +321,13 @@
                                   <p>Property Listing</p>
                               </a>
                           </li>
+                          <li class="nav-item">
+                            <a href="{{ route('inquiry_listing') }}" class="nav-link @yield('inquiry_listing')">
+                                <i class="fas fa-angle-right nav-icon ml-1"></i>
+                                <p>Inquiry Listing</p>
+                            </a>
+                        </li>
+
                       </ul>
                   </li>
               </ul>

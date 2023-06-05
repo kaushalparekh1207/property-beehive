@@ -17,6 +17,7 @@ use App\Models\PropertyOtherImage;
 use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
 use App\Models\State;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -30,8 +31,23 @@ class PropertyMasterController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.property_listing');
+    {   
+        $propertymaster = PropertyMaster::where('flag', 1)->get();
+        // echo"<pre>";
+        // echo $propertymaster;
+        // echo"</pre>";
+        // exit;
+        return view('admin.property_listing',compact('propertymaster'));
+    }
+
+    public function inquiry_Show()
+    {   
+        $inquiry_data = Inquiry::where('flag', 1)->get();
+        // echo"<pre>";
+        // echo $propertymaster;
+        // echo"</pre>";
+        // exit;
+        return view('admin.inquiry_listing',compact('inquiry_data'));
     }
 
     /**

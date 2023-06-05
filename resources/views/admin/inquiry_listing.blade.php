@@ -2,7 +2,7 @@
 @section('setup')
     menu-is-opening menu-open
 @endsection
-@section('Amenities')
+@section('inquiry_listing')
     active
 @endsection
 <!DOCTYPE html>
@@ -33,15 +33,15 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Property Listing</h1>
+                            <h1 class="m-0">Inquiry Listing</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
+                            {{-- <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                                 <li class="breadcrumb-item">Amenities
                                 </li>
 
-                            </ol>
+                            </ol> --}}
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -63,19 +63,23 @@
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Title</th>
                                         <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Amount</th>
+                                        <th>contact</th>
+                                        <th>email</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                @foreach ($propertymaster as $propertymasters)
+                                @foreach ($inquiry_data as $propertymasters)
                                 <tr><td>{{$propertymasters->id}}</td>
-                                    <td> <a href=""> {{$propertymasters->name_of_project}}</a>
+                                    <td> <a href=""> {{$propertymasters->inqury_type}}</a>
+                                        
+                                    </td>
+                                    <td> <a href=""> {{$propertymasters->name}}</a>
                                         
                                        </td>
-                                    <td>{{$propertymasters->property_status}}</td>
-                                    <td>{{$propertymasters->expected_price}}</td>
+                                    <td>{{$propertymasters->contact}}</td>
+                                    <td>{{$propertymasters->email}}</td>
                                     <td><div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                           Action
@@ -94,9 +98,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Title</th>
                                         <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Amount</th>
+                                        <th>contact</th>
+                                        <th>email</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\AdminRole;
 use App\Models\AdminUser;
+use App\Models\ClientMaster;
+use App\Models\Inquiry;
+use App\Models\PropertyMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -40,7 +43,19 @@ class AdminController extends Controller
         }
 
     }
-
+    public function Dashboard_data()
+    {   
+        $totalProperty = PropertyMaster::select('count(*)')
+            ->count();
+            $totalClient = ClientMaster::select('count(*)')
+            ->count();
+            $totalInquiry = Inquiry::select('count(*)')
+            ->count();
+           
+            // echo $totalRecordsPropertyMaster;
+           
+        return view('admin.index',compact('totalProperty','totalInquiry','totalClient'));
+    }
     public function index()
     {
         return view('admin.admin_users');

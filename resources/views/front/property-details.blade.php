@@ -224,40 +224,42 @@
                         </div>
 
                         <!-- Amenties Detail -->
-                        <div class="vesh-detail-bloc">
-                            <div class="vesh-detail-bloc_header">
-                                <a data-bs-toggle="collapse" data-parent="#amenitiesinfo"
-                                    data-bs-target="#amenitiesinfo" aria-controls="amenitiesinfo"
-                                    href="javascript:void(0);" aria-expanded="false">
-                                    <h4 class="property_block_title">Amenties</h4>
-                                </a>
-                            </div>
-                            <div id="amenitiesinfo" class="panel-collapse collapse show"
-                                aria-labelledby="amenitiesinfo">
-                                <div class="vesh-detail-bloc-body">
-                                    <ul class="avl-features third color">
+                        @if (session()->has('user'))
+                            <div class="vesh-detail-bloc">
+                                <div class="vesh-detail-bloc_header">
+                                    <a data-bs-toggle="collapse" data-parent="#amenitiesinfo"
+                                        data-bs-target="#amenitiesinfo" aria-controls="amenitiesinfo"
+                                        href="javascript:void(0);" aria-expanded="false">
+                                        <h4 class="property_block_title">Amenties</h4>
+                                    </a>
+                                </div>
+                                <div id="amenitiesinfo" class="panel-collapse collapse show"
+                                    aria-labelledby="amenitiesinfo">
+                                    <div class="vesh-detail-bloc-body">
+                                        <ul class="avl-features third color">
 
-                                        @foreach ($amenities as $amenitie)
-                                            @if ($amenitie->amenitie != null)
-                                                <li>{{ $amenitie->amenitie }}</li>
-                                            @endif
-                                        @endforeach
+                                            @foreach ($amenities as $amenitie)
+                                                @if ($amenitie->amenitie != null)
+                                                    <li>{{ $amenitie->amenitie }}</li>
+                                                @endif
+                                            @endforeach
 
-                                        {{-- <li>Swimming Pool</li>
-											<li>Central Heating</li>
-											<li>Laundry Room</li>
-											<li>Gym</li>
-											<li>Alarm</li>
-											<li>Window Covering</li>
-											<li>Internet</li>
-											<li>Pets Allow</li>
-											<li>Free WiFi</li>
-											<li>Car Parking</li>
-											<li>Spa & Massage</li> --}}
-                                    </ul>
+                                            {{-- <li>Swimming Pool</li>
+                                                <li>Central Heating</li>
+                                                <li>Laundry Room</li>
+                                                <li>Gym</li>
+                                                <li>Alarm</li>
+                                                <li>Window Covering</li>
+                                                <li>Internet</li>
+                                                <li>Pets Allow</li>
+                                                <li>Free WiFi</li>
+                                                <li>Car Parking</li>
+                                                <li>Spa & Massage</li> --}}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
 
                         <!-- All features Detail -->
@@ -323,6 +325,7 @@
 							</div> --}}
 
                         <!-- Floor Plan -->
+                        @if (session()->has('user'))
                         <div class="vesh-detail-bloc">
                             <div class="vesh-detail-bloc_header">
                                 <a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo"
@@ -416,6 +419,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 
                         <!-- Property History -->
                         {{-- <div class="vesh-detail-bloc">
@@ -1388,8 +1392,8 @@
                                 <li><a href="JavaScript:Void(0);" class="btn btn-light-danger" data-toggle="tooltip"
                                         data-original-title="Save"><i
                                             class="fa-solid fa-heart-circle-check me-2"></i>Save</a></li>
-                                <li><button id="copyBtn" data-text="{{url()->current()}}" class="btn btn-light-primary" data-toggle="tooltip"
-                                        data-original-title="Save"><i class="fa-solid fa-copy me-2"></i>Copy Link</button>
+                                <li><button id="copyBtn" data-text="{{url()->current()}}" class="btn btn-light-primary" data-toggle="tooltip" data-original-title="Save"><i class="fa-solid fa-copy me-2"></i>Copy Link</button>
+                                        <span id="custom-tooltip">copied!</sapn>
                                 </li>
                             </ul>
                         </div>
@@ -1404,7 +1408,7 @@
                                         </div>
                                         <div class="pg-side-right">
                                             <div class="pg-side-right-caption">
-                                                <h4>{{ $client_data->name }}</h4>
+                                                <h4>@php $name = $client_data->name; echo substr_replace($name, '******', 2, strlen($name) -14 ) @endphp</h4>
                                                 @if (($client_data->city != null) & ($client_data->state != null))
                                                     <span><i
                                                             class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
@@ -1415,16 +1419,17 @@
                                         </div>
                                     </div>
 
-                                    @if (session()->has('user'))
+                                    {{-- @if (session()->has('user')) --}}
                                         <div class="pg-side-block-body">
                                             <div class="pg-side-block-info">
                                                 <div class="vl-elfo-group">
                                                     <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i>
                                                     </div>
-                                                    @if ($client_data->contact != null)
+                                                        @if ($client_data->contact != null)
                                                         <div class="vl-elfo-caption">
                                                             <h6>Call Us</h6>
-                                                            <p>+91 {{ $client_data->contact }}</p>
+                                                            <p>+91 @php $contact = $client_data->contact;
+                                                            echo preg_replace("/(^.|.$)(*SKIP)(*F)|(.)/","*",$contact); @endphp</p>
                                                         </div>
                                                     @endif
                                                 </div>
@@ -1432,10 +1437,12 @@
                                                     <div class="vl-elfo-group">
                                                         <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i>
                                                         </div>
-
                                                         <div class="vl-elfo-caption">
                                                             <h6>Drop A Mail</h6>
-                                                            <p>{{ $client_data->email }}</p>
+                                                            <p>@php $email = $client_data->email;
+                                                            echo substr($email, 2, 4).'****'.substr($email, strpos($email, "@"));
+                                                            // echo preg_replace('/\B[^@.]/', '*', $email)
+                                                            @endphp</p>
                                                         </div>
 
                                                     </div>
@@ -1448,7 +1455,7 @@
                                                     </div>
                                                 </div> --}}
                                             </div>
-                                    @endif
+                                    {{-- @endif --}}
                                             <div class="pg-side-block-buttons">
                                                 {{-- <div class="single-button"><a href="JavaScript:Void(0);"
                                                         data-bs-toggle="modal" data-bs-target="#offer"
@@ -1501,8 +1508,11 @@
             document.body.appendChild(input);
             input.select();
             if(document.execCommand('copy')) {
-                alert('Link Copied: ' + input.value);
                 document.body.removeChild(input);
+                document.getElementById("custom-tooltip").style.display = "inline";
+                setTimeout( function() {
+                    document.getElementById("custom-tooltip").style.display = "none";
+                }, 1000);
             }
         });
     </script>

@@ -296,12 +296,13 @@ class UserController extends Controller
 
         if ($saveData) {
             $user_id = User::where('id', $request->id)->pluck('id')->first();
+            $email = User::where('contact', $request->contact)->pluck('email')->first();
             $client_type_id = User::where('contact', $request->contact)->pluck('client_type_id')->first();
             $role_name = ClientType::where('id', $client_type_id)->pluck('client_type')->first();
             $city = City::where('id', $request->city_id)->pluck('city')->first();
             $state = State::where('id', $request->state_id)->pluck('state')->first();
             session()->pull('user');
-            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $request->contact, 'name' => $request->name, 'city' => $city, 'state' => $state]);
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $request->contact, 'email' => $email,  'name' => $request->name, 'city' => $city, 'state' => $state]);
             return back()->with('success', 'Profile Details Updated Successfully');
         } else {
             return back()->with('error', 'Something Went Wrong');

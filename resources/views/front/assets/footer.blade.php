@@ -1,3 +1,6 @@
+@php
+    $allDetails = footer();
+@endphp
 <footer class="dark-footer skin-dark-footer">
     <div>
         <div class="container">
@@ -30,7 +33,38 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-3 col-md-4">
+                    <div class="footer-widget">
+                        <h4 class="widget-title">The Highlights</h4>
+                        <ul class="footer-menu">
+                            <li>
+                                @foreach ($allDetails as $details)
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <a href="{{ route('propertydetails', [$details->id, $details->property_type_id, $details->name_of_project, $details->client_master_id]) }}"><img
+                                                    src="{{ url('/') }}/front/assets/img/prt-11.png"
+                                                    class="img-fluid1" alt=""></a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="{{ route('propertydetails', [$details->id, $details->property_type_id, $details->name_of_project, $details->client_master_id]) }}"><h5 style="color: #FA962A" class="mx-1">{{$details->name_of_project}}</h5></a>
+                                                <h6 class="mx-1" style="color: white">₹{{$details->expected_price}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </li>
+                            {{-- <li><a href="JavaScript:Void(0);">My Houses</a></li>
+                            <li><a href="JavaScript:Void(0);">Restaurant</a></li>
+                            <li><a href="JavaScript:Void(0);">Nightlife</a></li>
+                            <li><a href="JavaScript:Void(0);">Villas</a></li> --}}
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-2 col-md-4">
                     <div class="footer-widget">
                         <h4 class="widget-title">The Highlights</h4>
                         <ul class="footer-menu">
@@ -41,7 +75,7 @@
                             <li><a href="JavaScript:Void(0);">Villas</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-widget">
@@ -56,15 +90,15 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-2 col-md-6">
                     <div class="footer-widget">
                         <h4 class="widget-title">Download Apps</h4>
                         <div class="app-wrap">
                             <p><a href="JavaScript:Void(0);"><img
                                         src="{{ url('/') }}/front/assets/img/Google-Play-Badge.svg"
-                                        class="img-fluid" alt=""></a></p>
+                                        class="img-fluid1" alt=""></a></p>
                             <p><a href="JavaScript:Void(0);"><img
-                                        src="{{ url('/') }}/front/assets/img/App-Store-Badge.svg" class="img-fluid"
+                                        src="{{ url('/') }}/front/assets/img/App-Store-Badge.svg" class="img-fluid1"
                                         alt=""></a></p>
                         </div>
                     </div>

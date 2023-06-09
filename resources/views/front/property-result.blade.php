@@ -172,9 +172,9 @@
                                     </select>
                                 </div>
                                 <ul class="shorting-list">
-                                    <li><a href="grid-full-style-1.html" class="border"><i
+                                    <li><a href="javascript:void(0);" onclick="divVisibility('cell');" class="border"><i
                                                 class="fas fa-table-cells-large"></i></a></li>
-                                    <li><a href="list-full-style-1.html" class="active border"><i
+                                    <li><a href="javascript:void(0);" onclick="divVisibility('list');" class="border"><i
                                                 class="fas fa-list"></i></a></li>
                                 </ul>
                             </div>
@@ -182,9 +182,8 @@
                     </div>
                 </div>
 
-                <!-- Start All Listing -->
-                <div class="row gx-3 gy-4">
-
+                <!-- Start All Cell View -->
+                <div id="cell" class="row gx-3 gy-4">
                     <!-- Single Property -->
                     @if ($resultSearch->count() == 0)
                         <div class="row justify-content-center">
@@ -198,7 +197,6 @@
                     @else
                         @foreach ($resultSearch as $result)
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-
                                 <div class="veshm-list-prty">
                                     <div class="veshm-list-prty-figure">
                                         <div class="veshm-list-img-slide">
@@ -298,7 +296,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         @endforeach
                     @endif
@@ -773,6 +770,128 @@
                     </div> --}}
 
                 </div>
+                <!-- End All Cell View -->
+
+                 <!-- Start All List View -->
+                 <div id="list" class="row gx-3 gy-4" style="display: none;">
+                    @if ($resultSearch->count() == 0)
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 col-md-10 text-center">
+                            <div class="sec-heading center">
+                                <h2>Record Not Found</h2>
+                                <p>Please enter correct details</p>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                 @foreach ($resultSearch as $result)
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="veshm-list-prty">
+                        <div class="veshm-list-prty-figure1">
+                            <div class="veshm-list-img-slide">
+                                <div class="veshm-list-click">
+                                    <div><a href="single-property-1.html"><img
+                                                src="{{ url('/') }}/front/assets/img/prt-11.png"
+                                                class="img-fluid mx-auto" alt=""></a></div>
+                                    <div><a href="single-property-1.html"><img
+                                                src="{{ url('/') }}/front/assets/img/prt-2.png"
+                                                class="img-fluid mx-auto" alt=""></a></div>
+                                    <div><a href="single-property-1.html"><img
+                                                src="{{ url('/') }}/front/assets/img/prt-3.png"
+                                                class="img-fluid mx-auto" alt=""></a></div>
+                                    <div><a href="single-property-1.html"><img
+                                                src="{{ url('/') }}/front/assets/img/prt-4.png"
+                                                class="img-fluid mx-auto" alt=""></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="veshm-list-prty-caption">
+                            <div class="veshm-list-kygf">
+                                <div class="veshm-list-kygf-flex">
+                                    {{-- <div class="veshm-list-typess rent"> --}}.
+                                    @if ($result->property_status == 'Sale')
+                                        <div class="veshm-type fr-sale"><span>For
+                                                {{ $result->property_status }}</span>
+                                        </div>
+                                    @elseif($result->property_status == 'Rent/Lease')
+                                        <div class="veshm-type"><span>For
+                                                {{ $result->property_status }}</span></div>
+                                    @elseif($result->property_status == 'PG/Hostel')
+                                        <div class="veshm-type fr-pg"><span>For
+                                                {{ $result->property_status }}</span></div>
+                                    @endif
+                                    {{-- <span>For {{ $result->property_status }}</span> --}}
+                                    {{-- </div> --}}
+                                    <h5 class="rlhc-title-name verified"><a
+                                            href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
+                                            class="prt-link-detail">{{ $result->name_of_project }}</a>
+                                    </h5>
+                                    <div class="vesh-aget-rates">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span class="resy-98">322 Reviews</span>
+                                    </div>
+                                </div>
+                                <div class="veshm-list-head-flex">
+                                    <button class="btn btn-like active" type="button"><i
+                                            class="fa-solid fa-heart-circle-check"></i></button>
+                                </div>
+                            </div>
+                            <div class="veshm-list-middle">
+                                <div class="veshm-list-icons">
+                                    <ul>
+                                        @if ($result->total_bedrooms != null)
+                                            <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
+                                                    Bed</span></li>
+                                        @endif
+                                        @if ($result->total_bathrooms != null)
+                                            <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
+                                                    Bath</span></li>
+                                        @endif
+                                        @if ($result->carpet_area != null)
+                                            <li><i class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
+                                                    Sqft</span>
+                                        @endif
+                                        </li>
+                                        <li><i class="fa-solid fa-calendar-days"></i><span>Built
+                                                2017</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="veshm-list-footers">
+                                <div class="veshm-list-ftr786">
+                                    <div class="rlhc-price">
+                                        <h4 class="rlhc-price-name theme-cl">
+                                            ₹{{ $result->expected_price }}
+                                            @if ($result->property_status == 'Sale')
+                                                <span class="monthly">One Time</span>
+                                            @elseif ($result->property_status == 'Rent/Lease')
+                                                <span class="monthly">/Months</span>
+                                            @elseif ($result->property_status == 'PG/Hostel')
+                                                <span class="monthly">/Months</span>
+                                            @endif
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="veshm-list-ftr1707">
+                                    <a href="JavaScript:Void(0);" data-bs-toggle="modal"
+                                        data-bs-target="#offer"
+                                        class="btn btn-md btn-primary font--medium">Send Offer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    @endforeach
+                    @endif
+                </div>
+                 <!-- End All List View -->
+
+
 
                 <!-- Start Pagination -->
                 <div class="row">
@@ -831,6 +950,30 @@
                 closeOnSelect: true
             });
         });
+    </script>
+    <script>
+        var divs = ["cell", "list"];
+        var visibleDivId = null;
+        function divVisibility(divId) {
+            if(visibleDivId === divId) {
+                visibleDivId = null;
+            } else {
+                visibleDivId = divId;
+            }
+            hideNonVisibleDivs();
+        }
+        function hideNonVisibleDivs() {
+            var i, divId, div;
+            for(i = 0; i < divs.length; i++) {
+                divId = divs[i];
+                div = document.getElementById(divId);
+                if(visibleDivId === divId) {
+                    div.style.display = "flex";
+                } else {
+                    div.style.display = "none";
+                }
+            }
+        }
     </script>
 
 </body>

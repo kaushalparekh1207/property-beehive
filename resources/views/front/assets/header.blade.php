@@ -79,12 +79,16 @@
                                         class="submenu-indicator"></span></a>
 
                             </li>
-                        </ul>
-                    </li>
-                    <li class="@yield('contact_us')"><a href="contact.php">Contact US<span
+                            <li><a href="JavaScript:Void(0);">Loan<span
                                 class="submenu-indicator"></span></a>
 
                     </li>
+                        </ul>
+                    </li>
+                    {{-- <li class="@yield('contact_us')"><a href="contact.php">Contact US<span
+                                class="submenu-indicator"></span></a>
+
+                    </li> --}}
 
 
 

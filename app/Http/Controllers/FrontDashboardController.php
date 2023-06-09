@@ -11,4 +11,8 @@ class FrontDashboardController extends Controller
     {
         return view('front.dashboard');
     }
+    public function price()
+    {
+        return view('front.our_packages');
+    }
 }

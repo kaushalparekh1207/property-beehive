@@ -40,6 +40,7 @@
                         Properties</a></li>
                 <li class="@yield('inqury_list')"><a href="{{ route('showInquiryList') }}"><i class="fa fa-list"></i>Inquiry
                         List</a></li>
+                        <li class="@yield('our_packages')"><a href="{{ route('our_packages') }}"><i class="fa fa-list"></i>Packages</a></li>
                 <li class="@yield('post_property')"><a href="{{ route('postProperty') }}"><i class="fa fa-pen-nib"></i>Post
                         New Property</a></li>
                 {{--                <li><a href="choose-package.html"><i class="fa fa-gift"></i>Choose Package<span class="expiration">10 days left</span></a></li> --}}

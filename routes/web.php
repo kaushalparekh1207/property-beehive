@@ -207,7 +207,7 @@ Route::post('/sign_in/user', [UserController::class, 'loginUser'])->name('loginU
 
 // Dashboard Routes
 Route::get('/dashboard', [\App\Http\Controllers\FrontDashboardController::class, 'dashboard'])->name('front_dashboard');
-
+Route::get('/our_packages', [\App\Http\Controllers\FrontDashboardController::class, 'price'])->name('our_packages');
 // User Profile Routes
 Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('userProfile');
 Route::post('/profile/edit/updateprofile', [UserController::class, 'editProfile'])->name('editProfile');

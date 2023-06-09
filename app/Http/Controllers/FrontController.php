@@ -200,4 +200,5 @@ class FrontController extends Controller
         // exit;
         return view('front.inquiry_property_list', compact('InquiryList'));
     }
+
 }

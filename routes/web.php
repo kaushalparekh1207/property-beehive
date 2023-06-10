@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AmenitiesController;
+use App\Http\Controllers\BuyPropertyController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MyPropertiesController;
@@ -244,6 +245,27 @@ Route::get('/inquiry_list', [FrontController::class, 'showInquiryList'])->name('
 // Property Details
 Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
 Route::post('/property-detail/inquiry', [FrontController::class, 'inquiryDetails'])->name('inquiryDetails');
-//Route::view('/property-details', 'front.property-details')->name('property_details');
-Route::view('/property-result', 'front.property-result')->name('property_result');
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');
+
+//Buy Property Details
+Route::view('/buy/ready-to-move', 'front.buy_ready_to_move')->name('readyToMove');
+Route::view('/buy/owner-properties', 'front.buy_owner_property')->name('ownerProperties');
+Route::view('/buy/new-launch', 'front.buy_new_launch')->name('newLaunch');
+
+//Rent Property Details
+Route::view('/rent/verified_properties', 'front.rent_verified_properties')->name('verifiedProperties');
+Route::view('/rent/owner-properties', 'front.rent_owner_property')->name('rentOwnerProperties');
+Route::view('/rent/furnished-homes', 'front.rent_furnished_homes')->name('furnishedHomes');
+
+//Sell Property Details
+Route::view('/sell/post-property', 'front.sell_post_property')->name('postProperty');
+Route::view('/sell/my-dashboard', 'front.sell_my_dashboard')->name('myDashboard');
+Route::view('/sell/ad-packages', 'front.sell_ad_packages')->name('adPackages');
+
+//Property Services Details
+Route::view('/property-services/rent-agreement', 'front.ps_rent_agreement')->name('rentAgreement');
+Route::view('/property-services/tenant-verification', 'front.ps_tenant_verification')->name('tenantVerification');
+Route::view('/property-services/property-lawyers', 'front.ps_property_lawyers')->name('propertyLawyers');
+Route::view('/property-services/loan', 'front.ps_loan')->name('loan');
+
+

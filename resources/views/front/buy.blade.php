@@ -10,10 +10,7 @@
 
     <title>Property Beehive</title>
     @include('front.assets.links')
-    <script>
-      
-
-    </script>
+    <script></script>
 </head>
 
 
@@ -45,8 +42,7 @@
 
         <!-- ============================ Hero Banner  Start================================== -->
         <div class="image-cover hero-header"
-            style="background:url({{ url('/') }}/front/assets/img/brand/buy.jpg) no-repeat;"
-            data-overlay="6">
+            style="background:url({{ url('/') }}/front/assets/img/brand/buy.jpg) no-repeat;" data-overlay="6">
             <div class="container">
 
                 <div class="inner-banner-text text-center">
@@ -56,25 +52,37 @@
                 </div>
 
                 <div class="full-search-2 mt-5">
-                    <div class="btn-group-horizontal " role="group" aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
-                        
-                        <label class="btn"  for="vbtn-radio1"><a style="color: #fff;" href="{{url('/')}}/buy" >Buy</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" >
-                        <label class="btn"  for="vbtn-radio2"><a style="color: #fff;" href="{{url('/')}}/rent" >Rent</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off" >
-                        <label class="btn"  for="vbtn-radio3"><a style="color: #fff;" href="{{url('/')}}/pg" >PG</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off" >
-                        <label class="btn"  for="vbtn-radio4"><a style="color: #fff;" href="{{url('/')}}/land" >Land</a></label>
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off" >
-                        <label class="btn"  for="vbtn-radio5"><a style="color: #fff;" href="{{url('/')}}/commercial" >Commercial</a></label>
-                      </div>
-                    <div class="hero-search-content colored">
-                        <form id="property_result" action="{{ route('property_result_search') }}" method="post">
-                            @csrf
+                    <form id="property_result" action="{{route('searchBuyProperty')}}" method="post">
+                        @csrf
+                        <div class="btn-group-horizontal " role="group"
+                            aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
+                            <input type="radio" class="btn-check" name="buy" value="Sale" id="vbtn-radio1"
+                                autocomplete="off" checked>
+
+                            <label class="btn" for="vbtn-radio1"><a style="color: #fff;"
+                                    href="{{ url('/') }}/buy">Buy</a></label>
+                            <input type="radio" class="btn-check" name="rent" value="Rent/Lease" id="vbtn-radio2"
+                                autocomplete="off">
+                            <label class="btn" for="vbtn-radio2"><a style="color: #fff;"
+                                    href="{{ url('/') }}/rent">Rent</a></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3"
+                                autocomplete="off">
+                            <label class="btn" for="vbtn-radio3"><a style="color: #fff;"
+                                    href="{{ url('/') }}/pg">PG</a></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4"
+                                autocomplete="off">
+                            <label class="btn" for="vbtn-radio4"><a style="color: #fff;"
+                                    href="{{ url('/') }}/land">Land</a></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5"
+                                autocomplete="off">
+                            <label class="btn" for="vbtn-radio5"><a style="color: #fff;"
+                                    href="{{ url('/') }}/commercial">Commercial</a></label>
+                        </div>
+                        <div class="hero-search-content colored">
+
                             <div class="row classic-search-box m-0 gx-2">
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    
+                                {{-- <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             <input type="text" class="form-control"
@@ -82,11 +90,25 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                </div> --}}
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             {{-- <select class="form-control" name="property_type_id"> --}}
+                                                <select class="js-select2" name="city_id" id="city_id_dropdown">
+                                                    <option value="">Select City</option>
+                                                    @foreach ($city as $cities)
+                                                        <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-with-icon">
                                             <select class="js-select2" name="property_type_id"
                                                 id="property_type_dropdown">
                                                 <option value="">Property types</option>
@@ -94,19 +116,6 @@
                                                     <option value="{{ $type->id }}">
                                                         {{ $type->property_category_name }}
                                                     </option>
-                                                @endforeach
-                                            </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="input-with-icon">
-                                            <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                <option value="">Select City</option>
-                                                @foreach ($city as $cities)
-                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                                                 @endforeach
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs mb-2"></i>
@@ -127,32 +136,32 @@
                                 </div>
 
                             </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
-
             </div>
+
         </div>
-        <!-- ============================ Hero Banner End ================================== -->
+    </div>
+    <!-- ============================ Hero Banner End ================================== -->
 
-        <!-- ============================= Explore Categories =============================== -->
-        <section>
-            <div class="container">
+    <!-- ============================= Explore Categories =============================== -->
+    <section>
+        <div class="container">
 
-                <div class="row justify-content-center">
-                    <div class="col-lg-7 col-md-10 text-center">
-                        <div class="sec-heading center">
-                            <h2>Properties on Buy</h2>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores</p>
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-10 text-center">
+                    <div class="sec-heading center">
+                        <h2>Properties on Buy</h2>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum deleniti atque corrupti quos dolores</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="row justify-content gx-3 gy-4">
+            <div class="row justify-content gx-3 gy-4">
 
-                    <!-- Single Property -->
-                    @foreach ($properties as $property)
+                <!-- Single Property -->
+                @foreach ($properties as $property)
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                         <div class="veshm-list-wraps">
                             @if ($property->property_status == 'Sale')
@@ -166,7 +175,7 @@
                             @endif
 
                             <div class="veshm-list-thumb">
-                               
+
                                 <div class="veshm-list-img-slide">
                                     <div class="veshm-list-click">
                                         <div><a href="single-property-1.html"><img
@@ -219,11 +228,11 @@
                                 </div>
 
                                 <div class="resi-prty-offers-box">
-                                    
+
                                     <div class="prty-offers-btn text-center">
-                                        
-                                        <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}" 
-                                             class="btn btn-offer-send">View Details</a>
+
+                                        <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                            class="btn btn-offer-send">View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -231,16 +240,16 @@
                         </div>
                     </div>
                 @endforeach
-                    <!-- End Single Property -->
-                </div>
+                <!-- End Single Property -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        @include('front.assets.footer')
+    @include('front.assets.footer')
 
-        @include('front.assets.modal')
+    @include('front.assets.modal')
 
-        <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 
 
     </div>

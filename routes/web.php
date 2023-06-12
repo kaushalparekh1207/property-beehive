@@ -12,6 +12,7 @@ use App\Http\Controllers\PropertyFileController;
 use App\Http\Controllers\PropertyMasterController;
 use App\Http\Controllers\PropertyTransactionController;
 use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\RentPropertyController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
@@ -193,8 +194,6 @@ Route::get('/logout', function () {
 
 Route::get('/', [FrontController::class, 'index'])->name('front_home');
 
-Route::get('/buy', [FrontController::class, 'buy'])->name('front_buy');
-Route::get('/rent', [FrontController::class, 'rent'])->name('front_rent');
 Route::get('/pg', [FrontController::class, 'pg'])->name('front_pg');
 Route::get('/land', [FrontController::class, 'land'])->name('front_land');
 Route::get('/commercial', [FrontController::class, 'commercial'])->name('front_commercial');
@@ -209,6 +208,15 @@ Route::post('/sign_in/user', [UserController::class, 'loginUser'])->name('loginU
 // Dashboard Routes
 Route::get('/dashboard', [\App\Http\Controllers\FrontDashboardController::class, 'dashboard'])->name('front_dashboard');
 Route::get('/our_packages', [\App\Http\Controllers\FrontDashboardController::class, 'price'])->name('our_packages');
+
+//Buy Property Search Route
+Route::get('/buy', [BuyPropertyController::class, 'buy'])->name('front_buy');
+Route::post('/buy-property-result/search', [BuyPropertyController::class, 'searchBuyProperty'])->name('searchBuyProperty');
+
+//Rent Property Search Route
+Route::get('/rent', [RentPropertyController::class, 'rent'])->name('front_rent');
+Route::post('/rent-property-result/search', [RentPropertyController::class, 'searchRentProperty'])->name('searchRentProperty');
+
 // User Profile Routes
 Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('userProfile');
 Route::post('/profile/edit/updateprofile', [UserController::class, 'editProfile'])->name('editProfile');
@@ -267,5 +275,7 @@ Route::view('/property-services/rent-agreement', 'front.ps_rent_agreement')->nam
 Route::view('/property-services/tenant-verification', 'front.ps_tenant_verification')->name('tenantVerification');
 Route::view('/property-services/property-lawyers', 'front.ps_property_lawyers')->name('propertyLawyers');
 Route::view('/property-services/loan', 'front.ps_loan')->name('loan');
+
+
 
 

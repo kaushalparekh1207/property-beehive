@@ -1,3 +1,9 @@
+@php
+    use App\Models\CommercialProperty;
+    use App\Models\IndustrialProperty;
+    use App\Models\ResidentialProperty;
+    use App\Models\AgriculturalProperty;
+@endphp
 @section('home_page')
     active
 @endsection
@@ -150,6 +156,12 @@
 
                     <!-- Single Property -->
                     @foreach ($properties as $property)
+                        @php
+                            $commercial_property = CommercialProperty::where('flag', 1)->get();
+                            $residential_property = ResidentialProperty::where('flag', 1)->get();
+                            $industrial_property = IndustrialProperty::where('flag', 1)->get();
+                            $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
+                        @endphp
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                             <div class="veshm-list-wraps">
                                 @if ($property->property_status == 'Sale')
@@ -201,12 +213,26 @@
                                             </div>
                                             <div class="veshm-list-icons">
                                                 <ul>
-                                                    <li><i class="fa-solid fa-bed"></i><span>{{ $property->total_bedrooms }}
-                                                            Bed</span></li>
-                                                    <li><i class="fa-solid fa-bath"></i><span>{{ $property->total_bathrooms }}
-                                                            Ba</span></li>
-                                                    <li><i class="fa-solid fa-vector-square"></i><span>{{ $property->carpet_area }}
-                                                            sft</span></li>
+                                                    @foreach ($residential_property as $residential)
+                                                        @if ($property->id == $residential->property_master_id)
+                                                            <li><i class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
+                                                                    Bed</span></li>
+                                                            <li><i class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
+                                                                    Ba</span></li>
+                                                            <li><i class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
+                                                                    sft</span></li>
+                                                        @endif
+                                                    @endforeach
+                                                    @foreach ($commercial_property as $commercial)
+                                                        @if ($property->id == $commercial->property_master_id)
+                                                            <li><i class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
+                                                                    Floor</span></li>
+                                                            <li><i class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
+                                                                    Washroom</span></li>
+                                                            <li><i class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
+                                                                    sft</span></li>
+                                                        @endif
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>

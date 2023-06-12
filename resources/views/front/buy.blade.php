@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="full-search-2 mt-5">
-                    <form id="property_result" action="{{route('searchBuyProperty')}}" method="post">
+                    <form id="property_result" action="{{ route('searchBuyProperty') }}" method="post">
                         @csrf
                         <div class="btn-group-horizontal " role="group"
                             aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
@@ -95,12 +95,12 @@
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             {{-- <select class="form-control" name="property_type_id"> --}}
-                                                <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                    <option value="">Select City</option>
-                                                    @foreach ($city as $cities)
-                                                        <option value="{{ $cities->id }}">{{ $cities->city }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <select class="js-select2" name="city_id" id="city_id_dropdown">
+                                                <option value="">Select City</option>
+                                                @foreach ($city as $cities)
+                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                                                @endforeach
+                                            </select>
 
                                             <i class="fa-solid fa-house-crack mb-2"></i>
                                         </div>

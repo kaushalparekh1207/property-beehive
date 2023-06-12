@@ -17,12 +17,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $properties = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
-            // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
-
-            ->where('property_masters.flag', 1)
-            ->where('residential_properties.flag', 1)
-            ->get(['property_masters.cover_image', 'property_masters.expected_price', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.client_master_id']);
+        $properties = PropertyMaster::where('flag',1)->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
         return view('front.index', compact('properties', 'city', 'propertyType'));

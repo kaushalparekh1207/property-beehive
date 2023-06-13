@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgriculturalProperty;
-use App\Models\AgricultureProperty;
-use Illuminate\Http\Request;
-use App\Models\PropertyMaster;
-use App\Models\PropertyCategory;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
+use App\Models\PropertyCategory;
+use App\Models\PropertyMaster;
 use App\Models\ResidentialProperty;
+use Illuminate\Http\Request;
 
 class BuyPropertyController extends Controller
 {
     public function buy()
     {
-        $properties = PropertyMaster::where('flag',1)->where('property_status', 'Sale')->get();
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Sale')->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
-        return view('front.index', compact('properties', 'city', 'propertyType'));
+        return view('front.buy', compact('properties', 'city', 'propertyType'));
     }
 
     public function searchBuyProperty(Request $request)
@@ -46,7 +45,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.flag', 1)
                     ->where('commercial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
-                    // ->where('city_id', $city_id)
+                // ->where('city_id', $city_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'commercial_properties.furnished_status', 'commercial_properties.carpet_area', 'commercial_properties.property_master_id', 'commercial_properties.age', 'property_masters.client_master_id']);
             } elseif ($residential_property == $property_master) {
@@ -55,7 +54,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.flag', 1)
                     ->where('residential_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
-                    // ->where('city_id', $city_id)
+                // ->where('city_id', $city_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id']);
             } elseif ($industrial_property == $property_master) {
@@ -64,7 +63,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.flag', 1)
                     ->where('industrial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
-                    // ->where('city_id', $city_id)
+                // ->where('city_id', $city_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             } elseif ($industrial_property == $property_master) {
@@ -73,7 +72,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.flag', 1)
                     ->where('industrial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
-                    // ->where('city_id', $city_id)
+                // ->where('city_id', $city_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             } else {
@@ -82,7 +81,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.flag', 1)
                     ->where('agricultural_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
-                    // ->where('city_id', $city_id)
+                // ->where('city_id', $city_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             }
@@ -103,7 +102,7 @@ class BuyPropertyController extends Controller
                     ->where('commercial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
                     ->where('property_masters.city_id', $city_id)
-                    // ->where('property_category_id', $category_id)
+                // ->where('property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'commercial_properties.furnished_status', 'commercial_properties.carpet_area', 'commercial_properties.property_master_id', 'commercial_properties.age', 'property_masters.client_master_id']);
             } elseif ($residential_property == $property_master) {
                 $resultSearch = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
@@ -112,7 +111,7 @@ class BuyPropertyController extends Controller
                     ->where('residential_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
                     ->where('property_masters.city_id', $city_id)
-                    // ->where('property_category_id', $category_id)
+                // ->where('property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id']);
             } elseif ($industrial_property == $property_master) {
                 $resultSearch = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
@@ -121,7 +120,7 @@ class BuyPropertyController extends Controller
                     ->where('industrial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
                     ->where('property_masters.city_id', $city_id)
-                    // ->where('property_category_id', $category_id)
+                // ->where('property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             } elseif ($industrial_property == $property_master) {
                 $resultSearch = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
@@ -130,7 +129,7 @@ class BuyPropertyController extends Controller
                     ->where('industrial_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
                     ->where('property_masters.city_id', $city_id)
-                    // ->where('property_category_id', $category_id)
+                // ->where('property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             } else {
                 $resultSearch = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
@@ -139,7 +138,7 @@ class BuyPropertyController extends Controller
                     ->where('agricultural_properties.flag', 1)
                     ->where('property_masters.property_status', $buy)
                     ->where('property_masters.city_id', $city_id)
-                    // ->where('property_category_id', $category_id)
+                // ->where('property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             }
         } else {

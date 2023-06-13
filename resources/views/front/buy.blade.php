@@ -56,13 +56,13 @@
                         @csrf
                         <div class="btn-group-horizontal " role="group"
                             aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
-                            <input type="radio" class="btn-check" name="buy" value="Sale" id="vbtn-radio1"
+                            <input type="radio" class="btn-check" name="vbtn-radio" value="Sale" id="vbtn-radio1"
                                 autocomplete="off" checked>
 
                             <label class="btn" for="vbtn-radio1"><a style="color: #fff;"
                                     href="{{ url('/') }}/buy">Buy</a></label>
-                            <input type="radio" class="btn-check" name="rent" value="Rent/Lease" id="vbtn-radio2"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="vbtn-radio" value="Rent/Lease"
+                                id="vbtn-radio2" autocomplete="off">
                             <label class="btn" for="vbtn-radio2"><a style="color: #fff;"
                                     href="{{ url('/') }}/rent">Rent</a></label>
                             <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3"
@@ -194,9 +194,7 @@
                                 <div class="veshm-list-head">
                                     <div class="veshm-list-head-caption">
                                         <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">₹@php
-                                                echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                            @endphp
+                                            <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
                                             </h4>
                                             @if ($property->property_status == 'Sale')
                                                 <span class="monthly">One Time</span>

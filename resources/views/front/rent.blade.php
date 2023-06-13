@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="full-search-2 mt-5">
-                    <form id="property_result" action="{{route('searchRentProperty')}}" method="post">
+                    <form id="property_result" action="{{ route('searchRentProperty') }}" method="post">
                         @csrf
                         <div class="btn-group-horizontal " role="group"
                             aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
@@ -194,7 +194,9 @@
                                 <div class="veshm-list-head">
                                     <div class="veshm-list-head-caption">
                                         <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
+                                            <h4 class="rlhc-price-name theme-cl">₹@php
+                                                echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
+                                            @endphp
                                             </h4>
                                             @if ($property->property_status == 'Sale')
                                                 <span class="monthly">One Time</span>

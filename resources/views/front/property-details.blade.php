@@ -118,7 +118,40 @@
                                 </div>
                                 <div class="vesh-detail-headup-last">
                                     <h3 class="prt-price-fix theme-cl">
-                                        ₹{{ $propertis_details->expected_price }}</h3>
+                                        ₹@php
+                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $propertis_details->expected_price);
+                                        @endphp
+                                        {{-- @php
+                                            $number = $propertis_details->expected_price;
+                                            function convertCurrency($number)
+                                            {
+                                                // Convert Price to Crores or Lakhs or Thousands
+                                                $length = strlen($number);
+                                                $currency = '';
+
+                                                if ($length == 4 || $length == 5) {
+                                                    // Thousand
+                                                    $number = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $number);
+                                                    $currency = $number;
+                                                } elseif ($length == 6 || $length == 7) {
+                                                    // Lakhs
+                                                    $number = $number / 100000;
+                                                    $number = round($number, 2);
+                                                    $ext = 'Lac';
+                                                    $currency = $number . ' ' . $ext;
+                                                } elseif ($length == 8 || $length == 9) {
+                                                    // Crores
+                                                    $number = $number / 10000000;
+                                                    $number = round($number, 2);
+                                                    $ext = 'Cr';
+                                                    $currency = $number . ' ' . $ext;
+                                                }
+
+                                                return $currency;
+                                            }
+                                            echo '₹' . convertCurrency($number);
+                                        @endphp --}}
+                                    </h3>
                                     @if ($propertis_details->property_status == 'Sale')
                                         <h3 class="prt-price-fix theme-cl"><span>One Time</span></h3>
                                     @elseif ($propertis_details->property_status == 'Rent/Lease')
@@ -138,10 +171,7 @@
                             <div class="vesh-detail-bloc-body">
                                 <div class="row g-3">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
                                         <p>{{ $allDetails->descr }}</p>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -326,99 +356,100 @@
 
                         <!-- Floor Plan -->
                         @if (session()->has('user'))
-                        <div class="vesh-detail-bloc">
-                            <div class="vesh-detail-bloc_header">
-                                <a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo"
-                                    aria-controls="floorinfo" href="javascript:void(0);" aria-expanded="false">
-                                    <h4 class="property_block_title">Floor Plan</h4>
-                                </a>
-                            </div>
-                            <div id="floorinfo" class="panel-collapse collapse show" aria-labelledby="floorinfo">
-                                <div class="vesh-detail-bloc-body">
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="pills-2d-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-2d" type="button" role="tab"
-                                                aria-controls="pills-2d" aria-selected="true">2D Plans</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-3d-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-3d" type="button" role="tab"
-                                                aria-controls="pills-3d" aria-selected="false">3D Plans</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-elevation-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-elevation" type="button" role="tab"
-                                                aria-controls="pills-elevation"
-                                                aria-selected="false">Elevations</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-2d" role="tabpanel"
-                                            aria-labelledby="pills-2d-tab" tabindex="0">
-                                            <div class="row gx-3 gy-4">
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-1.jpg"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-2.jpg"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-1.jpg"
-                                                            class="img-fluid" alt=""></div>
+                            <div class="vesh-detail-bloc">
+                                <div class="vesh-detail-bloc_header">
+                                    <a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo"
+                                        aria-controls="floorinfo" href="javascript:void(0);" aria-expanded="false">
+                                        <h4 class="property_block_title">Floor Plan</h4>
+                                    </a>
+                                </div>
+                                <div id="floorinfo" class="panel-collapse collapse show" aria-labelledby="floorinfo">
+                                    <div class="vesh-detail-bloc-body">
+                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-2d-tab"
+                                                    data-bs-toggle="pill" data-bs-target="#pills-2d" type="button"
+                                                    role="tab" aria-controls="pills-2d" aria-selected="true">2D
+                                                    Plans</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-3d-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-3d" type="button" role="tab"
+                                                    aria-controls="pills-3d" aria-selected="false">3D Plans</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-elevation-tab"
+                                                    data-bs-toggle="pill" data-bs-target="#pills-elevation"
+                                                    type="button" role="tab" aria-controls="pills-elevation"
+                                                    aria-selected="false">Elevations</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-2d" role="tabpanel"
+                                                aria-labelledby="pills-2d-tab" tabindex="0">
+                                                <div class="row gx-3 gy-4">
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-1.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-2.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-1.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="tab-pane fade" id="pills-3d" role="tabpanel"
-                                            aria-labelledby="pills-3d-tab" tabindex="0">
-                                            <div class="row gx-3 gy-4">
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-3.jpg"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-4.jpg"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-3.jpg"
-                                                            class="img-fluid" alt=""></div>
+                                            <div class="tab-pane fade" id="pills-3d" role="tabpanel"
+                                                aria-labelledby="pills-3d-tab" tabindex="0">
+                                                <div class="row gx-3 gy-4">
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-3.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-4.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-3.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="pills-elevation" role="tabpanel"
-                                            aria-labelledby="pills-elevation-tab" tabindex="0">
-                                            <div class="row gx-3 gy-4">
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-5.webp"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-6.jpg"
-                                                            class="img-fluid" alt=""></div>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4">
-                                                    <div class="floor-thumb"><img
-                                                            src="{{ url('/') }}/front/assets/img/fl-5.webp"
-                                                            class="img-fluid" alt=""></div>
+                                            <div class="tab-pane fade" id="pills-elevation" role="tabpanel"
+                                                aria-labelledby="pills-elevation-tab" tabindex="0">
+                                                <div class="row gx-3 gy-4">
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-5.webp"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-6.jpg"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4">
+                                                        <div class="floor-thumb"><img
+                                                                src="{{ url('/') }}/front/assets/img/fl-5.webp"
+                                                                class="img-fluid" alt=""></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
 
                         <!-- Property History -->
@@ -599,11 +630,12 @@
                                     <div class="fls-by3">
                                         {{-- <button type="button" class="btn btn-success font--medium">Submit
                                             Review</button> --}}
-                                            <div class="single-button">
-                                                <a class="btn btn-success font--medium" data-bs-toggle="modal" data-bs-target="#review"
+                                        <div class="single-button">
+                                            <a class="btn btn-success font--medium" data-bs-toggle="modal"
+                                                data-bs-target="#review"
                                                 class="btn font--medium btn-theme full-width">Submit
-                                                    Review</a>
-                                                </div>
+                                                Review</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1312,7 +1344,7 @@
 							</div> --}}
 
 
-                            <!-- Submit Reviews -->
+                        <!-- Submit Reviews -->
                         {{-- <div class="vesh-detail-bloc">
                             <div class="vesh-detail-bloc_header">
                                 <h4 class="property_block_title no-arrow">Submit Review</h4>
@@ -1373,7 +1405,7 @@
                                 </div>
                             </div>
                         </div>  --}}
-                            <!-- End Reviews -->
+                        <!-- End Reviews -->
 
 
                     </div>
@@ -1386,98 +1418,110 @@
                         <!-- Like And Share -->
                         <div class="vesh-detail-bloc">
                             <ul class="like_share_list">
-                                <li><a href="https://wa.me/?text={{url()->current()}}" class="btn btn-light-success" data-toggle="tooltip"
-                                        target="_blank" data-original-title="Share" data-action="share/whatsapp/share"><i
+                                <li><a href="https://wa.me/?text={{ url()->current() }}"
+                                        class="btn btn-light-success" data-toggle="tooltip" target="_blank"
+                                        data-original-title="Share" data-action="share/whatsapp/share"><i
                                             class="fa-brands fa-whatsapp me-2"></i>Share</a></li>
                                 <li><a href="JavaScript:Void(0);" class="btn btn-light-danger" data-toggle="tooltip"
                                         data-original-title="Save"><i
                                             class="fa-solid fa-heart-circle-check me-2"></i>Save</a></li>
-                                <li><button id="copyBtn" data-text="{{url()->current()}}" class="btn btn-light-primary" data-toggle="tooltip" data-original-title="Save"><i class="fa-solid fa-copy me-2"></i>Copy Link</button>
-                                        <span id="custom-tooltip">copied!</sapn>
+                                <li><button id="copyBtn" data-text="{{ url()->current() }}"
+                                        class="btn btn-light-primary" data-toggle="tooltip"
+                                        data-original-title="Save"><i class="fa-solid fa-copy me-2"></i>Copy
+                                        Link</button>
+                                    <span id="custom-tooltip">copied!</sapn>
                                 </li>
                             </ul>
                         </div>
 
-                            <div class="pg-side-groups">
-                                <div class="pg-side-block">
-                                    <div class="pg-side-block-head">
-                                        <div class="pg-side-left">
-                                            <div class="pg-side-thumb"><img
-                                                    src="{{ url('/') }}/front/assets/img/team-1.jpg"
-                                                    class="img-fluid circle" alt=""></div>
-                                        </div>
-                                        <div class="pg-side-right">
-                                            <div class="pg-side-right-caption">
-                                                <h4>@php $name = $client_data->name; echo substr_replace($name, '******', 2, strlen($name) -14 ) @endphp</h4>
-                                                @if (($client_data->city != null) & ($client_data->state != null))
-                                                    <span><i
-                                                            class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
-                                                        {{ $client_data->state }}</span>
-                                                @endif
+                        <div class="pg-side-groups">
+                            <div class="pg-side-block">
+                                <div class="pg-side-block-head">
+                                    <div class="pg-side-left">
+                                        <div class="pg-side-thumb"><img
+                                                src="{{ url('/') }}/front/assets/img/team-1.jpg"
+                                                class="img-fluid circle" alt=""></div>
+                                    </div>
+                                    <div class="pg-side-right">
+                                        <div class="pg-side-right-caption">
+                                            <h4>@php
+                                                $name = $client_data->name;
+                                                echo substr_replace($name, '******', 2, strlen($name) - 14);
+                                            @endphp</h4>
+                                            @if (($client_data->city != null) & ($client_data->state != null))
+                                                <span><i
+                                                        class="fa-solid fa-location-dot me-2"></i>{{ $client_data->city }},
+                                                    {{ $client_data->state }}</span>
+                                            @endif
 
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    {{-- @if (session()->has('user')) --}}
-                                        <div class="pg-side-block-body">
-                                            <div class="pg-side-block-info">
-                                                <div class="vl-elfo-group">
-                                                    <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i>
-                                                    </div>
-                                                        @if ($client_data->contact != null)
-                                                        <div class="vl-elfo-caption">
-                                                            <h6>Call Us</h6>
-                                                            <p>+91 @php $contact = $client_data->contact;
-                                                            echo preg_replace("/(^.|.$)(*SKIP)(*F)|(.)/","*",$contact); @endphp</p>
-                                                        </div>
-                                                    @endif
+                                {{-- @if (session()->has('user')) --}}
+                                <div class="pg-side-block-body">
+                                    <div class="pg-side-block-info">
+                                        <div class="vl-elfo-group">
+                                            <div class="vl-elfo-icon"><i class="fa-solid fa-phone-volume"></i>
+                                            </div>
+                                            @if ($client_data->contact != null)
+                                                <div class="vl-elfo-caption">
+                                                    <h6>Call Us</h6>
+                                                    <p>+91
+                                                        @php
+                                                            echo preg_replace("/(^.|.$)(*SKIP)(*F)|(.)/", '*', $client_data->contact);
+                                                        @endphp
+                                                    </p>
                                                 </div>
-                                                @if ($client_data->email != null)
-                                                    <div class="vl-elfo-group">
-                                                        <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i>
-                                                        </div>
-                                                        <div class="vl-elfo-caption">
-                                                            <h6>Drop A Mail</h6>
-                                                            <p>@php $email = $client_data->email;
-                                                            echo substr($email, 2, 4).'****'.substr($email, strpos($email, "@"));
+                                            @endif
+                                        </div>
+                                        @if ($client_data->email != null)
+                                            <div class="vl-elfo-group">
+                                                <div class="vl-elfo-icon"><i class="fa-regular fa-envelope"></i>
+                                                </div>
+                                                <div class="vl-elfo-caption">
+                                                    <h6>Drop A Mail</h6>
+                                                    <p>
+                                                        @php
+                                                            echo substr($client_data->email, 2, 4) . '****' . substr($client_data->email, strpos($client_data->email, '@'));
                                                             // echo preg_replace('/\B[^@.]/', '*', $email)
-                                                            @endphp</p>
-                                                        </div>
+                                                        @endphp
+                                                    </p>
+                                                </div>
 
-                                                    </div>
-                                                @endif
-                                                {{-- <div class="vl-elfo-group">
+                                            </div>
+                                        @endif
+                                        {{-- <div class="vl-elfo-group">
                                                     <div class="vl-elfo-icon"><i class="fa-solid fa-globe"></i></div>
                                                     <div class="vl-elfo-caption">
                                                         <h6>Website</h6>
                                                         <p>Https://themezhub.com</p>
                                                     </div>
                                                 </div> --}}
-                                            </div>
+                                    </div>
                                     {{-- @endif --}}
-                                            <div class="pg-side-block-buttons">
-                                                {{-- <div class="single-button"><a href="JavaScript:Void(0);"
+                                    <div class="pg-side-block-buttons">
+                                        {{-- <div class="single-button"><a href="JavaScript:Void(0);"
                                                         data-bs-toggle="modal" data-bs-target="#offer"
                                                         class="btn font--medium btn-light-success full-width"><i
                                                             class="fa-solid fa-paper-plane me-2"></i>Send An offer</a>
                                                 </div> --}}
-                                                @if(session()->has('user'))
-                                                    <div class="single-button"><a
-                                                            data-bs-toggle="modal" data-bs-target="#inquiry"
-                                                            class="btn font--medium btn-theme full-width"><i
-                                                                class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
-                                                @else
-                                                    <div class="single-button"><a
-                                                        data-bs-toggle="modal" data-bs-target="#login"
-                                                        class="btn font--medium btn-theme full-width"><i
-                                                            class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
-                                                @endif
-                                            </div>
-                                        </div>
+                                        @if (session()->has('user'))
+                                            <div class="single-button"><a data-bs-toggle="modal"
+                                                    data-bs-target="#inquiry"
+                                                    class="btn font--medium btn-theme full-width"><i
+                                                        class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
+                                        @else
+                                            <div class="single-button"><a data-bs-toggle="modal"
+                                                    data-bs-target="#login"
+                                                    class="btn font--medium btn-theme full-width"><i
+                                                        class="fa-solid fa-comments me-2"></i>Send A Message</a></div>
+                                        @endif
+                                    </div>
                                 </div>
-
                             </div>
+
+                        </div>
                     </div>
 
                 </div>
@@ -1507,10 +1551,10 @@
             input.value = copyBtn.dataset.text;
             document.body.appendChild(input);
             input.select();
-            if(document.execCommand('copy')) {
+            if (document.execCommand('copy')) {
                 document.body.removeChild(input);
                 document.getElementById("custom-tooltip").style.display = "inline";
-                setTimeout( function() {
+                setTimeout(function() {
                     document.getElementById("custom-tooltip").style.display = "none";
                 }, 1000);
             }
@@ -1638,70 +1682,67 @@
     <div class="modal-dialog modal-dialog-centered review-pop-form" role="document">
         <div class="modal-content" id="reviewmodal">
             <span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="fas fa-close"></i></span>
-        <!-- Submit Reviews -->
-        <div class="vesh-detail-bloc">
-            <div class="vesh-detail-bloc_header">
-                <h4 class="property_block_title no-arrow">Submit Review</h4>
-            </div>
-            <div class="panels">
-                <div class="vesh-detail-bloc-body">
-                    <form class="simple-form">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control"
-                                        placeholder="Your Name">
+            <!-- Submit Reviews -->
+            <div class="vesh-detail-bloc">
+                <div class="vesh-detail-bloc_header">
+                    <h4 class="property_block_title no-arrow">Submit Review</h4>
+                </div>
+                <div class="panels">
+                    <div class="vesh-detail-bloc-body">
+                        <form class="simple-form">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" placeholder="Your Name">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control"
-                                        placeholder="Your eMail">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" placeholder="Your eMail">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Phone No.</label>
-                                    <input type="text" class="form-control"
-                                        placeholder="Your Contact">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Phone No.</label>
+                                        <input type="text" class="form-control" placeholder="Your Contact">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Ratting</label>
+                                        <select class="form-control">
+                                            <option value="1">1 : Very Poor</option>
+                                            <option value="2">2 : Poor</option>
+                                            <option value="3">3 : Good</option>
+                                            <option value="4">4 : Very Good</option>
+                                            <option value="5">5 : Superb</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Your Message</label>
+                                        <textarea class="form-control ht-80" placeholder="Messages"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <button class="btn btn-theme" type="submit">Submit
+                                            Review</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Ratting</label>
-                                    <select class="form-control">
-                                        <option value="1">1 : Very Poor</option>
-                                        <option value="2">2 : Poor</option>
-                                        <option value="3">3 : Good</option>
-                                        <option value="4">4 : Very Good</option>
-                                        <option value="5">5 : Superb</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label>Your Message</label>
-                                    <textarea class="form-control ht-80" placeholder="Messages"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <button class="btn btn-theme" type="submit">Submit
-                                        Review</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--
+    <!--
 |--------------------------------------------------------------------------
 | Review Modal Ends
 |--------------------------------------------------------------------------

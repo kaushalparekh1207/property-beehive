@@ -194,7 +194,9 @@
                                 <div class="veshm-list-head">
                                     <div class="veshm-list-head-caption">
                                         <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
+                                            <h4 class="rlhc-price-name theme-cl">₹@php
+                                                echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
+                                            @endphp
                                             </h4>
                                             @if ($property->property_status == 'Sale')
                                                 <span class="monthly">One Time</span>

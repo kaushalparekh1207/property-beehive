@@ -45,17 +45,17 @@
 
         <!-- ============================ Hero Banner End ================================== -->
 
-            <div class="page-title"
-                style="background:#017efa url({{ url('/') }}/front/assets/img/page-title.png) no-repeat;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
+        <div class="page-title"
+            style="background:#017efa url({{ url('/') }}/front/assets/img/page-title.png) no-repeat;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
 
 
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         <!-- ============================ Page Title End ================================== -->
 
         <!-- ============================ All Property ================================== -->
@@ -267,8 +267,9 @@
                                         <div class="veshm-list-footers">
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
-                                                    <h4 class="rlhc-price-name theme-cl">
-                                                        ₹{{ $result->expected_price }}
+                                                    <h4 class="rlhc-price-name theme-cl">₹@php
+                                                        echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
+                                                    @endphp
                                                         @if ($result->property_status == 'Sale')
                                                             <span class="monthly">One Time</span>
                                                         @elseif ($result->property_status == 'Rent/Lease')

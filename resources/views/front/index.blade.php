@@ -195,7 +195,9 @@
                                     <div class="veshm-list-head">
                                         <div class="veshm-list-head-caption">
                                             <div class="rlhc-price">
-                                                <h4 class="rlhc-price-name theme-cl">₹{{ $property->expected_price }}
+                                                <h4 class="rlhc-price-name theme-cl">₹@php
+                                                    echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
+                                                @endphp
                                                 </h4>
                                                 @if ($property->property_status == 'Sale')
                                                     <span class="monthly">One Time</span>
@@ -215,22 +217,46 @@
                                                 <ul>
                                                     @foreach ($residential_property as $residential)
                                                         @if ($property->id == $residential->property_master_id)
-                                                            <li><i class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
-                                                                    Bed</span></li>
-                                                            <li><i class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
-                                                                    Ba</span></li>
-                                                            <li><i class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
-                                                                    sft</span></li>
+                                                            <li>
+                                                                @if ($residential->total_bedrooms != null)
+                                                                    <i class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
+                                                                        Bed</span>
+                                                                @endif
+                                                            </li>
+                                                            <li>
+                                                                @if ($residential->total_bathrooms != null)
+                                                                    <i class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
+                                                                        Ba</span>
+                                                                @endif
+                                                            </li>
+                                                            <li>
+                                                                @if ($residential->carpet_area != null)
+                                                                    <i class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
+                                                                        sft</span>
+                                                                @endif
+                                                            </li>
                                                         @endif
                                                     @endforeach
                                                     @foreach ($commercial_property as $commercial)
                                                         @if ($property->id == $commercial->property_master_id)
-                                                            <li><i class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
-                                                                    Floor</span></li>
-                                                            <li><i class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
-                                                                    Washroom</span></li>
-                                                            <li><i class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
-                                                                    sft</span></li>
+                                                            <li>
+                                                                @if ($commercial->total_floor != null)
+                                                                    <i class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
+                                                                        Floor</span>
+                                                                @endif
+                                                            </li>
+                                                            <li>
+                                                                @if ($commercial->total_washrooms != null)
+                                                                    <i class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
+                                                                        Washroom</span>
+                                                                @endif
+                                                            </li>
+                                                            <li>
+                                                                @if ($commercial->total_washrooms != null)
+                                                                    <i class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
+                                                                        sft</span>
+                                                                @endif
+                                                            </li>
                                                         @endif
                                                     @endforeach
                                                 </ul>

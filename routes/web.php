@@ -266,7 +266,7 @@ Route::view('/rent/owner-properties', 'front.rent_owner_property')->name('rentOw
 Route::view('/rent/furnished-homes', 'front.rent_furnished_homes')->name('furnishedHomes');
 
 //Sell Property Details
-Route::view('/sell/post-property', 'front.sell_post_property')->name('postProperty');
+Route::view('/sell/post-property', 'front.sell_post_property')->name('sellpostProperty');
 Route::view('/sell/my-dashboard', 'front.sell_my_dashboard')->name('myDashboard');
 Route::view('/sell/ad-packages', 'front.sell_ad_packages')->name('adPackages');
 

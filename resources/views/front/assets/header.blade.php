@@ -24,65 +24,75 @@
 
                     </li>
 
-                    <li class="@yield('buy')"><a href="JavaScript:Void(0);">Buy<span class="submenu-indicator"></span></a>
-                        <ul class="nav-dropdown nav-submenu">
-                            <li><a href="{{route('readyToMove')}}">Ready to Move<span class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('ownerProperties')}}">Owner Properties<span
-                                        class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('newLaunch')}}">Newly Launched<span class="submenu-indicator"></span></a>
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="@yield('rent')"><a href="JavaScript:Void(0);">Rent<span class="submenu-indicator"></span></a>
-                        <ul class="nav-dropdown nav-submenu">
-                            <li><a href="{{route('rentOwnerProperties')}}">Owner Properties<span
-                                        class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('verifiedProperties')}}">Verified Properties<span
-                                        class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('furnishedHomes')}}">Furnished Homes<span class="submenu-indicator"></span></a>
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="@yield('sell')"><a href="JavaScript:Void(0);">Sell<span class="submenu-indicator"></span></a>
-                        <ul class="nav-dropdown nav-submenu">
-                            <li><a href="{{route('postProperty')}}">Post Property<span class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('myDashboard')}}">My Dashboard<span class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('adPackages')}}">Ad Packages<span class="submenu-indicator"></span></a>
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="@yield('propertyServices')"><a href="JavaScript:Void(0);">Property Services<span class="submenu-indicator"></span></a>
-                        <ul class="nav-dropdown nav-submenu">
-                            <li><a href="{{route('rentAgreement')}}">Rent Agreement<span class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('tenantVerification')}}">Tenant Verification<span
-                                        class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('propertyLawyers')}}">Property Lawyers<span
-                                        class="submenu-indicator"></span></a>
-
-                            </li>
-                            <li><a href="{{route('loan')}}">Loan<span
+                    <li class="@yield('buy')"><a href="JavaScript:Void(0);">Buy<span
                                 class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="{{ route('readyToMove') }}">Ready to Move<span
+                                        class="submenu-indicator"></span></a>
 
+                            </li>
+                            <li><a href="{{ route('ownerProperties') }}">Owner Properties<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('newLaunch') }}">Newly Launched<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                        </ul>
                     </li>
+                    <li class="@yield('rent')"><a href="JavaScript:Void(0);">Rent<span
+                                class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="{{ route('rentOwnerProperties') }}">Owner Properties<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('verifiedProperties') }}">Verified Properties<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('furnishedHomes') }}">Furnished Homes<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@yield('sell')"><a href="JavaScript:Void(0);">Sell<span
+                                class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="{{ route('sellpostProperty') }}">Post Property<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('myDashboard') }}">My Dashboard<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('adPackages') }}">Ad Packages<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@yield('propertyServices')"><a href="JavaScript:Void(0);">Property Services<span
+                                class="submenu-indicator"></span></a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="{{ route('rentAgreement') }}">Rent Agreement<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('tenantVerification') }}">Tenant Verification<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('propertyLawyers') }}">Property Lawyers<span
+                                        class="submenu-indicator"></span></a>
+
+                            </li>
+                            <li><a href="{{ route('loan') }}">Loan<span class="submenu-indicator"></span></a>
+
+                            </li>
                         </ul>
                     </li>
                     {{-- <li class="@yield('contact_us')"><a href="contact.php">Contact US<span

@@ -4,6 +4,7 @@ use App\Models\City;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
 
+
 function city()
 {
     $city = City::where('flag', 1)->get(['id', 'city']);
@@ -17,8 +18,7 @@ function propertyType()
 }
 
 function footer(){
-    $property_id = PropertyMaster::latest()->first()->id;
-    $allDetails = PropertyMaster::where('id', $property_id)->where('flag', '1')->get();
+    $allDetails = PropertyMaster::where('flag', 1)->orderBy('id', 'DESC')->limit(2)->get();
     return $allDetails;
 }
 

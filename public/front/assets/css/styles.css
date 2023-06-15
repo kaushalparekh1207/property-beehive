@@ -2269,7 +2269,7 @@ table.table tr th {
 }
 
 /*----------- Global Settings: Pagination ------------------*/
-.pagination {
+/* .pagination {
     display: table;
     padding-left: 0;
     border-radius: 4px;
@@ -2339,7 +2339,7 @@ table.table tr th {
     color: #fff;
     background-color: #fa962a;
     border-color: #fa962a;
-}
+} */
 
 /*------------- Global Settings: Bootstrap 4 hack --------------*/
 .card-columns {

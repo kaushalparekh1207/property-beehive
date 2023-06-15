@@ -181,7 +181,7 @@
                                                             </div>
 
                                                             <h3>Property Location</h3>
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-4">
                                                                 <label>State</label>
                                                                 <select class="js-select2" name="state_id"
                                                                     id="state_id">
@@ -197,7 +197,7 @@
                                                                 <small id="state_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-4">
                                                                 <label>City</label>
                                                                 <select class="js-select2" name="city_id"
                                                                     id="city_dropdown">
@@ -206,6 +206,17 @@
                                                                     </option>
                                                                 </select>
                                                                 <small id="city_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Taluka</label>
+                                                                <select class="js-select2" name="taluka_id"
+                                                                    id="taluka_dropdown">
+                                                                    <option value="" selected disabled>Select
+                                                                        Taluka
+                                                                    </option>
+                                                                </select>
+                                                                <small id="taluka_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-12">
@@ -286,12 +297,7 @@
                                                                         class="tip-topdata"
                                                                         data-tip="Property Location"><i
                                                                             class="fa-solid fa-info"></i></a></label>
-                                                                <iframe
-                                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14687.734743642492!2d72.55596305!3d23.026206950000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1686749273922!5m2!1sen!2sin"
-                                                                    width="500" height="350" style="border:0;"
-                                                                    allowfullscreen="" loading="lazy"
-                                                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                                                <small id="location_error"></small>
+                                                                <div id="map"></div>
                                                             </div>
 
                                                             <div class="form-group col-md-6">
@@ -1192,20 +1198,31 @@
         });
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFWblOFY7I6Ea1Fk2aezHSWfD8knX5gnY&libraries=places">
-    </script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
+    {{-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
     <script type="text/javascript">
-        $(document).ready(function() {
-            var autocomplete;
-            var id = 'location';
-
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(id)), {
-                types: ['places'],
-            })
-
-        });
-    </script>
+        window.onload = function() {
+            var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 11,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: 'Set lat/lon values for this property',
+                draggable: true
+            });
+            google.maps.event.addListener(marker, 'dragend', function(a) {
+                console.log(a);
+                var div = document.createElement('div');
+                div.innerHTML = a.latLng.lat().toFixed(4) + ', ' + a.latLng.lng().toFixed(4);
+                document.getElementsByTagName('body')[0].appendChild(div);
+            });
+        };
+    </script> --}}
 
 </body>
 

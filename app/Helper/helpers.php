@@ -3,7 +3,7 @@
 use App\Models\City;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
-
+use App\Models\Taluka;
 
 function city()
 {
@@ -15,6 +15,12 @@ function propertyType()
 {
     $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
     return $propertyType;
+}
+
+function taluka()
+{
+    $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
+    return $taluka;
 }
 
 function footer(){

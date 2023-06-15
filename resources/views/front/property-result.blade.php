@@ -1,6 +1,7 @@
 @php
     $city = city();
     $propertyType = propertyType();
+    $taluka = taluka();
 @endphp
 @section('home_page')
     active
@@ -74,21 +75,13 @@
                                         method="post">
                                         @csrf
                                         <div class="row classic-search-box m-0 gx-2">
-                                            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <div class="input-with-icon">
                                                         <select class="js-select2" name="city_id" id="city_id_dropdown">
                                                             <option value="">Select City</option>
                                                             @foreach ($city as $cities)
-                                                                @php
-                                                                    if ($cities->id == $city_id) {
-                                                                        $selected = 'selected';
-                                                                    } else {
-                                                                        $selected = '';
-                                                                    }
-                                                                @endphp
-                                                                <option value="{{ $cities->id }}" {{ $selected }}>
-                                                                    {{ $cities->city }}
+                                                                <option value="{{ $cities->id }}">{{ $cities->city }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -96,21 +89,30 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="input-with-icon">
+                                                        <select class="js-select2" name="taluka_id"
+                                                            id="taluka_id_dropdown">
+                                                            <option value="">Select Taluka</option>
+                                                            @foreach ($taluka as $talukas)
+                                                                <option value="{{ $talukas->id }}">
+                                                                    {{ $talukas->taluka }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <i class="fa-solid fa-location-crosshairs mb-2"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="form-group briod">
                                                     <div class="input-with-icon">
+                                                        {{-- <select class="form-control" name="property_type_id"> --}}
                                                         <select class="js-select2" name="property_type_id"
                                                             id="property_type_dropdown">
                                                             <option value="">Property types</option>
                                                             @foreach ($propertyType as $type)
-                                                                @php
-                                                                    if ($type->id == $category_id) {
-                                                                        $selected = 'selected';
-                                                                    } else {
-                                                                        $selected = '';
-                                                                    }
-                                                                @endphp
-                                                                <option value="{{ $type->id }}" {{ $selected }}>
+                                                                <option value="{{ $type->id }}">
                                                                     {{ $type->property_category_name }}
                                                                 </option>
                                                             @endforeach
@@ -858,7 +860,9 @@
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
                                                     <h4 class="rlhc-price-name theme-cl">
-                                                        ₹{{ $result->expected_price }}
+                                                        ₹@php
+                                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
+                                                        @endphp
                                                         @if ($result->property_status == 'Sale')
                                                             <span class="monthly">One Time</span>
                                                         @elseif ($result->property_status == 'Rent/Lease')

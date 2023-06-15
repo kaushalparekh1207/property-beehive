@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('property_category_id');
             $table->integer('state_id');
             $table->integer('city_id');
+            $table->integer('taluka_id');
             $table->string('name_of_project', 99);
             $table->string('locality', 99);
             $table->string('landmark', 99)->nullable();
@@ -26,6 +27,8 @@ return new class extends Migration
             $table->integer('expected_price');
             $table->integer('booking_amount')->nullable();
             $table->string('cover_image', 255)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

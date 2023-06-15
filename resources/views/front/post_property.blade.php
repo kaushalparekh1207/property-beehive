@@ -281,6 +281,44 @@
                                                                 <small id="descr_error"></small>
                                                             </div>
 
+                                                            <div class="form-group col-md-6">
+                                                                <label>Property Location<a href="#"
+                                                                        class="tip-topdata"
+                                                                        data-tip="Property Location"><i
+                                                                            class="fa-solid fa-info"></i></a></label>
+                                                                <iframe
+                                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14687.734743642492!2d72.55596305!3d23.026206950000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1686749273922!5m2!1sen!2sin"
+                                                                    width="500" height="350" style="border:0;"
+                                                                    allowfullscreen="" loading="lazy"
+                                                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                                <small id="location_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <div class="form-group col-sm-6">
+                                                                    <label>Latitude<a href="#"
+                                                                            class="tip-topdata"
+                                                                            data-tip="Property latitude"><i
+                                                                                class="fa-solid fa-info"></i></a></label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="latitude" id="latitude" disabled>
+                                                                    <small id="latitude_error"></small>
+                                                                </div>
+                                                                <div class="form-group col-sm-6">
+                                                                    <label>Longitude<a href="#"
+                                                                            class="tip-topdata"
+                                                                            data-tip="Property longitude"><i
+                                                                                class="fa-solid fa-info"></i></a></label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="longitude" id="longitude" disabled>
+                                                                    <small id="longitude_error"></small>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+
+                                                            </div>
+
                                                             <div class="form-group col-md-12 numberOfFlats">
                                                                 <label>Number of Flats in Your Society
                                                                     <sup>*</sup></label>
@@ -696,7 +734,7 @@
                                                                 <input type="text" id="available_from"
                                                                     name="available_from" class="form-control"
                                                                     placeholder="Select Date">
-                                                               
+
                                                             </div>
 
                                                             <div class="form-group col-md-12 property_age"
@@ -1151,6 +1189,21 @@
                 minDate: 0,
                 dateFormat: 'dd-mm-yy',
             });
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFWblOFY7I6Ea1Fk2aezHSWfD8knX5gnY&libraries=places">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var autocomplete;
+            var id = 'location';
+
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(id)), {
+                types: ['places'],
+            })
+
         });
     </script>
 

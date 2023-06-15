@@ -81,34 +81,38 @@
                         <div class="hero-search-content colored">
 
                             <div class="row classic-search-box m-0 gx-2">
-                                {{-- <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-
-                                    <div class="form-group briod">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group">
                                         <div class="input-with-icon">
-                                            <input type="text" class="form-control"
-                                                placeholder="Ex. villa, town etc.">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-                                    <div class="form-group briod">
-                                        <div class="input-with-icon">
-                                            {{-- <select class="form-control" name="property_type_id"> --}}
                                             <select class="js-select2" name="city_id" id="city_id_dropdown">
                                                 <option value="">Select City</option>
                                                 @foreach ($city as $cities)
-                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                                                    <option value="{{ $cities->id }}">{{ $cities->city }}
+                                                    </option>
                                                 @endforeach
                                             </select>
-
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
+                                            <select class="js-select2" name="taluka_id" id="taluka_id_dropdown">
+                                                <option value="">Select Taluka</option>
+                                                @foreach ($taluka as $talukas)
+                                                    <option value="{{ $talukas->id }}">
+                                                        {{ $talukas->taluka }}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
                                             <select class="js-select2" name="property_type_id"
                                                 id="property_type_dropdown">
                                                 <option value="">Property types</option>
@@ -118,7 +122,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
                                         </div>
                                     </div>
                                 </div>

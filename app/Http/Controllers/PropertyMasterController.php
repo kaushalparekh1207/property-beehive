@@ -18,6 +18,7 @@ use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
 use App\Models\State;
 use App\Models\Inquiry;
+use App\Models\Taluka;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class PropertyMasterController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         $propertymaster = PropertyMaster::where('flag', 1)->get();
         // echo"<pre>";
         // echo $propertymaster;
@@ -41,7 +42,7 @@ class PropertyMasterController extends Controller
     }
 
     public function inquiry_Show()
-    {   
+    {
         $inquiry_data = Inquiry::where('flag', 1)->get();
         // echo"<pre>";
         // echo $propertymaster;
@@ -73,6 +74,7 @@ class PropertyMasterController extends Controller
         $propertyMasterModel->property_type_id = $request->propertytype;
         $propertyMasterModel->state_id = $request->state;
         $propertyMasterModel->city_id = $request->city;
+        $propertyMasterModel->taluka_id = $request->taluka_id;
         $propertyMasterModel->locality = $request->locality;
         $propertyMasterModel->name_of_project = $request->name_of_project;
         $propertyMasterModel->descr = $request->descr;
@@ -250,7 +252,8 @@ class PropertyMasterController extends Controller
         $propertyTypes = PropertyType::where('flag', 1)->get();
         $states = State::where('flag', 1)->get();
         $cities = City::where('flag', 1)->get();
-        return view('front.post_property', compact('propertyTypes', 'states', 'cities', 'amenities'));
+        $taluka = Taluka::where('flag', 1)->get();
+        return view('front.post_property', compact('propertyTypes', 'states', 'cities', 'amenities', 'taluka'));
     }
 
     /**
@@ -258,9 +261,9 @@ class PropertyMasterController extends Controller
      */
 
     public function propertyDataInsertAjax(Request $request)
-    {  
+    {
 
-    
+
         $propertyMasterModel = new PropertyMaster();
         $propertyMasterModel->client_master_id = session('user')['id'];
         $propertyMasterModel->property_status = $request->propertystatus;

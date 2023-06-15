@@ -8,6 +8,7 @@ use App\Models\Amenities;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
+use App\Models\Inquiry;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyBHKDetails;
 use App\Models\PropertyExteriorViewImage;
@@ -17,7 +18,6 @@ use App\Models\PropertyOtherImage;
 use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
 use App\Models\State;
-use App\Models\Inquiry;
 use App\Models\Taluka;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +38,7 @@ class PropertyMasterController extends Controller
         // echo $propertymaster;
         // echo"</pre>";
         // exit;
-        return view('admin.property_listing',compact('propertymaster'));
+        return view('admin.property_listing', compact('propertymaster'));
     }
 
     public function inquiry_Show()
@@ -48,7 +48,7 @@ class PropertyMasterController extends Controller
         // echo $propertymaster;
         // echo"</pre>";
         // exit;
-        return view('admin.inquiry_listing',compact('inquiry_data'));
+        return view('admin.inquiry_listing', compact('inquiry_data'));
     }
 
     /**
@@ -243,6 +243,11 @@ class PropertyMasterController extends Controller
         return response()->json($data);
     }
 
+    public function fetchTaluka(Request $request)
+    {
+        $data['taluka'] = Taluka::where("city_id", $request->city)->where("flag", 1)->get(["id", "taluka"]);
+        return response()->json($data);
+    }
     /**
      * Create Property By Frontend User
      */
@@ -262,7 +267,6 @@ class PropertyMasterController extends Controller
 
     public function propertyDataInsertAjax(Request $request)
     {
-
 
         $propertyMasterModel = new PropertyMaster();
         $propertyMasterModel->client_master_id = session('user')['id'];

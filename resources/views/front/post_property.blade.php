@@ -1105,6 +1105,37 @@
         });
     </script>
     <script>
+        $(document).ready(function() {
+            //  $('#city').hide();
+            $('#city_dropdown').on('change', function() {
+                var city = this.value;
+                $("#taluka_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-taluka-list') }}",
+                    type: "GET",
+                    data: {
+                        city: city,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#taluka').show();
+                        $('#taluka_dropdown').html(
+                            '<option value="" selected disabled>-- Select Taluka --</option>'
+                        );
+                        $.each(result.taluka, function(key, value) {
+                            $("#taluka_dropdown").append('<option value="' +
+                                value
+                                .id + '">' + value.taluka +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
         // BS-Stepper Init
         document.addEventListener('DOMContentLoaded', function() {
             window.stepper = new Stepper(document.querySelector('.bs-stepper'))

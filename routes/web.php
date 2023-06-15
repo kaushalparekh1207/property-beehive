@@ -174,6 +174,7 @@ Route::group(['middleware' => 'checksession'], function () {
 
 // Get City Name Based on State Drop Down
 Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
+Route::get('/admin/fetch_taluka/', [PropertyMasterController::class, 'fetchTaluka'])->name('get-taluka-list');
 Route::get('/admin/inquiry/', [PropertyMasterController::class, 'inquiry_Show'])->name('inquiry_listing');
 // Get Property Category Based on Property Type
 Route::get('/admin/fetch_property_category/', [PropertyMasterController::class, 'fetchPropertyCategory'])->name('get-property-category');
@@ -275,7 +276,3 @@ Route::view('/property-services/rent-agreement', 'front.ps_rent_agreement')->nam
 Route::view('/property-services/tenant-verification', 'front.ps_tenant_verification')->name('tenantVerification');
 Route::view('/property-services/property-lawyers', 'front.ps_property_lawyers')->name('propertyLawyers');
 Route::view('/property-services/loan', 'front.ps_loan')->name('loan');
-
-
-
-

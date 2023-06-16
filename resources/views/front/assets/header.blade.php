@@ -173,8 +173,8 @@
                                                     class="fa fa-tasks"></i>My Properties</a></li>
                                         <li class="@yield('inqury_list')"><a href="{{ route('showInquiryList') }}"><i
                                                     class="fa fa-list"></i>Inquiry List</a></li>
-                                        <li><a href="{{ route('postProperty') }}"><i class="fa fa-pen-nib"></i>Post New
-                                                Property</a></li>
+                                        {{-- <li><a href="{{ route('postProperty') }}"><i class="fa fa-pen-nib"></i>Post New
+                                                Property</a></li> --}}
                                         {{--                <li><a href="choose-package.html"><i class="fa fa-gift"></i>Choose Package<span class="expiration">10 days left</span></a></li> --}}
                                         <li class="@yield('changePassword')"><a href="{{ route('changePassword') }}"><i
                                                     class="fa fa-unlock-alt"></i>Change Password</a></li>

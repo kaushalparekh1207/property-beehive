@@ -284,7 +284,10 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
         $userData = User::find($request->id);
-        $userData->client_type_id = $request->client_type_id;
+        if ($request->client_type_id == '') {
+            $client_type_id = User::where('id', $request->id)->pluck('client_type_id')->first();
+        }
+        $userData->client_type_id = $client_type_id;
         $userData->name = $request->name;
         $userData->email = $request->email;
         $userData->contact = $request->contact;
@@ -302,7 +305,7 @@ class UserController extends Controller
             $city = City::where('id', $request->city_id)->pluck('city')->first();
             $state = State::where('id', $request->state_id)->pluck('state')->first();
             session()->pull('user');
-            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $request->contact, 'email' => $email,  'name' => $request->name, 'city' => $city, 'state' => $state]);
+            $request->session()->put('user', ['id' => $user_id, 'role' => $role_name, 'contact_no' => $request->contact, 'email' => $email, 'name' => $request->name, 'city' => $city, 'state' => $state]);
             return back()->with('success', 'Profile Details Updated Successfully');
         } else {
             return back()->with('error', 'Something Went Wrong');

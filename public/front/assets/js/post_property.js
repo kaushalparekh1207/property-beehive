@@ -187,6 +187,25 @@ $(document).ready(function () {
         }
     }
 
+    /* Terms and Conditions */
+    let termsError = false;
+    
+    function validateTermsAndConditions() {
+        var value = $('.terms:checked').val();
+
+        if (value == null || value == "" || (!$('#terms').is(':checked'))) {
+            $("#terms_error").html('');
+            termsError = false;
+        }else{
+            $("#terms_error").html('* This is a required field');
+            termsError = true;
+            stepper.previous();
+            return false;
+
+           
+        }
+    }
+
     $("#btn-submit").click(function(e) {
 
         e.preventDefault();
@@ -201,8 +220,9 @@ $(document).ready(function () {
         validateDescription();
         validatePrice();
         validatePropertyStatus();
+        validateTermsAndConditions();
 
-        if (propertyStatusError == false && propertyTypeError == false && propertyCategoryError == false && stateError == false && cityError == false && propertyLocalityError == false && addressError == false && nameError == false && descrError == false && priceError == false && propertyStatusError == false){
+        if (propertyStatusError == false && propertyTypeError == false && propertyCategoryError == false && stateError == false && cityError == false && propertyLocalityError == false && addressError == false && nameError == false && descrError == false && priceError == false && propertyStatusError == false && termsError == false){
             insertProperty();
         } else {
             return false;
@@ -222,8 +242,7 @@ function insertProperty()
     var address = $('#address').val();
     var name_of_project = $('#name_of_project').val();
     var no_of_flats = $('.no_of_flats:checked').val();
-    console.log("no_of_flats");
-    console.log(no_of_flats);
+    
     var total_floors = $('#total_floors').val();
     var total_bedrooms = $('#total_bedrooms').val();
     var total_balconies = $('#total_balconies').val();

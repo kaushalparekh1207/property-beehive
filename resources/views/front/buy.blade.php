@@ -79,46 +79,42 @@
                                     href="{{ url('/') }}/commercial">Commercial</a></label>
                         </div>
                         <div class="hero-search-content colored">
-
                             <div class="row classic-search-box m-0 gx-2">
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
                                             <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                <option value="">Select City</option>
+                                                <option value="" selected disabled>Select City</option>
                                                 @foreach ($city as $cities)
-                                                    <option value="{{ $cities->id }}">{{ $cities->city }}
-                                                    </option>
+                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                                                 @endforeach
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
                                             <select class="js-select2" name="taluka_id" id="taluka_id_dropdown">
-                                                <option value="">Select Taluka</option>
+                                                <option value="" selected disabled>Select Taluka</option>
                                                 @foreach ($taluka as $talukas)
-                                                    <option value="{{ $talukas->id }}">
-                                                        {{ $talukas->taluka }}</option>
+                                                    <option value="{{ $talukas->id }}">{{ $talukas->taluka }}</option>
                                                 @endforeach
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             {{-- <select class="form-control" name="property_type_id"> --}}
-                                            <select class="js-select2" name="property_type_id"
-                                                id="property_type_dropdown">
-                                                <option value="">Property types</option>
+                                            <select class="js-select2" name="property_type_id" id="property_type">
+                                                <option value="" selected disabled>Select Property types</option>
                                                 @foreach ($propertyType as $type)
                                                     <option value="{{ $type->id }}">
-                                                        {{ $type->property_category_name }}
+                                                        {{ $type->property_type }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -126,7 +122,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
+                                            <select class="js-select2" name="property_category_id"
+                                                id="property_category_dropdown">
+                                                <option value="" selected disabled>Select Property Type First
+                                                </option>
+                                            </select>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
+                                            <select class="js-select2" name="property_type_id"
+                                                id="property_type_dropdown">
+                                                <option value="" selected disabled>Budget
+                                                </option>
+                                                {{-- @foreach ($propertyType as $type)
+                                                    <option value="{{ $type->id }}">
+                                                        {{ $type->property_type }}
+                                                    </option>
+                                                @endforeach --}}
+                                            </select>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="fliox-search-wiop">
                                         <div class="form-group me-2">
                                             <a href="JavaScript:Void(0);" data-bs-toggle="modal"
@@ -140,123 +167,124 @@
                                 </div>
 
                             </div>
+                        </div>
                     </form>
+
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <!-- ============================ Hero Banner End ================================== -->
+        <!-- ============================ Hero Banner End ================================== -->
 
-    <!-- ============================= Explore Categories =============================== -->
-    <section>
-        <div class="container">
+        <!-- ============================= Explore Categories =============================== -->
+        <section>
+            <div class="container">
 
-            <div class="row justify-content-center">
-                <div class="col-lg-7 col-md-10 text-center">
-                    <div class="sec-heading center">
-                        <h2>Properties on Buy</h2>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                            voluptatum deleniti atque corrupti quos dolores</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-10 text-center">
+                        <div class="sec-heading center">
+                            <h2>Properties on Buy</h2>
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                voluptatum deleniti atque corrupti quos dolores</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row justify-content gx-3 gy-4">
+                <div class="row justify-content gx-3 gy-4">
 
-                <!-- Single Property -->
-                @foreach ($properties as $property)
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                        <div class="veshm-list-wraps">
-                            @if ($property->property_status == 'Sale')
-                                <div class="veshm-type fr-sale"><span>For {{ $property->property_status }}</span>
-                                </div>
-                            @elseif($property->property_status == 'Rent/Lease')
-                                <div class="veshm-type"><span>For {{ $property->property_status }}</span></div>
-                            @elseif($property->property_status == 'PG/Hostel')
-                                <div class="veshm-type fr-pg"><span>For {{ $property->property_status }}</span>
-                                </div>
-                            @endif
+                    <!-- Single Property -->
+                    @foreach ($properties as $property)
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                            <div class="veshm-list-wraps">
+                                @if ($property->property_status == 'Sale')
+                                    <div class="veshm-type fr-sale"><span>For {{ $property->property_status }}</span>
+                                    </div>
+                                @elseif($property->property_status == 'Rent/Lease')
+                                    <div class="veshm-type"><span>For {{ $property->property_status }}</span></div>
+                                @elseif($property->property_status == 'PG/Hostel')
+                                    <div class="veshm-type fr-pg"><span>For {{ $property->property_status }}</span>
+                                    </div>
+                                @endif
 
-                            <div class="veshm-list-thumb">
+                                <div class="veshm-list-thumb">
 
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-1.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
+                                    <div class="veshm-list-img-slide">
+                                        <div class="veshm-list-click">
+                                            <div><a href="single-property-1.html"><img
+                                                        src="{{ url('/') }}/front/assets/img/prt-1.png"
+                                                        class="img-fluid mx-auto" alt=""></a></div>
+                                            <div><a href="single-property-1.html"><img
+                                                        src="{{ url('/') }}/front/assets/img/prt-8.png"
+                                                        class="img-fluid mx-auto" alt=""></a></div>
+                                            <div><a href="single-property-1.html"><img
+                                                        src="{{ url('/') }}/front/assets/img/prt-9.png"
+                                                        class="img-fluid mx-auto" alt=""></a></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="veshm-list-block">
-                                <div class="veshm-list-head">
-                                    <div class="veshm-list-head-caption">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">
-                                                ₹@php
-                                                    echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                                @endphp
-                                            </h4>
-                                            @if ($property->property_status == 'Sale')
-                                                <span class="monthly">One Time</span>
-                                            @elseif ($property->property_status == 'Rent/Lease')
-                                                <span class="monthly">/Months</span>
-                                            @elseif ($property->property_status == 'PG/Hostel')
-                                                <span class="monthly">/Months</span>
-                                            @endif
+                                <div class="veshm-list-block">
+                                    <div class="veshm-list-head">
+                                        <div class="veshm-list-head-caption">
+                                            <div class="rlhc-price">
+                                                <h4 class="rlhc-price-name theme-cl">
+                                                    ₹@php
+                                                        echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
+                                                    @endphp
+                                                </h4>
+                                                @if ($property->property_status == 'Sale')
+                                                    <span class="monthly">One Time</span>
+                                                @elseif ($property->property_status == 'Rent/Lease')
+                                                    <span class="monthly">/Months</span>
+                                                @elseif ($property->property_status == 'PG/Hostel')
+                                                    <span class="monthly">/Months</span>
+                                                @endif
+                                            </div>
+                                            <div class="listing-short-detail-flex">
+                                                <h5 class="rlhc-title-name verified"><a
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                        class="prt-link-detail">{{ $property->name_of_project }}</a>
+                                                </h5>
+                                            </div>
+                                            <div class="veshm-list-icons">
+                                                <ul>
+                                                    <li><i class="fa-solid fa-bed"></i><span>{{ $property->total_bedrooms }}
+                                                            Bed</span></li>
+                                                    <li><i class="fa-solid fa-bath"></i><span>{{ $property->total_bathrooms }}
+                                                            Ba</span></li>
+                                                    <li><i class="fa-solid fa-vector-square"></i><span>{{ $property->carpet_area }}
+                                                            sft</span></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="listing-short-detail-flex">
-                                            <h5 class="rlhc-title-name verified"><a
-                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
-                                                    class="prt-link-detail">{{ $property->name_of_project }}</a>
-                                            </h5>
-                                        </div>
-                                        <div class="veshm-list-icons">
-                                            <ul>
-                                                <li><i class="fa-solid fa-bed"></i><span>{{ $property->total_bedrooms }}
-                                                        Bed</span></li>
-                                                <li><i class="fa-solid fa-bath"></i><span>{{ $property->total_bathrooms }}
-                                                        Ba</span></li>
-                                                <li><i class="fa-solid fa-vector-square"></i><span>{{ $property->carpet_area }}
-                                                        sft</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="veshm-list-head-flex">
+                                        {{-- <div class="veshm-list-head-flex">
                                         <button class="btn btn-like active" type="button"><i
                                                 class="fa-solid fa-heart-circle-check"></i></button>
                                     </div> --}}
-                                </div>
+                                    </div>
 
-                                <div class="resi-prty-offers-box">
+                                    <div class="resi-prty-offers-box">
 
-                                    <div class="prty-offers-btn text-center">
+                                        <div class="prty-offers-btn text-center">
 
-                                        <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
-                                            class="btn btn-offer-send">View Details</a>
+                                            <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                class="btn btn-offer-send">View Details</a>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
-                @endforeach
-                <!-- End Single Property -->
+                    @endforeach
+                    <!-- End Single Property -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    @include('front.assets.footer')
+        @include('front.assets.footer')
 
-    @include('front.assets.modal')
+        @include('front.assets.modal')
 
-    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+        <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 
 
     </div>

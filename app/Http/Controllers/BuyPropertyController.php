@@ -7,11 +7,11 @@ use App\Models\AgriculturalProperty;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
-use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
+use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
-use Illuminate\Http\Request;
 use App\Models\Taluka;
+use Illuminate\Http\Request;
 
 class BuyPropertyController extends Controller
 {
@@ -20,7 +20,7 @@ class BuyPropertyController extends Controller
         $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Sale')->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
-        $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
+        $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
         return view('front.buy', compact('properties', 'city', 'propertyType', 'taluka'));
     }
 

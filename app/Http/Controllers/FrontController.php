@@ -3,34 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgriculturalProperty;
 use App\Models\City;
 use App\Models\CommercialProperty;
+use App\Models\IndustrialProperty;
 use App\Models\Inquiry;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
+use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
+use App\Models\Taluka;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\IndustrialProperty;
-use App\Models\AgriculturalProperty;
-use App\Models\Taluka;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        $properties = PropertyMaster::where('flag',1)->get();
+        $properties = PropertyMaster::where('flag', 1)->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
-        $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
+        $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
         return view('front.index', compact('properties', 'city', 'propertyType', 'taluka'));
     }
 
     public function pg()
     {
         $properties = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
-            // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
+        // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
 
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
@@ -48,7 +49,7 @@ class FrontController extends Controller
     public function land()
     {
         $properties = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
-            // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
+        // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
 
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
@@ -60,7 +61,7 @@ class FrontController extends Controller
     public function commercial()
     {
         $properties = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
-            // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
+        // ->join('commercial_properties','commercial_properties.property_master_id', '=', 'property_masters.id')->join('industrial_properties','industrial_properties.property_master_id', '=', 'property_masters.id')
 
             ->where('property_masters.flag', 1)
             ->where('residential_properties.flag', 1)
@@ -69,7 +70,6 @@ class FrontController extends Controller
         $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
         return view('front.commercial', compact('properties', 'city', 'propertyType'));
     }
-
 
     public function propertydetails(Request $request, $id, $type, $name, $owner)
     {
@@ -110,7 +110,6 @@ class FrontController extends Controller
         $taluka_id = $request->taluka_id;
         // $min_price = $request->min_price_id;
         // $max_price = $request->max_price_id;
-
 
         // echo $min_price . "</br>". $max_price; exit;
 
@@ -214,7 +213,7 @@ class FrontController extends Controller
         //             ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
         //     }
         // }
-         else {
+        else {
 
             $property_master = PropertyMaster::where('property_category_id', $category_id)->where('city_id', $city_id)->pluck('id')->first();
             $commercial_property = CommercialProperty::where('property_master_id', $property_master)->pluck('property_master_id')->first();
@@ -306,7 +305,7 @@ class FrontController extends Controller
             ->where('inquiries.flag', 1)
             ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
-            ->get(['inquiries.name', 'inquiries.contact', 'inquiries.email', 'property_masters.name_of_project',]);
+            ->get(['inquiries.name', 'inquiries.contact', 'inquiries.email', 'property_masters.name_of_project']);
 
         // echo $InquiryList;
         // exit;

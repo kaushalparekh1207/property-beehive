@@ -85,7 +85,7 @@
                                                     <input type="hidden" value="{{ $userData->id }}" name="id"
                                                         id="id">
                                                     <select class="form-control js-select2" name="client_type_id"
-                                                        id="client_type_id">
+                                                        id="client_type_id" disabled>
                                                         @foreach ($clientTypes as $clientType)
                                                             @php
                                                                 $userData->client_type_id == $clientType->id ? ($selected = 'selected') : ($selected = '');

@@ -292,7 +292,7 @@
                                                                 <small id="descr_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-6">
+                                                            {{-- <div class="form-group col-md-6">
                                                                 <label>Property Location<a href="#"
                                                                         class="tip-topdata"
                                                                         data-tip="Property Location"><i
@@ -323,7 +323,7 @@
 
                                                             <div class="form-group col-md-3">
 
-                                                            </div>
+                                                            </div> --}}
 
                                                             <div class="form-group col-md-12 numberOfFlats">
                                                                 <label>Number of Flats in Your Society
@@ -380,6 +380,25 @@
                                                                     placeholder="Enter Property Booking Amount"></input>
                                                             </div>
 
+                                                            <div class="form-group col-md-12">
+                                                                <label>Is Rera Registered ?</label>
+                                                                <select class="js-select2-disablesearch"
+                                                                    name="is_rera" id="is_rera"
+                                                                    onchange="reraFunction(this.value)">
+                                                                    <option value="" selected disabled>Select
+                                                                        One</option>
+                                                                    <option value="Yes">Yes</option>
+                                                                    <option value="No">No</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12 rera_reg_number"
+                                                                style="display: none;">
+                                                                <label>Is Rera Registration Number ?</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="rera_number" name="rera_number"
+                                                                    placeholder="Enter Rera Registration Number"></input>
+                                                            </div>
 
                                                             <h3>Property Features</h3>
                                                             <div class="form-group col-md-3 totalFloors">
@@ -740,7 +759,6 @@
                                                                 <input type="text" id="available_from"
                                                                     name="available_from" class="form-control"
                                                                     placeholder="Select Date">
-
                                                             </div>
 
                                                             <div class="form-group col-md-12 property_age"
@@ -839,7 +857,15 @@
                                                             </div>
 
                                                         </div>
-                                                        <br>
+                                                        <hr>
+                                                        <input id="agree" class="form-check-input terms"
+                                                            name="agree" value="agree" type="checkbox">
+                                                        <label for="a-1" class="form-check-label">I Agree to
+                                                            Terms & Condition<a href="javascript:void(0)"
+                                                                class="tip-topdata" data-tip="Not Available"><i
+                                                                    class="fa-solid fa-info"></i></a></label>
+                                                        <small id="terms_error"></small>
+                                                        <br><br>
 
                                                         <button type="button" id="prev_step1"
                                                             class="btn btn-primary btn-sm"
@@ -1227,6 +1253,11 @@
                 dateFormat: 'dd-mm-yy',
             });
         });
+    </script>
+    <script>
+        function reraFunction(val) {
+            val == 'Yes' ? $('.rera_reg_number').show() : $('.rera_reg_number').hide();
+        }
     </script>
 
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}

@@ -86,11 +86,11 @@
                         </div>
                         <div class="hero-search-content colored">
                             <div class="row classic-search-box m-0 gx-2">
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
-                                            <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                <option value="">Select City</option>
+                                            <select class="js-select2" name="city_id" id="city_dropdown">
+                                                <option value="" selected disabled>Select City</option>
                                                 @foreach ($city as $cities)
                                                     <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                                                 @endforeach
@@ -99,29 +99,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
-                                            <select class="js-select2" name="taluka_id" id="taluka_id_dropdown">
-                                                <option value="">Select Taluka</option>
-                                                @foreach ($taluka as $talukas)
-                                                    <option value="{{ $talukas->id }}">{{ $talukas->taluka }}</option>
-                                                @endforeach
+                                            <select class="js-select2" name="taluka_id" id="taluka_dropdown">
+                                                <option value="" selected disabled>Select Taluka</option>
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             {{-- <select class="form-control" name="property_type_id"> --}}
-                                            <select class="js-select2" name="property_type_id"
-                                                id="property_type_dropdown">
-                                                <option value="">Property types</option>
+                                            <select class="js-select2" name="property_type_id" id="property_type">
+                                                <option value="" selected disabled>Select Property types</option>
                                                 @foreach ($propertyType as $type)
                                                     <option value="{{ $type->id }}">
-                                                        {{ $type->property_category_name }}
+                                                        {{ $type->property_type }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -129,7 +125,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
+                                            <select class="js-select2" name="property_category_id"
+                                                id="property_category_dropdown">
+                                                <option value="" selected disabled>Select Property Type First
+                                                </option>
+                                            </select>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            {{-- <select class="form-control" name="property_type_id"> --}}
+                                            <select class="js-select2" name="property_type_id"
+                                                id="property_type_dropdown">
+                                                <option value="" selected disabled>Budget
+                                                </option>
+                                                {{-- @foreach ($propertyType as $type)
+                                                    <option value="{{ $type->id }}">
+                                                        {{ $type->property_type }}
+                                                    </option>
+                                                @endforeach --}}
+                                            </select>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="fliox-search-wiop">
                                         <div class="form-group me-2">
                                             <a href="JavaScript:Void(0);" data-bs-toggle="modal"
@@ -193,7 +220,7 @@
                                         <div class="veshm-list-click">
                                             <div><a
                                                     href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                        src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                        src="{{ asset('storage/property/no-photo.png') }}"
                                                         class="img-fluid mx-auto" alt=""></a></div>
                                             {{-- <div><a href="single-property-1.html"><img
                                                     src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
@@ -317,6 +344,66 @@
         $(document).ready(function() {
             $(".js-select2").select2({
                 closeOnSelect: true
+            });
+        });
+    </script>
+    <script>
+        $('#property_type').on('change', function() {
+            var property_type_id = $(this).val();
+
+            $("#property_category_dropdown").html('');
+            $.ajax({
+                url: "{{ route('get-property-category') }}",
+                type: "GET",
+                data: {
+                    property_type_id: property_type_id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('#property_category_dropdown').html(
+                        '<option value="" selected disabled>-- Select Property Category --</option>'
+                    );
+                    $.each(result.property_category, function(key, value) {
+                        $("#property_category_dropdown").append(
+                            '<option value="' +
+                            value
+                            .id + '">' + value.property_category_name +
+                            '</option>');
+
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            //  $('#city').hide();
+            $('#city_dropdown').on('change', function() {
+                var city = this.value;
+                $("#taluka_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-taluka-list') }}",
+                    type: "GET",
+                    data: {
+                        city: city,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#taluka').show();
+                        $('#taluka_dropdown').html(
+                            '<option value="" selected disabled>-- Select Taluka --</option>'
+                        );
+                        $.each(result.taluka, function(key, value) {
+                            $("#taluka_dropdown").append('<option value="' +
+                                value
+                                .id + '">' + value.taluka +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
             });
         });
     </script>

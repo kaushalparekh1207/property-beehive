@@ -210,4 +210,14 @@ class BuyPropertyController extends Controller
 
         return view('front.property-result', compact('resultSearch', 'count', 'category_id', 'city_id'));
     }
+
+    public function readyToMove(){
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Sale')->get();
+        return view('front.buy_ready_to_move', compact('properties'));
+    }
+
+    public function newLaunch(){
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Sale')->orderBy('id', 'DESC')->limit(20)->get();
+        return view('front.buy_new_launch', compact('properties'));
+    }
 }

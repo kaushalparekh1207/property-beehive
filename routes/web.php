@@ -257,14 +257,14 @@ Route::post('/property-detail/inquiry', [FrontController::class, 'inquiryDetails
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');
 
 //Buy Property Details
-Route::view('/buy/ready-to-move', 'front.buy_ready_to_move')->name('readyToMove');
+Route::get('/buy/ready-to-move', [BuyPropertyController::class, 'readyToMove'])->name('readyToMove');
 Route::view('/buy/owner-properties', 'front.buy_owner_property')->name('ownerProperties');
-Route::view('/buy/new-launch', 'front.buy_new_launch')->name('newLaunch');
+Route::get('/buy/new-launch', [BuyPropertyController::class, 'readyToMove'])->name('newLaunch');
 
 //Rent Property Details
 Route::view('/rent/verified_properties', 'front.rent_verified_properties')->name('verifiedProperties');
 Route::view('/rent/owner-properties', 'front.rent_owner_property')->name('rentOwnerProperties');
-Route::view('/rent/furnished-homes', 'front.rent_furnished_homes')->name('furnishedHomes');
+Route::get('/rent/furnished-homes', [RentPropertyController::class, 'furnishedHomes'])->name('furnishedHomes');
 
 //Sell Property Details
 Route::view('/sell/post-property', 'front.sell_post_property')->name('sellpostProperty');

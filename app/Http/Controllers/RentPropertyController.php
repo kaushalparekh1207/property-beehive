@@ -212,4 +212,9 @@ class RentPropertyController extends Controller
 
         return view('front.property-result', compact('resultSearch', 'count', 'category_id', 'city_id'));
     }
+
+    public function furnishedHomes(){
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Rent/Lease')->get();
+        return view('front.rent_furnished_homes', compact('properties'));
+    }
 }

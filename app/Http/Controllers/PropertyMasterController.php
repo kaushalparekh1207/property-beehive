@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgriculturalProperty;
 use App\Models\AgricultureProperty;
 use App\Models\Amenities;
 use App\Models\City;
@@ -275,6 +276,7 @@ class PropertyMasterController extends Controller
         $propertyMasterModel->property_category_id = $request->property_category_dropdown;
         $propertyMasterModel->state_id = $request->state_id;
         $propertyMasterModel->city_id = $request->city_dropdown;
+        $propertyMasterModel->taluka_id = $request->taluka_dropdown;
         $propertyMasterModel->locality = $request->locality;
         $propertyMasterModel->name_of_project = $request->name_of_project;
         $propertyMasterModel->address = $request->address;
@@ -370,7 +372,6 @@ class PropertyMasterController extends Controller
             $industrialPropertyModel->boundary_wall_made = $request->boundary_wall;
             $industrialPropertyModel->carpet_area = $request->carpet_area;
             $industrialPropertyModel->super_area = $request->super_area;
-            $industrialPropertyModel->width_of_entrance = $request->width_of_entrance;
             $industrialPropertyModel->plot_area = $request->plot_area;
             $industrialPropertyModel->plot_length = $request->plot_length;
             $industrialPropertyModel->plot_breadth = $request->plot_breadth;
@@ -391,7 +392,7 @@ class PropertyMasterController extends Controller
         } else if ($request->property_type == 4) {
 
             // Agricultural Property Insert //
-            $agriculturalPropertyModel = new AgricultureProperty();
+            $agriculturalPropertyModel = new AgriculturalProperty();
             $agriculturalPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
             $agriculturalPropertyModel->descr = $request->descr;
             $agriculturalPropertyModel->total_floor = $request->total_floors;
@@ -399,9 +400,7 @@ class PropertyMasterController extends Controller
             $agriculturalPropertyModel->total_bathrooms = $request->total_bathrooms;
             $agriculturalPropertyModel->total_open_side = $request->no_of_open_sides;
             $agriculturalPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $agriculturalPropertyModel->any_construction = $request->any_construction;
             $agriculturalPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $agriculturalPropertyModel->is_in_gated_colony = null;
             $agriculturalPropertyModel->carpet_area = $request->carpet_area;
             $agriculturalPropertyModel->super_area = $request->super_area;
             $agriculturalPropertyModel->width_of_entrance = $request->width_of_entrance;

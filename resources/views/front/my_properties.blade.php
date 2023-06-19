@@ -121,7 +121,10 @@
                                                                                         {{ $residential->locality }}
                                                                                     </div>
                                                                                     <div class="prt_dash_rate">
-                                                                                        <span>{{ $residential->expected_price }}/-</span>
+                                                                                        <span
+                                                                                            style="color: red">₹@php
+                                                                                                echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $residential->expected_price);
+                                                                                            @endphp/-</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </td>

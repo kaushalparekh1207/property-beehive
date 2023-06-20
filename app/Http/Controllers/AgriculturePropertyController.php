@@ -211,6 +211,21 @@ class AgriculturePropertyController extends Controller
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
             }
 
+        }  elseif ($city_id && $taluka_id == null && $type_id && $category_id == null) {
+            $property_master = PropertyMaster::where('property_type_id', $type_id)->pluck('id')->first();
+            $agriculture_property = AgriculturalProperty::where('property_master_id', $property_master)->pluck('property_master_id')->first();
+
+            if ($agriculture_property == $property_master) {
+                $resultSearch = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1)
+                    // ->where('property_masters.property_status', $pg)
+                    ->where('property_masters.city_id', $city_id)
+                    ->where('property_masters.property_type_id', $type_id)
+                    ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.client_master_id']);
+            }
+
         } else {
 
             $property_master = PropertyMaster::where('property_type_id', $type_id)->where('city_id', $city_id)->pluck('id')->first();

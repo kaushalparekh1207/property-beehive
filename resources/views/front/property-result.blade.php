@@ -177,743 +177,284 @@
 
                 <!-- Start All Cell View -->
                 <div id="cell" class="row gx-3 gy-4">
-                    <!-- Single Property -->
-                    @if ($resultSearch->count() == 0)
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7 col-md-10 text-center">
-                                <div class="sec-heading center">
-                                    <h2>Record Not Found</h2>
-                                    <p>Please enter correct details</p>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        @foreach ($resultSearch as $result)
-                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="veshm-list-prty">
-                                    <div class="veshm-list-prty-figure">
-                                        <div class="veshm-list-img-slide">
-                                            <div class="veshm-list-click">
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
+                    <table id="example" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <!-- Single Property -->
+                                    @if ($resultSearch->count() == 0)
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 col-md-10 text-center">
+                                                <div class="sec-heading center">
+                                                    <h2>Record Not Found</h2>
+                                                    <p>Please enter correct details</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="veshm-list-prty-caption">
-                                        <div class="veshm-list-kygf">
-                                            <div class="veshm-list-kygf-flex">
-                                                {{-- <div class="veshm-list-typess rent"> --}}.
-                                                @if ($result->property_status == 'Sale')
-                                                    <div class="veshm-type fr-sale"><span>For
-                                                            {{ $result->property_status }}</span>
+                                    @else
+                                        @foreach ($resultSearch as $result)
+                                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="veshm-list-prty">
+                                                    <div class="veshm-list-prty-figure">
+                                                        <div class="veshm-list-img-slide">
+                                                            <div class="veshm-list-click">
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                @elseif($result->property_status == 'Rent/Lease')
-                                                    <div class="veshm-type"><span>For
-                                                            {{ $result->property_status }}</span></div>
-                                                @elseif($result->property_status == 'PG/Hostel')
-                                                    <div class="veshm-type fr-pg"><span>For
-                                                            {{ $result->property_status }}</span></div>
-                                                @endif
-                                                {{-- <span>For {{ $result->property_status }}</span> --}}
-                                                {{-- </div> --}}
-                                                <h5 class="rlhc-title-name verified"><a
-                                                        href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
-                                                        class="prt-link-detail">{{ $result->name_of_project }}</a>
-                                                </h5>
-                                                <div class="vesh-aget-rates">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <span class="resy-98">322 Reviews</span>
+                                                    <div class="veshm-list-prty-caption">
+                                                        <div class="veshm-list-kygf">
+                                                            <div class="veshm-list-kygf-flex">
+                                                                {{-- <div class="veshm-list-typess rent"> --}}.
+                                                                @if ($result->property_status == 'Sale')
+                                                                    <div class="veshm-type fr-sale"><span>For
+                                                                            {{ $result->property_status }}</span>
+                                                                    </div>
+                                                                @elseif($result->property_status == 'Rent/Lease')
+                                                                    <div class="veshm-type"><span>For
+                                                                            {{ $result->property_status }}</span></div>
+                                                                @elseif($result->property_status == 'PG/Hostel')
+                                                                    <div class="veshm-type fr-pg"><span>For
+                                                                            {{ $result->property_status }}</span></div>
+                                                                @endif
+                                                                {{-- <span>For {{ $result->property_status }}</span> --}}
+                                                                {{-- </div> --}}
+                                                                <h5 class="rlhc-title-name verified"><a
+                                                                        href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
+                                                                        class="prt-link-detail">{{ $result->name_of_project }}</a>
+                                                                </h5>
+                                                                <div class="vesh-aget-rates">
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <span class="resy-98">322 Reviews</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="veshm-list-head-flex">
+                                                                <button class="btn btn-like active" type="button"><i
+                                                                        class="fa-solid fa-heart-circle-check"></i></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-middle">
+                                                            <div class="veshm-list-icons">
+                                                                <ul>
+                                                                    @if ($result->total_bedrooms != null)
+                                                                        <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
+                                                                                Bed</span></li>
+                                                                    @endif
+                                                                    @if ($result->total_bathrooms != null)
+                                                                        <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
+                                                                                Bath</span></li>
+                                                                    @endif
+                                                                    @if ($result->carpet_area != null)
+                                                                        <li><i
+                                                                                class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
+                                                                                Sqft</span>
+                                                                    @endif
+                                                                    </li>
+                                                                    <li><i class="fa-solid fa-calendar-days"></i><span>Built
+                                                                            2017</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-footers">
+                                                            <div class="veshm-list-ftr786">
+                                                                <div class="rlhc-price">
+                                                                    <h4 class="rlhc-price-name theme-cl">
+                                                                        ₹@php
+                                                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
+                                                                        @endphp
+                                                                        @if ($result->property_status == 'Sale')
+                                                                            <span class="monthly">One Time</span>
+                                                                        @elseif ($result->property_status == 'Rent/Lease')
+                                                                            <span class="monthly">/Months</span>
+                                                                        @elseif ($result->property_status == 'PG/Hostel')
+                                                                            <span class="monthly">/Months</span>
+                                                                        @endif
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                            <div class="veshm-list-ftr1707">
+                                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#offer"
+                                                                    class="btn btn-md btn-primary font--medium">Send
+                                                                    Offer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="veshm-list-head-flex">
-                                                <button class="btn btn-like active" type="button"><i
-                                                        class="fa-solid fa-heart-circle-check"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="veshm-list-middle">
-                                            <div class="veshm-list-icons">
-                                                <ul>
-                                                    @if ($result->total_bedrooms != null)
-                                                        <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
-                                                                Bed</span></li>
-                                                    @endif
-                                                    @if ($result->total_bathrooms != null)
-                                                        <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
-                                                                Bath</span></li>
-                                                    @endif
-                                                    @if ($result->carpet_area != null)
-                                                        <li><i class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
-                                                                Sqft</span>
-                                                    @endif
-                                                    </li>
-                                                    <li><i class="fa-solid fa-calendar-days"></i><span>Built
-                                                            2017</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="veshm-list-footers">
-                                            <div class="veshm-list-ftr786">
-                                                <div class="rlhc-price">
-                                                    <h4 class="rlhc-price-name theme-cl">₹@php
-                                                        echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
-                                                    @endphp
-                                                        @if ($result->property_status == 'Sale')
-                                                            <span class="monthly">One Time</span>
-                                                        @elseif ($result->property_status == 'Rent/Lease')
-                                                            <span class="monthly">/Months</span>
-                                                        @elseif ($result->property_status == 'PG/Hostel')
-                                                            <span class="monthly">/Months</span>
-                                                        @endif
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                            <div class="veshm-list-ftr1707">
-                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#offer"
-                                                    class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-12.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-6.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-7.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">Hearthstone Real Property</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">210 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>4 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>2 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>3200 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2020</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$10,590<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-13.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-7.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">The Goldfinch Real Property</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">452 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>3 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>3 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>2100 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2021</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$8,999<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-14.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-1.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-10.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">Dream Big Real Estate</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">340 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>4 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>3 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>2700 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2022</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$9,649<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-10.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-10.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">Agile Real Estate Group</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">322 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>3 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>2 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>2200 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2017</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$7,549<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-7.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">Hearthstone Real Property</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">210 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>4 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>2 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>3200 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2020</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$10,590<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">The Goldfinch Real Property</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">452 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>3 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>3 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>2100 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2021</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$8,999<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <!-- Single Property -->
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="veshm-list-prty">
-                            <div class="veshm-list-prty-figure">
-                                <div class="veshm-list-img-slide">
-                                    <div class="veshm-list-click">
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-7.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-5.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{ url('/') }}/front/assets/img/prt-10.png"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="veshm-list-prty-caption">
-                                <div class="veshm-list-kygf">
-                                    <div class="veshm-list-kygf-flex">
-                                        <div class="veshm-list-typess rent"><span>For Rent</span></div>
-                                        <h5 class="rlhc-title-name verified"><a href="single-property-1.html"
-                                                class="prt-link-detail">Dream Big Real Estate</a></h5>
-                                        <div class="vesh-aget-rates">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span class="resy-98">340 Reviews</span>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-head-flex">
-                                        <button class="btn btn-like active" type="button"><i
-                                                class="fa-solid fa-heart-circle-check"></i></button>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-middle">
-                                    <div class="veshm-list-icons">
-                                        <ul>
-                                            <li><i class="fa-solid fa-bed"></i><span>4 Bed</span></li>
-                                            <li><i class="fa-solid fa-bath"></i><span>3 Ba</span></li>
-                                            <li><i class="fa-solid fa-vector-square"></i><span>2700 Sqft</span></li>
-                                            <li><i class="fa-solid fa-calendar-days"></i><span>Built 2022</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="veshm-list-footers">
-                                    <div class="veshm-list-ftr786">
-                                        <div class="rlhc-price">
-                                            <h4 class="rlhc-price-name theme-cl">$9,649<span
-                                                    class="monthly">/Months</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="veshm-list-ftr1707">
-                                        <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#offer"
-                                            class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
+                                        @endforeach
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- End All Cell View -->
 
                 <!-- Start All List View -->
                 <div id="list" class="row gx-3 gy-4" style="display: none;">
-                    @if ($resultSearch->count() == 0)
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7 col-md-10 text-center">
-                                <div class="sec-heading center">
-                                    <h2>Record Not Found</h2>
-                                    <p>Please enter correct details</p>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        @foreach ($resultSearch as $result)
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="veshm-list-prty">
-                                    <div class="veshm-list-prty-figure1">
-                                        <div class="veshm-list-img-slide">
-                                            <div class="veshm-list-click">
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
-                                                <div><a href="single-property-1.html"><img
-                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                            class="img-fluid mx-auto" alt=""></a></div>
+                    <table id="example2" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @if ($resultSearch->count() == 0)
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 col-md-10 text-center">
+                                                <div class="sec-heading center">
+                                                    <h2>Record Not Found</h2>
+                                                    <p>Please enter correct details</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="veshm-list-prty-caption">
-                                        <div class="veshm-list-kygf">
-                                            <div class="veshm-list-kygf-flex">
-                                                {{-- <div class="veshm-list-typess rent"> --}}.
-                                                @if ($result->property_status == 'Sale')
-                                                    <div class="veshm-type fr-sale"><span>For
-                                                            {{ $result->property_status }}</span>
+                                    @else
+                                        @foreach ($resultSearch as $result)
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="veshm-list-prty">
+                                                    <div class="veshm-list-prty-figure1">
+                                                        <div class="veshm-list-img-slide">
+                                                            <div class="veshm-list-click">
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                                <div><a href="single-property-1.html"><img
+                                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
+                                                                            class="img-fluid mx-auto"
+                                                                            alt=""></a></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                @elseif($result->property_status == 'Rent/Lease')
-                                                    <div class="veshm-type"><span>For
-                                                            {{ $result->property_status }}</span></div>
-                                                @elseif($result->property_status == 'PG/Hostel')
-                                                    <div class="veshm-type fr-pg"><span>For
-                                                            {{ $result->property_status }}</span></div>
-                                                @endif
-                                                {{-- <span>For {{ $result->property_status }}</span> --}}
-                                                {{-- </div> --}}
-                                                <h5 class="rlhc-title-name verified"><a
-                                                        href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
-                                                        class="prt-link-detail">{{ $result->name_of_project }}</a>
-                                                </h5>
-                                                <div class="vesh-aget-rates">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <span class="resy-98">322 Reviews</span>
+                                                    <div class="veshm-list-prty-caption">
+                                                        <div class="veshm-list-kygf">
+                                                            <div class="veshm-list-kygf-flex">
+                                                                {{-- <div class="veshm-list-typess rent"> --}}.
+                                                                @if ($result->property_status == 'Sale')
+                                                                    <div class="veshm-type fr-sale"><span>For
+                                                                            {{ $result->property_status }}</span>
+                                                                    </div>
+                                                                @elseif($result->property_status == 'Rent/Lease')
+                                                                    <div class="veshm-type"><span>For
+                                                                            {{ $result->property_status }}</span></div>
+                                                                @elseif($result->property_status == 'PG/Hostel')
+                                                                    <div class="veshm-type fr-pg"><span>For
+                                                                            {{ $result->property_status }}</span></div>
+                                                                @endif
+                                                                {{-- <span>For {{ $result->property_status }}</span> --}}
+                                                                {{-- </div> --}}
+                                                                <h5 class="rlhc-title-name verified"><a
+                                                                        href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
+                                                                        class="prt-link-detail">{{ $result->name_of_project }}</a>
+                                                                </h5>
+                                                                <div class="vesh-aget-rates">
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <span class="resy-98">322 Reviews</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="veshm-list-head-flex">
+                                                                <button class="btn btn-like active" type="button"><i
+                                                                        class="fa-solid fa-heart-circle-check"></i></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-middle">
+                                                            <div class="veshm-list-icons">
+                                                                <ul>
+                                                                    @if ($result->total_bedrooms != null)
+                                                                        <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
+                                                                                Bed</span></li>
+                                                                    @endif
+                                                                    @if ($result->total_bathrooms != null)
+                                                                        <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
+                                                                                Bath</span></li>
+                                                                    @endif
+                                                                    @if ($result->carpet_area != null)
+                                                                        <li><i
+                                                                                class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
+                                                                                Sqft</span>
+                                                                    @endif
+                                                                    </li>
+                                                                    <li><i class="fa-solid fa-calendar-days"></i><span>Built
+                                                                            2017</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-footers">
+                                                            <div class="veshm-list-ftr786">
+                                                                <div class="rlhc-price">
+                                                                    <h4 class="rlhc-price-name theme-cl">
+                                                                        ₹@php
+                                                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
+                                                                        @endphp
+                                                                        @if ($result->property_status == 'Sale')
+                                                                            <span class="monthly">One Time</span>
+                                                                        @elseif ($result->property_status == 'Rent/Lease')
+                                                                            <span class="monthly">/Months</span>
+                                                                        @elseif ($result->property_status == 'PG/Hostel')
+                                                                            <span class="monthly">/Months</span>
+                                                                        @endif
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                            <div class="veshm-list-ftr1707">
+                                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#offer"
+                                                                    class="btn btn-md btn-primary font--medium">Send
+                                                                    Offer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="veshm-list-head-flex">
-                                                <button class="btn btn-like active" type="button"><i
-                                                        class="fa-solid fa-heart-circle-check"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="veshm-list-middle">
-                                            <div class="veshm-list-icons">
-                                                <ul>
-                                                    @if ($result->total_bedrooms != null)
-                                                        <li><i class="fa-solid fa-bed"></i><span>{{ $result->total_bedrooms }}
-                                                                Bed</span></li>
-                                                    @endif
-                                                    @if ($result->total_bathrooms != null)
-                                                        <li><i class="fa-solid fa-bath"></i><span>{{ $result->total_bathrooms }}
-                                                                Bath</span></li>
-                                                    @endif
-                                                    @if ($result->carpet_area != null)
-                                                        <li><i class="fa-solid fa-vector-square"></i><span>{{ $result->carpet_area }}
-                                                                Sqft</span>
-                                                    @endif
-                                                    </li>
-                                                    <li><i class="fa-solid fa-calendar-days"></i><span>Built
-                                                            2017</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="veshm-list-footers">
-                                            <div class="veshm-list-ftr786">
-                                                <div class="rlhc-price">
-                                                    <h4 class="rlhc-price-name theme-cl">
-                                                        ₹@php
-                                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $result->expected_price);
-                                                        @endphp
-                                                        @if ($result->property_status == 'Sale')
-                                                            <span class="monthly">One Time</span>
-                                                        @elseif ($result->property_status == 'Rent/Lease')
-                                                            <span class="monthly">/Months</span>
-                                                        @elseif ($result->property_status == 'PG/Hostel')
-                                                            <span class="monthly">/Months</span>
-                                                        @endif
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                            <div class="veshm-list-ftr1707">
-                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#offer"
-                                                    class="btn btn-md btn-primary font--medium">Send Offer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- End All List View -->
-
-
-
-                <!-- Start Pagination -->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="JavaScript:Void(0);" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">1</a></li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">2</a></li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">3</a></li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">4</a></li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">5</a></li>
-                                <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">6</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="JavaScript:Void(0);" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
 
             </div>
         </section>
@@ -972,6 +513,26 @@
                 }
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                searching: false,
+                lengthChange: false,
+                info: true,
+                ordering: false,
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example2').DataTable({
+                searching: false,
+                lengthChange: false,
+                info: true,
+                ordering: false,
+            });
+        });
     </script>
 
 </body>

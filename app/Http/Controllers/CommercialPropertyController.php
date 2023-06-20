@@ -63,8 +63,20 @@ class CommercialPropertyController extends Controller
                     ->where('property_masters.taluka_id', $taluka_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'commercial_properties.furnished_status', 'commercial_properties.carpet_area', 'commercial_properties.property_master_id', 'commercial_properties.age', 'property_masters.client_master_id']);
             }
-        }
-        else {
+        } elseif ($city_id && $taluka_id == null && $type_id && $category_id == null) {
+            $property_master = PropertyMaster::where('property_type_id', $type_id)->pluck('id')->first();
+            $commercial_property = CommercialProperty::where('property_master_id', $property_master)->pluck('property_master_id')->first();
+
+            if ($commercial_property == $property_master) {
+                $resultSearch = PropertyMaster::join('commercial_properties', 'commercial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('commercial_properties.flag', 1)
+                    ->where('property_masters.city_id', $city_id)
+                    ->where('property_masters.property_type_id', $type_id)
+                    ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'commercial_properties.furnished_status', 'commercial_properties.carpet_area', 'commercial_properties.property_master_id', 'commercial_properties.age', 'property_masters.client_master_id']);
+            }
+        } else {
 
             $property_master = PropertyMaster::where('property_type_id', $type_id)->where('city_id', $city_id)->pluck('id')->first();
             $commercial_property = CommercialProperty::where('property_master_id', $property_master)->pluck('property_master_id')->first();

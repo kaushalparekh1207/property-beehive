@@ -199,7 +199,7 @@
                             <div class="vesh-detail-bloc_header">
                                 <a data-bs-toggle="collapse" data-parent="#basicinfo" data-bs-target="#basicinfo"
                                     aria-controls="basicinfo" href="javascript:void(0);" aria-expanded="false">
-                                    <h4 class="property_block_title">Basic Detail</h4>
+                                    <h4 class="property_block_title">Property Features</h4>
                                 </a>
                             </div>
                             <div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
@@ -293,7 +293,7 @@
                         </div>
 
                         <!-- Amenties Detail -->
-                        @if (session()->has('user'))
+                        @if (session()->has('user') && count($amenities) > 0)
                             <div class="vesh-detail-bloc">
                                 <div class="vesh-detail-bloc_header">
                                     <a data-bs-toggle="collapse" data-parent="#amenitiesinfo"
@@ -308,8 +308,8 @@
                                         <ul class="avl-features third color">
 
                                             @foreach ($amenities as $amenitie)
-                                                @if ($amenitie->amenitie != null)
-                                                    <li>{{ $amenitie->amenitie }}</li>
+                                                @if ($amenitie->amenities != null)
+                                                    <li>{{ $amenitie->amenities }}</li>
                                                 @endif
                                             @endforeach
 

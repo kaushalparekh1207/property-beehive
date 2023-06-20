@@ -47,7 +47,7 @@
             <div class="container">
 
                 <div class="inner-banner-text text-center">
-                    <h1>Properties to Commercial in <br>Ahmedabad</h1>
+                    <h1>Commercial Properties</h1>
 
                 </div>
 
@@ -180,9 +180,9 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-10 text-center">
                         <div class="sec-heading center">
-                            <h2>Properties on Commercial</h2>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores</p>
+                            <h2>Commercial Properties</h2>
+                            {{-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                voluptatum deleniti atque corrupti quos dolores</p> --}}
                         </div>
                     </div>
                 </div>
@@ -207,15 +207,21 @@
 
                                     <div class="veshm-list-img-slide">
                                         <div class="veshm-list-click">
-                                            <div><a href="single-property-1.html"><img
-                                                        src="{{ url('/') }}/front/assets/img/prt-1.png"
-                                                        class="img-fluid mx-auto" alt=""></a></div>
-                                            <div><a href="single-property-1.html"><img
-                                                        src="{{ url('/') }}/front/assets/img/prt-8.png"
-                                                        class="img-fluid mx-auto" alt=""></a></div>
-                                            <div><a href="single-property-1.html"><img
-                                                        src="{{ url('/') }}/front/assets/img/prt-9.png"
-                                                        class="img-fluid mx-auto" alt=""></a></div>
+                                            <div>
+                                                @if ($property->cover_image == null)
+                                                    <a
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                            src="{{ asset('storage/property/no-photo.png') }}"
+                                                            class="img-fluid mx-auto" alt=""
+                                                            style="width: 500px; height: 300px;"></a>
+                                                @else
+                                                    <a
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                            src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                            class="img-fluid mx-auto" alt=""
+                                                            style="width: 500px; height: 300px;"></a>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

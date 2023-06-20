@@ -78,8 +78,9 @@ class FrontController extends Controller
         if ($type == 1) {
             $properties_details = PropertyMaster::findOrFail($id);
             $allDetails = ResidentialProperty::where('property_master_id', $id)->first();
-            $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
-                ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
+            $amenities = PropertyAmenities::join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')
+            ->where('property_amenities.property_master_id', $id)
+            ->get();
             $client_data = User::where('client_master.id', $owner)
                 ->join('cities', 'cities.id', '=', 'client_master.city_id')
                 ->join('states', 'states.id', '=', 'client_master.state_id')

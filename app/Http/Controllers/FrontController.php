@@ -88,7 +88,8 @@ class FrontController extends Controller
                 ->first();
             $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
             $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
-            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images'));
+            // $types = $type;
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images', 'type'));
         } elseif ($type == 2) {
 
             $properties_details = PropertyMaster::findOrFail($id);
@@ -103,7 +104,37 @@ class FrontController extends Controller
                 ->first();
             $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
             $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
-            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images'));
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images', 'type'));
+        } elseif ($type == 3) {
+
+            $properties_details = PropertyMaster::findOrFail($id);
+            $allDetails = IndustrialProperty::where('property_master_id', $id)->first();
+            $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
+                ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
+            $client_data = User::where('client_master.id', $owner)
+                ->join('cities', 'cities.id', '=', 'client_master.city_id')
+                ->join('states', 'states.id', '=', 'client_master.state_id')
+                ->where('client_master.flag', 1)
+                ->select('client_master.*', 'cities.city', 'states.state')
+                ->first();
+            $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
+            $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images', 'type'));
+        } elseif ($type == 4) {
+
+            $properties_details = PropertyMaster::findOrFail($id);
+            $allDetails = AgriculturalProperty::where('property_master_id', $id)->first();
+            $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
+                ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
+            $client_data = User::where('client_master.id', $owner)
+                ->join('cities', 'cities.id', '=', 'client_master.city_id')
+                ->join('states', 'states.id', '=', 'client_master.state_id')
+                ->where('client_master.flag', 1)
+                ->select('client_master.*', 'cities.city', 'states.state')
+                ->first();
+            $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
+            $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images', 'type'));
         }
     }
     public function propertyResultSearch(Request $request, $type = null, $city = null)

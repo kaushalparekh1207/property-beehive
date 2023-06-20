@@ -106,22 +106,24 @@
                                                 class="fa-solid fa-location-dot me-2"></i>{{ $properties_details->address }},{{ $properties_details->locality }}</span>
                                         <div class="list-fx-features mt-2">
                                             <div class="list-fx-fisrt">
-                                                @if ($allDetails->total_bedrooms != null)
-                                                    <span
-                                                        class="label font--medium label-light-success me-2">{{ $allDetails->total_bedrooms }}
-                                                        Beds</span>
-                                                @endif
+                                                @if ($type < 3)
+                                                    @if ($allDetails->total_bedrooms != null)
+                                                        <span
+                                                            class="label font--medium label-light-success me-2">{{ $allDetails->total_bedrooms }}
+                                                            Beds</span>
+                                                    @endif
 
-                                                @if ($allDetails->total_bathrooms != null)
-                                                    <span
-                                                        class="label font--medium label-light-info me-2">{{ $allDetails->total_bathrooms }}
-                                                        Bath</span>
-                                                @endif
+                                                    @if ($allDetails->total_bathrooms != null)
+                                                        <span
+                                                            class="label font--medium label-light-info me-2">{{ $allDetails->total_bathrooms }}
+                                                            Bath</span>
+                                                    @endif
 
-                                                @if ($allDetails->carpet_area != null)
-                                                    <span
-                                                        class=" label font--medium label-light-danger">{{ $allDetails->carpet_area }}
-                                                        Sqft</span>
+                                                    @if ($allDetails->carpet_area != null)
+                                                        <span
+                                                            class=" label font--medium label-light-danger">{{ $allDetails->carpet_area }}
+                                                            Sqft</span>
+                                                    @endif
                                                 @endif
 
                                             </div>
@@ -221,6 +223,16 @@
                                                 </div>
                                             </div>
                                         @endif
+                                        @if ($allDetails->total_floor != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-regular fa-building"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allDetails->total_floor }}
+                                                        Floor</div>
+                                                </div>
+                                            </div>
+                                        @endif
                                         @if ($allDetails->carpet_area != null)
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                                 <div class="ilio-icon-wrap">
@@ -242,6 +254,26 @@
                                                 </div>
                                             </div>
                                         @endif
+                                        @if ($allDetails->furnished_status != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-couch"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allDetails->furnished_status }}</div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if ($allDetails->carpet_area != null)
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                <div class="ilio-icon-wrap">
+                                                    <div class="ilio-icon"><i class="fa-solid fa-rug"></i>
+                                                    </div>
+                                                    <div class="ilio-text">{{ $allDetails->carpet_area }} sqft
+                                                        Carpet Area</div>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                             <div class="ilio-icon-wrap">
                                                 <div class="ilio-icon"><i
@@ -251,19 +283,10 @@
                                             </div>
                                         </div>
                                         {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div> --}}
-                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> --}}
-                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div> --}}
-                                        @if ($allDetails->total_floor != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-regular fa-building"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->total_floor }}
-                                                        Floor</div>
-                                                </div>
-                                            </div>
-                                        @endif
+											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> 
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div>
+                                        --}}
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +329,35 @@
                                 </div>
                             </div>
                         @endif
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <a data-bs-toggle="collapse" data-parent="#featuresinfo"
+                                    data-bs-target="#featuresinfo" aria-controls="featuresinfo"
+                                    href="javascript:void(0);" aria-expanded="false">
+                                    <h4 class="property_block_title">Features</h4>
+                                </a>
+                            </div>
+                            <div id="featuresinfo" class="panel-collapse collapse show"
+                                aria-labelledby="featuresinfo">
+                                <div class="vesh-detail-bloc-body">
+                                    <div class="lvs-detail mb-4">
+                                        {{-- <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <h6>Interior Details</h6>
+                                            </div>
+                                        </div> --}}
+                                        <div class="row gy-3">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                                <div class="lvs-caption"><i
+                                                        class="fa-solid fa-circle-check"></i>Equipped
+                                                    Kitchen</div>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- All features Detail -->
                         {{-- <div class="vesh-detail-bloc">

@@ -172,7 +172,7 @@
                                                     <button class="btn btn-theme btn-lg" type="submit"
                                                         style="background-color: #017efa; border: none;">Save
                                                         Changes</button>
-                                                    <button class="btn btn-theme btn-lg" type="submit"
+                                                    <button class="btn btn-theme btn-lg" type="reset"
                                                         style="background-color: #dc3545; border: none;">Cancel</button>
                                                 </div>
 

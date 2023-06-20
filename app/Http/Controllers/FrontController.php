@@ -11,6 +11,8 @@ use App\Models\Inquiry;
 use App\Models\PropertyAmenities;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
+use App\Models\PropertyMasterPlanImage;
+use App\Models\PropertySiteViewImage;
 use App\Models\PropertyType;
 use App\Models\ResidentialProperty;
 use App\Models\Taluka;
@@ -74,7 +76,7 @@ class FrontController extends Controller
     public function propertydetails(Request $request, $id, $type, $name, $owner)
     {
         if ($type == 1) {
-            $propertis_details = PropertyMaster::findOrFail($id);
+            $properties_details = PropertyMaster::findOrFail($id);
             $allDetails = ResidentialProperty::where('property_master_id', $id)->first();
             $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
                 ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
@@ -84,13 +86,12 @@ class FrontController extends Controller
                 ->where('client_master.flag', 1)
                 ->select('client_master.*', 'cities.city', 'states.state')
                 ->first();
-            // echo '<pre>';
-            // print_r($client_data);
-            // echo '</pre>';exit;
-            return view('front.property-details', compact('propertis_details', 'allDetails', 'amenities', 'client_data'));
+            $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
+            $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images'));
         } elseif ($type == 2) {
 
-            $propertis_details = PropertyMaster::findOrFail($id);
+            $properties_details = PropertyMaster::findOrFail($id);
             $allDetails = CommercialProperty::where('property_master_id', $id)->first();
             $amenities = PropertyAmenities::where('property_amenities.property_master_id', $id)
                 ->join('amenities', 'amenities.id', '=', 'property_amenities.amenities_id')->get();
@@ -100,7 +101,9 @@ class FrontController extends Controller
                 ->where('client_master.flag', 1)
                 ->select('client_master.*', 'cities.city', 'states.state')
                 ->first();
-            return view('front.property-details', compact('propertis_details', 'allDetails', 'amenities', 'client_data'));
+            $master_plan_images = PropertyMasterPlanImage::where('property_master_id', $id)->where('flag', 1)->get();
+            $site_view_images = PropertySiteViewImage::where('property_master_id', $id)->where('flag', 1)->get();
+            return view('front.property-details', compact('properties_details', 'allDetails', 'amenities', 'client_data', 'master_plan_images', 'site_view_images'));
         }
     }
     public function propertyResultSearch(Request $request, $type = null, $city = null)

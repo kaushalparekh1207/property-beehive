@@ -41,13 +41,28 @@
         <!-- ============================ Hero Banner  Start================================== -->
         <div class="featured_slick_gallery gray">
             <div class="featured_slick_gallery-slide">
-                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-1.jpg"
-                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-1.jpg"
-                            class="img-fluid mx-auto" alt=""></a></div>
-                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-2.jpg"
-                        class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-2.jpg"
-                            class="img-fluid mx-auto" alt=""></a></div>
-                <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-3.jpg"
+                <div class="featured_slick_padd"><a
+                        href="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
+                        class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                            src="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
+                            class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
+                <!-- Master Plan Image -->
+                @foreach ($master_plan_images as $master_plan_image)
+                    <div class="featured_slick_padd"><a
+                            href="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
+                            class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                src="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
+                                class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
+                @endforeach
+                <!-- Site View Image -->
+                @foreach ($site_view_images as $site_view_image)
+                    <div class="featured_slick_padd"><a
+                            href="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
+                            class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                src="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
+                                class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
+                @endforeach
+                {{-- <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-3.jpg"
                         class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-3.jpg"
                             class="img-fluid mx-auto" alt=""></a></div>
                 <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-4.jpg"
@@ -58,7 +73,7 @@
                             class="img-fluid mx-auto" alt=""></a></div>
                 <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-6.jpg"
                         class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-6.jpg"
-                            class="img-fluid mx-auto" alt=""></a></div>
+                            class="img-fluid mx-auto" alt=""></a></div> --}}
             </div>
         </div>
         <!-- ============================ Hero Banner End ================================== -->
@@ -76,19 +91,19 @@
                             <div class="vesh-detail-headup">
                                 <div class="vesh-detail-headup-first">
                                     <div class="prt-detail-title-desc">
-                                        @if ($propertis_details->property_status == 'Sale')
+                                        @if ($properties_details->property_status == 'Sale')
                                             <span class="label label-danger">For
-                                                {{ $propertis_details->property_status }}</span>
-                                        @elseif($propertis_details->property_status == 'Rent/Lease')
+                                                {{ $properties_details->property_status }}</span>
+                                        @elseif($properties_details->property_status == 'Rent/Lease')
                                             <span class="label label-purple">For
-                                                {{ $propertis_details->property_status }}</span>
-                                        @elseif($propertis_details->property_status == 'PG/Hostel')
+                                                {{ $properties_details->property_status }}</span>
+                                        @elseif($properties_details->property_status == 'PG/Hostel')
                                             <span class="label label-success">For
-                                                {{ $propertis_details->property_status }}</span>
+                                                {{ $properties_details->property_status }}</span>
                                         @endif
-                                        <h4>{{ $propertis_details->name_of_project }}</h4>
+                                        <h4>{{ $properties_details->name_of_project }}</h4>
                                         <span class="text-mid"><i
-                                                class="fa-solid fa-location-dot me-2"></i>{{ $propertis_details->address }},{{ $propertis_details->locality }}</span>
+                                                class="fa-solid fa-location-dot me-2"></i>{{ $properties_details->address }},{{ $properties_details->locality }}</span>
                                         <div class="list-fx-features mt-2">
                                             <div class="list-fx-fisrt">
                                                 @if ($allDetails->total_bedrooms != null)
@@ -119,10 +134,10 @@
                                 <div class="vesh-detail-headup-last">
                                     <h3 class="prt-price-fix theme-cl">
                                         ₹@php
-                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $propertis_details->expected_price);
+                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $properties_details->expected_price);
                                         @endphp
                                         {{-- @php
-                                            $number = $propertis_details->expected_price;
+                                            $number = $properties_details->expected_price;
                                             function convertCurrency($number)
                                             {
                                                 // Convert Price to Crores or Lakhs or Thousands
@@ -152,11 +167,11 @@
                                             echo '₹' . convertCurrency($number);
                                         @endphp --}}
                                     </h3>
-                                    @if ($propertis_details->property_status == 'Sale')
+                                    @if ($properties_details->property_status == 'Sale')
                                         <h3 class="prt-price-fix theme-cl"><span>One Time</span></h3>
-                                    @elseif ($propertis_details->property_status == 'Rent/Lease')
+                                    @elseif ($properties_details->property_status == 'Rent/Lease')
                                         <h3 class="prt-price-fix theme-cl"><span>/Months</span></h3>
-                                    @elseif ($propertis_details->property_status == 'PG/Hostel')
+                                    @elseif ($properties_details->property_status == 'PG/Hostel')
                                         <h3 class="prt-price-fix theme-cl"><span>/Months</span></h3>
                                     @endif
                                 </div>
@@ -230,7 +245,8 @@
                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                             <div class="ilio-icon-wrap">
                                                 <div class="ilio-icon"><i
-                                                        class="fa-solid fa-building-circle-check"></i></div>
+                                                        class="fa-solid fa-building-circle-check"></i>
+                                                </div>
                                                 <div class="ilio-text">Active</div>
                                             </div>
                                         </div>
@@ -1590,7 +1606,7 @@
                 <div class="modal-inquiry-form">
                     <form id="inquiryForm" method="post" action="{{ route('inquiryDetails') }}">
                         @csrf
-                        <input type="hidden" name="property_master_id" value="{{ $propertis_details->id }}">
+                        <input type="hidden" name="property_master_id" value="{{ $properties_details->id }}">
                         <input type="hidden" name="client_master_id" value="{{ $client_data->id }}">
 
                         <div class="form-floating mb-4">

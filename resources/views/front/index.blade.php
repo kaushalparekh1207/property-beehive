@@ -218,16 +218,21 @@
 
                                     <div class="veshm-list-img-slide">
                                         <div class="veshm-list-click">
-                                            <div><a
-                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                        src="{{ asset('storage/property/no-photo.png') }}"
-                                                        class="img-fluid mx-auto" alt=""></a></div>
-                                            {{-- <div><a href="single-property-1.html"><img
-                                                    src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
-                                                    class="img-fluid mx-auto" alt=""></a></div>
-                                        <div><a href="single-property-1.html"><img
-                                                    src="{{asset('storage/property/banner_image/'. $property->cover_image) }}"
-                                                    class="img-fluid mx-auto" alt=""></a></div> --}}
+                                            <div>
+                                                @if ($property->cover_image == null)
+                                                    <a
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                            src="{{ asset('storage/property/no-photo.png') }}"
+                                                            class="img-fluid mx-auto" alt=""
+                                                            style="width: 500px; height: 300px;"></a>
+                                                @else
+                                                    <a
+                                                        href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                            src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                            class="img-fluid mx-auto" alt=""
+                                                            style="width: 500px; height: 300px;"></a>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

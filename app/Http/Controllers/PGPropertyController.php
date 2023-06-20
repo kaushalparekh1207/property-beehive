@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgriculturalProperty;
+use App\Models\AgricultureProperty;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
@@ -13,27 +14,27 @@ use App\Models\ResidentialProperty;
 use App\Models\Taluka;
 use Illuminate\Http\Request;
 
-class RentPropertyController extends Controller
+class PGPropertyController extends Controller
 {
-    public function rent()
+    public function pg()
     {
-        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->get();
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'PG/Hostel')->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
         $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
-        return view('front.rent', compact('properties', 'city', 'propertyType', 'taluka'));
+        return view('front.pg', compact('properties', 'city', 'propertyType', 'taluka'));
     }
 
-    public function searchRentProperty(Request $request)
+    public function searchPGProperty(Request $request)
     {
-        $rent = $request->rent;
+        $pg = $request->pg;
         $city_id = $request->city_id;
         $taluka_id = $request->taluka_id;
         $type_id = $request->property_type_id;
         $category_id = $request->property_category_id;
 
-        // echo $rent . "<br/>" . $city_id . "<br/>" . $taluka_id . "<br/>" . $type_id . "<br/>" . $category_id;
-        // exit;
+        // echo $pg . "<br/>" . $city_id . "<br/>" . $taluka_id . "<br/>" . $type_id . "<br/>" . $category_id;
+        // exit;                
 
         if ($city_id && $taluka_id == null && $type_id && $category_id) {
 
@@ -48,7 +49,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('commercial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.property_category_id', $category_id)
@@ -58,7 +59,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('residential_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.property_category_id', $category_id)
@@ -68,7 +69,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('industrial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.property_category_id', $category_id)
@@ -78,7 +79,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('agricultural_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.property_category_id', $category_id)
@@ -97,7 +98,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('commercial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.taluka_id', $taluka_id)
@@ -107,7 +108,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('residential_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.taluka_id', $taluka_id)
@@ -117,7 +118,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('industrial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.taluka_id', $taluka_id)
@@ -127,7 +128,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('agricultural_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.property_type_id', $type_id)
                     ->where('property_masters.taluka_id', $taluka_id)
@@ -148,7 +149,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('commercial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.taluka_id', $taluka_id)
                     ->where('property_masters.property_type_id', $type_id)                    ->where('property_masters.taluka_id', $taluka_id)
@@ -159,7 +160,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('residential_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.taluka_id', $taluka_id)
                     ->where('property_masters.property_type_id', $type_id)
@@ -170,7 +171,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('industrial_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.taluka_id', $taluka_id)
                     ->where('property_masters.property_type_id', $type_id)
@@ -181,7 +182,7 @@ class RentPropertyController extends Controller
                     ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                     ->where('property_masters.flag', 1)
                     ->where('agricultural_properties.flag', 1)
-                    ->where('property_masters.property_status', $rent)
+                    ->where('property_masters.property_status', $pg)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.taluka_id', $taluka_id)
                     ->where('property_masters.property_type_id', $type_id)
@@ -195,10 +196,5 @@ class RentPropertyController extends Controller
         $count = PropertyMaster::where('flag', 1)->count();
 
         return view('front.property-result', compact('resultSearch', 'count', 'category_id', 'city_id'));
-    }
-
-    public function furnishedHomes(){
-        $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Rent/Lease')->get();
-        return view('front.rent_furnished_homes', compact('properties'));
     }
 }

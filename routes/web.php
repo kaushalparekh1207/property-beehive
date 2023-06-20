@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminRoleController;
+use App\Http\Controllers\AgriculturePropertyController;
 use App\Http\Controllers\AmenitiesController;
 use App\Http\Controllers\BuyPropertyController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CommercialPropertyController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MyPropertiesController;
+use App\Http\Controllers\PGPropertyController;
 use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\PropertyFileController;
 use App\Http\Controllers\PropertyMasterController;
@@ -195,10 +198,6 @@ Route::get('/logout', function () {
 
 Route::get('/', [FrontController::class, 'index'])->name('front_home');
 
-Route::get('/pg', [FrontController::class, 'pg'])->name('front_pg');
-Route::get('/land', [FrontController::class, 'land'])->name('front_land');
-Route::get('/commercial', [FrontController::class, 'commercial'])->name('front_commercial');
-
 // Signup Routes
 Route::get('/sign_up', [UserController::class, 'sign_up'])->name('sign_up');
 Route::post('/sign_up/user', [UserController::class, 'registerUser'])->name('registerUser');
@@ -217,6 +216,18 @@ Route::post('/buy-property-result/search', [BuyPropertyController::class, 'searc
 //Rent Property Search Route
 Route::get('/rent', [RentPropertyController::class, 'rent'])->name('front_rent');
 Route::post('/rent-property-result/search', [RentPropertyController::class, 'searchRentProperty'])->name('searchRentProperty');
+
+//PG Property Search Route
+Route::get('/pg', [PGPropertyController::class, 'pg'])->name('front_pg');
+Route::post('/pg-property-result/search', [PGPropertyController::class, 'searchPGProperty'])->name('searchPGProperty');
+
+//Land Property Search Route
+Route::get('/land', [AgriculturePropertyController::class, 'land'])->name('front_land');
+Route::post('/land-property-result/search', [AgriculturePropertyController::class, 'searchLandProperty'])->name('searchLandProperty');
+
+//Land Property Search Route
+Route::get('/commercial', [CommercialPropertyController::class, 'commercial'])->name('front_commercial');
+Route::post('/commercial-property-result/search', [CommercialPropertyController::class, 'searchCommercialProperty'])->name('searchCommercialProperty');
 
 // User Profile Routes
 Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('userProfile');
@@ -247,6 +258,7 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 
 // My Properties
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
+Route::get('/my_properties/show', [MyPropertiesController::class, 'showPropertyDetails'])->name('showPropertyDetails');
 Route::get('/my_properties/delete/{id}', [MyPropertiesController::class, 'destroyMyProperties'])->name('destroyMyProperties')->middleware('checkfrontsession');
 // Inquiry Property List
 Route::get('/inquiry_list', [FrontController::class, 'showInquiryList'])->name('showInquiryList');

@@ -56,7 +56,7 @@
                         @csrf
                         <div class="btn-group-horizontal " role="group"
                             aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
-                            <input type="radio" class="btn-check" name="buy" value="Sale" id="vbtn-radio1"
+                            <input type="radio" class="btn-check" name="sale" value="Sale" id="vbtn-radio1"
                                 autocomplete="off" checked>
 
                             <label class="btn" for="vbtn-radio1"><a style="color: #fff;"
@@ -97,10 +97,7 @@
                                     <div class="form-group">
                                         <div class="input-with-icon">
                                             <select class="js-select2" name="taluka_id" id="taluka_id_dropdown">
-                                                <option value="" selected disabled>Select Taluka</option>
-                                                @foreach ($taluka as $talukas)
-                                                    <option value="{{ $talukas->id }}">{{ $talukas->taluka }}</option>
-                                                @endforeach
+                                                <option value="" selected disabled>Select City First</option>
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                         </div>
@@ -298,6 +295,66 @@
         $(document).ready(function() {
             $(".js-select2").select2({
                 closeOnSelect: true
+            });
+        });
+    </script>
+    <script>
+        $('#property_type').on('change', function() {
+            var property_type_id = $(this).val();
+
+            $("#property_category_dropdown").html('');
+            $.ajax({
+                url: "{{ route('get-property-category') }}",
+                type: "GET",
+                data: {
+                    property_type_id: property_type_id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('#property_category_dropdown').html(
+                        '<option value="" selected disabled>-- Select Property Category --</option>'
+                    );
+                    $.each(result.property_category, function(key, value) {
+                        $("#property_category_dropdown").append(
+                            '<option value="' +
+                            value
+                            .id + '">' + value.property_category_name +
+                            '</option>');
+
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            //  $('#city').hide();
+            $('#city_id_dropdown').on('change', function() {
+                var city = this.value;
+                $("#taluka_id_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-taluka-list') }}",
+                    type: "GET",
+                    data: {
+                        city: city,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#taluka').show();
+                        $('#taluka_id_dropdown').html(
+                            '<option value="" selected disabled>-- Select Taluka --</option>'
+                        );
+                        $.each(result.taluka, function(key, value) {
+                            $("#taluka_id_dropdown").append('<option value="' +
+                                value
+                                .id + '">' + value.taluka +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
             });
         });
     </script>

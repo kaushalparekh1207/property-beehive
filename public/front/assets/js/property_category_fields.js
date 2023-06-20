@@ -46,7 +46,9 @@ $(document).ready(function () {
             $('.totalBathrooms').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }
         else if(property_category_id === '2') {
             $('.floorAllowedForConstruction').show();
@@ -57,7 +59,9 @@ $(document).ready(function () {
             $('.totalBathrooms').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.noOfOpenSides').show();
             $('.widthOfRoadFacing').show();
         } 
@@ -68,8 +72,10 @@ $(document).ready(function () {
             $('.furnishedStatus').show();
             $('.totalBathrooms').show();
             $('.carpetArea').show();
+            $('.area').show();
             $('.superArea').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }
         else if(property_category_id === '4') {
             $('.totalBedrooms').show();
@@ -78,8 +84,10 @@ $(document).ready(function () {
             $('.furnishedStatus').show();
             $('.totalBathrooms').show();
             $('.carpetArea').show();
+            $('.area').show();
             $('.superArea').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }
         else if(property_category_id === '5') {
             $('.floorAllowedForConstruction').show();
@@ -91,11 +99,13 @@ $(document).ready(function () {
             $('.carpetArea').show();
             $('.superArea').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.noOfOpenSides').show();
             $('.widthOfRoadFacing').show();
             $('.anyConstructionMade').show();
             $('.boundaryWallMade').show();
             $('.plotArea').show();
+            $('.area').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
         }
@@ -107,7 +117,9 @@ $(document).ready(function () {
             $('.totalBathrooms').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }
         else if(property_category_id === '7') {
             $('.totalBedrooms').show();
@@ -117,7 +129,9 @@ $(document).ready(function () {
             $('.totalBathrooms').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }
         else if(property_category_id === '8') {
             $('.landZone').show();
@@ -128,7 +142,9 @@ $(document).ready(function () {
             $('.pantry').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
         }
         else if(property_category_id === '9') {
@@ -140,7 +156,9 @@ $(document).ready(function () {
             $('.pantry').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
         }
         else if(property_category_id === '10') {
@@ -152,7 +170,9 @@ $(document).ready(function () {
             $('.pantry').show();
             $('.carpetArea').show();
             $('.superArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
             $('.cornerShowRoom').show();
             $('.isMainRoadFacing').show();
@@ -166,8 +186,10 @@ $(document).ready(function () {
             $('.personalWashroom').show();
             $('.pantry').show();
             $('.carpetArea').show();
+            $('.area').show();
             $('.superArea').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
             $('.cornerShowRoom').show();
             $('.isMainRoadFacing').show();
@@ -181,6 +203,7 @@ $(document).ready(function () {
             $('.widthOfRoadFacing').show();
             $('.boundaryWallMade').show();
             $('.plotArea').show();
+            $('.area').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
             $('.currentlyLeasedOut').show();
@@ -194,6 +217,7 @@ $(document).ready(function () {
             $('.widthOfRoadFacing').show();
             $('.superArea').show();
             $('.carpetArea').show();
+            $('.area').show();
             $('.currentlyLeasedOut').show();
         }
         else if(property_category_id === '14') {
@@ -203,6 +227,7 @@ $(document).ready(function () {
             $('.anyConstructionMade').show();
             $('.boundaryWallMade').show();
             $('.plotArea').show();
+            $('.area').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
         }
@@ -215,6 +240,7 @@ $(document).ready(function () {
             $('.plotArea').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
+            $('.area').show();
         }
         else if(property_category_id === '16') {
             $('.landZone').show();
@@ -222,8 +248,10 @@ $(document).ready(function () {
             $('.noOfOpenSides').show();
             $('.widthOfRoadFacing').show();
             $('.superArea').show();
+            $('.area').show();
             $('.carpetArea').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
         }
         else if(property_category_id === '17') {
@@ -233,6 +261,7 @@ $(document).ready(function () {
             $('.plotArea').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
+            $('.area').show();
             $('.currentlyLeasedOut').show();
         }
         else if(property_category_id === '18') {
@@ -244,7 +273,9 @@ $(document).ready(function () {
             $('.widthOfRoadFacing').show();
             $('.superArea').show();
             $('.carpetArea').show();
+            $('.area').show();
             $('.possessionStatus').show();
+            $('.transaction_type').show();
         }else {
             $('.totalFloors').hide();
             $('.numberOfFlats').hide();
@@ -280,6 +311,7 @@ $(document).ready(function () {
             $('.transaction_type').hide();
             $('.widthOfEntrance').hide();
             $('.landZone').hide();
+            $('.area').hide();
         }
     });
 });

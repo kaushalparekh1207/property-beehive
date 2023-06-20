@@ -359,6 +359,7 @@
                                                                 </div>
                                                             </div>
 
+                                                            <h3>Price Details</h3>
                                                             <div class="form-group col-md-6">
                                                                 <label>Property Price<a href="javascript:void(0)"
                                                                         class="tip-topdata"
@@ -378,26 +379,6 @@
                                                                 <input type="number" class="form-control"
                                                                     id="booking_amount" name="booking_amount"
                                                                     placeholder="Enter Property Booking Amount"></input>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12">
-                                                                <label>Is Rera Registered ?</label>
-                                                                <select class="js-select2-disablesearch"
-                                                                    name="is_rera" id="is_rera"
-                                                                    onchange="reraFunction(this.value)">
-                                                                    <option value="" selected disabled>Select
-                                                                        One</option>
-                                                                    <option value="Yes">Yes</option>
-                                                                    <option value="No">No</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12 rera_reg_number"
-                                                                style="display: none;">
-                                                                <label>Is Rera Registration Number ?</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="rera_number" name="rera_number"
-                                                                    placeholder="Enter Rera Registration Number"></input>
                                                             </div>
 
                                                             <h3>Property Features</h3>
@@ -549,6 +530,28 @@
                                                                 </select>
                                                             </div>
 
+
+
+                                                            <div class="form-group col-md-12">
+                                                                <label>Is Rera Registered ?</label>
+                                                                <select class="js-select2-disablesearch"
+                                                                    name="is_rera" id="is_rera"
+                                                                    onchange="reraFunction(this.value)">
+                                                                    <option value="" selected disabled>Select
+                                                                        One</option>
+                                                                    <option value="Yes">Yes</option>
+                                                                    <option value="No">No</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12 rera_reg_number"
+                                                                style="display: none;">
+                                                                <label>Is Rera Registration Number ?</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="rera_number" name="rera_number"
+                                                                    placeholder="Enter Rera Registration Number"></input>
+                                                            </div>
+
                                                             <div class="form-group col-md-12">
                                                                 <strong>Facilities (Amenities)</strong>
                                                                 <div class="o-features mt-2">
@@ -652,6 +655,25 @@
                                                                 </select>
                                                             </div>
 
+                                                            <div class="form-group col-md-12 furnishedStatus">
+                                                                <label for="">Furnished Status<a
+                                                                        href="javascript:void(0)" class="tip-topdata"
+                                                                        data-tip="Select Furnished Status"><i
+                                                                            class="fa-solid fa-info"></i></a></label>
+                                                                <select class="js-select2-disablesearch"
+                                                                    name="furnished_status" id="furnished_status"
+                                                                    style="width: 100%;">
+                                                                    <option value="" selected disabled>Select
+                                                                        One
+                                                                    </option>
+                                                                    <option value="Fully Furnished">Fully Furnished
+                                                                    </option>
+                                                                    <option value="Unfurnished">Unfurnished</option>
+                                                                    <option value="Semi Furnished">Semi Furnished
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
 
                                                             <h3 class="area">Area</h3>
                                                             <div class="form-group col-md-6 carpetArea">
@@ -712,25 +734,6 @@
                                                                 <input type="number" class="form-control"
                                                                     id="plot_breadth" name="plot_breadth"
                                                                     placeholder="Enter Plot Breadth"></input>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12 furnishedStatus">
-                                                                <label for="">Furnished Status<a
-                                                                        href="javascript:void(0)" class="tip-topdata"
-                                                                        data-tip="Select Furnished Status"><i
-                                                                            class="fa-solid fa-info"></i></a></label>
-                                                                <select class="js-select2-disablesearch"
-                                                                    name="furnished_status" id="furnished_status"
-                                                                    style="width: 100%;">
-                                                                    <option value="" selected disabled>Select
-                                                                        One
-                                                                    </option>
-                                                                    <option value="Fully Furnished">Fully Furnished
-                                                                    </option>
-                                                                    <option value="Unfurnished">Unfurnished</option>
-                                                                    <option value="Semi Furnished">Semi Furnished
-                                                                    </option>
-                                                                </select>
                                                             </div>
 
                                                             <h3 class="transaction_type">Transaction Type, Property

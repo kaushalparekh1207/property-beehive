@@ -36,8 +36,7 @@ $(document).ready(function () {
 
     $("#property_category_dropdown").on('change',function () {
         var property_category_id = $(this).val();
-        console.log(property_category_id);
-        if(property_category_id == 1) {
+        if(property_category_id === '1') {
             $('.numberOfFlats').show();
             $('.totalBedrooms').show();
             $('.totalBalconies').show();
@@ -49,6 +48,20 @@ $(document).ready(function () {
             $('.area').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
+            /* Hide Fields */
+            $('.noOfOpenSides').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
+
         }
         else if(property_category_id === '2') {
             $('.floorAllowedForConstruction').show();
@@ -64,6 +77,17 @@ $(document).ready(function () {
             $('.transaction_type').show();
             $('.noOfOpenSides').show();
             $('.widthOfRoadFacing').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         } 
         else if(property_category_id === '3') {
             $('.totalBedrooms').show();
@@ -76,6 +100,20 @@ $(document).ready(function () {
             $('.superArea').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.noOfOpenSides').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '4') {
             $('.totalBedrooms').show();
@@ -88,6 +126,20 @@ $(document).ready(function () {
             $('.superArea').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.noOfOpenSides').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '5') {
             $('.floorAllowedForConstruction').show();
@@ -108,6 +160,14 @@ $(document).ready(function () {
             $('.area').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.widthOfEntrance').hide();
         }
         else if(property_category_id === '6') {
             $('.totalBedrooms').show();
@@ -120,6 +180,21 @@ $(document).ready(function () {
             $('.area').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.noOfOpenSides').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
+            
         }
         else if(property_category_id === '7') {
             $('.totalBedrooms').show();
@@ -132,7 +207,22 @@ $(document).ready(function () {
             $('.area').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.totalWashrooms').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
+            $('.noOfOpenSides').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
+        /* Commercial Properties */
         else if(property_category_id === '8') {
             $('.landZone').show();
             $('.totalFloors').show();
@@ -146,6 +236,18 @@ $(document).ready(function () {
             $('.possessionStatus').show();
             $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.noOfOpenSides').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalBathrooms').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '9') {
             $('.landZone').show();
@@ -160,6 +262,18 @@ $(document).ready(function () {
             $('.possessionStatus').show();
             $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.noOfOpenSides').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalBathrooms').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '10') {
             $('.landZone').show();
@@ -177,6 +291,17 @@ $(document).ready(function () {
             $('.cornerShowRoom').show();
             $('.isMainRoadFacing').show();
             $('.widthOfEntrance').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.noOfOpenSides').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalBathrooms').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.widthOfRoadFacing').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '11') {
             $('.landZone').show();
@@ -195,6 +320,16 @@ $(document).ready(function () {
             $('.isMainRoadFacing').show();
             $('.widthOfEntrance').show();
             $('.widthOfRoadFacing').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.noOfOpenSides').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalBathrooms').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
         }
         else if(property_category_id === '12') {
             $('.landZone').show();
@@ -207,6 +342,21 @@ $(document).ready(function () {
             $('.plotLength').show();
             $('.plotBreadth').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalWashrooms').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalFloors').hide();
+            $('.furnishedStatus').hide();
+            $('.totalBathrooms').hide();
+            $('.carpetArea').hide();
+            $('.superArea').hide();
+            $('.possessionStatus').hide();
+            $('.transaction_type').hide();
+            $('.widthOfEntrance').hide();
+            $('.personalWashroom').hide();
+            $('.pantry').hide();
         }
         else if(property_category_id === '13') {
             $('.landZone').show();
@@ -219,6 +369,19 @@ $(document).ready(function () {
             $('.carpetArea').show();
             $('.area').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalWashrooms').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalBathrooms').hide();
+            $('.possessionStatus').hide();
+            $('.transaction_type').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
+            $('.pantry').hide();
         }
         else if(property_category_id === '14') {
             $('.floorAllowedForConstruction').show();
@@ -230,6 +393,22 @@ $(document).ready(function () {
             $('.area').show();
             $('.plotLength').show();
             $('.plotBreadth').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalFloors').hide();
+            $('.furnishedStatus').hide();
+            $('.totalBathrooms').hide();
+            $('.carpetArea').hide();
+            $('.superArea').hide();
+            $('.possessionStatus').hide();
+            $('.transaction_type').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.widthOfEntrance').hide();
+            $('.pantry').hide();
+            $('.totalWashrooms').hide();
         }
         else if(property_category_id === '15') {
             $('.floorAllowedForConstruction').show();
@@ -241,6 +420,22 @@ $(document).ready(function () {
             $('.plotLength').show();
             $('.plotBreadth').show();
             $('.area').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalFloors').hide();
+            $('.furnishedStatus').hide();
+            $('.totalBathrooms').hide();
+            $('.carpetArea').hide();
+            $('.superArea').hide();
+            $('.possessionStatus').hide();
+            $('.transaction_type').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.widthOfEntrance').hide();
+            $('.pantry').hide();
+            $('.totalWashrooms').hide();
         }
         else if(property_category_id === '16') {
             $('.landZone').show();
@@ -253,6 +448,19 @@ $(document).ready(function () {
             $('.possessionStatus').show();
             $('.transaction_type').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalFloors').hide();
+            $('.furnishedStatus').hide();
+            $('.totalBathrooms').hide();
+            $('.widthOfEntrance').hide();
+            $('.plotArea').hide();
+            $('.plotLength').hide();
+            $('.plotBreadth').hide();
+            $('.pantry').hide();
+            $('.totalWashrooms').hide();
         }
         else if(property_category_id === '17') {
             $('.noOfOpenSides').show();
@@ -263,6 +471,22 @@ $(document).ready(function () {
             $('.plotBreadth').show();
             $('.area').show();
             $('.currentlyLeasedOut').show();
+            /* Hide Fields */
+            $('.numberOfFlats').hide();
+            $('.totalBedrooms').hide();
+            $('.totalBalconies').hide();
+            $('.totalFloors').hide();
+            $('.furnishedStatus').hide();
+            $('.totalBathrooms').hide();
+            $('.carpetArea').hide();
+            $('.superArea').hide();
+            $('.possessionStatus').hide();
+            $('.transaction_type').hide();
+            $('.floorAllowedForConstruction').hide();
+            $('.landZone').hide();
+            $('.widthOfEntrance').hide();
+            $('.pantry').hide();
+            $('.totalWashrooms').hide();
         }
         else if(property_category_id === '18') {
             $('.totalBedrooms').show();
@@ -276,42 +500,18 @@ $(document).ready(function () {
             $('.area').show();
             $('.possessionStatus').show();
             $('.transaction_type').show();
-        }else {
-            $('.totalFloors').hide();
+            /* Hide Fields */
             $('.numberOfFlats').hide();
-            $('.totalBedrooms').hide();
             $('.totalBalconies').hide();
-            $('.totalBathrooms').hide();
-            $('.totalWashrooms').hide();
-            $('.personalWashroom').hide();
-            $('.pantry').hide();
-            $('.cornerShowRoom').hide();
-            $('.isMainRoadFacing').hide();
             $('.floorAllowedForConstruction').hide();
-            $('.noOfOpenSides').hide();
-            $('.widthOfRoadFacing').hide();
-            $('.anyConstructionMade').hide();
-            $('.boundaryWallMade').hide();
-            $('.carpetArea').hide();
-            $('.superArea').hide();
+            $('.currentlyLeasedOut').hide();
+            $('.landZone').hide();
+            $('.widthOfEntrance').hide();
             $('.plotArea').hide();
             $('.plotLength').hide();
             $('.plotBreadth').hide();
-            $('.currentlyLeasedOut').hide();
-            $('.leasedTo').hide();
-            $('.monthlyRent').hide();
-            $('.rent_lease_details').hide();
-            $('.securityAmount').hide();
-            $('.maintenanceCharges').hide();
-            $('.perCharges').hide();
-            $('.furnishedStatus').hide();
-            $('.possessionStatus').hide();
-            $('.transaction_type').hide();
-            $('.area').hide();
-            $('.transaction_type').hide();
-            $('.widthOfEntrance').hide();
-            $('.landZone').hide();
-            $('.area').hide();
+            $('.pantry').hide();
+            $('.totalWashrooms').hide();
         }
     });
 });

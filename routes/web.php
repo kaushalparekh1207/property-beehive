@@ -242,6 +242,8 @@ Route::group(['middleware' => 'checkfrontsession'], function () {
 // Property Data Insert with Ajax
 Route::get('/post_property', [PropertyMasterController::class, 'postProperty'])->name('postProperty')->middleware('checkfrontsession');
 Route::post('/insert_property_data_ajax', [PropertyMasterController::class, 'propertyDataInsertAjax'])->name('propertyDataInsertAjax');
+Route::get('/property/edit/{id}', [PropertyMasterController::class, 'editProperty'])->name('editProperty')->middleware('checkfrontsession');
+Route::post('/property/edit/propertyData', [PropertyMasterController::class, 'editPropertyData'])->name('editPropertyData')->middleware('checkfrontsession');
 
 // Upload Documents/Images for Property
 Route::post('/upload_banner', [PropertyFileController::class, 'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
@@ -259,9 +261,9 @@ Route::post('/upload_other_image', [PropertyFileController::class, 'uploadOtherI
 // My Properties
 Route::get('/my_properties', [MyPropertiesController::class, 'showMyProperties'])->name('myProperties')->middleware('checkfrontsession');
 Route::get('/my_properties/show', [MyPropertiesController::class, 'showPropertyDetails'])->name('showPropertyDetails');
-Route::get('/my_properties/delete/{id}', [MyPropertiesController::class, 'destroyMyProperties'])->name('destroyMyProperties')->middleware('checkfrontsession');
+Route::get('/my_properties/delete/{id}/{type}', [MyPropertiesController::class, 'destroyMyProperties'])->name('destroyMyProperties')->middleware('checkfrontsession');
 // Inquiry Property List
-Route::get('/inquiry_list', [FrontController::class, 'showInquiryList'])->name('showInquiryList');
+Route::get('/my_visits_list', [FrontController::class, 'showInquiryList'])->name('showInquiryList');
 
 // Property Details
 Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
@@ -271,7 +273,7 @@ Route::post('/property-result/search', [FrontController::class, 'propertyResultS
 //Buy Property Details
 Route::get('/buy/ready-to-move', [BuyPropertyController::class, 'readyToMove'])->name('readyToMove');
 Route::view('/buy/owner-properties', 'front.buy_owner_property')->name('ownerProperties');
-Route::get('/buy/new-launch', [BuyPropertyController::class, 'readyToMove'])->name('newLaunch');
+Route::get('/buy/new-launch', [BuyPropertyController::class, 'newLaunch'])->name('newLaunch');
 
 //Rent Property Details
 Route::view('/rent/verified_properties', 'front.rent_verified_properties')->name('verifiedProperties');

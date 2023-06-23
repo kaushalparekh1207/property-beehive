@@ -41,27 +41,50 @@
         <!-- ============================ Hero Banner  Start================================== -->
         <div class="featured_slick_gallery gray">
             <div class="featured_slick_gallery-slide">
-                <div class="featured_slick_padd"><a
-                        href="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
-                        class="mfp-gallery" style="width: 886px; height: 591px;"><img
-                            src="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
-                            class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
+                @if ($properties_details->cover_image != null)
+                    <div class="featured_slick_padd"><a
+                            href="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
+                            class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                src="{{ asset('storage/property/banner_image/' . $properties_details->cover_image) }}"
+                                class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
+                @else
+                    <div class="featured_slick_padd"><a href="{{ asset('storage/property/no-photo.png') }}"
+                            class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                src="{{ asset('storage/property/no-photo.png') }}" class="img-fluid mx-auto"
+                                alt="" style="width: 886px; height: 591px;"></a></div>
+                @endif
                 <!-- Master Plan Image -->
-                @foreach ($master_plan_images as $master_plan_image)
-                    <div class="featured_slick_padd"><a
-                            href="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
+                @if (count($master_plan_images) > 0)
+                    @foreach ($master_plan_images as $master_plan_image)
+                        <div class="featured_slick_padd"><a
+                                href="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
+                                class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                    src="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
+                                    class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="featured_slick_padd"><a href="{{ asset('storage/property/no-photo.png') }}"
                             class="mfp-gallery" style="width: 886px; height: 591px;"><img
-                                src="{{ asset('storage/property/master_plan_image/' . $master_plan_image->master_plan_image) }}"
-                                class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
-                @endforeach
+                                src="{{ asset('storage/property/no-photo.png') }}" class="img-fluid mx-auto"
+                                alt="" style="width: 886px; height: 591px;"></a></div>
+                @endif
                 <!-- Site View Image -->
-                @foreach ($site_view_images as $site_view_image)
-                    <div class="featured_slick_padd"><a
-                            href="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
+                @if (count($site_view_images) > 0)
+                    @foreach ($site_view_images as $site_view_image)
+                        <div class="featured_slick_padd"><a
+                                href="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
+                                class="mfp-gallery" style="width: 886px; height: 591px;"><img
+                                    src="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
+                                    class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="featured_slick_padd"><a href="{{ asset('storage/property/no-photo.png') }}"
                             class="mfp-gallery" style="width: 886px; height: 591px;"><img
-                                src="{{ asset('storage/property/site_view_image/' . $site_view_image->site_view_image) }}"
-                                class="img-fluid mx-auto" alt="" style="width: 886px; height: 591px;"></a></div>
-                @endforeach
+                                src="{{ asset('storage/property/no-photo.png') }}" class="img-fluid mx-auto"
+                                alt="" style="width: 886px; height: 591px;"></a></div>
+                @endif
                 {{-- <div class="featured_slick_padd"><a href="{{ url('/') }}/front/assets/img/gallery-3.jpg"
                         class="mfp-gallery"><img src="{{ url('/') }}/front/assets/img/gallery-3.jpg"
                             class="img-fluid mx-auto" alt=""></a></div>
@@ -181,116 +204,93 @@
                         </div>
 
                         <!-- About Property Detail -->
-                        <div class="vesh-detail-bloc">
-                            <div class="vesh-detail-bloc_header">
-                                <h4 class="property_block_title no-arrow">About Property</h4>
-                            </div>
-                            <div class="vesh-detail-bloc-body">
-                                <div class="row g-3">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <p>{{ $allDetails->descr }}</p>
-                                    </div>
+                        @if ($allDetails->descr != null)
+                            <div class="vesh-detail-bloc">
+                                <div class="vesh-detail-bloc_header">
+                                    <h4 class="property_block_title no-arrow">About Property</h4>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Basic Detail -->
-                        <div class="vesh-detail-bloc">
-                            <div class="vesh-detail-bloc_header">
-                                <a data-bs-toggle="collapse" data-parent="#basicinfo" data-bs-target="#basicinfo"
-                                    aria-controls="basicinfo" href="javascript:void(0);" aria-expanded="false">
-                                    <h4 class="property_block_title">Property Features</h4>
-                                </a>
-                            </div>
-                            <div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
                                 <div class="vesh-detail-bloc-body">
                                     <div class="row g-3">
-                                        @if ($allDetails->total_bedrooms != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-bed"></i></div>
-                                                    <div class="ilio-text">{{ $allDetails->total_bedrooms }}
-                                                        Bedrooms</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($allDetails->total_bathrooms != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-bath"></i></div>
-                                                    <div class="ilio-text">
-                                                        {{ $allDetails->total_bathrooms }} Bathrooms</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($allDetails->total_floor != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-regular fa-building"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->total_floor }}
-                                                        Floor</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($allDetails->carpet_area != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-layer-group"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->carpet_area }}
-                                                        sq ft</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-warehouse"></i></div><div class="ilio-text">1 Garage</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-building"></i></div><div class="ilio-text">Apartment</div></div></div> --}}
-                                        @if ($allDetails->age != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-building-wheat"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->age }} Age</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($allDetails->furnished_status != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-couch"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->furnished_status }}</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($allDetails->carpet_area != null)
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                                <div class="ilio-icon-wrap">
-                                                    <div class="ilio-icon"><i class="fa-solid fa-rug"></i>
-                                                    </div>
-                                                    <div class="ilio-text">{{ $allDetails->carpet_area }} sqft
-                                                        Carpet Area</div>
-                                                </div>
-                                            </div>
-                                        @endif
-
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                            <div class="ilio-icon-wrap">
-                                                <div class="ilio-icon"><i
-                                                        class="fa-solid fa-building-circle-check"></i>
-                                                </div>
-                                                <div class="ilio-text">Active</div>
-                                            </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <p>{{ $allDetails->descr }}</p>
                                         </div>
-                                        {{-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-fan"></i></div><div class="ilio-text">Central A/C</div></div></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-regular fa-snowflake"></i></div><div class="ilio-text">Forced Air</div></div></div>
-                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-bowl-food"></i></div><div class="ilio-text">Kitchen Facilities</div></div></div> 
-                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6"><div class="ilio-icon-wrap"><div class="ilio-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div><div class="ilio-text">Bar & Drinks</div></div></div>
-                                        --}}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
+
+                        <!-- Basic Detail -->
+                        @if (
+                            $allDetails->total_bedrooms != null ||
+                                $allDetails->total_bathrooms != null ||
+                                $allDetails->total_floor != null ||
+                                $allDetails->age != null ||
+                                $allDetails->furnished_status != null)
+                            <div class="vesh-detail-bloc">
+                                <div class="vesh-detail-bloc_header">
+                                    <a data-bs-toggle="collapse" data-parent="#basicinfo" data-bs-target="#basicinfo"
+                                        aria-controls="basicinfo" href="javascript:void(0);" aria-expanded="false">
+                                        <h4 class="property_block_title">Property Features</h4>
+                                    </a>
+                                </div>
+                                <div id="basicinfo" class="panel-collapse collapse show" aria-labelledby="basicinfo">
+                                    <div class="vesh-detail-bloc-body">
+                                        <div class="row g-3">
+                                            @if ($allDetails->total_bedrooms != null)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                    <div class="ilio-icon-wrap">
+                                                        <div class="ilio-icon"><i class="fa-solid fa-bed"></i></div>
+                                                        <div class="ilio-text">{{ $allDetails->total_bedrooms }}
+                                                            Bedrooms</div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if ($allDetails->total_bathrooms != null)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                    <div class="ilio-icon-wrap">
+                                                        <div class="ilio-icon"><i class="fa-solid fa-bath"></i></div>
+                                                        <div class="ilio-text">
+                                                            {{ $allDetails->total_bathrooms }} Bathrooms</div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if ($allDetails->total_floor != null)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                    <div class="ilio-icon-wrap">
+                                                        <div class="ilio-icon"><i class="fa-regular fa-building"></i>
+                                                        </div>
+                                                        <div class="ilio-text">{{ $allDetails->total_floor }}
+                                                            Floor</div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if ($allDetails->age != null)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                    <div class="ilio-icon-wrap">
+                                                        <div class="ilio-icon"><i
+                                                                class="fa-solid fa-building-wheat"></i>
+                                                        </div>
+                                                        <div class="ilio-text">{{ $allDetails->age }} Age</div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if ($allDetails->furnished_status != null)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
+                                                    <div class="ilio-icon-wrap">
+                                                        <div class="ilio-icon"><i class="fa-solid fa-couch"></i>
+                                                        </div>
+                                                        <div class="ilio-text">{{ $allDetails->furnished_status }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                         <!-- Amenties Detail -->
                         @if (session()->has('user') && count($amenities) > 0)
@@ -306,30 +306,17 @@
                                     aria-labelledby="amenitiesinfo">
                                     <div class="vesh-detail-bloc-body">
                                         <ul class="avl-features third color">
-
                                             @foreach ($amenities as $amenitie)
                                                 @if ($amenitie->amenities != null)
                                                     <li>{{ $amenitie->amenities }}</li>
                                                 @endif
                                             @endforeach
-
-                                            {{-- <li>Swimming Pool</li>
-                                                <li>Central Heating</li>
-                                                <li>Laundry Room</li>
-                                                <li>Gym</li>
-                                                <li>Alarm</li>
-                                                <li>Window Covering</li>
-                                                <li>Internet</li>
-                                                <li>Pets Allow</li>
-                                                <li>Free WiFi</li>
-                                                <li>Car Parking</li>
-                                                <li>Spa & Massage</li> --}}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         @endif
-                        <div class="vesh-detail-bloc">
+                        {{-- <div class="vesh-detail-bloc">
                             <div class="vesh-detail-bloc_header">
                                 <a data-bs-toggle="collapse" data-parent="#featuresinfo"
                                     data-bs-target="#featuresinfo" aria-controls="featuresinfo"
@@ -341,177 +328,232 @@
                                 aria-labelledby="featuresinfo">
                                 <div class="vesh-detail-bloc-body">
                                     <div class="lvs-detail mb-4">
-                                        {{-- <div class="row">
-                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                <h6>Interior Details</h6>
-                                            </div>
-                                        </div> --}}
-                                        <div class="row gy-3">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                                <div class="lvs-caption"><i
-                                                        class="fa-solid fa-circle-check"></i>Equipped
-                                                    Kitchen</div>
-                                            </div>
+                                        @if ($allDetails->boundary_wall_made == 'Yes')
+                                            <div class="row gy-3">
+                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                                    <div class="lvs-caption"><i
+                                                            class="fa-solid fa-circle-check"></i>Boundary Wall Made
+                                                    </div>
+                                                </div>
 
-                                        </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- All features Detail -->
-                        {{-- <div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<a data-bs-toggle="collapse" data-parent="#featuresinfo" data-bs-target="#featuresinfo" aria-controls="featuresinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Features</h4></a>
-								</div>
-								<div id="featuresinfo" class="panel-collapse collapse show" aria-labelledby="featuresinfo">
-									<div class="vesh-detail-bloc-body">
-										<div class="lvs-detail mb-4">
-											<div class="row">
-												<div class="col-xl-12 col-lg-12 col-md-12"><h6>Interior Details</h6></div>
-											</div>
-											<div class="row gy-3">
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-utensils"></i>Equipped Kitchen</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-dumbbell"></i>Gym</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-jug-detergent"></i>Laundry</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-brands fa-chromecast"></i>Media Room</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-tv"></i>TV Set</div></div>
-											</div>
-										</div>
-										<div class="lvs-detail mb-4">
-											<div class="row">
-												<div class="col-xl-12 col-lg-12 col-md-12"><h6>Outdoor Details</h6></div>
-											</div>
-											<div class="row gy-3">
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-brands fa-canadian-maple-leaf"></i>Back yard</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-basketball"></i>Basketball court</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-seedling"></i>Front yard</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-square-parking"></i>Garage Attached</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-shower"></i>Hot Bath</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-water-ladder"></i>Pool</div></div>
-											</div>
-										</div>
-										<div class="lvs-detail mb-4">
-											<div class="row">
-												<div class="col-xl-12 col-lg-12 col-md-12"><h6>Utilities</h6></div>
-											</div>
-											<div class="row gy-3">
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-fan"></i>Central Air</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-plug"></i>Electricity</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-fire"></i>Heating</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-fire-flame-simple"></i>Natural Gas</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-snowflake"></i>Ventilation</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-droplet"></i>Water</div></div>
-											</div>
-										</div>
-										<div class="lvs-detail">
-											<div class="row">
-												<div class="col-xl-12 col-lg-12 col-md-12"><h6>Other Features</h6></div>
-											</div>
-											<div class="row gy-3">
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-wheelchair"></i>Chair Accessible</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-elevator"></i>Elevator</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-fire-extinguisher"></i>Fireplace</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-smoking"></i>Smoke detectors</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-bacon"></i>Washer and dryer</div></div>
-												<div class="col-xl-4 col-lg-4 col-md-4 col-12"><div class="lvs-caption"><i class="fa-solid fa-wifi"></i>WiFi</div></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> --}}
+                        </div> --}}
 
                         <!-- Floor Plan -->
                         @if (session()->has('user'))
+                            @if (count($floor_plan_images) > 0 ||
+                                    count($living_room_images) > 0 ||
+                                    count($bedroom_images) > 0 ||
+                                    count($bathroom_images) > 0 ||
+                                    count($kitchen_images) > 0)
+                                <div class="vesh-detail-bloc">
+                                    <div class="vesh-detail-bloc_header">
+                                        <a data-bs-toggle="collapse" data-parent="#floorinfo"
+                                            data-bs-target="#floorinfo" aria-controls="floorinfo"
+                                            href="javascript:void(0);" aria-expanded="false">
+                                            <h4 class="property_block_title">Images</h4>
+                                        </a>
+                                    </div>
+                                    <div id="floorinfo" class="panel-collapse collapse show"
+                                        aria-labelledby="floorinfo">
+                                        <div class="vesh-detail-bloc-body">
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                @if (count($floor_plan_images) > 0)
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-floor-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-floor"
+                                                            type="button" role="tab" aria-controls="pills-floor"
+                                                            aria-selected="true">Floor
+                                                            Plan</button>
+                                                    </li>
+                                                @endif
+                                                @if (count($living_room_images) > 0)
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-living-room-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-living-room"
+                                                            type="button" role="tab"
+                                                            aria-controls="pills-living-room"
+                                                            aria-selected="false">Living
+                                                            Room</button>
+                                                    </li>
+                                                @endif
+                                                @if (count($bedroom_images) > 0)
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-bedroom-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-bedroom"
+                                                            type="button" role="tab"
+                                                            aria-controls="pills-bedroom"
+                                                            aria-selected="false">Bedroom</button>
+                                                    </li>
+                                                @endif
+                                                @if (count($bathroom_images) > 0)
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-bathroom-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-bathroom"
+                                                            type="button" role="tab"
+                                                            aria-controls="pills-bathroom"
+                                                            aria-selected="false">Bathroom</button>
+                                                    </li>
+                                                @endif
+                                                @if (count($kitchen_images) > 0)
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-kitchen-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-kitchen"
+                                                            type="button" role="tab"
+                                                            aria-controls="pills-kitchen"
+                                                            aria-selected="false">Kitchen</button>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                @if (count($floor_plan_images) > 0)
+                                                    <div class="tab-pane fade show" id="pills-floor" role="tabpanel"
+                                                        aria-labelledby="pills-floor-tab" tabindex="0">
+                                                        <div class="row gx-3 gy-4">
+                                                            @foreach ($floor_plan_images as $floor_plan_image)
+                                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                                    <div class="floor-thumb"><img
+                                                                            src="{{ asset('storage/property/floor_plan_image/' . $floor_plan_image->floor_plan_image) }}"
+                                                                            class="img-fluid" alt=""></div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if (count($living_room_images) > 0)
+                                                    <div class="tab-pane fade show" id="pills-living-room"
+                                                        role="tabpanel" aria-labelledby="pills-living-room-tab"
+                                                        tabindex="0">
+                                                        <div class="row gx-3 gy-4">
+                                                            @foreach ($living_room_images as $living_room_image)
+                                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                                    <div class="floor-thumb"><img
+                                                                            src="{{ asset('storage/property/living_room_image/' . $living_room_image->living_room_image) }}"
+                                                                            class="img-fluid" alt=""></div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if (count($bedroom_images) > 0)
+                                                    <div class="tab-pane fade show" id="pills-bedroom"
+                                                        role="tabpanel" aria-labelledby="pills-bedroom-tab"
+                                                        tabindex="0">
+                                                        <div class="row gx-3 gy-4">
+                                                            @foreach ($bedroom_images as $bedroom_image)
+                                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                                    <div class="floor-thumb"><img
+                                                                            src="{{ asset('storage/property/bedroom_image/' . $bedroom_image->bedroom_image) }}"
+                                                                            class="img-fluid" alt=""></div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if (count($bathroom_images) > 0)
+                                                    <div class="tab-pane fade show" id="pills-bathroom"
+                                                        role="tabpanel" aria-labelledby="pills-bathroom-tab"
+                                                        tabindex="0">
+                                                        <div class="row gx-3 gy-4">
+                                                            @foreach ($bathroom_images as $bathroom_image)
+                                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                                    <div class="floor-thumb"><img
+                                                                            src="{{ asset('storage/property/bathroom_image/' . $bathroom_image->bathroom_image) }}"
+                                                                            class="img-fluid" alt=""></div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if (count($kitchen_images) > 0)
+                                                    <div class="tab-pane fade show" id="pills-kitchen"
+                                                        role="tabpanel" aria-labelledby="pills-kitchen-tab"
+                                                        tabindex="0">
+                                                        <div class="row gx-3 gy-4">
+                                                            @foreach ($kitchen_images as $kitchen_image)
+                                                                <div class="col-xl-4 col-lg-4 col-md-4">
+                                                                    <div class="floor-thumb"><img
+                                                                            src="{{ asset('storage/property/kitchen_image/' . $kitchen_image->kitchen_image) }}"
+                                                                            class="img-fluid" alt=""></div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+
+                        <!-- Property Area -->
+                        @if (
+                            $allDetails->carpet_area != null ||
+                                $allDetails->super_area != null ||
+                                $allDetails->plot_area != null ||
+                                $allDetails->plot_length != null ||
+                                $allDetails->plot_breadth != null)
                             <div class="vesh-detail-bloc">
                                 <div class="vesh-detail-bloc_header">
-                                    <a data-bs-toggle="collapse" data-parent="#floorinfo" data-bs-target="#floorinfo"
-                                        aria-controls="floorinfo" href="javascript:void(0);" aria-expanded="false">
-                                        <h4 class="property_block_title">Floor Plan</h4>
+                                    <a data-bs-toggle="collapse" data-parent="#historyinfo"
+                                        data-bs-target="#historyinfo" aria-controls="historyinfo"
+                                        href="javascript:void(0);" aria-expanded="false">
+                                        <h4 class="property_block_title">Area</h4>
                                     </a>
                                 </div>
-                                <div id="floorinfo" class="panel-collapse collapse show" aria-labelledby="floorinfo">
+                                <div id="historyinfo" class="panel-collapse collapse show"
+                                    aria-labelledby="historyinfo">
                                     <div class="vesh-detail-bloc-body">
-                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link active" id="pills-2d-tab"
-                                                    data-bs-toggle="pill" data-bs-target="#pills-2d" type="button"
-                                                    role="tab" aria-controls="pills-2d" aria-selected="true">2D
-                                                    Plans</button>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link" id="pills-3d-tab" data-bs-toggle="pill"
-                                                    data-bs-target="#pills-3d" type="button" role="tab"
-                                                    aria-controls="pills-3d" aria-selected="false">3D Plans</button>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link" id="pills-elevation-tab"
-                                                    data-bs-toggle="pill" data-bs-target="#pills-elevation"
-                                                    type="button" role="tab" aria-controls="pills-elevation"
-                                                    aria-selected="false">Elevations</button>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content" id="pills-tabContent">
-                                            <div class="tab-pane fade show active" id="pills-2d" role="tabpanel"
-                                                aria-labelledby="pills-2d-tab" tabindex="0">
-                                                <div class="row gx-3 gy-4">
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-1.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-2.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-1.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="tab-pane fade show active" id="pills-price" role="tabpanel"
+                                            aria-labelledby="pills-price-tab" tabindex="0">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            @if ($allDetails->carpet_area != null)
+                                                                <th scope="col">Carpet Area</th>
+                                                            @endif
+                                                            @if ($allDetails->super_area != null)
+                                                                <th scope="col">Super Area</th>
+                                                            @endif
+                                                            @if ($allDetails->plot_area != null)
+                                                                <th scope="col">Plot Area</th>
+                                                            @endif
+                                                            @if ($allDetails->plot_length != null)
+                                                                <th scope="col">Plot Length</th>
+                                                            @endif
+                                                            @if ($allDetails->plot_breadth != null)
+                                                                <th scope="col">Plot Breadth</th>
+                                                            @endif
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            @if ($allDetails->carpet_area != null)
+                                                                <td>{{ $allDetails->carpet_area }}</td>
+                                                            @endif
+                                                            @if ($allDetails->super_area != null)
+                                                                <td>{{ $allDetails->super_area }}</td>
+                                                            @endif
+                                                            @if ($allDetails->plot_area != null)
+                                                                <td>{{ $allDetails->plot_area }}</td>
+                                                            @endif
+                                                            @if ($allDetails->plot_length != null)
+                                                                <td>{{ $allDetails->plot_length }}</td>
+                                                            @endif
+                                                            @if ($allDetails->plot_breadth != null)
+                                                                <td>{{ $allDetails->plot_breadth }}</td>
+                                                            @endif
+                                                        </tr>
 
-                                            <div class="tab-pane fade" id="pills-3d" role="tabpanel"
-                                                aria-labelledby="pills-3d-tab" tabindex="0">
-                                                <div class="row gx-3 gy-4">
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-3.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-4.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-3.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="pills-elevation" role="tabpanel"
-                                                aria-labelledby="pills-elevation-tab" tabindex="0">
-                                                <div class="row gx-3 gy-4">
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-5.webp"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-6.jpg"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-lg-4 col-md-4">
-                                                        <div class="floor-thumb"><img
-                                                                src="{{ url('/') }}/front/assets/img/fl-5.webp"
-                                                                class="img-fluid" alt=""></div>
-                                                    </div>
-                                                </div>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -519,155 +561,28 @@
                             </div>
                         @endif
 
-                        <!-- Property History -->
-                        {{-- <div class="vesh-detail-bloc">
-								<div class="vesh-detail-bloc_header">
-									<a data-bs-toggle="collapse" data-parent="#historyinfo" data-bs-target="#historyinfo" aria-controls="historyinfo" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Property History</h4></a>
-								</div>
-								<div id="historyinfo" class="panel-collapse collapse show" aria-labelledby="historyinfo">
-									<div class="vesh-detail-bloc-body">
-										<ul class="nav nav-pills mb-3" id="pills-tab1" role="tablist">
-											<li class="nav-item" role="presentation">
-											<button class="nav-link active" id="pills-price-tab" data-bs-toggle="pill" data-bs-target="#pills-price" type="button" role="tab" aria-controls="pills-price" aria-selected="true">Price history</button>
-											</li>
-											<li class="nav-item" role="presentation">
-											<button class="nav-link" id="pills-tax-tab" data-bs-toggle="pill" data-bs-target="#pills-tax" type="button" role="tab" aria-controls="pills-tax" aria-selected="false">Tax History</button>
-											</li>
-										</ul>
-										<div class="tab-content" id="pills-tabContent1">
-											<div class="tab-pane fade show active" id="pills-price" role="tabpanel" aria-labelledby="pills-price-tab" tabindex="0">
-												<div class="table-responsive">
-													<table class="table">
-														<thead>
-															<tr>
-																<th scope="col">Date</th>
-																<th scope="col">Event</th>
-																<th scope="col">Price</th>
-																<th scope="col">Change</th>
-																<th scope="col">Sq Ft Price</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>10 Jan 2020</td>
-																<td>For Sale</td>
-																<td>$40700</td>
-																<td>Nill</td>
-																<td>$910/Sqft</td>
-															</tr>
-															<tr>
-																<td>07 Feb 2020</td>
-																<td>For Sale</td>
-																<td>$65000</td>
-																<td>Nill</td>
-																<td>$1650/Sqft</td>
-															</tr>
-															<tr>
-																<td>10 Apr 2020</td>
-																<td>For Rent</td>
-																<td>$55200</td>
-																<td>Nill</td>
-																<td>$780/Sqft</td>
-															</tr>
-															<tr>
-																<td>17 Jan 2021</td>
-																<td>For Sale</td>
-																<td>$70800</td>
-																<td>Nill</td>
-																<td>$1050/Sqft</td>
-															</tr>
-															<tr>
-																<td>20 Aug 2022</td>
-																<td>For Sale</td>
-																<td>$80500</td>
-																<td>Nill</td>
-																<td>$890/Sqft</td>
-															</tr>
-															<tr>
-																<td>15 Dec 2022</td>
-																<td>For Rent</td>
-																<td>$58000</td>
-																<td>Nill</td>
-																<td>$850/Sqft</td>
-															</tr>
-															<tr>
-																<td colspan="5"><span class="font--medium text-success">Source: My State MLS</span></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
 
-											<div class="tab-pane fade" id="pills-tax" role="tabpanel" aria-labelledby="pills-tax-tab" tabindex="0">
-												<div class="table-responsive">
-													<table class="table">
-														<thead>
-															<tr>
-																<th scope="col">Year</th>
-																<th scope="col">Tax Paid</th>
-																<th scope="col">Tax Assessment</th>
-																<th scope="col">Land</th>
-																<th scope="col">Improvement</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>2017</td>
-																<td>$1700</td>
-																<td>$40700</td>
-																<td>$76,400</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td>2018</td>
-																<td>$1250</td>
-																<td>$65000</td>
-																<td>$75,600</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td>2019</td>
-																<td>$1360</td>
-																<td>$55200</td>
-																<td>$58,700</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td>2020</td>
-																<td>$1890</td>
-																<td>$70800</td>
-																<td>$80600</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td>2021</td>
-																<td>$1620</td>
-																<td>$80500</td>
-																<td>$70,500</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td>2022</td>
-																<td>$1460</td>
-																<td>$58000</td>
-																<td>$86,800</td>
-																<td>$0</td>
-															</tr>
-															<tr>
-																<td colspan="5"><span class="font--medium text-success">Source: My State MLS</span></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> --}}
+                        <!-- See on Map -->
+                        <div class="vesh-detail-bloc">
+                            <div class="vesh-detail-bloc_header">
+                                <a data-bs-toggle="collapse" data-parent="#historyinfo" data-bs-target="#historyinfo"
+                                    aria-controls="historyinfo" href="javascript:void(0);" aria-expanded="false">
+                                    <h4 class="property_block_title">See on Map</h4>
+                                </a>
+                            </div>
+                            <div id="historyinfo" class="panel-collapse collapse show" aria-labelledby="historyinfo">
+                                <div class="vesh-detail-bloc-body">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.722811674598!2d72.5588292759498!3d23.03394761590243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e856e56cf14e7%3A0x21bdff46a6c9d56d!2sHackberry%20Softech!5e0!3m2!1sen!2sin!4v1687338881831!5m2!1sen!2sin"
+                                        width="810" height="300" style="border:0;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <!-- All over Review -->
-                        <div class="veshm-fl-rate-box">
+                        {{-- <div class="veshm-fl-rate-box">
                             <div class="fl-rate-box-head theme-bg">
                                 <div class="flt-yuo10">
                                     <h4>5.0</h4>
@@ -695,8 +610,6 @@
                                         </div>
                                     </div>
                                     <div class="fls-by3">
-                                        {{-- <button type="button" class="btn btn-success font--medium">Submit
-                                            Review</button> --}}
                                         <div class="single-button">
                                             <a class="btn btn-success font--medium" data-bs-toggle="modal"
                                                 data-bs-target="#review"
@@ -706,11 +619,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- All over Review -->
 
                         <!-- Property Reviews Detail -->
-                        <div class="vesh-detail-bloc">
+                        {{-- <div class="vesh-detail-bloc">
                             <div class="vesh-detail-bloc_header">
                                 <h4 class="property_block_title no-arrow">Property Reviews</h4>
                             </div>
@@ -836,7 +749,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Nearby School -->
                         {{-- <div class="vesh-detail-bloc">

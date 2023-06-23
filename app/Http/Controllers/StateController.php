@@ -93,7 +93,7 @@ class StateController extends Controller
                   Action
                 </button>
                 <div class="dropdown-menu">
-                 
+
                   <a href="' . route('state_destroy', $id) . '" class="dropdown-item" style="--hover-color: green" type="button">Delete</a>
                 </div>
               </div>',
@@ -137,7 +137,7 @@ class StateController extends Controller
         $Model->updated_by = session('admin')['admin_id'];
         $delete = $Model->save();
         if ($delete) {
-            toastr('\State deleted successfully', 'success');
+            toastr('State deleted successfully', 'success');
         } else {
             toastr('Something went Wrong Please Try Again', 'error');
         }

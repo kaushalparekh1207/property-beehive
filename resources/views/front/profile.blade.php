@@ -80,6 +80,24 @@
                                             <div class="row">
 
                                                 @csrf
+                                                <div class="form-group col-md-4">
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" name="first_name"
+                                                        value="{{ $userData->first_name }}"
+                                                        placeholder="Enter First Name">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Middle Name</label>
+                                                    <input type="text" class="form-control" name="middle_name"
+                                                        value="{{ $userData->middle_name }}"
+                                                        placeholder="Enter Middle Name">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" name="last_name"
+                                                        value="{{ $userData->last_name }}"
+                                                        placeholder="Enter Last Name">
+                                                </div>
                                                 <div class="form-group col-md-6">
                                                     <label>Role</label>
                                                     <input type="hidden" value="{{ $userData->id }}" name="id"
@@ -97,21 +115,49 @@
                                                 </div>
 
                                                 <div class="form-group col-md-6">
-                                                    <label>Your Name</label>
+                                                    <label>Display Name</label>
                                                     <input type="text" class="form-control" name="name"
                                                         value="{{ $userData->name }}" placeholder="Enter Your Name">
-                                                </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <label>Email</label>
-                                                    <input type="email" class="form-control" name="email"
-                                                        value="{{ $userData->email }}" placeholder="Enter Email">
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label>Phone</label>
                                                     <input type="number" name="contact" class="form-control"
                                                         value="{{ $userData->contact }}">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" name="email"
+                                                        value="{{ $userData->email }}" placeholder="Enter Email">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Birthday Date</label>
+                                                    <input type="date" name="birthday_date" class="form-control"
+                                                        value="{{ $userData->birthday_date }}">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Anniversary Date</label>
+                                                    <input type="date" class="form-control" name="anniversary_date"
+                                                        value="{{ $userData->anniversary_date }}">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Is Rera Registered ?</label>
+                                                    <select class="js-select2-disablesearch" name="is_rera"
+                                                        id="is_rera" onchange="reraFunction(this.value)">
+                                                        <option value="" selected disabled>Select
+                                                            One</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-12 rera_reg_number"
+                                                    style="display: none;">
+                                                    <label>Is Rera Registration Number ?</label>
+                                                    <input type="text" class="form-control" id="rera_number"
+                                                        name="rera_registration_number"
+                                                        value="{{ $userData->rera_registration_number }}"
+                                                        placeholder="Enter Rera Registration Number"></input>
                                                 </div>
 
                                                 <div class="form-group col-md-4">
@@ -215,6 +261,11 @@
                 closeOnSelect: false
             });
         });
+    </script>
+    <script>
+        function reraFunction(val) {
+            val == 'Yes' ? $('.rera_reg_number').show() : $('.rera_reg_number').hide();
+        }
     </script>
     <script>
         $(document).ready(function() {

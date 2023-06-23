@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('address');
             $table->integer('expected_price');
             $table->integer('booking_amount')->nullable();
-            $table->integer('rera_registration_number')->nullable();
+            $table->string('rera_registration_number', 99)->nullable();
             $table->string('cover_image', 255)->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();

@@ -38,8 +38,8 @@
                             class="fa fa-user-tie"></i>My Profile</a></li>
                 <li class="@yield('my_properties')"><a href="{{ route('myProperties') }}"><i class="fa fa-tasks"></i>My
                         Properties</a></li>
-                <li class="@yield('inqury_list')"><a href="{{ route('showInquiryList') }}"><i class="fa fa-list"></i>Inquiry
-                        List</a></li>
+                <li class="@yield('inqury_list')"><a href="{{ route('showInquiryList') }}"><i class="fa fa-list"></i>My
+                        Visits</a></li>
                 <li class="@yield('our_packages')"><a href="{{ route('our_packages') }}"><i
                             class="fa fa-list"></i>Packages</a></li>
                 {{-- <li class="@yield('post_property')"><a href="{{ route('postProperty') }}"><i class="fa fa-pen-nib"></i>Post

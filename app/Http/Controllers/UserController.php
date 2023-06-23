@@ -288,8 +288,14 @@ class UserController extends Controller
             $client_type_id = User::where('id', $request->id)->pluck('client_type_id')->first();
         }
         $userData->client_type_id = $client_type_id;
+        $userData->first_name = $request->first_name;
+        $userData->middle_name = $request->middle_name;
+        $userData->last_name = $request->last_name;
         $userData->name = $request->name;
         $userData->email = $request->email;
+        $userData->birthday_date = $request->birthday_date;
+        $userData->anniversary_date = $request->anniversary_date;
+        $userData->rera_registration_number = $request->rera_registration_number;
         $userData->contact = $request->contact;
         $userData->state_id = $request->state_id;
         $userData->city_id = $request->city_id;

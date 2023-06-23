@@ -69,17 +69,17 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="full-search-2 mt-2">
-                                <div class="hero-search-content colored">
-
-                                    <form id="property_result" action="{{ route('property_result_search') }}"
-                                        method="post">
-                                        @csrf
+                                <form id="property_result" action="{{ route('property_result_search') }}"
+                                    method="post">
+                                    @csrf
+                                    <div class="hero-search-content colored">
                                         <div class="row classic-search-box m-0 gx-2">
-                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <div class="input-with-icon">
-                                                        <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                            <option value="">Select City</option>
+                                                        <select class="js-select2" name="city_id" id="city_dropdown">
+                                                            <option value="" selected disabled>Select City
+                                                            </option>
                                                             @foreach ($city as $cities)
                                                                 <option value="{{ $cities->id }}">{{ $cities->city }}
                                                                 </option>
@@ -89,31 +89,30 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <div class="input-with-icon">
                                                         <select class="js-select2" name="taluka_id"
-                                                            id="taluka_id_dropdown">
-                                                            <option value="">Select Taluka</option>
-                                                            @foreach ($taluka as $talukas)
-                                                                <option value="{{ $talukas->id }}">
-                                                                    {{ $talukas->taluka }}</option>
-                                                            @endforeach
+                                                            id="taluka_dropdown">
+                                                            <option value="" selected disabled>Select City First
+                                                            </option>
                                                         </select>
                                                         <i class="fa-solid fa-location-crosshairs mb-2"></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="form-group briod">
                                                     <div class="input-with-icon">
                                                         {{-- <select class="form-control" name="property_type_id"> --}}
                                                         <select class="js-select2" name="property_type_id"
-                                                            id="property_type_dropdown">
-                                                            <option value="">Property types</option>
+                                                            id="property_type">
+                                                            <option value="" selected disabled>Select Property
+                                                                types
+                                                            </option>
                                                             @foreach ($propertyType as $type)
                                                                 <option value="{{ $type->id }}">
-                                                                    {{ $type->property_category_name }}
+                                                                    {{ $type->property_type }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -121,7 +120,40 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                                <div class="form-group briod">
+                                                    <div class="input-with-icon">
+                                                        {{-- <select class="form-control" name="property_type_id"> --}}
+                                                        <select class="js-select2" name="property_category_id"
+                                                            id="property_category_dropdown">
+                                                            <option value="" selected disabled>Select Property
+                                                                Type
+                                                                First
+                                                            </option>
+                                                        </select>
+                                                        <i class="fa-solid fa-house-crack mb-2"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                                <div class="form-group briod">
+                                                    <div class="input-with-icon">
+                                                        {{-- <select class="form-control" name="property_type_id"> --}}
+                                                        <select class="js-select2" name="property_type_id"
+                                                            id="property_type_dropdown">
+                                                            <option value="" selected disabled>Budget
+                                                            </option>
+                                                            {{-- @foreach ($propertyType as $type)
+                                                            <option value="{{ $type->id }}">
+                                                                {{ $type->property_type }}
+                                                            </option>
+                                                        @endforeach --}}
+                                                        </select>
+                                                        <i class="fa-solid fa-house-crack mb-2"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                                 <div class="fliox-search-wiop">
                                                     <div class="form-group me-2">
                                                         <a href="JavaScript:Void(0);" data-bs-toggle="modal"
@@ -136,9 +168,8 @@
                                             </div>
 
                                         </div>
-                                    </form>
-
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -176,17 +207,17 @@
                 </div>
 
                 <!-- Start All Cell View -->
-                <div id="cell" class="row gx-3 gy-4">
-                    <table id="example" class="table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <!-- Single Property -->
+                <table id="example" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <!-- Single Property -->
+                                <div id="cell" class="row gx-3 gy-4">
                                     @if ($resultSearch->count() == 0)
                                         <div class="row justify-content-center">
                                             <div class="col-lg-7 col-md-10 text-center">
@@ -203,22 +234,22 @@
                                                     <div class="veshm-list-prty-figure">
                                                         <div class="veshm-list-img-slide">
                                                             <div class="veshm-list-click">
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
+                                                                <div>
+                                                                    @if ($result->cover_image == null)
+                                                                        <a
+                                                                            href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"><img
+                                                                                src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                class="img-fluid mx-auto"
+                                                                                alt=""
+                                                                                style="width: 500px; height: 300px;"></a>
+                                                                    @else
+                                                                        <a
+                                                                            href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"><img
+                                                                                src="{{ asset('storage/property/banner_image/' . $result->cover_image) }}"
+                                                                                class="img-fluid mx-auto"
+                                                                                alt=""></a>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -298,10 +329,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="veshm-list-ftr1707">
-                                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                                    data-bs-target="#offer"
-                                                                    class="btn btn-md btn-primary font--medium">Send
-                                                                    Offer</a>
+                                                                <a href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
+                                                                    class="btn btn-md btn-primary font--medium">View
+                                                                    Details</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -309,24 +339,25 @@
                                             </div>
                                         @endforeach
                                     @endif
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- End All Cell View -->
 
                 <!-- Start All List View -->
-                <div id="list" class="row gx-3 gy-4" style="display: none;">
-                    <table id="example2" class="table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
+                <table id="example" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="list" class="row gx-3 gy-4" style="display: none;">
+
                                     @if ($resultSearch->count() == 0)
                                         <div class="row justify-content-center">
                                             <div class="col-lg-7 col-md-10 text-center">
@@ -343,22 +374,22 @@
                                                     <div class="veshm-list-prty-figure1">
                                                         <div class="veshm-list-img-slide">
                                                             <div class="veshm-list-click">
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-11.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
-                                                                <div><a href="single-property-1.html"><img
-                                                                            src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                            class="img-fluid mx-auto"
-                                                                            alt=""></a></div>
+                                                                <div>
+                                                                    @if ($result->cover_image == null)
+                                                                        <a
+                                                                            href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"><img
+                                                                                src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                class="img-fluid mx-auto"
+                                                                                alt=""
+                                                                                style="width: 500px; height: 300px;"></a>
+                                                                    @else
+                                                                        <a
+                                                                            href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"><img
+                                                                                src="{{ asset('storage/property/banner_image/' . $result->cover_image) }}"
+                                                                                class="img-fluid mx-auto"
+                                                                                alt=""style="width: 500px; height: 300px;"></a>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -438,10 +469,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="veshm-list-ftr1707">
-                                                                <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                                    data-bs-target="#offer"
-                                                                    class="btn btn-md btn-primary font--medium">Send
-                                                                    Offer</a>
+                                                                <a href="{{ route('propertydetails', [$result->id, $result->property_type_id, $result->name_of_project, $result->client_master_id]) }}"
+                                                                    class="btn btn-md btn-primary font--medium">View
+                                                                    Details</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -449,11 +479,11 @@
                                             </div>
                                         @endforeach
                                     @endif
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- End All List View -->
 
             </div>
@@ -525,12 +555,62 @@
         });
     </script>
     <script>
+        $('#property_type').on('change', function() {
+            var property_type_id = $(this).val();
+
+            $("#property_category_dropdown").html('');
+            $.ajax({
+                url: "{{ route('get-property-category') }}",
+                type: "GET",
+                data: {
+                    property_type_id: property_type_id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('#property_category_dropdown').html(
+                        '<option value="" selected disabled>-- Select Property Category --</option>'
+                    );
+                    $.each(result.property_category, function(key, value) {
+                        $("#property_category_dropdown").append(
+                            '<option value="' +
+                            value
+                            .id + '">' + value.property_category_name +
+                            '</option>');
+
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
         $(document).ready(function() {
-            $('#example2').DataTable({
-                searching: false,
-                lengthChange: false,
-                info: true,
-                ordering: false,
+            //  $('#city').hide();
+            $('#city_dropdown').on('change', function() {
+                var city = this.value;
+                $("#taluka_dropdown").html('');
+                $.ajax({
+                    url: "{{ route('get-taluka-list') }}",
+                    type: "GET",
+                    data: {
+                        city: city,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#taluka').show();
+                        $('#taluka_dropdown').html(
+                            '<option value="" selected disabled>-- Select Taluka --</option>'
+                        );
+                        $.each(result.taluka, function(key, value) {
+                            $("#taluka_dropdown").append('<option value="' +
+                                value
+                                .id + '">' + value.taluka +
+                                '</option>');
+                        });
+                        // $('#sd').show();
+                    }
+                });
             });
         });
     </script>

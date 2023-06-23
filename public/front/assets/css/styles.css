@@ -10395,5 +10395,41 @@ sup {
     border-radius: 6px;
 }
 
+.mb-srp__card__summary-commercial__list {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    display: table;
+    border: 1px solid #e8e8e8;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    background-clip: padding-box;
+}
+
+.mb-srp__card__summary-commercial__list--item {
+    width: 25%;
+    padding: 8px 12px 8px 16px;
+    border-right: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    margin: -1px;
+    position: relative;
+    float: left;
+}
+
+.mb-srp__card__summary--label {
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #FA962A;
+}
+
+.mb-srp__card__summary--value {
+    color: #303030;
+    font-weight: 500;
+}
+
 
 

@@ -3,6 +3,8 @@
     use App\Models\IndustrialProperty;
     use App\Models\ResidentialProperty;
     use App\Models\AgriculturalProperty;
+    use App\Models\PropertyMasterPlanImage;
+    use App\Models\PropertySiteViewImage;
 @endphp
 @section('buy')
     active
@@ -75,6 +77,7 @@
                         <tr>
                             <td>
                                 @foreach ($properties as $property)
+                                    <br>
                                     @php
                                         $commercial_property = CommercialProperty::where('flag', 1)
                                             ->where('possession_status', '=', 'Ready to Move')
@@ -97,26 +100,22 @@
                                                         <div class="veshm-list-prty-figure1">
                                                             <div class="veshm-list-img-slide">
                                                                 <div class="veshm-list-click">
-                                                                    {{-- <div><a
-                                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                        src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}
-                                                                        class="img-fluid
-                                                                        mx-auto" alt=""></a>
-                                                            </div> --}}
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
+                                                                    <div>
+                                                                        @if ($property->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -137,7 +136,8 @@
                                                                                 {{ $property->property_status }}</span>
                                                                         </div>
                                                                     @endif
-                                                                    <h5 class="rlhc-title-name verified"><a
+                                                                    <h5 class="rlhc-title-name verified">
+                                                                        <a
                                                                             href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
                                                                                 {{-- src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}" --}}
                                                                                 class="prt-link-detail alt="">{{ $property->name_of_project }}</a>
@@ -157,7 +157,7 @@
                                                                             class="fa-solid fa-heart-circle-check"></i></button>
                                                                 </div>
                                                             </div>
-                                                            <div class="veshm-list-middle">
+                                                            {{-- <div class="veshm-list-middle">
                                                                 <div class="veshm-list-icons">
                                                                     <ul>
 
@@ -182,8 +182,59 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+                                                            </div> --}}
+                                                            <div class="mb-srp__card__summary-commercial__list">
+                                                                @if ($residential->super_area != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class='fas fa-ruler-combined'
+                                                                                style="color: #fa962a;"></i>
+                                                                            Super Area</div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $residential->super_area }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($residential->possession_status != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-building"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Status
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $residential->possession_status }}</div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($residential->furnished_status != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-couch"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Furnishing </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $residential->furnished_status }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($residential->time_duration != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-trowel-bricks"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Under Constuction
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            Poss. by {{ $residential->time_duration }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                            <div class="veshm-list-footers">
+                                                            <div class="veshm-list-footers" style="margin-top: 2%">
                                                                 <div class="veshm-list-ftr786">
                                                                     <div class="rlhc-price">
                                                                         <h4 class="rlhc-price-name theme-cl">
@@ -201,10 +252,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="veshm-list-ftr1707">
-                                                                    <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                                        data-bs-target="#offer"
-                                                                        class="btn btn-md btn-primary font--medium">Send
-                                                                        Offer</a>
+                                                                    <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                        class="btn btn-md btn-primary font--medium">View
+                                                                        Details</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -221,26 +271,22 @@
                                                         <div class="veshm-list-prty-figure1">
                                                             <div class="veshm-list-img-slide">
                                                                 <div class="veshm-list-click">
-                                                                    {{-- <div><a
-                                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                        src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}
-                                                                        class="img-fluid
-                                                                        mx-auto" alt=""></a>
-                                                            </div> --}}
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
+                                                                    <div>
+                                                                        @if ($property->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -281,7 +327,7 @@
                                                                             class="fa-solid fa-heart-circle-check"></i></button>
                                                                 </div>
                                                             </div>
-                                                            <div class="veshm-list-middle">
+                                                            {{-- <div class="veshm-list-middle">
                                                                 <div class="veshm-list-icons">
                                                                     <ul>
 
@@ -306,8 +352,57 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+                                                            </div> --}}
+                                                            <div class="mb-srp__card__summary-commercial__list">
+                                                                @if ($commercial->carpet_area != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-rug"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Carpet Area</div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $commercial->carpet_area }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($commercial->possession_status != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-building"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Status
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $commercial->possession_status }}</div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($commercial->furnished_status != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-couch"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Furnishing </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $commercial->furnished_status }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($commercial->cafeteria != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label">
+                                                                            Pantry
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $commercial->cafeteria }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                            <div class="veshm-list-footers">
+                                                            <div class="veshm-list-footers" style="margin-top: 2%">
                                                                 <div class="veshm-list-ftr786">
                                                                     <div class="rlhc-price">
                                                                         <h4 class="rlhc-price-name theme-cl">
@@ -325,10 +420,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="veshm-list-ftr1707">
-                                                                    <a href="JavaScript:Void(0);"
-                                                                        data-bs-toggle="modal" data-bs-target="#offer"
-                                                                        class="btn btn-md btn-primary font--medium">Send
-                                                                        Offer</a>
+                                                                    <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                        class="btn btn-md btn-primary font--medium">View
+                                                                        Details</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -345,26 +439,22 @@
                                                         <div class="veshm-list-prty-figure1">
                                                             <div class="veshm-list-img-slide">
                                                                 <div class="veshm-list-click">
-                                                                    {{-- <div><a
-                                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                        src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}
-                                                                        class="img-fluid
-                                                                        mx-auto" alt=""></a>
-                                                            </div> --}}
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
+                                                                    <div>
+                                                                        @if ($property->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -405,7 +495,7 @@
                                                                             class="fa-solid fa-heart-circle-check"></i></button>
                                                                 </div>
                                                             </div>
-                                                            <div class="veshm-list-middle">
+                                                            {{-- <div class="veshm-list-middle">
                                                                 <div class="veshm-list-icons">
                                                                     <ul>
 
@@ -430,8 +520,59 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+                                                            </div> --}}
+                                                            <div class="mb-srp__card__summary-commercial__list">
+                                                                @if ($industrial->super_area != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-draw-square"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Super Area</div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $industrial->super_area }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($industrial->possession_status != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-building"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Status
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $industrial->possession_status }}</div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($industrial->age != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-building-shield"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Property Age </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $industrial->age }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($industrial->boundary_wall_made != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-bars fa-rotate-90"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Boundary Wall Made
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $industrial->boundary_wall_made }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                            <div class="veshm-list-footers">
+                                                            <div class="veshm-list-footers" style="margin-top: 2%">
                                                                 <div class="veshm-list-ftr786">
                                                                     <div class="rlhc-price">
                                                                         <h4 class="rlhc-price-name theme-cl">
@@ -449,10 +590,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="veshm-list-ftr1707">
-                                                                    <a href="JavaScript:Void(0);"
-                                                                        data-bs-toggle="modal" data-bs-target="#offer"
-                                                                        class="btn btn-md btn-primary font--medium">Send
-                                                                        Offer</a>
+                                                                    <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                        class="btn btn-md btn-primary font--medium">View
+                                                                        Details</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -469,26 +609,22 @@
                                                         <div class="veshm-list-prty-figure1">
                                                             <div class="veshm-list-img-slide">
                                                                 <div class="veshm-list-click">
-                                                                    {{-- <div><a
-                                                                    href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                        src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}
-                                                                        class="img-fluid
-                                                                        mx-auto" alt=""></a>
-                                                            </div> --}}
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-2.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-3.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
-                                                                    </div>
-                                                                    <div><a href="single-property-1.html"><img
-                                                                                src="{{ url('/') }}/front/assets/img/prt-4.png"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""></a>
+                                                                    <div>
+                                                                        @if ($property->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -529,7 +665,7 @@
                                                                             class="fa-solid fa-heart-circle-check"></i></button>
                                                                 </div>
                                                             </div>
-                                                            <div class="veshm-list-middle">
+                                                            {{-- <div class="veshm-list-middle">
                                                                 <div class="veshm-list-icons">
                                                                     <ul>
 
@@ -554,8 +690,61 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+                                                            </div> --}}
+                                                            <div class="mb-srp__card__summary-commercial__list">
+                                                                @if ($agriculture->plot_area != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class='fas fa-ruler-combined'
+                                                                                style="color: #fa962a;"></i>
+                                                                            Plot
+                                                                            Area</div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $agriculture->plot_area }} sqyrd
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($agriculture->total_open_side != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class='fas fa-arrows-alt'
+                                                                                style="color: #fa962a;"></i>
+                                                                            Open Sides
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $agriculture->total_open_side }}</div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($agriculture->boundary_wall_made != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-bars fa-rotate-90"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Boundary </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $agriculture->boundary_wall_made }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($agriculture->width_of_road_facing_plot != null)
+                                                                    <div class="mb-srp__card__summary-commercial__list--item"
+                                                                        data-summary="status">
+                                                                        <div class="mb-srp__card__summary--label"><i
+                                                                                class="fa-solid fa-road"
+                                                                                style="color: #fa962a;"></i>
+                                                                            Width of road facing the plot
+                                                                        </div>
+                                                                        <div class="mb-srp__card__summary--value">
+                                                                            {{ $agriculture->width_of_road_facing_plot }}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                            <div class="veshm-list-footers">
+
+                                                            <div class="veshm-list-footers" style="margin-top: 2%">
                                                                 <div class="veshm-list-ftr786">
                                                                     <div class="rlhc-price">
                                                                         <h4 class="rlhc-price-name theme-cl">
@@ -563,20 +752,20 @@
                                                                                 echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
                                                                             @endphp
                                                                             @if ($property->property_status == 'Sale')
-                                                                                <span class="monthly">One Time</span>
-                                                                            @elseif ($property->property_status == 'Rent/Lease')
+                                                                                <span class="monthly">One
+                                                                                    Time</span>
+                                                                            @elseif($property->property_status == 'Rent/Lease')
                                                                                 <span class="monthly">/Months</span>
-                                                                            @elseif ($property->property_status == 'PG/Hostel')
+                                                                            @elseif($property->property_status == 'PG/Hostel')
                                                                                 <span class="monthly">/Months</span>
                                                                             @endif
                                                                         </h4>
                                                                     </div>
                                                                 </div>
                                                                 <div class="veshm-list-ftr1707">
-                                                                    <a href="JavaScript:Void(0);"
-                                                                        data-bs-toggle="modal" data-bs-target="#offer"
-                                                                        class="btn btn-md btn-primary font--medium">Send
-                                                                        Offer</a>
+                                                                    <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                        class="btn btn-md btn-primary font--medium">View
+                                                                        Details</a>
                                                                 </div>
                                                             </div>
                                                         </div>

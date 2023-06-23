@@ -3,6 +3,7 @@
 use App\Models\City;
 use App\Models\PropertyCategory;
 use App\Models\PropertyMaster;
+use App\Models\PropertyType;
 use App\Models\Taluka;
 
 function city()
@@ -13,7 +14,7 @@ function city()
 
 function propertyType()
 {
-    $propertyType = PropertyCategory::where('flag', 1)->get(['id', 'property_category_name']);
+    $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
     return $propertyType;
 }
 

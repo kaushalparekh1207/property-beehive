@@ -9,7 +9,6 @@ use App\Models\IndustrialProperty;
 use App\Models\PropertyMaster;
 use App\Models\ResidentialProperty;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MyPropertiesController extends Controller
 {
@@ -60,7 +59,7 @@ class MyPropertiesController extends Controller
             ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
-            ->select('property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.expected_price', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image')
+            ->select('property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.expected_price', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id')
             ->get();
 
         $data_arr = array();
@@ -70,6 +69,7 @@ class MyPropertiesController extends Controller
             $industrial_property = IndustrialProperty::where('flag', 1)->get();
             $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
             $id = $record->id;
+            $types = $record->property_type_id;
             if ($record->cover_image == null || $record->cover_image == '') {
                 $path = asset('storage/property/no-photo.png');
             } else {
@@ -113,8 +113,9 @@ class MyPropertiesController extends Controller
                 "for" => '<div class="prt_leads"><h6 ' . $color . '>' . $record->property_status . '</h6></div>',
                 "type" => '<div class="_leads_view"><h5 class="up">' . $record->property_category_name . '</h5></div>',
                 "status" => '<div class="_leads_status"><span class="active">Active</span></div>',
-                "action" => '<div class="_leads_action"><a href="#"><i class="fas fa-edit"></i></a>
-                    <a href="' . route('destroyMyProperties', $record->id) . '" title="Delete Property"><i class="fas fa-trash"></i></a></div>',
+                "action" => '<div class="_leads_action">
+                <a href="' . route('editProperty', $record->id) . '"><i class="fas fa-edit"></i></a>
+                <a href="' . route('destroyMyProperties', [$record->id, $types]) . '" title="Delete Property"><i class="fas fa-trash"></i></a></div>',
             );
         }
 
@@ -129,13 +130,37 @@ class MyPropertiesController extends Controller
         exit;
     }
 
-    public function destroyMyProperties($id)
+    public function destroyMyProperties($id, $type)
     {
-        $data = DB::table('property_masters')
-            ->leftJoin('residential_properties', 'property_masters.id', '=', 'residential_properties.property_master_id')
-            ->where('property_masters.id', $id);
-        DB::table('residential_properties')->where('property_master_id', $id)->delete();
-        $data->delete();
+        $Model = PropertyMaster::findOrFail($id);
+        $Model->flag = 2;
+        $delete = $Model->save();
+
+        if ($delete) {
+            if ($type == 1) {
+                $model = ResidentialProperty::where('property_master_id', $id)->first();
+                $model->flag = 2;
+                $model->save();
+                toastr('Property deleted successfully', 'success');
+            } elseif ($type == 2) {
+                $model = CommercialProperty::where('property_master_id', $id)->first();
+                $model->flag = 2;
+                $model->save();
+                toastr('Property deleted successfully', 'success');
+            } elseif ($type == 3) {
+                $model = IndustrialProperty::where('property_master_id', $id)->first();
+                $model->flag = 2;
+                $model->save();
+                toastr('Property deleted successfully', 'success');
+            } elseif ($type == 4) {
+                $model = AgriculturalProperty::where('property_master_id', $id)->first();
+                $model->flag = 2;
+                $model->save();
+                toastr('Property deleted successfully', 'success');
+            }
+        } else {
+            toastr('Something went Wrong Please Try Again', 'error');
+        }
         return redirect()->back();
     }
 }

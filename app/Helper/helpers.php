@@ -67,14 +67,18 @@ function convertCurrency($number)
                     }
                     // }
                     if ($remNumber == 00) {
-                        echo $number = substr($number, 0, $numLen - $nmLen + 2) . " $unit";
+                        $number = substr($number, 0, $numLen - $nmLen + 2) . " $unit";
                     } else {
-                        echo $number = substr($number, 0, $numLen - $nmLen + 2) . '.' . $remNumber . " $unit";
+                        $number = substr($number, 0, $numLen - $nmLen + 2) . '.' . $remNumber . " $unit";
                     }
                 }
             }
         }
+        return $number;
+    } elseif ($numLen == 5) {
+        $number = substr_replace($number, ',', 2, 0);
+        return $number;
     } else {
-        echo $number . 'Rs';
+        return $number;
     }
 }

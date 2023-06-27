@@ -281,7 +281,9 @@ class PropertyMasterController extends Controller
         $propertyMasterModel->locality = $request->locality;
         $propertyMasterModel->name_of_project = $request->name_of_project;
         $propertyMasterModel->address = $request->address;
+        $display_price = convertCurrency($request->price);
         $propertyMasterModel->expected_price = $request->price;
+        $propertyMasterModel->display_price = $display_price;
         $propertyMasterModel->booking_amount = $request->booking_amount;
         $propertyMasterModel->save();
         $lastInsertedPropertyMasterId = $propertyMasterModel->id;
@@ -485,7 +487,11 @@ class PropertyMasterController extends Controller
         $propertyMasterModel->latitude = null;
         $propertyMasterModel->longitude = null;
         $propertyMasterModel->address = $request->address;
+        // if(strlen($request->price)>5){}
+        $display_price = convertCurrency($request->price);
         $propertyMasterModel->expected_price = $request->price;
+        $propertyMasterModel->display_price = $display_price;
+        // echo $propertyMasterModel->expected_price; exit;
         $propertyMasterModel->booking_amount = $request->booking_amount;
         $propertyMasterModel->rera_registration_number = $request->rera_number;
         $saveData = $propertyMasterModel->save();

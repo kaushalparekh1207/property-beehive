@@ -59,7 +59,7 @@ class MyPropertiesController extends Controller
             ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
-            ->select('property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.expected_price', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id')
+            ->select('property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.display_price', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id')
             ->get();
 
         $data_arr = array();
@@ -75,7 +75,7 @@ class MyPropertiesController extends Controller
             } else {
                 $path = asset('storage/property/banner_image/' . $record->cover_image);
             }
-            $property_price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $record->expected_price);
+            $property_price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $record->display_price);
             if ($record->property_status == 'Sale') {
                 $color = 'style="color: #dc3545;"';
             } elseif ($record->property_status == 'Rent/Lease') {

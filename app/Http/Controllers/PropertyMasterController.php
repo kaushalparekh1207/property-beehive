@@ -587,7 +587,7 @@ class PropertyMasterController extends Controller
 
             }
             if ($property_type_id == 4) {
-                $agriculturePropertyModel = AgricultureProperty::findOrFail($request->property_id);
+                $agriculturePropertyModel = AgriculturalProperty::findOrFail($request->property_id);
                 $agriculturePropertyModel->descr = $request->descr;
                 $agriculturePropertyModel->total_floor = $request->total_floors;
                 $agriculturePropertyModel->total_bedrooms = $request->total_bedrooms;

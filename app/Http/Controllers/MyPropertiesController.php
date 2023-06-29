@@ -60,6 +60,8 @@ class MyPropertiesController extends Controller
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
             ->select('property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.display_price', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id')
+            ->skip($start)
+            ->take($rowperpage)
             ->get();
 
         $data_arr = array();

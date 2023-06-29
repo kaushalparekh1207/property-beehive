@@ -191,7 +191,7 @@ class BuyPropertyController extends Controller
                     ->where('property_masters.property_status', $sale)
                     ->where('property_masters.city_id', $city_id)
                     ->where('property_masters.taluka_id', $taluka_id)
-                    ->where('property_masters.property_type_id', $type_id)                    ->where('property_masters.taluka_id', $taluka_id)
+                    ->where('property_masters.property_type_id', $type_id)->where('property_masters.taluka_id', $taluka_id)
                     ->where('property_masters.property_category_id', $category_id)
                     ->get(['property_masters.expected_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'commercial_properties.furnished_status', 'commercial_properties.carpet_area', 'commercial_properties.property_master_id', 'commercial_properties.age', 'property_masters.client_master_id']);
             } elseif ($residential_property == $property_master) {
@@ -236,12 +236,14 @@ class BuyPropertyController extends Controller
         return view('front.property-result', compact('resultSearch', 'count', 'category_id', 'city_id'));
     }
 
-    public function readyToMove(){
+    public function readyToMove()
+    {
         // $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Sale')->get();
         return view('front.buy_ready_to_move');
     }
 
-    public function showReadyToMove(Request $request){
+    public function showReadyToMove(Request $request)
+    {
         ## Read value
         $draw = $request->get('draw');
         $start = $request->get("start");
@@ -261,7 +263,7 @@ class BuyPropertyController extends Controller
             ->join('property_categories', 'property_categories.id', '=', 'property_masters.property_category_id')
             ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
             ->where('property_status', '=', 'Sale')
-            // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
+        // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
             ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
@@ -272,7 +274,7 @@ class BuyPropertyController extends Controller
             ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
             ->where('property_status', '=', 'Sale')
             ->where('client_master.flag', 1)
-            // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
+        // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
             ->count();
@@ -283,9 +285,11 @@ class BuyPropertyController extends Controller
             ->where('property_status', '=', 'Sale')
             ->where('client_master.flag', 1)
             ->where('property_masters.flag', 1)
-            // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
+        // ->where('property_masters.name_of_project','like', '%'. $searchValue . '%')
             ->where('property_categories.flag', 1)
-            ->select('property_masters.display_price','property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id','property_masters.client_master_id')
+            ->select('property_masters.display_price', 'property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id', 'property_masters.client_master_id')
+            ->skip($start)
+            ->take($rowperpage)
             ->get();
 
         $data_arr = array();
@@ -298,10 +302,10 @@ class BuyPropertyController extends Controller
             }
 
             $residential_property = ResidentialProperty::where('flag', 1)
-            ->where('possession_status', '=', 'Ready to Move')
-            ->get();
-            foreach($residential_property as $residential){
-                if($record->id == $residential->property_master_id) {
+                ->where('possession_status', '=', 'Ready to Move')
+                ->get();
+            foreach ($residential_property as $residential) {
+                if ($record->id == $residential->property_master_id) {
 
                     $data_arr[] = array(
                         "show" => '<div id="cell" class="row gx-3 gy-4">
@@ -312,8 +316,8 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-click">
                                                 <div>
                                                     <a
-                                                        href="'.route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"><img
-                                                            src="'. $path .'"
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"><img
+                                                            src="' . $path . '"
                                                             class="img-fluid mx-auto"
                                                             alt=""
                                                             style="width: 500px; height: 300px;"></a>
@@ -325,10 +329,10 @@ class BuyPropertyController extends Controller
                                         <div class="veshm-list-kygf">
                                             <div class="veshm-list-kygf-flex">
                                             <div class="veshm-type fr-sale"><span>For
-                                            '. $record->property_status .'</span></div>
+                                            ' . $record->property_status . '</span></div>
                                                 <h5 class="rlhc-title-name verified">
                                                     <a
-                                                        href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'">'.$record->name_of_project.'</a>
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '">' . $record->name_of_project . '</a>
                                                 </h5>
                                                 <div class="vesh-aget-rates">
                                                     <i class="fa-solid fa-star"></i>
@@ -362,13 +366,13 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
                                                     <h4 class="rlhc-price-name theme-cl">
-                                                        ₹'.$record->display_price.'
+                                                        ₹' . $record->display_price . '
                                                             <span class="monthly">/Onwards</span>
                                                     </h4>
                                                 </div>
                                             </div>
                                             <div class="veshm-list-ftr1707">
-                                                <a href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"
+                                                <a href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"
                                                     class="btn btn-md btn-primary font--medium">View
                                                     Details</a>
                                             </div>
@@ -382,10 +386,10 @@ class BuyPropertyController extends Controller
             }
 
             $commercial_property = CommercialProperty::where('flag', 1)
-            ->where('possession_status', '=', 'Ready to Move')
-            ->get();
-            foreach($commercial_property as $commercial){
-                if($record->id == $commercial->property_master_id) {
+                ->where('possession_status', '=', 'Ready to Move')
+                ->get();
+            foreach ($commercial_property as $commercial) {
+                if ($record->id == $commercial->property_master_id) {
 
                     $data_arr[] = array(
                         "show" => '<div id="cell" class="row gx-3 gy-4">
@@ -396,8 +400,8 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-click">
                                                 <div>
                                                     <a
-                                                        href="'.route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"><img
-                                                            src="'. $path .'"
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"><img
+                                                            src="' . $path . '"
                                                             class="img-fluid mx-auto"
                                                             alt=""
                                                             style="width: 500px; height: 300px;"></a>
@@ -409,10 +413,10 @@ class BuyPropertyController extends Controller
                                         <div class="veshm-list-kygf">
                                             <div class="veshm-list-kygf-flex">
                                             <div class="veshm-type fr-sale"><span>For
-                                            '. $record->property_status .'</span></div>
+                                            ' . $record->property_status . '</span></div>
                                                 <h5 class="rlhc-title-name verified">
                                                     <a
-                                                        href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'">'.$record->name_of_project.'</a>
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '">' . $record->name_of_project . '</a>
                                                 </h5>
                                                 <div class="vesh-aget-rates">
                                                     <i class="fa-solid fa-star"></i>
@@ -446,13 +450,13 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
                                                     <h4 class="rlhc-price-name theme-cl">
-                                                        ₹'.$record->display_price.'
+                                                        ₹' . $record->display_price . '
                                                             <span class="monthly">/Onwards</span>
                                                     </h4>
                                                 </div>
                                             </div>
                                             <div class="veshm-list-ftr1707">
-                                                <a href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"
+                                                <a href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"
                                                     class="btn btn-md btn-primary font--medium">View
                                                     Details</a>
                                             </div>
@@ -468,8 +472,8 @@ class BuyPropertyController extends Controller
             $industrial_property = IndustrialProperty::where('flag', 1)
                 ->where('possession_status', '=', 'Ready to Move')
                 ->get();
-            foreach($industrial_property as $industrial){
-                if($record->id == $industrial->property_master_id) {
+            foreach ($industrial_property as $industrial) {
+                if ($record->id == $industrial->property_master_id) {
 
                     $data_arr[] = array(
                         "show" => '<div id="cell" class="row gx-3 gy-4">
@@ -480,8 +484,8 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-click">
                                                 <div>
                                                     <a
-                                                        href="'.route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"><img
-                                                            src="'. $path .'"
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"><img
+                                                            src="' . $path . '"
                                                             class="img-fluid mx-auto"
                                                             alt=""
                                                             style="width: 500px; height: 300px;"></a>
@@ -493,10 +497,10 @@ class BuyPropertyController extends Controller
                                         <div class="veshm-list-kygf">
                                             <div class="veshm-list-kygf-flex">
                                             <div class="veshm-type fr-sale"><span>For
-                                            '. $record->property_status .'</span></div>
+                                            ' . $record->property_status . '</span></div>
                                                 <h5 class="rlhc-title-name verified">
                                                     <a
-                                                        href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'">'.$record->name_of_project.'</a>
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '">' . $record->name_of_project . '</a>
                                                 </h5>
                                                 <div class="vesh-aget-rates">
                                                     <i class="fa-solid fa-star"></i>
@@ -530,13 +534,13 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
                                                     <h4 class="rlhc-price-name theme-cl">
-                                                        ₹'.$record->display_price.'
+                                                        ₹' . $record->display_price . '
                                                             <span class="monthly">/Onwards</span>
                                                     </h4>
                                                 </div>
                                             </div>
                                             <div class="veshm-list-ftr1707">
-                                                <a href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"
+                                                <a href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"
                                                     class="btn btn-md btn-primary font--medium">View
                                                     Details</a>
                                             </div>
@@ -550,10 +554,10 @@ class BuyPropertyController extends Controller
             }
 
             $agriculture_property = AgriculturalProperty::where('flag', 1)
-            ->where('possession_status', '=', 'Ready to Move')
-            ->get();
-            foreach($agriculture_property as $agriculture){
-                if($record->id == $agriculture->property_master_id) {
+                ->where('possession_status', '=', 'Ready to Move')
+                ->get();
+            foreach ($agriculture_property as $agriculture) {
+                if ($record->id == $agriculture->property_master_id) {
 
                     $data_arr[] = array(
                         "show" => '<div id="cell" class="row gx-3 gy-4">
@@ -564,8 +568,8 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-click">
                                                 <div>
                                                     <a
-                                                        href="'.route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"><img
-                                                            src="'. $path .'"
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"><img
+                                                            src="' . $path . '"
                                                             class="img-fluid mx-auto"
                                                             alt=""
                                                             style="width: 500px; height: 300px;"></a>
@@ -577,10 +581,10 @@ class BuyPropertyController extends Controller
                                         <div class="veshm-list-kygf">
                                             <div class="veshm-list-kygf-flex">
                                             <div class="veshm-type fr-sale"><span>For
-                                            '. $record->property_status .'</span></div>
+                                            ' . $record->property_status . '</span></div>
                                                 <h5 class="rlhc-title-name verified">
                                                     <a
-                                                        href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'">'.$record->name_of_project.'</a>
+                                                        href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '">' . $record->name_of_project . '</a>
                                                 </h5>
                                                 <div class="vesh-aget-rates">
                                                     <i class="fa-solid fa-star"></i>
@@ -614,13 +618,13 @@ class BuyPropertyController extends Controller
                                             <div class="veshm-list-ftr786">
                                                 <div class="rlhc-price">
                                                     <h4 class="rlhc-price-name theme-cl">
-                                                        ₹'.$record->display_price.'
+                                                        ₹' . $record->display_price . '
                                                             <span class="monthly">/Onwards</span>
                                                     </h4>
                                                 </div>
                                             </div>
                                             <div class="veshm-list-ftr1707">
-                                                <a href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"
+                                                <a href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"
                                                     class="btn btn-md btn-primary font--medium">View
                                                     Details</a>
                                             </div>
@@ -647,12 +651,14 @@ class BuyPropertyController extends Controller
 
     }
 
-    public function newLaunch(){
+    public function newLaunch()
+    {
         // $properties = PropertyMaster::where('flag', 1)->where('property_status', '=', 'Sale')->orderBy('id', 'DESC')->get();
         return view('front.buy_new_launch');
     }
 
-    public function showNewLaunch(Request $request){
+    public function showNewLaunch(Request $request)
+    {
         ## Read value
         $draw = $request->get('draw');
         $start = $request->get("start");
@@ -694,7 +700,9 @@ class BuyPropertyController extends Controller
             ->where('property_masters.flag', 1)
             ->where('property_categories.flag', 1)
             ->orderBy('id', 'DESC')
-            ->select('property_masters.display_price','property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id','property_masters.client_master_id')
+            ->select('property_masters.display_price', 'property_masters.id', 'property_masters.name_of_project', 'property_masters.property_status', 'property_masters.locality', 'property_categories.property_category_name', 'property_masters.cover_image', 'property_masters.property_type_id', 'property_masters.client_master_id')
+            ->skip($start)
+            ->take($rowperpage)
             ->get();
 
         $data_arr = array();
@@ -715,8 +723,8 @@ class BuyPropertyController extends Controller
                                     <div class="veshm-list-click">
                                         <div>
                                             <a
-                                                href="'.route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"><img
-                                                    src="'. $path .'"
+                                                href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"><img
+                                                    src="' . $path . '"
                                                     class="img-fluid mx-auto"
                                                     alt=""
                                                     style="width: 500px; height: 300px;"></a>
@@ -728,10 +736,10 @@ class BuyPropertyController extends Controller
                                 <div class="veshm-list-kygf">
                                     <div class="veshm-list-kygf-flex">
                                     <div class="veshm-type fr-sale"><span>For
-                                    '. $record->property_status .'</span></div>
+                                    ' . $record->property_status . '</span></div>
                                         <h5 class="rlhc-title-name verified">
                                             <a
-                                                href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'">'.$record->name_of_project.'</a>
+                                                href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '">' . $record->name_of_project . '</a>
                                         </h5>
                                         <div class="vesh-aget-rates">
                                             <i class="fa-solid fa-star"></i>
@@ -765,13 +773,13 @@ class BuyPropertyController extends Controller
                                     <div class="veshm-list-ftr786">
                                         <div class="rlhc-price">
                                             <h4 class="rlhc-price-name theme-cl">
-                                                ₹'.$record->display_price.'
+                                                ₹' . $record->display_price . '
                                                     <span class="monthly">/Onwards</span>
                                             </h4>
                                         </div>
                                     </div>
                                     <div class="veshm-list-ftr1707">
-                                        <a href="'. route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]).'"
+                                        <a href="' . route('propertydetails', [$record->id, $record->property_type_id, $record->name_of_project, $record->client_master_id]) . '"
                                             class="btn btn-md btn-primary font--medium">View
                                             Details</a>
                                     </div>

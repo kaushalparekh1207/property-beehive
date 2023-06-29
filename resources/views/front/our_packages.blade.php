@@ -15,6 +15,7 @@
     @include('front.assets.links')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
+
 </head>
 
 
@@ -99,56 +100,61 @@
                                                         <div class="card-header">
                                                             <div class="swiper mySwiper">
                                                                 <div class="swiper-wrapper">
-                                                                    <div class="swiper-slide">
-                                                                        <div class="veshm-pricing-box">
-                                                                            <div class="veshm-pricing-header">
-                                                                                <div class="vesh-prc-icon">
-                                                                                    <i class="fa-solid fa-fire"></i>
+                                                                    @foreach ($packages as $package)
+                                                                        <div class="swiper-slide">
+                                                                            <div class="veshm-pricing-box">
+                                                                                <div class="veshm-pricing-header">
+                                                                                    <div class="vesh-prc-icon">
+                                                                                        <i class="fa-solid fa-fire"></i>
+                                                                                    </div>
+                                                                                    <div class="vesh-prc-icon-caption">
+                                                                                        <span
+                                                                                            class="standard">{{ $package->package_type }}</span>
+                                                                                        <h5>{{ $package->package_name }}
+                                                                                        </h5>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="vesh-prc-icon-caption">
-                                                                                    <span class="standard">For
-                                                                                        Personal</span>
-                                                                                    <h5>Standard Plan</h5>
+                                                                                <div class="veshm-pricing-middle">
+                                                                                    <div class="veshm-prc-title">
+                                                                                        <h2><sup>₹</sup>{{ $package->price }}<sub>/
+                                                                                                Month</sub></h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-middle">
-                                                                                <div class="veshm-prc-title">
-                                                                                    <h2><sup>₹</sup>199<sub>/
-                                                                                            Month</sub></h2>
+                                                                                <div class="veshm-pricing-content">
+                                                                                    <ul>
+                                                                                        <li><i
+                                                                                                class="fa-solid fa-circle-check"></i>{{ $package->number_of_listing_property }}
+                                                                                            Listings
+                                                                                        </li>
+                                                                                        <li><i
+                                                                                                class="fa-solid fa-circle-check"></i>5
+                                                                                            Buyer</li>
+                                                                                        <li><i
+                                                                                                class="fa-solid fa-circle-check"></i>{{ $package->number_of_ads }}
+                                                                                            Ads</li>
+                                                                                        <li><i
+                                                                                                class="fa-solid fa-circle-check"></i>Contact
+                                                                                            With
+                                                                                            Agent</li>
+                                                                                        <li class="deactive"><i
+                                                                                                class="fa-solid fa-circle-xmark"></i>No
+                                                                                            Support
+                                                                                        </li>
+                                                                                        <li class="deactive"><i
+                                                                                                class="fa-solid fa-circle-xmark"></i>Dashboard
+                                                                                        </li>
+                                                                                    </ul>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-content">
-                                                                                <ul>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>2+
-                                                                                        Listings
-                                                                                    </li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>5
-                                                                                        Buyer</li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>0
-                                                                                        Ads</li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>Contact
-                                                                                        With
-                                                                                        Agent</li>
-                                                                                    <li class="deactive"><i
-                                                                                            class="fa-solid fa-circle-xmark"></i>No
-                                                                                        Support
-                                                                                    </li>
-                                                                                    <li class="deactive"><i
-                                                                                            class="fa-solid fa-circle-xmark"></i>Dashboard
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-footer">
-                                                                                <button class="btn btn-subscribe"
-                                                                                    type="button">Subscribe
-                                                                                    Now</button>
+                                                                                <div class="veshm-pricing-footer">
+                                                                                    <button class="btn btn-subscribe"
+                                                                                        type="button"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#pay">Subscribe
+                                                                                        Now</button>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    @endforeach
                                                                     <div class="swiper-slide">
                                                                         <div class="veshm-pricing-box featured">
                                                                             <div class="veshm-pricing-header">
@@ -354,64 +360,13 @@
                                                                 </div>
                                                                 <div class="swiper-pagination"></div>
                                                             </div>
-                                                            {{-- <div class="swiper-container">
-                                                                <div class="swiper-wrapper">
-                                                                    <div class="swiper-slide">
-                                                                        <div class="veshm-pricing-box">
-                                                                            <div class="veshm-pricing-header">
-                                                                                <div class="vesh-prc-icon">
-                                                                                    <i class="fa-solid fa-fire"></i>
-                                                                                </div>
-                                                                                <div class="vesh-prc-icon-caption">
-                                                                                    <span class="standard">For
-                                                                                        Personal</span>
-                                                                                    <h5>Standard Plan</h5>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-middle">
-                                                                                <div class="veshm-prc-title">
-                                                                                    <h2><sup>₹</sup>199<sub>/
-                                                                                            Month</sub></h2>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-content">
-                                                                                <ul>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>2+
-                                                                                        Listings
-                                                                                    </li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>5
-                                                                                        Buyer</li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>0
-                                                                                        Ads</li>
-                                                                                    <li><i
-                                                                                            class="fa-solid fa-circle-check"></i>Contact
-                                                                                        With
-                                                                                        Agent</li>
-                                                                                    <li class="deactive"><i
-                                                                                            class="fa-solid fa-circle-xmark"></i>No
-                                                                                        Support
-                                                                                    </li>
-                                                                                    <li class="deactive"><i
-                                                                                            class="fa-solid fa-circle-xmark"></i>Dashboard
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                            <div class="veshm-pricing-footer">
-                                                                                <button class="btn btn-subscribe"
-                                                                                    type="button">Subscribe
-                                                                                    Now</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
 
-                                                                </div>
-                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+
                                                 {{-- </div> --}}
 
                                                 {{-- <!-- Single Package -->
@@ -527,6 +482,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
+
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 3,

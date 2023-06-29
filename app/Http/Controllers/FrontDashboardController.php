@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Subscription;
 
 class FrontDashboardController extends Controller
 {
@@ -13,6 +13,7 @@ class FrontDashboardController extends Controller
     }
     public function price()
     {
-        return view('front.our_packages');
+        $packages = Subscription::where('flag', 1)->get();
+        return view('front.our_packages', compact('packages'));
     }
 }

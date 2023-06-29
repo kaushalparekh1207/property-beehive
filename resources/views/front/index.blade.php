@@ -155,15 +155,29 @@
                                             <select class="js-select2" name="budget" id="budget">
                                                 <option value="" selected disabled>Budget
                                                 </option>
-                                                <option value="">5-10 Lacs</option>
-                                                <option value="">10-15 Lacs</option>
-                                                <option value="">15-20 Lacs</option>
-                                                <option value="">20-25 Lacs</option>
-                                                <option value="">25-30 Lacs</option>
-                                                <option value="">30-35 Lacs</option>
-                                                <option value="">35-40 Lacs</option>
-                                                <option value="">40-45 Lacs</option>
-                                                <option value="">40-50 Lacs</option>
+                                                <option value="500000|1000000">5-10 Lacs</option>
+                                                <option value="1000000|15000000">10-15 Lacs</option>
+                                                <option value="1500000|2000000">15-20 Lacs</option>
+                                                <option value="2000000|2500000">20-25 Lacs</option>
+                                                <option value="2500000|3000000">25-30 Lacs</option>
+                                                <option value="3000000|3500000">30-35 Lacs</option>
+                                                <option value="3500000|4000000">35-40 Lacs</option>
+                                                <option value="4000000|4500000">40-45 Lacs</option>
+                                                <option value="4500000|5000000">45-50 Lacs</option>
+                                                <option value="5000000|5500000">50-55 Lacs</option>
+                                                <option value="5500000|6000000">55-60 Lacs</option>
+                                                <option value="6000000|6500000">60-65 Lacs</option>
+                                                <option value="6500000|7000000">65-70 Lacs</option>
+                                                <option value="7000000|7500000">70-75 Lacs</option>
+                                                <option value="7500000|8000000">75-80 Lacs</option>
+                                                <option value="8000000|8500000">80-85 Lacs</option>
+                                                <option value="8500000|9000000">85-90 Lacs</option>
+                                                <option value="9000000|9500000">90-95 Lacs</option>
+                                                <option value="9500000|10000000">95 Lacs -1 Cr</option>
+                                                <option value="10000000|15000000">1-1.5 Cr</option>
+                                                <option value="15000000|20000000">1.5-2 Cr</option>
+                                                <option value="20000000|25000000">2-2.5 Cr</option>
+                                                <option value="25000000|250000000">2.5 Cr +</option>
                                             </select>
                                             <i class="fa-solid fa-house-crack mb-2"></i>
                                         </div>
@@ -216,12 +230,12 @@
                                     <div class="swiper-wrapper">
                                         @foreach ($properties as $property)
                                             <div class="swiper-slide">
-                                                @php
+                                                {{-- @php
                                                     $commercial_property = CommercialProperty::where('flag', 1)->get();
                                                     $residential_property = ResidentialProperty::where('flag', 1)->get();
                                                     $industrial_property = IndustrialProperty::where('flag', 1)->get();
                                                     $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
-                                                @endphp
+                                                @endphp --}}
                                                 <div class="veshm-list-wraps">
                                                     @if ($property->property_status == 'Sale')
                                                         <div class="veshm-type fr-sale"><span>For
@@ -265,13 +279,7 @@
                                                             <div class="veshm-list-head-caption">
                                                                 <div class="rlhc-price">
                                                                     <h4 class="rlhc-price-name theme-cl">
-                                                                        ₹@php
-                                                                            if (strlen($property->expected_price) > 5) {
-                                                                                convertCurrency($property->expected_price);
-                                                                            } else {
-                                                                                echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                                                            }
-                                                                        @endphp
+                                                                        ₹{{ $property->display_price }}
                                                                         <span class="monthly">Onwards /-</span>
                                                                     </h4>
 
@@ -398,10 +406,10 @@
 
                         @foreach ($properties as $property)
                             @php
-                                $commercial_property = CommercialProperty::where('flag', 1)->get();
-                                $residential_property = ResidentialProperty::where('flag', 1)->get();
-                                $industrial_property = IndustrialProperty::where('flag', 1)->get();
-                                $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
+                                // $commercial_property = CommercialProperty::where('flag', 1)->get();
+                                // $residential_property = ResidentialProperty::where('flag', 1)->get();
+                                // $industrial_property = IndustrialProperty::where('flag', 1)->get();
+                                // $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
                                 $property_category_name = App\Models\PropertyCategory::where('id', $property->property_category_id)
                                     ->pluck('property_category_name')
                                     ->first();
@@ -479,13 +487,7 @@
                                                 <div class="veshm-list-ftr786">
                                                     <div class="rlhc-price">
                                                         <h4 class="rlhc-price-name theme-cl">
-                                                            ₹@php
-                                                                if (strlen($property->expected_price) > 5) {
-                                                                    convertCurrency($property->expected_price);
-                                                                } else {
-                                                                    echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                                                }
-                                                            @endphp
+                                                            ₹{{ $property->display_price }}
                                                             <h6 class="monthly">Onwards/-</h6>
                                                             {{-- @if ($property->property_status == 'Sale')
                                                                 <span class="monthly">One Time</span>

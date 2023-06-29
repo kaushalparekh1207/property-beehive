@@ -150,11 +150,29 @@
                                                         <select class="js-select2" name="budget" id="budget">
                                                             <option value="" selected disabled>Budget
                                                             </option>
-                                                            {{-- @foreach ($propertyType as $type)
-                                                            <option value="{{ $type->id }}">
-                                                                {{ $type->property_type }}
-                                                            </option>
-                                                        @endforeach --}}
+                                                            <option value="500000|1000000">5-10 Lacs</option>
+                                                            <option value="1000000|15000000">10-15 Lacs</option>
+                                                            <option value="1500000|2000000">15-20 Lacs</option>
+                                                            <option value="2000000|2500000">20-25 Lacs</option>
+                                                            <option value="2500000|3000000">25-30 Lacs</option>
+                                                            <option value="3000000|3500000">30-35 Lacs</option>
+                                                            <option value="3500000|4000000">35-40 Lacs</option>
+                                                            <option value="4000000|4500000">40-45 Lacs</option>
+                                                            <option value="4500000|5000000">45-50 Lacs</option>
+                                                            <option value="5000000|5500000">50-55 Lacs</option>
+                                                            <option value="5500000|6000000">55-60 Lacs</option>
+                                                            <option value="6000000|6500000">60-65 Lacs</option>
+                                                            <option value="6500000|7000000">65-70 Lacs</option>
+                                                            <option value="7000000|7500000">70-75 Lacs</option>
+                                                            <option value="7500000|8000000">75-80 Lacs</option>
+                                                            <option value="8000000|8500000">80-85 Lacs</option>
+                                                            <option value="8500000|9000000">85-90 Lacs</option>
+                                                            <option value="9000000|9500000">90-95 Lacs</option>
+                                                            <option value="9500000|10000000">95 Lacs -1 Cr</option>
+                                                            <option value="10000000|15000000">1-1.5 Cr</option>
+                                                            <option value="15000000|20000000">1.5-2 Cr</option>
+                                                            <option value="20000000|25000000">2-2.5 Cr</option>
+                                                            <option value="25000000|250000000">2.5 Cr +</option>
                                                         </select>
                                                         <i class="fa-solid fa-house-crack mb-2"></i>
                                                     </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgriculturalProperty;
-use App\Models\AgricultureProperty;
 use App\Models\Amenities;
 use App\Models\City;
 use App\Models\CommercialProperty;
@@ -269,160 +268,161 @@ class PropertyMasterController extends Controller
 
     public function propertyDataInsertAjax(Request $request)
     {
+        for ($i = 0; $i <= 10000; $i++) {
+            $propertyMasterModel = new PropertyMaster();
+            $propertyMasterModel->client_master_id = session('user')['id'];
+            $propertyMasterModel->property_status = $request->propertystatus;
+            $propertyMasterModel->property_type_id = $request->property_type;
+            $propertyMasterModel->property_category_id = $request->property_category_dropdown;
+            $propertyMasterModel->state_id = $request->state_id;
+            $propertyMasterModel->city_id = $request->city_dropdown;
+            $propertyMasterModel->taluka_id = $request->taluka_dropdown;
+            $propertyMasterModel->locality = $request->locality;
+            $propertyMasterModel->name_of_project = $request->name_of_project;
+            $propertyMasterModel->address = $request->address;
+            $display_price = convertCurrency($request->price);
+            $propertyMasterModel->expected_price = $request->price;
+            $propertyMasterModel->display_price = $display_price;
+            $propertyMasterModel->booking_amount = $request->booking_amount;
+            $propertyMasterModel->save();
+            $lastInsertedPropertyMasterId = $propertyMasterModel->id;
 
-        $propertyMasterModel = new PropertyMaster();
-        $propertyMasterModel->client_master_id = session('user')['id'];
-        $propertyMasterModel->property_status = $request->propertystatus;
-        $propertyMasterModel->property_type_id = $request->property_type;
-        $propertyMasterModel->property_category_id = $request->property_category_dropdown;
-        $propertyMasterModel->state_id = $request->state_id;
-        $propertyMasterModel->city_id = $request->city_dropdown;
-        $propertyMasterModel->taluka_id = $request->taluka_dropdown;
-        $propertyMasterModel->locality = $request->locality;
-        $propertyMasterModel->name_of_project = $request->name_of_project;
-        $propertyMasterModel->address = $request->address;
-        $display_price = convertCurrency($request->price);
-        $propertyMasterModel->expected_price = $request->price;
-        $propertyMasterModel->display_price = $display_price;
-        $propertyMasterModel->booking_amount = $request->booking_amount;
-        $propertyMasterModel->save();
-        $lastInsertedPropertyMasterId = $propertyMasterModel->id;
+            if ($request->property_type == 1) {
 
-        if ($request->property_type == 1) {
+                // Residential Property Insert //
+                $residentialPropertyModel = new ResidentialProperty();
+                $residentialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+                $residentialPropertyModel->descr = $request->descr;
+                $residentialPropertyModel->no_of_flats = $request->no_of_flats;
+                $residentialPropertyModel->total_bedrooms = $request->total_bedrooms;
+                $residentialPropertyModel->total_balconies = $request->total_balconies;
+                $residentialPropertyModel->total_bathrooms = $request->total_bathrooms;
+                $residentialPropertyModel->total_floor = $request->total_floors;
+                $residentialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+                $residentialPropertyModel->total_open_side = $request->no_of_open_sides;
+                $residentialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+                $residentialPropertyModel->any_construction = $request->any_construction;
+                $residentialPropertyModel->boundary_wall_made = $request->boundary_wall;
+                $residentialPropertyModel->is_in_gated_colony = null;
+                $residentialPropertyModel->carpet_area = $request->carpet_area;
+                $residentialPropertyModel->super_area = $request->super_area;
+                $residentialPropertyModel->plot_area = $request->plot_area;
+                $residentialPropertyModel->plot_length = $request->plot_length;
+                $residentialPropertyModel->plot_breadth = $request->plot_breadth;
+                $residentialPropertyModel->furnished_status = $request->furnished_status;
+                $residentialPropertyModel->possession_status = $request->possession_status;
+                if ($request->possession_status == 'Under Construction') {
+                    $residentialPropertyModel->time_duration = $request->available_from;
+                } elseif ($request->possession_status == 'Ready to Move') {
+                    $residentialPropertyModel->age = $request->age;
+                }
+                $saveData = $residentialPropertyModel->save();
+                $lastInsertedTypeId = $residentialPropertyModel->id;
+                $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
 
-            // Residential Property Insert //
-            $residentialPropertyModel = new ResidentialProperty();
-            $residentialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
-            $residentialPropertyModel->descr = $request->descr;
-            $residentialPropertyModel->no_of_flats = $request->no_of_flats;
-            $residentialPropertyModel->total_bedrooms = $request->total_bedrooms;
-            $residentialPropertyModel->total_balconies = $request->total_balconies;
-            $residentialPropertyModel->total_bathrooms = $request->total_bathrooms;
-            $residentialPropertyModel->total_floor = $request->total_floors;
-            $residentialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
-            $residentialPropertyModel->total_open_side = $request->no_of_open_sides;
-            $residentialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $residentialPropertyModel->any_construction = $request->any_construction;
-            $residentialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $residentialPropertyModel->is_in_gated_colony = null;
-            $residentialPropertyModel->carpet_area = $request->carpet_area;
-            $residentialPropertyModel->super_area = $request->super_area;
-            $residentialPropertyModel->plot_area = $request->plot_area;
-            $residentialPropertyModel->plot_length = $request->plot_length;
-            $residentialPropertyModel->plot_breadth = $request->plot_breadth;
-            $residentialPropertyModel->furnished_status = $request->furnished_status;
-            $residentialPropertyModel->possession_status = $request->possession_status;
-            if ($request->possession_status == 'Under Construction') {
-                $residentialPropertyModel->time_duration = $request->available_from;
-            } elseif ($request->possession_status == 'Ready to Move') {
-                $residentialPropertyModel->age = $request->age;
+            } else if ($request->property_type == 2) {
+
+                // Commercial Property Insert //
+                $commercialPropertyModel = new CommercialProperty();
+                $commercialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+                $commercialPropertyModel->descr = $request->descr;
+                $commercialPropertyModel->land_zone = $request->land_zone;
+                $commercialPropertyModel->total_washrooms = $request->total_bathrooms;
+                $commercialPropertyModel->personal_washroom = $request->personal_washroom;
+                $commercialPropertyModel->total_floor = $request->total_floors;
+                $commercialPropertyModel->cafeteria = $request->cafeteria;
+                $commercialPropertyModel->corner = $request->corner_showroom;
+                $commercialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
+                $commercialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+                $commercialPropertyModel->total_open_side = $request->no_of_open_sides;
+                $commercialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+                $commercialPropertyModel->any_construction = $request->any_construction;
+                $commercialPropertyModel->boundary_wall_made = $request->boundary_wall;
+                $commercialPropertyModel->is_in_gated_colony = null;
+                $commercialPropertyModel->carpet_area = $request->carpet_area;
+                $commercialPropertyModel->super_area = $request->super_area;
+                $commercialPropertyModel->width_of_entrance = $request->width_of_entrance;
+                $commercialPropertyModel->plot_area = $request->plot_area;
+                $commercialPropertyModel->plot_length = $request->plot_length;
+                $commercialPropertyModel->plot_breadth = $request->plot_breadth;
+                $commercialPropertyModel->furnished_status = $request->furnished_status;
+                $commercialPropertyModel->possession_status = $request->possession_status;
+                if ($request->possession_status == 'Under Construction') {
+                    $commercialPropertyModel->time_duration = $request->available_from;
+                } elseif ($request->possession_status == 'Ready to Move') {
+                    $commercialPropertyModel->age = $request->age;
+                }
+                $commercialPropertyModel->currently_leased_out = $request->currently_leased_out;
+                $commercialPropertyModel->leased_to = $request->leased_to;
+                $commercialPropertyModel->monthly_rent = $request->monthly_rent;
+                $saveData = $commercialPropertyModel->save();
+                $lastInsertedTypeId = $commercialPropertyModel->id;
+                $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+            } else if ($request->property_type == 3) {
+
+                // Industrial Property Insert //
+                $industrialPropertyModel = new IndustrialProperty();
+                $industrialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+                $industrialPropertyModel->descr = $request->descr;
+                $industrialPropertyModel->land_zone = $request->land_zone;
+                $industrialPropertyModel->total_floor = $request->total_floors;
+                $industrialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
+                $industrialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
+                $industrialPropertyModel->total_open_side = $request->no_of_open_sides;
+                $industrialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+                $industrialPropertyModel->any_construction = $request->any_construction;
+                $industrialPropertyModel->boundary_wall_made = $request->boundary_wall;
+                $industrialPropertyModel->carpet_area = $request->carpet_area;
+                $industrialPropertyModel->super_area = $request->super_area;
+                $industrialPropertyModel->plot_area = $request->plot_area;
+                $industrialPropertyModel->plot_length = $request->plot_length;
+                $industrialPropertyModel->plot_breadth = $request->plot_breadth;
+                $industrialPropertyModel->furnished_status = $request->furnished_status;
+                $industrialPropertyModel->possession_status = $request->possession_status;
+                if ($request->possession_status == 'Under Construction') {
+                    $industrialPropertyModel->time_duration = $request->available_from;
+                } elseif ($request->possession_status == 'Ready to Move') {
+                    $industrialPropertyModel->age = $request->age;
+                }
+                $industrialPropertyModel->currently_leased_out = $request->currently_leased_out;
+                $industrialPropertyModel->leased_to = $request->leased_to;
+                $industrialPropertyModel->monthly_rent = $request->monthly_rent;
+                $saveData = $industrialPropertyModel->save();
+                $lastInsertedTypeId = $industrialPropertyModel->id;
+                $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+
+            } else if ($request->property_type == 4) {
+
+                // Agricultural Property Insert //
+                $agriculturalPropertyModel = new AgriculturalProperty();
+                $agriculturalPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+                $agriculturalPropertyModel->descr = $request->descr;
+                $agriculturalPropertyModel->total_floor = $request->total_floors;
+                $agriculturalPropertyModel->total_bedrooms = $request->total_bedrooms;
+                $agriculturalPropertyModel->total_bathrooms = $request->total_bathrooms;
+                $agriculturalPropertyModel->total_open_side = $request->no_of_open_sides;
+                $agriculturalPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
+                $agriculturalPropertyModel->boundary_wall_made = $request->boundary_wall;
+                $agriculturalPropertyModel->carpet_area = $request->carpet_area;
+                $agriculturalPropertyModel->super_area = $request->super_area;
+                $agriculturalPropertyModel->width_of_entrance = $request->width_of_entrance;
+                $agriculturalPropertyModel->plot_area = $request->plot_area;
+                $agriculturalPropertyModel->plot_length = $request->plot_length;
+                $agriculturalPropertyModel->plot_breadth = $request->plot_breadth;
+                $agriculturalPropertyModel->furnished_status = $request->furnished_status;
+                $agriculturalPropertyModel->possession_status = $request->possession_status;
+                if ($request->possession_status == 'Under Construction') {
+                    $agriculturalPropertyModel->time_duration = $request->available_from;
+                } elseif ($request->possession_status == 'Ready to Move') {
+                    $agriculturalPropertyModel->age = $request->age;
+                }
+                $agriculturalPropertyModel->currently_leased_out = $request->currently_leased_out;
+                $agriculturalPropertyModel->leased_to = $request->leased_to;
+                $agriculturalPropertyModel->monthly_rent = $request->monthly_rent;
+                $saveData = $agriculturalPropertyModel->save();
+                $lastInsertedTypeId = $agriculturalPropertyModel->id;
+                $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
             }
-            $saveData = $residentialPropertyModel->save();
-            $lastInsertedTypeId = $residentialPropertyModel->id;
-            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
-
-        } else if ($request->property_type == 2) {
-
-            // Commercial Property Insert //
-            $commercialPropertyModel = new CommercialProperty();
-            $commercialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
-            $commercialPropertyModel->descr = $request->descr;
-            $commercialPropertyModel->land_zone = $request->land_zone;
-            $commercialPropertyModel->total_washrooms = $request->total_bathrooms;
-            $commercialPropertyModel->personal_washroom = $request->personal_washroom;
-            $commercialPropertyModel->total_floor = $request->total_floors;
-            $commercialPropertyModel->cafeteria = $request->cafeteria;
-            $commercialPropertyModel->corner = $request->corner_showroom;
-            $commercialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
-            $commercialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
-            $commercialPropertyModel->total_open_side = $request->no_of_open_sides;
-            $commercialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $commercialPropertyModel->any_construction = $request->any_construction;
-            $commercialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $commercialPropertyModel->is_in_gated_colony = null;
-            $commercialPropertyModel->carpet_area = $request->carpet_area;
-            $commercialPropertyModel->super_area = $request->super_area;
-            $commercialPropertyModel->width_of_entrance = $request->width_of_entrance;
-            $commercialPropertyModel->plot_area = $request->plot_area;
-            $commercialPropertyModel->plot_length = $request->plot_length;
-            $commercialPropertyModel->plot_breadth = $request->plot_breadth;
-            $commercialPropertyModel->furnished_status = $request->furnished_status;
-            $commercialPropertyModel->possession_status = $request->possession_status;
-            if ($request->possession_status == 'Under Construction') {
-                $commercialPropertyModel->time_duration = $request->available_from;
-            } elseif ($request->possession_status == 'Ready to Move') {
-                $commercialPropertyModel->age = $request->age;
-            }
-            $commercialPropertyModel->currently_leased_out = $request->currently_leased_out;
-            $commercialPropertyModel->leased_to = $request->leased_to;
-            $commercialPropertyModel->monthly_rent = $request->monthly_rent;
-            $saveData = $commercialPropertyModel->save();
-            $lastInsertedTypeId = $commercialPropertyModel->id;
-            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
-        } else if ($request->property_type == 3) {
-
-            // Industrial Property Insert //
-            $industrialPropertyModel = new IndustrialProperty();
-            $industrialPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
-            $industrialPropertyModel->descr = $request->descr;
-            $industrialPropertyModel->land_zone = $request->land_zone;
-            $industrialPropertyModel->total_floor = $request->total_floors;
-            $industrialPropertyModel->is_main_road_facing = $request->is_main_road_facing;
-            $industrialPropertyModel->floor_allowed_for_construction = $request->floors_allowed_for_construction;
-            $industrialPropertyModel->total_open_side = $request->no_of_open_sides;
-            $industrialPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $industrialPropertyModel->any_construction = $request->any_construction;
-            $industrialPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $industrialPropertyModel->carpet_area = $request->carpet_area;
-            $industrialPropertyModel->super_area = $request->super_area;
-            $industrialPropertyModel->plot_area = $request->plot_area;
-            $industrialPropertyModel->plot_length = $request->plot_length;
-            $industrialPropertyModel->plot_breadth = $request->plot_breadth;
-            $industrialPropertyModel->furnished_status = $request->furnished_status;
-            $industrialPropertyModel->possession_status = $request->possession_status;
-            if ($request->possession_status == 'Under Construction') {
-                $industrialPropertyModel->time_duration = $request->available_from;
-            } elseif ($request->possession_status == 'Ready to Move') {
-                $industrialPropertyModel->age = $request->age;
-            }
-            $industrialPropertyModel->currently_leased_out = $request->currently_leased_out;
-            $industrialPropertyModel->leased_to = $request->leased_to;
-            $industrialPropertyModel->monthly_rent = $request->monthly_rent;
-            $saveData = $industrialPropertyModel->save();
-            $lastInsertedTypeId = $industrialPropertyModel->id;
-            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
-
-        } else if ($request->property_type == 4) {
-
-            // Agricultural Property Insert //
-            $agriculturalPropertyModel = new AgriculturalProperty();
-            $agriculturalPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
-            $agriculturalPropertyModel->descr = $request->descr;
-            $agriculturalPropertyModel->total_floor = $request->total_floors;
-            $agriculturalPropertyModel->total_bedrooms = $request->total_bedrooms;
-            $agriculturalPropertyModel->total_bathrooms = $request->total_bathrooms;
-            $agriculturalPropertyModel->total_open_side = $request->no_of_open_sides;
-            $agriculturalPropertyModel->width_of_road_facing_plot = $request->width_of_road_facing_plot;
-            $agriculturalPropertyModel->boundary_wall_made = $request->boundary_wall;
-            $agriculturalPropertyModel->carpet_area = $request->carpet_area;
-            $agriculturalPropertyModel->super_area = $request->super_area;
-            $agriculturalPropertyModel->width_of_entrance = $request->width_of_entrance;
-            $agriculturalPropertyModel->plot_area = $request->plot_area;
-            $agriculturalPropertyModel->plot_length = $request->plot_length;
-            $agriculturalPropertyModel->plot_breadth = $request->plot_breadth;
-            $agriculturalPropertyModel->furnished_status = $request->furnished_status;
-            $agriculturalPropertyModel->possession_status = $request->possession_status;
-            if ($request->possession_status == 'Under Construction') {
-                $agriculturalPropertyModel->time_duration = $request->available_from;
-            } elseif ($request->possession_status == 'Ready to Move') {
-                $agriculturalPropertyModel->age = $request->age;
-            }
-            $agriculturalPropertyModel->currently_leased_out = $request->currently_leased_out;
-            $agriculturalPropertyModel->leased_to = $request->leased_to;
-            $agriculturalPropertyModel->monthly_rent = $request->monthly_rent;
-            $saveData = $agriculturalPropertyModel->save();
-            $lastInsertedTypeId = $agriculturalPropertyModel->id;
-            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
         }
 
         // Add Property Amenities

@@ -175,6 +175,17 @@ Route::group(['middleware' => 'checksession'], function () {
     Route::post('/admin/property_master/edit/updateuser', [PropertyMasterController::class, 'update'])->name('property_master_update');
 });
 
+// Subscription Routes
+Route::group(['middleware' => 'checksession'], function () {
+    Route::get('/admin/subscription', [SubscriptionController::class, 'index'])->name('Subscription');
+    Route::get('/admin/subscription/show', [SubscriptionController::class, 'show'])->name('show_subscription');
+    Route::get('/admin/subscription/add', [SubscriptionController::class, 'create'])->name('subscription_add');
+    Route::post('/admin/subscription/insert', [SubscriptionController::class, 'store'])->name('subscription_insert');
+    Route::get('/admin/subscription/delete/{id}', [SubscriptionController::class, 'destroy'])->name('subscription_destroy');
+    Route::get('/admin/subscription/edit/{id}', [SubscriptionController::class, 'edit'])->name('subscription_edit');
+    Route::post('/admin/subscription/edit/updateuser', [SubscriptionController::class, 'update'])->name('subscription_update');
+});
+
 // Get City Name Based on State Drop Down
 Route::get('/admin/fetch_city/', [PropertyMasterController::class, 'fetchCity'])->name('get-city-list');
 Route::get('/admin/fetch_taluka/', [PropertyMasterController::class, 'fetchTaluka'])->name('get-taluka-list');
@@ -269,16 +280,20 @@ Route::get('/my_visits_list', [FrontController::class, 'showInquiryList'])->name
 Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
 Route::post('/property-detail/inquiry', [FrontController::class, 'inquiryDetails'])->name('inquiryDetails');
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');
+Route::get('/property-result/search/list', [FrontController::class, 'propertyResultSearchList'])->name('propertyResultSearchList');
 
 //Buy Property Details
 Route::get('/buy/ready-to-move', [BuyPropertyController::class, 'readyToMove'])->name('readyToMove');
+Route::get('/buy/ready-to-move/show', [BuyPropertyController::class, 'showReadyToMove'])->name('showReadyToMove');
 Route::view('/buy/owner-properties', 'front.buy_owner_property')->name('ownerProperties');
 Route::get('/buy/new-launch', [BuyPropertyController::class, 'newLaunch'])->name('newLaunch');
+Route::get('/buy/new-launch/show', [BuyPropertyController::class, 'showNewLaunch'])->name('showNewLaunch');
 
 //Rent Property Details
 Route::view('/rent/verified_properties', 'front.rent_verified_properties')->name('verifiedProperties');
 Route::view('/rent/owner-properties', 'front.rent_owner_property')->name('rentOwnerProperties');
 Route::get('/rent/furnished-homes', [RentPropertyController::class, 'furnishedHomes'])->name('furnishedHomes');
+Route::get('/rent/furnished-homes/show', [RentPropertyController::class, 'showFurnishedHomes'])->name('showFurnishedHomes');
 
 //Sell Property Details
 Route::view('/sell/post-property', 'front.sell_post_property')->name('sellpostProperty');
@@ -290,3 +305,5 @@ Route::view('/property-services/rent-agreement', 'front.ps_rent_agreement')->nam
 Route::view('/property-services/tenant-verification', 'front.ps_tenant_verification')->name('tenantVerification');
 Route::view('/property-services/property-lawyers', 'front.ps_property_lawyers')->name('propertyLawyers');
 Route::view('/property-services/loan', 'front.ps_loan')->name('loan');
+
+Route::get('/insert-dummmy-property-data', [FrontController::class, 'insertDummmyPropertyData'])->name('insertDummmyProperty');

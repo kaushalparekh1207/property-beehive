@@ -140,25 +140,47 @@
                                                     <input type="date" class="form-control" name="anniversary_date"
                                                         value="{{ $userData->anniversary_date }}">
                                                 </div>
-                                                <div class="form-group col-md-12">
-                                                    <label>Is Rera Registered ?</label>
-                                                    <select class="js-select2-disablesearch" name="is_rera"
-                                                        id="is_rera" onchange="reraFunction(this.value)">
-                                                        <option value="" selected disabled>Select
-                                                            One</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
 
-                                                <div class="form-group col-md-12 rera_reg_number"
-                                                    style="display: none;">
-                                                    <label>Is Rera Registration Number ?</label>
-                                                    <input type="text" class="form-control" id="rera_number"
-                                                        name="rera_registration_number"
-                                                        value="{{ $userData->rera_registration_number }}"
-                                                        placeholder="Enter Rera Registration Number"></input>
-                                                </div>
+                                                @if ($userData->rera_registration_number != null)
+                                                    <div class="form-group col-md-12">
+                                                        <label>Is Rera Registered ?</label>
+                                                        <select class="js-select2-disablesearch" name="is_rera"
+                                                            id="is_rera" onchange="reraFunction(this.value)">
+                                                            <option value="" selected disabled>Select
+                                                                One</option>
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12 rera_reg_number">
+                                                        <label>Is Rera Registration Number ?</label>
+                                                        <input type="text" class="form-control" id="rera_number"
+                                                            name="rera_registration_number"
+                                                            value="{{ $userData->rera_registration_number }}"
+                                                            placeholder="Enter Rera Registration Number"></input>
+                                                    </div>
+                                                @else
+                                                    <div class="form-group col-md-12">
+                                                        <label>Is Rera Registered ?</label>
+                                                        <select class="js-select2-disablesearch" name="is_rera"
+                                                            id="is_rera" onchange="reraFunction(this.value)">
+                                                            <option value="" selected disabled>Select
+                                                                One</option>
+                                                            <option value="Yes">Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12 rera_reg_number"
+                                                        style="display: none;">
+                                                        <label>Is Rera Registration Number ?</label>
+                                                        <input type="text" class="form-control" id="rera_number"
+                                                            name="rera_registration_number"
+                                                            value="{{ $userData->rera_registration_number }}"
+                                                            placeholder="Enter Rera Registration Number"></input>
+                                                    </div>
+                                                @endif
 
                                                 <div class="form-group col-md-4">
                                                     <label>State</label>

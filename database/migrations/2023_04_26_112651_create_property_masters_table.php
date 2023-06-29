@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('longitude', 50)->nullable();
             $table->text('address');
             $table->integer('expected_price');
+            $table->string('display_price', 50);
             $table->integer('booking_amount')->nullable();
             $table->string('rera_registration_number', 99)->nullable();
             $table->string('cover_image', 255)->nullable();

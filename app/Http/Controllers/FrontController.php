@@ -897,7 +897,20 @@ class FrontController extends Controller
                         ->where('property_masters.property_category_id', $searchByCategory)
 
                         ->count();
+                } elseif ($searchByType && $searchByCity && $searchByBudget) {
+                    $totalRecords = PropertyMaster::select('count(*) as allcount')
+                        ->join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
+                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                        ->where('property_masters.flag', 1)
+                        ->where('residential_properties.flag', 1)
+                        ->where('property_masters.property_type_id', $searchByType)
+                        ->where('property_masters.city_id', $searchByCity)
+                        ->where('property_masters.property_category_id', $searchByCategory)
+                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
+
+                        ->count();
                 } else {
+
                     $totalRecords = PropertyMaster::select('count(*) as allcount')
                         ->join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
                         ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
@@ -974,6 +987,18 @@ class FrontController extends Controller
                         ->where('property_masters.property_type_id', $searchByType)
                         ->where('property_masters.city_id', $searchByCity)
                         ->where('property_masters.property_category_id', $searchByCategory)
+
+                        ->count();
+                } elseif ($searchByType && $searchByCity && $searchByBudget) {
+                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
+                        ->join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
+                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                        ->where('property_masters.flag', 1)
+                        ->where('residential_properties.flag', 1)
+                        ->where('property_masters.property_type_id', $searchByType)
+                        ->where('property_masters.city_id', $searchByCity)
+                        ->where('property_masters.property_category_id', $searchByCategory)
+                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
 
                         ->count();
                 } else {
@@ -1064,7 +1089,20 @@ class FrontController extends Controller
                         ->skip($start)
                         ->take($rowperpage)
                         ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'residential_properties.descr']);
+                } else if ($searchByType && $searchByCity && $searchByBudget) {
+                    $records = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
+                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                        ->where('property_masters.flag', 1)
+                        ->where('residential_properties.flag', 1)
+                        ->where('property_masters.property_type_id', $searchByType)
+                        ->where('property_masters.city_id', $searchByCity)
+
+                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
+                        ->skip($start)
+                        ->take($rowperpage)
+                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'residential_properties.total_bedrooms', 'residential_properties.total_bathrooms', 'residential_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'residential_properties.descr', 'property_masters.expected_price']);
                 } else {
+
                     $records = PropertyMaster::join('residential_properties', 'residential_properties.property_master_id', '=', 'property_masters.id')
                         ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
                         ->where('property_masters.flag', 1)

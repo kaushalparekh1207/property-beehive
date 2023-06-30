@@ -680,7 +680,6 @@ class FrontController extends Controller
                         ->where('residential_properties.flag', 1)
                         ->where('property_masters.property_type_id', $type_id)
                         ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
                         ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
                         ->skip($start)
                         ->take($rowperpage)

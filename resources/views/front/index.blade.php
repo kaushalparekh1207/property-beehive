@@ -98,6 +98,22 @@
                         <div class="hero-search-content colored">
                             <div class="row classic-search-box m-0 gx-2">
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group briod">
+                                        <div class="input-with-icon">
+                                            <select class="js-select2" name="property_type_id" id="property_type">
+                                                <option value="" selected disabled>Select Property types
+                                                </option>
+                                                @foreach ($propertyType as $type)
+                                                    <option value="{{ $type->id }}">
+                                                        {{ $type->property_type }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
                                             <select class="js-select2" name="city_id" id="city_dropdown">
@@ -121,22 +137,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
-                                    <div class="form-group briod">
-                                        <div class="input-with-icon">
-                                            <select class="js-select2" name="property_type_id" id="property_type">
-                                                <option value="" selected disabled>Select Property types
-                                                </option>
-                                                @foreach ($propertyType as $type)
-                                                    <option value="{{ $type->id }}">
-                                                        {{ $type->property_type }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
@@ -156,7 +157,7 @@
                                                 <option value="" selected disabled>Budget
                                                 </option>
                                                 <option value="500000|1000000">5-10 Lacs</option>
-                                                <option value="1000000|15000000">10-15 Lacs</option>
+                                                <option value="1000000|1500000">10-15 Lacs</option>
                                                 <option value="1500000|2000000">15-20 Lacs</option>
                                                 <option value="2000000|2500000">20-25 Lacs</option>
                                                 <option value="2500000|3000000">25-30 Lacs</option>

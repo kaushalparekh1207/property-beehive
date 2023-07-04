@@ -9703,7 +9703,7 @@ footer.skin-dark-footer .footer-widget .ftp-info {
         border-bottom: 1px solid #e9ecef;
         background: #ffffff;
         position: fixed;
-        z-index: 999;
+        z-index: 10000 !important;
         width: 100%;
         top: 0;
         -webkit-transition: 0.2s ease-in;

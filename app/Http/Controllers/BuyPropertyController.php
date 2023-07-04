@@ -17,7 +17,7 @@ class BuyPropertyController extends Controller
 {
     public function buy()
     {
-        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Sale')->get();
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Sale')->limit(10)->get();
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
         $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);

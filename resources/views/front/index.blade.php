@@ -18,6 +18,13 @@
     @include('front.assets.links')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- Browser Back Button CLick Site Auto Refresh Meta Link-->
+    <!-- Start -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <!-- End -->
 
     <style>
         .swiper-container {
@@ -25,6 +32,11 @@
             /* max-width: 940px; */
             height: 300px;
             margin: 0 auto;
+        }
+
+        .select2-container {
+
+            height: 50px !important;
         }
     </style>
 </head>
@@ -97,7 +109,7 @@
                         </div>
                         <div class="hero-search-content colored">
                             <div class="row classic-search-box m-0 gx-2">
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
                                             <select class="js-select2" name="property_type_id" id="property_type">
@@ -109,8 +121,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
+                                        <small id="property_type_error"></small>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
@@ -122,9 +135,9 @@
                                                     <option value="{{ $cities->id }}">{{ $cities->city }}</option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
-
+                                            <i class="fa-solid fa-location-crosshairs mb-1 mt-1"></i>
                                         </div>
+                                        <small id="city_error"></small>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
@@ -133,7 +146,7 @@
                                             <select class="js-select2" name="taluka_id" id="taluka_dropdown">
                                                 <option value="" selected disabled>Select City First</option>
                                             </select>
-                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
+                                            <i class="fa-solid fa-location-crosshairs mb-1 mt-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +159,7 @@
                                                 <option value="" selected disabled>Select Property Type First
                                                 </option>
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -180,19 +193,14 @@
                                                 <option value="20000000|25000000">2-2.5 Cr</option>
                                                 <option value="25000000|250000000">2.5 Cr +</option>
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-1 col-lg-3 col-md-12 col-sm-12">
                                     <div class="fliox-search-wiop">
-                                        <div class="form-group me-2">
-                                            <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#filter" class="btn btn-filter-search"><i
-                                                    class="fa-solid fa-filter"></i>Filter</a>
-                                        </div>
                                         <div class="form-group">
-                                            <button type="submit" id="btnSubmit"
+                                            <button type="button" id="btnSubmit"
                                                 class="btn btn-primary full-width">Search</button>
                                         </div>
                                     </div>
@@ -672,6 +680,7 @@
     @include('front.assets.scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="{{ url('/') }}/front/assets/js/filtervalidation.js"></script>
 
     <!-- Initialize Swiper -->
     <script>
@@ -770,6 +779,17 @@
             });
         });
     </script>
+    <!-- Browser Back Button CLick Site Auto Refresh Javascript-->
+    <!-- Start -->
+    <script type="text/javascript">
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                document.body.style.display = "none";
+                location.reload();
+            }
+        };
+    </script>
+    <!-- End -->
 
 </body>
 

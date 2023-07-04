@@ -1004,279 +1004,80 @@ class FrontController extends Controller
         } elseif ($type_id == 3 || $searchByType == 3) {
             // Commercial Property Category
             if ($custom_filter == 'yes') {
+                // Total Count
+                $totalCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
 
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', array($min_budget, $max_budget))
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } else {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->count();
+                if ($type_id) {
+                    $totalCount->where('property_masters.property_type_id', $type_id);
+                }
+                if ($city_id) {
+                    $totalCount->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $totalCount->where('property_masters.taluka_id', $taluka_id);
+                }
+                if ($category_id) {
+                    $totalCount->where('property_masters.property_category_id', $city_id);
+                }
+                if ($budget) {
+                    $totalCount->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
                 }
 
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
+                $totalRecords = $totalCount->count();
 
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } else {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->count();
+                $totalFilterCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
+
+                if ($type_id) {
+                    $totalFilterCount->where('property_masters.property_type_id', $type_id);
                 }
+                if ($city_id) {
+                    $totalFilterCount->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $totalFilterCount->where('property_masters.taluka_id', $type_id);
+                }
+                if ($category_id) {
+                    $totalFilterCount->where('property_masters.property_category_id', $category_id);
+                }
+                if ($budget) {
+                    $totalFilterCount->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
+                }
+
+                $totalRecordswithFilter = $totalFilterCount->count();
 
                 // Fetch Records
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
+                $data = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
 
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-
-                } else if ($type_id && $city_id && $category_id && $budget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-
-                } else if ($type_id && $city_id && $category_id) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-                } else if ($type_id && $city_id && $budget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } else {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
+                if ($type_id) {
+                    $data->where('property_masters.property_type_id', $type_id);
                 }
+                if ($city_id) {
+                    $data->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $data->where('property_masters.taluka_id', $type_id);
+                }
+                if ($category_id) {
+                    $data->where('property_masters.property_category_id', $category_id);
+                }
+                if ($budget) {
+                    $data->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
+                }
+
+                $records = $data->skip($start)
+                    ->take($rowperpage)
+                    ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
 
                 $data_arr = array();
                 foreach ($records as $record) {
@@ -1408,290 +1209,80 @@ class FrontController extends Controller
             } else {
 
                 // Database Filter Found
+                $totalCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
 
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } else {
-
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->count();
+                if ($searchByType) {
+                    $totalCount->where('property_masters.property_type_id', $searchByType);
+                }
+                if ($searchByCity) {
+                    $totalCount->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $totalCount->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $totalCount->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $totalCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
                 }
 
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
+                $totalRecords = $totalCount->count();
 
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
+                // Total Filter Records
+                $totalFilterCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
 
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-
-                        ->count();
-                } else {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->count();
+                if ($searchByType) {
+                    $totalFilterCount->where('property_masters.property_type_id', $searchByType);
                 }
+                if ($searchByCity) {
+                    $totalFilterCount->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $totalFilterCount->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $totalFilterCount->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $totalFilterCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
+                }
+
+                $totalRecordswithFilter = $totalFilterCount->count();
 
                 // Fetch Records
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $records = PropertyMaster::join('industrial_properties', 'commercindustrial_propertiesal_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
+                $data = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('industrial_properties.flag', 1);
 
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-
-                } else if ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-
-                } else if ($searchByType && $searchByCity && $searchByCategory) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
-                } else if ($searchByType && $searchByCity && $searchByBudget) {
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
-                } else {
-
-                    $records = PropertyMaster::join('industrial_properties', 'industrial_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('industrial_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr']);
+                if ($searchByType) {
+                    $data->where('property_masters.property_type_id', $searchByType);
                 }
+                if ($searchByCity) {
+                    $data->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $data->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $data->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $data->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
+                }
+
+                $records = $data->skip($start)
+                    ->take($rowperpage)
+                    ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'industrial_properties.carpet_area', 'property_masters.client_master_id', 'property_masters.locality', 'industrial_properties.descr', 'property_masters.expected_price']);
 
                 $data_arr = array();
                 foreach ($records as $record) {
@@ -1825,278 +1416,79 @@ class FrontController extends Controller
             // Commercial Property Category
             if ($custom_filter == 'yes') {
 
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', array($min_budget, $max_budget))
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
+                $totalCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
 
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $budget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } else {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->count();
+                if ($type_id) {
+                    $totalCount->where('property_masters.property_type_id', $type_id);
+                }
+                if ($city_id) {
+                    $totalCount->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $totalCount->where('property_masters.taluka_id', $taluka_id);
+                }
+                if ($category_id) {
+                    $totalCount->where('property_masters.property_category_id', $city_id);
+                }
+                if ($budget) {
+                    $totalCount->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
                 }
 
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
+                $totalRecords = $totalCount->count();
 
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $category_id) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->count();
-                } elseif ($type_id && $city_id && $budget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->count();
-                } else {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->count();
+                $totalFilterCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
+
+                if ($type_id) {
+                    $totalFilterCount->where('property_masters.property_type_id', $type_id);
                 }
+                if ($city_id) {
+                    $totalFilterCount->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $totalFilterCount->where('property_masters.taluka_id', $type_id);
+                }
+                if ($category_id) {
+                    $totalFilterCount->where('property_masters.property_category_id', $category_id);
+                }
+                if ($budget) {
+                    $totalFilterCount->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
+                }
+
+                $totalRecordswithFilter = $totalFilterCount->count();
 
                 // Fetch Records
-                if ($type_id && $city_id && $taluka_id && $category_id && $budget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } elseif ($type_id && $city_id && $taluka_id && $category_id) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->where('property_masters.property_category_id', $category_id)
+                $data = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
 
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-                } elseif ($type_id && $city_id && $taluka_id && $budget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-
-                } else if ($type_id && $city_id && $category_id && $budget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } elseif ($type_id && $city_id && $taluka_id) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.taluka_id', $taluka_id)
-
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-
-                } else if ($type_id && $city_id && $category_id) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->where('property_masters.property_category_id', $category_id)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-                } else if ($type_id && $city_id && $budget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->whereBetween('property_masters.expected_price', [$min_budget, $max_budget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } else {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $type_id)
-                        ->where('property_masters.city_id', $city_id)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
+                if ($type_id) {
+                    $data->where('property_masters.property_type_id', $type_id);
                 }
+                if ($city_id) {
+                    $data->where('property_masters.city_id', $city_id);
+                }
+                if ($taluka_id) {
+                    $data->where('property_masters.taluka_id', $type_id);
+                }
+                if ($category_id) {
+                    $data->where('property_masters.property_category_id', $category_id);
+                }
+                if ($budget) {
+                    $data->whereBetween('property_masters.expected_price', array($min_budget, $max_budget));
+                }
+
+                $records = $data->skip($start)
+                    ->take($rowperpage)
+                    ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
 
                 $data_arr = array();
                 foreach ($records as $record) {
@@ -2228,288 +1620,81 @@ class FrontController extends Controller
             } else {
 
                 // Database Filter Found
+                // Database Filter Found
+                $totalCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
 
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByBudget) {
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } else {
-
-                    $totalRecords = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->count();
+                if ($searchByType) {
+                    $totalCount->where('property_masters.property_type_id', $searchByType);
+                }
+                if ($searchByCity) {
+                    $totalCount->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $totalCount->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $totalCount->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $totalCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
                 }
 
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
+                $totalRecords = $totalCount->count();
 
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
+                // Total Filter Records
+                $totalFilterCount = PropertyMaster::select('count(*) as allcount')
+                    ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
 
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByCategory) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-
-                        ->count();
-                } elseif ($searchByType && $searchByCity && $searchByBudget) {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-
-                        ->count();
-                } else {
-                    $totalRecordswithFilter = PropertyMaster::select('count(*) as allcount')
-                        ->join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->count();
+                if ($searchByType) {
+                    $totalFilterCount->where('property_masters.property_type_id', $searchByType);
                 }
+                if ($searchByCity) {
+                    $totalFilterCount->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $totalFilterCount->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $totalFilterCount->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $totalFilterCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
+                }
+
+                $totalRecordswithFilter = $totalFilterCount->count();
 
                 // Fetch Records
-                if ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory && $searchByBudget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByCategory) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->where('property_masters.property_category_id', $searchByCategory)
+                $data = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
+                    ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
+                    ->where('property_masters.flag', 1)
+                    ->where('agricultural_properties.flag', 1);
 
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka && $searchByBudget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-
-                } else if ($searchByType && $searchByCity && $searchByCategory && $searchByBudget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } elseif ($searchByType && $searchByCity && $searchByTaluka) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.taluka_id', $searchByTaluka)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-
-                } else if ($searchByType && $searchByCity && $searchByCategory) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->where('property_masters.property_category_id', $searchByCategory)
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
-                } else if ($searchByType && $searchByCity && $searchByBudget) {
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-                        ->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget])
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
-                } else {
-
-                    $records = PropertyMaster::join('agricultural_properties', 'agricultural_properties.property_master_id', '=', 'property_masters.id')
-                        ->join('client_master', 'client_master.id', '=', 'property_masters.client_master_id')
-                        ->where('property_masters.flag', 1)
-                        ->where('agricultural_properties.flag', 1)
-                        ->where('property_masters.property_type_id', $searchByType)
-                        ->where('property_masters.city_id', $searchByCity)
-
-                        ->skip($start)
-                        ->take($rowperpage)
-                        ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr']);
+                if ($searchByType) {
+                    $data->where('property_masters.property_type_id', $searchByType);
                 }
+                if ($searchByCity) {
+                    $data->where('property_masters.city_id', $searchByCity);
+                }
+                if ($searchByTaluka) {
+                    $data->where('property_masters.taluka_id', $searchByTaluka);
+                }
+                if ($searchByCategory) {
+                    $data->where('property_masters.property_category_id', $searchByCategory);
+                }
+                if ($searchByBudget) {
+                    $data->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
+                }
+
+                $records = $data->skip($start)
+                    ->take($rowperpage)
+                    ->get(['property_masters.cover_image', 'property_masters.display_price', 'property_masters.id', 'property_masters.property_type_id', 'property_masters.address', 'property_masters.name_of_project', 'property_masters.property_status', 'agricultural_properties.plot_area', 'property_masters.client_master_id', 'property_masters.locality', 'agricultural_properties.descr', 'property_masters.expected_price']);
 
                 $data_arr = array();
                 foreach ($records as $record) {

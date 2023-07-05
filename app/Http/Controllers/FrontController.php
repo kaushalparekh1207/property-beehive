@@ -187,7 +187,7 @@ class FrontController extends Controller
 
         $sortByFilter = $request->get('sortByFilter');
 
-        if ($searchByCity || $searchByTaluka || $searchByType || $searchByCategory || $searchByBudget || $bhkFilter || $furnishedStatusFilter || $bathRoomFilter || $possessionStatusFilter || $amenitiesFilter) {
+        if ($searchByCity || $searchByTaluka || $searchByType || $searchByCategory || $searchByBudget || $bhkFilter || $furnishedStatusFilter || $bathRoomFilter || $possessionStatusFilter || $sortByFilter) {
             $custom_filter = 'no';
             $type_id = null;
         }

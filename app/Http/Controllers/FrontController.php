@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgriculturalProperty;
+use App\Models\Amenities;
 use App\Models\City;
 use App\Models\CommercialProperty;
 use App\Models\IndustrialProperty;
@@ -124,8 +125,9 @@ class FrontController extends Controller
         $category_id = $request->property_category_id;
         $custom_filter = $request->custom_filter;
         $budget = $request->budget;
+        $amenities = Amenities::where('flag', 1)->get(['id', 'amenities']);
 
-        return view('front.property-result', compact('type_id', 'city_id', 'taluka_id', 'category_id', 'custom_filter', 'budget'));
+        return view('front.property-result', compact('type_id', 'city_id', 'taluka_id', 'category_id', 'custom_filter', 'budget', 'amenities'));
     }
 
     public function propertyResultSearchList(Request $request)
@@ -171,13 +173,21 @@ class FrontController extends Controller
             $searchByMaxBudget = $searchByBudgetExplode[1];
         }
 
-        // BHK Filter
+        // More Filters
         $bhkFilter = $request->get('bhkFilter');
+        if ($bhkFilter) {
+            $selectedBhkFilter = "'" . implode("', '", $bhkFilter) . "'";
+        }
+        $bathRoomFilter = $request->get('bathRoomFilter');
+        $furnishedStatusFilter = $request->get('furnishedStatusFilter');
+        if ($furnishedStatusFilter) {
+            $selectedFurnishedStatus = "'" . implode("', '", $furnishedStatusFilter) . "'";
+        }
+        $possessionStatusFilter = $request->get('possessionStatusFilter');
 
-        // echo $searchByType . '<br>' . $searchByCategory . '<br>' . $searchByCity . '<br>' . $searchByTaluka . '<br>' . $searchByBudget;exit;
-        // echo $custom_filter;exit;
+        $sortByFilter = $request->get('sortByFilter');
 
-        if ($searchByCity || $searchByTaluka || $searchByType || $searchByCategory || $searchByBudget || $bhkFilter) {
+        if ($searchByCity || $searchByTaluka || $searchByType || $searchByCategory || $searchByBudget || $bhkFilter || $furnishedStatusFilter || $bathRoomFilter || $possessionStatusFilter || $amenitiesFilter) {
             $custom_filter = 'no';
             $type_id = null;
         }
@@ -400,6 +410,24 @@ class FrontController extends Controller
                 if ($searchByBudget) {
                     $totalCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
                 }
+                if ($bathRoomFilter) {
+                    $totalCount->where('residential_properties.total_bathrooms', $bathRoomFilter);
+                }
+                if ($bhkFilter) {
+                    $totalCount->whereRaw("residential_properties.total_bedrooms IN($selectedBhkFilter)");
+                }
+                if ($furnishedStatusFilter) {
+                    $totalCount->whereRaw("residential_properties.furnished_status IN($selectedFurnishedStatus)");
+                }
+                if ($possessionStatusFilter) {
+                    $totalCount->where('residential_properties.possession_status', $possessionStatusFilter);
+                }
+                if ($sortByFilter && $sortByFilter == 1) {
+                    $totalCount->where('property_masters.expected_price', '<', '5000000');
+                }
+                if ($sortByFilter && $sortByFilter == 2) {
+                    $totalCount->where('property_masters.expected_price', '>', '5000000');
+                }
 
                 $totalRecords = $totalCount->count();
 
@@ -425,6 +453,24 @@ class FrontController extends Controller
                 if ($searchByBudget) {
                     $totalFilterCount->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
                 }
+                if ($bathRoomFilter) {
+                    $totalFilterCount->where('residential_properties.total_bathrooms', $bathRoomFilter);
+                }
+                if ($bhkFilter) {
+                    $totalFilterCount->whereRaw("residential_properties.total_bedrooms IN($selectedBhkFilter)");
+                }
+                if ($furnishedStatusFilter) {
+                    $totalFilterCount->whereRaw("residential_properties.furnished_status IN($selectedFurnishedStatus)");
+                }
+                if ($possessionStatusFilter) {
+                    $totalFilterCount->where('residential_properties.possession_status', $possessionStatusFilter);
+                }
+                if ($sortByFilter && $sortByFilter == 1) {
+                    $totalFilterCount->where('property_masters.expected_price', '<', '5000000');
+                }
+                if ($sortByFilter && $sortByFilter == 2) {
+                    $totalFilterCount->where('property_masters.expected_price', '>', '5000000');
+                }
 
                 $totalRecordswithFilter = $totalFilterCount->count();
 
@@ -449,8 +495,23 @@ class FrontController extends Controller
                 if ($searchByBudget) {
                     $data->whereBetween('property_masters.expected_price', [$searchByMinBudget, $searchByMaxBudget]);
                 }
+                if ($bathRoomFilter) {
+                    $data->where('residential_properties.total_bathrooms', $bathRoomFilter);
+                }
                 if ($bhkFilter) {
-                    $data->where('residential_properties.total_bedrooms', $bhkFilter);
+                    $data->whereRaw("residential_properties.total_bedrooms IN($selectedBhkFilter)");
+                }
+                if ($furnishedStatusFilter) {
+                    $data->whereRaw("residential_properties.furnished_status IN($selectedFurnishedStatus)");
+                }
+                if ($possessionStatusFilter) {
+                    $data->where('residential_properties.possession_status', $possessionStatusFilter);
+                }
+                if ($sortByFilter && $sortByFilter == 1) {
+                    $data->where('property_masters.expected_price', '<', '5000000');
+                }
+                if ($sortByFilter && $sortByFilter == 2) {
+                    $data->where('property_masters.expected_price', '>', '5000000');
                 }
 
                 $records = $data->skip($start)

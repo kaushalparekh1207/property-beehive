@@ -223,18 +223,16 @@ Route::get('/our_packages', [\App\Http\Controllers\FrontDashboardController::cla
 //Buy Property Search Route
 Route::get('/buy', [BuyPropertyController::class, 'buy'])->name('front_buy');
 Route::post('/buy-property-result/search', [BuyPropertyController::class, 'searchBuyProperty'])->name('searchBuyProperty');
-
-//Rent Property Search Route
-Route::get('/rent', [RentPropertyController::class, 'rent'])->name('front_rent');
-Route::post('/rent-property-result/search', [RentPropertyController::class, 'searchRentProperty'])->name('searchRentProperty');
-
+Route::get('/buy-property-result/search/list', [BuyPropertyController::class, 'BuypropertyResultSearchList'])->name('BuypropertyResultSearchList');
 //PG Property Search Route
 Route::get('/pg', [PGPropertyController::class, 'pg'])->name('front_pg');
 Route::post('/pg-property-result/search', [PGPropertyController::class, 'searchPGProperty'])->name('searchPGProperty');
+Route::get('/pg-property-result/search/list', [PGPropertyController::class, 'pgPropertyResultSearchList'])->name('pgPropertyResultSearchList');
 
 //Land Property Search Route
 Route::get('/land', [AgriculturePropertyController::class, 'land'])->name('front_land');
 Route::post('/land-property-result/search', [AgriculturePropertyController::class, 'searchLandProperty'])->name('searchLandProperty');
+Route::get('/land-property-result/search/list', [AgriculturePropertyController::class, 'landPropertyResultSearchList'])->name('landPropertyResultSearchList');
 
 //Land Property Search Route
 Route::get('/commercial', [CommercialPropertyController::class, 'commercial'])->name('front_commercial');
@@ -279,6 +277,8 @@ Route::get('/my_visits_list', [FrontController::class, 'showInquiryList'])->name
 // Property Details
 Route::get('/property-detail/{id}/{type}/{name}/{owner}', [FrontController::class, 'propertydetails'])->name('propertydetails');
 Route::post('/property-detail/inquiry', [FrontController::class, 'inquiryDetails'])->name('inquiryDetails');
+
+// All Property Details
 Route::post('/property-result/search', [FrontController::class, 'propertyResultSearch'])->name('property_result_search');
 Route::get('/property-result/search/list', [FrontController::class, 'propertyResultSearchList'])->name('propertyResultSearchList');
 
@@ -288,6 +288,11 @@ Route::get('/buy/ready-to-move/show', [BuyPropertyController::class, 'showReadyT
 Route::view('/buy/owner-properties', 'front.buy_owner_property')->name('ownerProperties');
 Route::get('/buy/new-launch', [BuyPropertyController::class, 'newLaunch'])->name('newLaunch');
 Route::get('/buy/new-launch/show', [BuyPropertyController::class, 'showNewLaunch'])->name('showNewLaunch');
+
+//Rent Property Search Route
+Route::get('/rent', [RentPropertyController::class, 'rent'])->name('front_rent');
+Route::post('/rent-property-result/search', [RentPropertyController::class, 'searchRentProperty'])->name('searchRentProperty');
+Route::get('/rent-property-result/search/list', [RentPropertyController::class, 'rentPropertyResultSearchList'])->name('rentPropertyResultSearchList');
 
 //Rent Property Details
 Route::view('/rent/verified_properties', 'front.rent_verified_properties')->name('verifiedProperties');

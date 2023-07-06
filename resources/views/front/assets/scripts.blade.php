@@ -27,3 +27,15 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://kit.fontawesome.com/e04a23e55e.js" crossorigin="anonymous"></script>
+
+<!-- Browser Back Button CLick Site Auto Refresh Javascript-->
+<!-- Start -->
+<script type="text/javascript">
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            document.body.style.display = "none";
+            location.reload();
+        }
+    };
+</script>
+<!-- End -->

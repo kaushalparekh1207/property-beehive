@@ -356,7 +356,7 @@
             var budget = '<?php echo $budget; ?>';
             var custom_filter = '<?php echo $custom_filter; ?>';
             var columnString;
-            var urlstring = "{{ route('landPropertyResultSearchList') }}";
+            var urlstring = "{{ route('rentPropertyResultSearchList') }}";
             // alert(urlstring);
             columnString = [{
                 data: 'show'
@@ -470,6 +470,33 @@
     </script>
     <script>
         $(document).ready(function() {
+            // var city = $('#city_dropdown').val();
+            // if (city != null || city != '') {
+            //     $("#taluka_dropdown").html('');
+            //     $.ajax({
+            //         url: "{{ route('get-taluka-list') }}",
+            //         type: "GET",
+            //         data: {
+            //             city: city,
+            //             _token: '{{ csrf_token() }}'
+            //         },
+            //         dataType: 'json',
+            //         success: function(result) {
+            //             $('#taluka').show();
+            //             $('#taluka_dropdown').html(
+            //                 '<option value="" selected disabled>-- Select Taluka --</option>'
+            //             );
+            //             $.each(result.taluka, function(key, value) {
+            //                 $("#taluka_dropdown").append('<option value="' +
+            //                     value
+            //                     .id + '">' + value.taluka +
+            //                     '</option>');
+            //             });
+            //             // $('#sd').show();
+            //         }
+            //     });
+            // } else {
+            //  $('#city').hide();
             $('#city_dropdown').on('change', function() {
                 var city = this.value;
                 $("#taluka_dropdown").html('');

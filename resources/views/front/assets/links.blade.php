@@ -15,3 +15,11 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
 
 {{-- <link href="https://netdna.bootstrapcdn.com/font-awesome/3.6.0/css/font-awesome.css" rel="stylesheet"> --}}
+
+<!-- Browser Back Button CLick Site Auto Refresh Meta Link-->
+<!-- Start -->
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<!-- End -->

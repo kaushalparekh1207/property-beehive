@@ -10,7 +10,12 @@
 
     <title>Property Beehive</title>
     @include('front.assets.links')
-    <script></script>
+    <style>
+        .select2-container {
+
+            height: 50px !important;
+        }
+    </style>
 </head>
 
 
@@ -52,20 +57,20 @@
                 </div>
 
                 <div class="full-search-2 mt-5">
-                    <form id="property_result" action="{{ route('searchPGProperty') }}" method="post">
+                    <form id="pg_property_result" action="{{ route('searchPGProperty') }}" method="post">
                         @csrf
+                        <input type="hidden" name="custom_filter" value="yes">
                         <div class="btn-group-horizontal " role="group"
                             aria-label="horizontal radio toggle button group" style="margin-left: 100px;">
-                            <input type="radio" class="btn-check" name="vbtn-radio" value="Sale" id="vbtn-radio1"
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1"
                                 autocomplete="off">
-
                             <label class="btn" for="vbtn-radio1"><a style="color: #fff;"
-                                    href="{{ url('/') }}/buy">Buy</a></label>
-                            <input type="radio" class="btn-check" name="rent" value="Rent/Lease" id="vbtn-radio2"
+                                    href="{{ route('front_buy') }}">Buy</a></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2"
                                 autocomplete="off">
                             <label class="btn" for="vbtn-radio2"><a style="color: #fff;"
-                                    href="{{ url('/') }}/rent">Rent</a></label>
-                            <input type="radio" class="btn-check" name="pg" value="PG/Hostel" id="vbtn-radio3"
+                                    href="{{ route('front_rent') }}">Rent</a></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3"
                                 autocomplete="off" checked>
                             <label class="btn" for="vbtn-radio3"><a style="color: #fff;"
                                     href="{{ url('/') }}/pg">PG</a></label>
@@ -80,84 +85,99 @@
                         </div>
                         <div class="hero-search-content colored">
                             <div class="row classic-search-box m-0 gx-2">
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="input-with-icon">
-                                            <select class="js-select2" name="city_id" id="city_id_dropdown">
-                                                <option value="" selected disabled>Select City</option>
-                                                @foreach ($city as $cities)
-                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
-                                                @endforeach
-                                            </select>
-                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="input-with-icon">
-                                            <select class="js-select2" name="taluka_id" id="taluka_id_dropdown">
-                                                <option value="" selected disabled>Select City First</option>
-                                            </select>
-                                            <i class="fa-solid fa-location-crosshairs mb-2"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            {{-- <select class="form-control" name="property_type_id"> --}}
                                             <select class="js-select2" name="property_type_id" id="property_type">
-                                                <option value="" selected disabled>Select Property types</option>
+                                                <option value="" selected disabled>Select Property types
+                                                </option>
                                                 @foreach ($propertyType as $type)
                                                     <option value="{{ $type->id }}">
                                                         {{ $type->property_type }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
+                                        <small id="property_type_error"></small>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-with-icon">
+                                            <select class="js-select2" name="city_id" id="city_dropdown">
+                                                <option value="" selected disabled>Select City</option>
+                                                @foreach ($city as $cities)
+                                                    <option value="{{ $cities->id }}">{{ $cities->city }}</option>
+                                                @endforeach
+                                            </select>
+                                            <i class="fa-solid fa-location-crosshairs mb-1 mt-1"></i>
+                                        </div>
+                                        <small id="city_error"></small>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="input-with-icon">
+                                            <select class="js-select2" name="taluka_id" id="taluka_dropdown">
+                                                <option value="" selected disabled>Select City First</option>
+                                            </select>
+                                            <i class="fa-solid fa-location-crosshairs mb-1 mt-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            {{-- <select class="form-control" name="property_type_id"> --}}
                                             <select class="js-select2" name="property_category_id"
                                                 id="property_category_dropdown">
                                                 <option value="" selected disabled>Select Property Type First
                                                 </option>
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            {{-- <select class="form-control" name="property_type_id"> --}}
-                                            <select class="js-select2" name="budget_id" id="property_type_dropdown">
+                                            <select class="js-select2" name="budget" id="budget">
                                                 <option value="" selected disabled>Budget
                                                 </option>
-                                                {{-- @foreach ($propertyType as $type)
-                                                    <option value="{{ $type->id }}">
-                                                        {{ $type->property_type }}
-                                                    </option>
-                                                @endforeach --}}
+                                                <option value="500000|1000000">5-10 Lacs</option>
+                                                <option value="1000000|1500000">10-15 Lacs</option>
+                                                <option value="1500000|2000000">15-20 Lacs</option>
+                                                <option value="2000000|2500000">20-25 Lacs</option>
+                                                <option value="2500000|3000000">25-30 Lacs</option>
+                                                <option value="3000000|3500000">30-35 Lacs</option>
+                                                <option value="3500000|4000000">35-40 Lacs</option>
+                                                <option value="4000000|4500000">40-45 Lacs</option>
+                                                <option value="4500000|5000000">45-50 Lacs</option>
+                                                <option value="5000000|5500000">50-55 Lacs</option>
+                                                <option value="5500000|6000000">55-60 Lacs</option>
+                                                <option value="6000000|6500000">60-65 Lacs</option>
+                                                <option value="6500000|7000000">65-70 Lacs</option>
+                                                <option value="7000000|7500000">70-75 Lacs</option>
+                                                <option value="7500000|8000000">75-80 Lacs</option>
+                                                <option value="8000000|8500000">80-85 Lacs</option>
+                                                <option value="8500000|9000000">85-90 Lacs</option>
+                                                <option value="9000000|9500000">90-95 Lacs</option>
+                                                <option value="9500000|10000000">95 Lacs -1 Cr</option>
+                                                <option value="10000000|15000000">1-1.5 Cr</option>
+                                                <option value="15000000|20000000">1.5-2 Cr</option>
+                                                <option value="20000000|25000000">2-2.5 Cr</option>
+                                                <option value="25000000|250000000">2.5 Cr +</option>
                                             </select>
-                                            <i class="fa-solid fa-house-crack mb-2"></i>
+                                            <i class="fa-solid fa-house-crack mb-1 mt-1"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12">
+                                <div class="col-xl-1 col-lg-3 col-md-12 col-sm-12">
                                     <div class="fliox-search-wiop">
-                                        <div class="form-group me-2">
-                                            <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#filter" class="btn btn-filter-search"><i
-                                                    class="fa-solid fa-filter"></i>Filter</a>
-                                        </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary full-width">Search</button>
+                                            <button type="button" id="pgBtnSubmit"
+                                                class="btn btn-primary full-width">Search</button>
                                         </div>
                                     </div>
                                 </div>
@@ -228,17 +248,9 @@
                                     <div class="veshm-list-head">
                                         <div class="veshm-list-head-caption">
                                             <div class="rlhc-price">
-                                                <h4 class="rlhc-price-name theme-cl">₹@php
-                                                    echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                                @endphp
+                                                <h4 class="rlhc-price-name theme-cl">₹ {{ $property->display_price }}
                                                 </h4>
-                                                @if ($property->property_status == 'Sale')
-                                                    <span class="monthly">One Time</span>
-                                                @elseif ($property->property_status == 'Rent/Lease')
-                                                    <span class="monthly">/Months</span>
-                                                @elseif ($property->property_status == 'PG/Hostel')
-                                                    <span class="monthly">/Months</span>
-                                                @endif
+                                                <span class="monthly">Onwards/- </span>
                                             </div>
                                             <div class="listing-short-detail-flex">
                                                 <h5 class="rlhc-title-name verified"><a
@@ -295,6 +307,8 @@
 
 
     @include('front.assets.scripts')
+    <script src="{{ url('/') }}/front/assets/js/filtervalidation.js"></script>
+
     <script>
         $(document).ready(function() {
             $(".js-select2").select2({
@@ -334,9 +348,9 @@
     <script>
         $(document).ready(function() {
             //  $('#city').hide();
-            $('#city_id_dropdown').on('change', function() {
+            $('#city_dropdown').on('change', function() {
                 var city = this.value;
-                $("#taluka_id_dropdown").html('');
+                $("#taluka_dropdown").html('');
                 $.ajax({
                     url: "{{ route('get-taluka-list') }}",
                     type: "GET",
@@ -347,11 +361,11 @@
                     dataType: 'json',
                     success: function(result) {
                         $('#taluka').show();
-                        $('#taluka_id_dropdown').html(
+                        $('#taluka_dropdown').html(
                             '<option value="" selected disabled>-- Select Taluka --</option>'
                         );
                         $.each(result.taluka, function(key, value) {
-                            $("#taluka_id_dropdown").append('<option value="' +
+                            $("#taluka_dropdown").append('<option value="' +
                                 value
                                 .id + '">' + value.taluka +
                                 '</option>');

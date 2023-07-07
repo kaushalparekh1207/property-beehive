@@ -39,6 +39,81 @@
             height: 50px !important;
         }
     </style>
+    <style>
+        .card_city {
+            float: left;
+            width: 24%;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .card img {
+            float: left;
+            cursor: pointer;
+        }
+
+        .card .card-text {
+            font-size: 15px;
+            transition: 0.4s ease-in;
+            left: 30%;
+            transition: .3s;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover .card-text {
+            font-size: 16px;
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .card .card-title {
+            text-align: left;
+            transition: 0.4s ease-in;
+            top: 30%;
+            transition: .3s;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover .card-title {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .card_city .card-img {
+            overflow: hidden;
+            transition: all 0.3s ease-in;
+        }
+
+        .card_city:hover .card-img {
+            transform: scale(1.05);
+
+        }
+
+        .carousel-control-next,
+        .carousel-control-prev {
+            width: 6% !important;
+        }
+
+        .carousel-control-prev-icon {
+            position: relative;
+            right: 46%;
+            background-image: url("{{ asset('storage/property/other/slider-arrow2.svg') }}") !important;
+        }
+
+        .carousel-control-next-icon {
+            position: relative;
+            left: 46%;
+            background-image: url("{{ asset('storage/property/other/slider-arrow.svg') }}") !important;
+        }
+    </style>
 </head>
 
 
@@ -219,10 +294,12 @@
         <section>
             <div class="container">
 
+                <!-- Horizontal Swiper Start -->
                 <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-10 text-center">
                         <div class="sec-heading center">
                             <h2>Featured Properties</h2>
+                            <hr>
                             {{-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
                                 voluptatum deleniti atque corrupti quos dolores</p> --}}
                         </div>
@@ -400,10 +477,167 @@
                     </div>
                 </div>
 
+                <!-- End -->
+
+                <!-- Crousal Code Start -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-10 text-center">
+                        <div class="sec-heading center">
+                            <h2>Explore Your City</h2>
+                            <hr>
+                            <p>Explore Properties in Your City</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card card_city">
+
+                                        <img src="{{ asset('storage/property/other/pexels-foteros-783745.webp') }}"
+                                            class="card-img" alt="...">
+                                        <div class="card-img-overlay text-white ">
+                                            <h5 class="card-title">Ahmedabad</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Surat</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small><i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city-3.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Rajkot</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city-4.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Bhavnagar</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card card_city">
+                                        <img src="{{ asset('storage/property/other/pexels-foteros-783745.webp') }}"
+                                            class="card-img" alt="...">
+                                        <div class="card-img-overlay text-white ">
+                                            <h5 class="card-title">Vadodara</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Surat</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small><i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city-3.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Bhavnagar</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="JavaScript:Void(0);">
+                                    <div class="card  card_city">
+                                        <img src="{{ asset('storage/property/other/city-4.webp') }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay text-white">
+                                            <h5 class="card-title">Rajkot</h5>
+                                        </div>
+                                        <div class="card-img-overlay text-white d-flex align-items-end">
+                                            <p class="card-text"><small class="mx-2"
+                                                    style="color: #FA962A !important">Explore Now</small> <i
+                                                    class="fa-solid fa-circle-chevron-right"
+                                                    style="color: #FA962A !important"></i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- End -->
+
+                <!-- Vertical Swiper Start -->
                 <div class="row justify-content-center mt-5">
                     <div class="col-lg-7 col-md-10 text-center">
                         <div class="sec-heading center">
                             <h2>Properties on Beehive</h2>
+                            <hr>
                             {{-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
                                 voluptatum deleniti atque corrupti quos dolores</p> --}}
                         </div>
@@ -521,17 +755,18 @@
                         @endforeach
                     </div>
                 </div>
+                <!-- End -->
 
-                {{-- <div class="row justify-content gx-3 gy-4" style="margin-top: 5%">
+                <div class="row justify-content gx-3 gy-4" style="margin-top: 5%">
 
                     <!-- Single Property -->
                     @foreach ($properties as $property)
-                        @php
+                        {{-- @php
                             $commercial_property = CommercialProperty::where('flag', 1)->get();
                             $residential_property = ResidentialProperty::where('flag', 1)->get();
                             $industrial_property = IndustrialProperty::where('flag', 1)->get();
                             $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
-                        @endphp
+                        @endphp --}}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                             <div class="veshm-list-wraps">
                                 @if ($property->property_status == 'Sale')
@@ -571,13 +806,7 @@
                                         <div class="veshm-list-head-caption">
                                             <div class="rlhc-price">
                                                 <h4 class="rlhc-price-name theme-cl">
-                                                    ₹@php
-                                                        if (strlen($property->expected_price) > 5) {
-                                                            convertCurrency($property->expected_price);
-                                                        } else {
-                                                            echo preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", $property->expected_price);
-                                                        }
-                                                    @endphp
+                                                    ₹{{ $property->display_price }}
                                                 </h4>
                                                 @if ($property->property_status == 'Sale')
                                                     <span class="monthly">One Time</span>
@@ -593,56 +822,15 @@
                                                         class="prt-link-detail">{{ $property->name_of_project }}</a>
                                                 </h5>
                                             </div>
-                                            <div class="veshm-list-icons">
+                                            <div class="rlhc-prt-location"><img
+                                                    src="{{ url('/') }}/front/assets/img/pin.svg" width="16"
+                                                    class="me-1" alt="">{{ $property->locality }}</div>
+                                            {{-- <div class="veshm-list-icons">
                                                 <ul>
-                                                    @foreach ($residential_property as $residential)
-                                                        @if ($property->id == $residential->property_master_id)
-                                                            <li>
-                                                                @if ($residential->total_bedrooms != null)
-                                                                    <i class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
-                                                                        Bed</span>
-                                                                @endif
-                                                            </li>
-                                                            <li>
-                                                                @if ($residential->total_bathrooms != null)
-                                                                    <i class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
-                                                                        Ba</span>
-                                                                @endif
-                                                            </li>
-                                                            <li>
-                                                                @if ($residential->carpet_area != null)
-                                                                    <i class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
-                                                                        sft</span>
-                                                                @endif
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-                                                    @foreach ($commercial_property as $commercial)
-                                                        @if ($property->id == $commercial->property_master_id)
-                                                            <li>
-                                                                @if ($commercial->total_floor != null)
-                                                                    <i class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
-                                                                        Floor</span>
-                                                                @endif
-                                                            </li>
-                                                            <li>
-                                                                @if ($commercial->total_washrooms != null)
-                                                                    <i class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
-                                                                        Washroom</span>
-                                                                @endif
-                                                            </li>
-                                                            <li>
-                                                                @if ($commercial->total_washrooms != null)
-                                                                    <i class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
-                                                                        sft</span>
-                                                                @endif
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="resi-prty-offers-box">
@@ -660,8 +848,11 @@
                     @endforeach
                     <!-- End Single Property -->
 
-                </div> --}}
+                </div>
+
+
             </div>
+
         </section>
 
         @include('front.assets.footer')

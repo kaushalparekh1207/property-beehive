@@ -11,12 +11,90 @@
     <title>Property Beehive</title>
     @include('front.assets.links')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <style>
         .select2-container {
 
             height: 50px !important;
         }
     </style>
+    {{-- <style>
+        .swiper-slide {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            font-size: 33px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 50px;
+        }
+    </style>
+    <style>
+        .card_div {
+            max-width: 450px;
+            max-height: 300px;
+        }
+
+        .card_city {
+            float: left;
+            width: 100%;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .card img {
+            float: left;
+            cursor: pointer;
+        }
+
+        .card .card-text {
+            font-size: 15px;
+            transition: 0.4s ease-in;
+            left: 30%;
+            transition: .3s;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover .card-text {
+            font-size: 16px;
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .card .card-title {
+            text-align: left;
+            transition: 0.4s ease-in;
+            top: 30%;
+            transition: .3s;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover .card-title {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .card_city .card-img {
+            overflow: hidden;
+            transition: all 0.3s ease-in;
+        }
+
+        .card_city:hover .card-img {
+            transform: scale(1.05);
+
+        }
+    </style> --}}
 
 </head>
 
@@ -195,107 +273,108 @@
 
         <!-- ============================= Explore Categories =============================== -->
         <section>
-            <div class="container">
-
-                <div class="row justify-content-center">
+            <!-- Residential Property Swiper -->
+            @if (count($properties) >= 1)
+                <div class="container">
+                    <h3>Residential Properties for Rent</h3>
+                    {{-- <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-10 text-center">
+
                         <div class="sec-heading center">
-                            <h2>Properties for Rent</h2>
-                            {{-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores</p> --}}
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="row gx-4 gy-4">
-                    <!-- Single Package -->
-                    {{-- <div class="col-xl-4 collg-4 col-md-4 col-sm-12 col-12"> --}}
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($properties as $property)
-                                            <div class="swiper-slide">
-                                                {{-- @php
+                    <div class="row gx-4 gy-4">
+                        <!-- Single Package -->
+                        {{-- <div class="col-xl-4 collg-4 col-md-4 col-sm-12 col-12"> --}}
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($properties as $property)
+                                                <div class="swiper-slide">
+                                                    {{-- @php
                                                     $commercial_property = CommercialProperty::where('flag', 1)->get();
                                                     $residential_property = ResidentialProperty::where('flag', 1)->get();
                                                     $industrial_property = IndustrialProperty::where('flag', 1)->get();
                                                     $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
                                                 @endphp --}}
-                                                <div class="veshm-list-wraps">
-                                                    @if ($property->property_status == 'Sale')
-                                                        <div class="veshm-type fr-sale"><span>For
-                                                                {{ $property->property_status }}</span>
-                                                        </div>
-                                                    @elseif($property->property_status == 'Rent/Lease')
-                                                        <div class="veshm-type"><span>For
-                                                                {{ $property->property_status }}</span></div>
-                                                    @elseif($property->property_status == 'PG/Hostel')
-                                                        <div class="veshm-type fr-pg"><span>For
-                                                                {{ $property->property_status }}</span>
-                                                        </div>
-                                                    @endif
+                                                    <div class="veshm-list-wraps">
+                                                        @if ($property->property_status == 'Sale')
+                                                            <div class="veshm-type fr-sale"><span>For
+                                                                    {{ $property->property_status }}</span>
+                                                            </div>
+                                                        @elseif($property->property_status == 'Rent/Lease')
+                                                            <div class="veshm-type"><span>For
+                                                                    {{ $property->property_status }}</span></div>
+                                                        @elseif($property->property_status == 'PG/Hostel')
+                                                            <div class="veshm-type fr-pg"><span>For
+                                                                    {{ $property->property_status }}</span>
+                                                            </div>
+                                                        @endif
 
-                                                    <div class="veshm-list-thumb">
+                                                        <div class="veshm-list-thumb">
 
-                                                        <div class="veshm-list-img-slide">
-                                                            <div class="veshm-list-click">
-                                                                <div>
-                                                                    @if ($property->cover_image == null)
-                                                                        <a
-                                                                            href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                                src="{{ asset('storage/property/no-photo.png') }}"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""
-                                                                                style="width: 500px; height: 300px;"></a>
-                                                                    @else
-                                                                        <a
-                                                                            href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
-                                                                                src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
-                                                                                class="img-fluid mx-auto"
-                                                                                alt=""
-                                                                                style="width: 500px; height: 300px;"></a>
-                                                                    @endif
+                                                            <div class="veshm-list-img-slide">
+                                                                <div class="veshm-list-click">
+                                                                    <div>
+                                                                        @if ($property->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="veshm-list-block">
-                                                        <div class="veshm-list-head">
-                                                            <div class="veshm-list-head-caption">
-                                                                <div class="rlhc-price">
-                                                                    <h4 class="rlhc-price-name theme-cl">
-                                                                        ₹{{ $property->display_price }}
-                                                                        <span class="monthly">Onwards /-</span>
-                                                                    </h4>
+                                                        <div class="veshm-list-block">
+                                                            <div class="veshm-list-head">
+                                                                <div class="veshm-list-head-caption">
+                                                                    <div class="rlhc-price">
+                                                                        <h4 class="rlhc-price-name theme-cl">
+                                                                            ₹{{ $property->display_price }}
+                                                                            <span class="monthly">Onwards /-</span>
+                                                                        </h4>
 
-                                                                    {{-- @if ($property->property_status == 'Sale')
+                                                                        {{-- @if ($property->property_status == 'Sale')
                                                                         <span class="monthly">One Time</span>
                                                                     @elseif ($property->property_status == 'Rent/Lease')
                                                                         <span class="monthly">/Months</span>
                                                                     @elseif ($property->property_status == 'PG/Hostel')
                                                                         <span class="monthly">/Months</span>
                                                                     @endif --}}
-                                                                </div>
-                                                                <div class="listing-short-detail-flex">
-                                                                    <h5 class="rlhc-title-name verified"><a
-                                                                            href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
-                                                                            class="prt-link-detail">{{ $property->name_of_project }}</a>
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="rlhc-prt-location"><img
-                                                                        src="{{ url('/') }}/front/assets/img/pin.svg"
-                                                                        width="16" class="me-1"
-                                                                        alt="">{{ $property->locality }}</div>
-                                                                <div class="veshm-list-icons">
-                                                                    {{-- <ul>
+                                                                    </div>
+                                                                    <div class="listing-short-detail-flex">
+                                                                        <h5 class="rlhc-title-name verified"><a
+                                                                                href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                                class="prt-link-detail">{{ $property->name_of_project }}</a>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="rlhc-prt-location"><img
+                                                                            src="{{ url('/') }}/front/assets/img/pin.svg"
+                                                                            width="16" class="me-1"
+                                                                            alt="">{{ $property->locality }}
+                                                                    </div>
+                                                                    <div class="veshm-list-icons">
+                                                                        {{-- <ul>
                                                                         <li>
                                                                             <span>Locality :
                                                                                 {{ $property->locality }}</span>
                                                                         </li>
                                                                     </ul> --}}
-                                                                    {{-- <ul>
+                                                                        {{-- <ul>
                                                                         @foreach ($residential_property as $residential)
                                                                             @if ($property->id == $residential->property_master_id)
                                                                                 <li>
@@ -347,38 +426,641 @@
                                                                             @endif
                                                                         @endforeach
                                                                     </ul> --}}
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            {{-- <div class="veshm-list-head-flex">
+                                                                {{-- <div class="veshm-list-head-flex">
                                         <button class="btn btn-like active" type="button"><i
                                                 class="fa-solid fa-heart-circle-check"></i></button>
                                     </div> --}}
-                                                        </div>
+                                                            </div>
 
-                                                        <div class="resi-prty-offers-box">
+                                                            <div class="resi-prty-offers-box">
 
-                                                            <div class="prty-offers-btn text-center">
+                                                                <div class="prty-offers-btn text-center">
 
-                                                                <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
-                                                                    class="btn btn-offer-send">See Details</a>
+                                                                    <a href="{{ route('propertydetails', [$property->id, $property->property_type_id, $property->name_of_project, $property->client_master_id]) }}"
+                                                                        class="btn btn-offer-send">See Details</a>
+                                                                </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
+                                                    {{-- </div> --}}
 
                                                 </div>
-                                                {{-- </div> --}}
-
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="swiper-pagination"></div> --}}
                                     </div>
-                                    {{-- <div class="swiper-pagination"></div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
+            @endif
+            <!-- End-->
+
+            <!-- Commercial Property Swiper -->
+            @if (count($commercial) >= 1)
+                <div class="container">
+                    <h3>Commercial Properties for Rent</h3>
+                    {{-- <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-10 text-center">
+
+                        <div class="sec-heading center">
+
+                        </div>
+                    </div>
+                </div> --}}
+
+                    <div class="row gx-4 gy-4">
+                        <!-- Single Package -->
+                        {{-- <div class="col-xl-4 collg-4 col-md-4 col-sm-12 col-12"> --}}
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($commercial as $commercials)
+                                                <div class="swiper-slide">
+                                                    {{-- @php
+                                                    $commercial_property = CommercialProperty::where('flag', 1)->get();
+                                                    $residential_property = ResidentialProperty::where('flag', 1)->get();
+                                                    $industrial_property = IndustrialProperty::where('flag', 1)->get();
+                                                    $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
+                                                @endphp --}}
+                                                    <div class="veshm-list-wraps">
+                                                        @if ($commercials->property_status == 'Sale')
+                                                            <div class="veshm-type fr-sale"><span>For
+                                                                    {{ $commercials->property_status }}</span>
+                                                            </div>
+                                                        @elseif($commercials->property_status == 'Rent/Lease')
+                                                            <div class="veshm-type"><span>For
+                                                                    {{ $commercials->property_status }}</span></div>
+                                                        @elseif($commercials->property_status == 'PG/Hostel')
+                                                            <div class="veshm-type fr-pg"><span>For
+                                                                    {{ $commercials->property_status }}</span>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="veshm-list-thumb">
+
+                                                            <div class="veshm-list-img-slide">
+                                                                <div class="veshm-list-click">
+                                                                    <div>
+                                                                        @if ($commercials->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$commercials->id, $commercials->property_type_id, $commercials->name_of_project, $commercials->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$commercials->id, $commercials->property_type_id, $commercials->name_of_project, $commercials->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $commercials->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-block">
+                                                            <div class="veshm-list-head">
+                                                                <div class="veshm-list-head-caption">
+                                                                    <div class="rlhc-price">
+                                                                        <h4 class="rlhc-price-name theme-cl">
+                                                                            ₹{{ $commercials->display_price }}
+                                                                            <span class="monthly">Onwards /-</span>
+                                                                        </h4>
+
+                                                                        {{-- @if ($property->property_status == 'Sale')
+                                                                        <span class="monthly">One Time</span>
+                                                                    @elseif ($property->property_status == 'Rent/Lease')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @elseif ($property->property_status == 'PG/Hostel')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @endif --}}
+                                                                    </div>
+                                                                    <div class="listing-short-detail-flex">
+                                                                        <h5 class="rlhc-title-name verified"><a
+                                                                                href="{{ route('propertydetails', [$commercials->id, $commercials->property_type_id, $commercials->name_of_project, $commercials->client_master_id]) }}"
+                                                                                class="prt-link-detail">{{ $property->name_of_project }}</a>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="rlhc-prt-location"><img
+                                                                            src="{{ url('/') }}/front/assets/img/pin.svg"
+                                                                            width="16" class="me-1"
+                                                                            alt="">{{ $commercials->locality }}
+                                                                    </div>
+                                                                    <div class="veshm-list-icons">
+                                                                        {{-- <ul>
+                                                                        <li>
+                                                                            <span>Locality :
+                                                                                {{ $property->locality }}</span>
+                                                                        </li>
+                                                                    </ul> --}}
+                                                                        {{-- <ul>
+                                                                        @foreach ($residential_property as $residential)
+                                                                            @if ($property->id == $residential->property_master_id)
+                                                                                <li>
+                                                                                    @if ($residential->total_bedrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
+                                                                                            Bed</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->total_bathrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
+                                                                                            Ba</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->carpet_area != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        @foreach ($commercial_property as $commercial)
+                                                                            @if ($property->id == $commercial->property_master_id)
+                                                                                <li>
+                                                                                    @if ($commercial->total_floor != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
+                                                                                            Floor</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
+                                                                                            Washroom</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul> --}}
+                                                                    </div>
+                                                                </div>
+                                                                {{-- <div class="veshm-list-head-flex">
+                                        <button class="btn btn-like active" type="button"><i
+                                                class="fa-solid fa-heart-circle-check"></i></button>
+                                    </div> --}}
+                                                            </div>
+
+                                                            <div class="resi-prty-offers-box">
+
+                                                                <div class="prty-offers-btn text-center">
+
+                                                                    <a href="{{ route('propertydetails', [$commercials->id, $commercials->property_type_id, $commercials->name_of_project, $commercials->client_master_id]) }}"
+                                                                        class="btn btn-offer-send">See Details</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    {{-- </div> --}}
+
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="swiper-pagination"></div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
+            <!-- End-->
+
+            <!-- Industrial Property Swiper -->
+            @if (count($industrial) >= 1)
+                <div class="container">
+                    <h3>Industrial Properties for Rent</h3>
+                    {{-- <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-10 text-center">
+
+                        <div class="sec-heading center">
+
+                        </div>
+                    </div>
+                </div> --}}
+
+                    <div class="row gx-4 gy-4">
+                        <!-- Single Package -->
+                        {{-- <div class="col-xl-4 collg-4 col-md-4 col-sm-12 col-12"> --}}
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($industrial as $industrials)
+                                                <div class="swiper-slide">
+                                                    {{-- @php
+                                                    $commercial_property = CommercialProperty::where('flag', 1)->get();
+                                                    $residential_property = ResidentialProperty::where('flag', 1)->get();
+                                                    $industrial_property = IndustrialProperty::where('flag', 1)->get();
+                                                    $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
+                                                @endphp --}}
+                                                    <div class="veshm-list-wraps">
+                                                        @if ($industrials->property_status == 'Sale')
+                                                            <div class="veshm-type fr-sale"><span>For
+                                                                    {{ $industrials->property_status }}</span>
+                                                            </div>
+                                                        @elseif($industrials->property_status == 'Rent/Lease')
+                                                            <div class="veshm-type"><span>For
+                                                                    {{ $industrials->property_status }}</span></div>
+                                                        @elseif($industrials->property_status == 'PG/Hostel')
+                                                            <div class="veshm-type fr-pg"><span>For
+                                                                    {{ $industrials->property_status }}</span>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="veshm-list-thumb">
+
+                                                            <div class="veshm-list-img-slide">
+                                                                <div class="veshm-list-click">
+                                                                    <div>
+                                                                        @if ($industrials->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$industrials->id, $industrials->property_type_id, $industrials->name_of_project, $industrials->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$industrials->id, $industrials->property_type_id, $industrials->name_of_project, $industrials->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $industrials->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-block">
+                                                            <div class="veshm-list-head">
+                                                                <div class="veshm-list-head-caption">
+                                                                    <div class="rlhc-price">
+                                                                        <h4 class="rlhc-price-name theme-cl">
+                                                                            ₹{{ $industrials->display_price }}
+                                                                            <span class="monthly">Onwards /-</span>
+                                                                        </h4>
+
+                                                                        {{-- @if ($property->property_status == 'Sale')
+                                                                        <span class="monthly">One Time</span>
+                                                                    @elseif ($property->property_status == 'Rent/Lease')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @elseif ($property->property_status == 'PG/Hostel')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @endif --}}
+                                                                    </div>
+                                                                    <div class="listing-short-detail-flex">
+                                                                        <h5 class="rlhc-title-name verified"><a
+                                                                                href="{{ route('propertydetails', [$industrials->id, $industrials->property_type_id, $industrials->name_of_project, $industrials->client_master_id]) }}"
+                                                                                class="prt-link-detail">{{ $property->name_of_project }}</a>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="rlhc-prt-location"><img
+                                                                            src="{{ url('/') }}/front/assets/img/pin.svg"
+                                                                            width="16" class="me-1"
+                                                                            alt="">{{ $industrials->locality }}
+                                                                    </div>
+                                                                    <div class="veshm-list-icons">
+                                                                        {{-- <ul>
+                                                                        <li>
+                                                                            <span>Locality :
+                                                                                {{ $property->locality }}</span>
+                                                                        </li>
+                                                                    </ul> --}}
+                                                                        {{-- <ul>
+                                                                        @foreach ($residential_property as $residential)
+                                                                            @if ($property->id == $residential->property_master_id)
+                                                                                <li>
+                                                                                    @if ($residential->total_bedrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
+                                                                                            Bed</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->total_bathrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
+                                                                                            Ba</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->carpet_area != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        @foreach ($commercial_property as $commercial)
+                                                                            @if ($property->id == $commercial->property_master_id)
+                                                                                <li>
+                                                                                    @if ($commercial->total_floor != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
+                                                                                            Floor</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
+                                                                                            Washroom</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul> --}}
+                                                                    </div>
+                                                                </div>
+                                                                {{-- <div class="veshm-list-head-flex">
+                                        <button class="btn btn-like active" type="button"><i
+                                                class="fa-solid fa-heart-circle-check"></i></button>
+                                    </div> --}}
+                                                            </div>
+
+                                                            <div class="resi-prty-offers-box">
+
+                                                                <div class="prty-offers-btn text-center">
+
+                                                                    <a href="{{ route('propertydetails', [$industrials->id, $industrials->property_type_id, $industrials->name_of_project, $industrials->client_master_id]) }}"
+                                                                        class="btn btn-offer-send">See Details</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    {{-- </div> --}}
+
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="swiper-pagination"></div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
+            <!-- End-->
+
+            <!-- Agricultural Property Swiper -->
+            @if (count($agricultural) >= 1)
+                <div class="container">
+                    <h3>Agricultural Properties for Rent</h3>
+                    {{-- <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-10 text-center">
+
+                        <div class="sec-heading center">
+
+                        </div>
+                    </div>
+                </div> --}}
+
+                    <div class="row gx-4 gy-4">
+                        <!-- Single Package -->
+                        {{-- <div class="col-xl-4 collg-4 col-md-4 col-sm-12 col-12"> --}}
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($agricultural as $agriculturals)
+                                                <div class="swiper-slide">
+                                                    {{-- @php
+                                                    $commercial_property = CommercialProperty::where('flag', 1)->get();
+                                                    $residential_property = ResidentialProperty::where('flag', 1)->get();
+                                                    $industrial_property = IndustrialProperty::where('flag', 1)->get();
+                                                    $agriculture_property = AgriculturalProperty::where('flag', 1)->get();
+                                                @endphp --}}
+                                                    <div class="veshm-list-wraps">
+                                                        @if ($agriculturals->property_status == 'Sale')
+                                                            <div class="veshm-type fr-sale"><span>For
+                                                                    {{ $agriculturals->property_status }}</span>
+                                                            </div>
+                                                        @elseif($agriculturals->property_status == 'Rent/Lease')
+                                                            <div class="veshm-type"><span>For
+                                                                    {{ $agriculturals->property_status }}</span></div>
+                                                        @elseif($agriculturals->property_status == 'PG/Hostel')
+                                                            <div class="veshm-type fr-pg"><span>For
+                                                                    {{ $agriculturals->property_status }}</span>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="veshm-list-thumb">
+
+                                                            <div class="veshm-list-img-slide">
+                                                                <div class="veshm-list-click">
+                                                                    <div>
+                                                                        @if ($agriculturals->cover_image == null)
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$agriculturals->id, $agriculturals->property_type_id, $agriculturals->name_of_project, $agriculturals->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/no-photo.png') }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('propertydetails', [$agriculturals->id, $agriculturals->property_type_id, $agriculturals->name_of_project, $agriculturals->client_master_id]) }}"><img
+                                                                                    src="{{ asset('storage/property/banner_image/' . $agriculturals->cover_image) }}"
+                                                                                    class="img-fluid mx-auto"
+                                                                                    alt=""
+                                                                                    style="width: 500px; height: 300px;"></a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="veshm-list-block">
+                                                            <div class="veshm-list-head">
+                                                                <div class="veshm-list-head-caption">
+                                                                    <div class="rlhc-price">
+                                                                        <h4 class="rlhc-price-name theme-cl">
+                                                                            ₹{{ $agriculturals->display_price }}
+                                                                            <span class="monthly">Onwards /-</span>
+                                                                        </h4>
+
+                                                                        {{-- @if ($property->property_status == 'Sale')
+                                                                        <span class="monthly">One Time</span>
+                                                                    @elseif ($property->property_status == 'Rent/Lease')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @elseif ($property->property_status == 'PG/Hostel')
+                                                                        <span class="monthly">/Months</span>
+                                                                    @endif --}}
+                                                                    </div>
+                                                                    <div class="listing-short-detail-flex">
+                                                                        <h5 class="rlhc-title-name verified"><a
+                                                                                href="{{ route('propertydetails', [$agriculturals->id, $agriculturals->property_type_id, $agriculturals->name_of_project, $agriculturals->client_master_id]) }}"
+                                                                                class="prt-link-detail">{{ $property->name_of_project }}</a>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="rlhc-prt-location"><img
+                                                                            src="{{ url('/') }}/front/assets/img/pin.svg"
+                                                                            width="16" class="me-1"
+                                                                            alt="">{{ $agriculturals->locality }}
+                                                                    </div>
+                                                                    <div class="veshm-list-icons">
+                                                                        {{-- <ul>
+                                                                        <li>
+                                                                            <span>Locality :
+                                                                                {{ $property->locality }}</span>
+                                                                        </li>
+                                                                    </ul> --}}
+                                                                        {{-- <ul>
+                                                                        @foreach ($residential_property as $residential)
+                                                                            @if ($property->id == $residential->property_master_id)
+                                                                                <li>
+                                                                                    @if ($residential->total_bedrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bed"></i><span>{{ $residential->total_bedrooms }}
+                                                                                            Bed</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->total_bathrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-bath"></i><span>{{ $residential->total_bathrooms }}
+                                                                                            Ba</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($residential->carpet_area != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $residential->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        @foreach ($commercial_property as $commercial)
+                                                                            @if ($property->id == $commercial->property_master_id)
+                                                                                <li>
+                                                                                    @if ($commercial->total_floor != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-layer-group"></i><span>{{ $commercial->total_floor }}
+                                                                                            Floor</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fas fa-toilet"></i><span>{{ $commercial->total_washrooms }}
+                                                                                            Washroom</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li>
+                                                                                    @if ($commercial->total_washrooms != null)
+                                                                                        <i
+                                                                                            class="fa-solid fa-vector-square"></i><span>{{ $commercial->carpet_area }}
+                                                                                            sft</span>
+                                                                                    @endif
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul> --}}
+                                                                    </div>
+                                                                </div>
+                                                                {{-- <div class="veshm-list-head-flex">
+                                        <button class="btn btn-like active" type="button"><i
+                                                class="fa-solid fa-heart-circle-check"></i></button>
+                                    </div> --}}
+                                                            </div>
+
+                                                            <div class="resi-prty-offers-box">
+
+                                                                <div class="prty-offers-btn text-center">
+
+                                                                    <a href="{{ route('propertydetails', [$agriculturals->id, $agriculturals->property_type_id, $agriculturals->name_of_project, $agriculturals->client_master_id]) }}"
+                                                                        class="btn btn-offer-send">See Details</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    {{-- </div> --}}
+
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="swiper-pagination"></div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
+            <!-- End-->
+
+            {{-- <div class="col-md-12">
+                <div class="mySwiper swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @foreach ($properties as $property)
+                            <div class="swiper-slide">
+                                <div class="card card_city ">
+                                    <img src="{{ asset('storage/property/banner_image/' . $property->cover_image) }}"
+                                        class="card-img" alt="...">
+                                    <div class="card-img-overlay text-white ">
+                                        <h5 class="card-title" style="color: red">{{ $property->locality }}</h5>
+                                    </div>
+                                    <div class="card-img-overlay text-white d-flex align-items-end">
+                                        <p class="card-text"><small class="mx-2" style="color: red">Explore
+                                                Now</small>
+                                            <i class="fa-solid fa-circle-chevron-right"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <!-- If we need pagination -->
+                    <!--   <div class="swiper-pagination"></div> -->
+
+                    <!-- If we need navigation buttons -->
+                    <!--   <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div> -->
+                </div>
+            </div> --}}
+
         </section>
 
         @include('front.assets.footer')
@@ -396,10 +1078,11 @@
 
     @include('front.assets.scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="{{ url('/') }}/front/assets/js/filtervalidation.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 30,
             mousewheel: true,
             pagination: {
@@ -475,6 +1158,25 @@
             });
         });
     </script>
+    //
+    <!-- Initialize Swiper -->
+    {{-- <script>
+        var swiper = new Swiper(".mySwiper", {
+            // Optional parameters
+            // slidesPerView: 5,
+            spaceBetween: 0,
+            centeredSlides: true,
+            speed: 1500,
+            autoplay: {
+                delay: 0,
+            },
+            loop: true,
+            slidesPerView: 'auto',
+            allowTouchMove: false,
+            disableOnInteraction: true,
+        });
+    </script> --}}
+
 
 </body>
 

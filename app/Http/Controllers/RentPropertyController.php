@@ -18,11 +18,14 @@ class RentPropertyController extends Controller
 {
     public function rent()
     {
-        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
+        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->where('property_type_id',1)->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
+        $commercial = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->where('property_type_id',2)->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
+        $industrial = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->where('property_type_id',3)->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
+        $agricultural = PropertyMaster::where('flag', 1)->where('property_status', 'Rent/Lease')->where('property_type_id',4)->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
         $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
-        return view('front.rent', compact('properties', 'city', 'propertyType', 'taluka'));
+        return view('front.rent', compact('properties', 'city', 'propertyType', 'taluka','commercial','industrial','agricultural'));
     }
 
     public function searchRentProperty(Request $request)

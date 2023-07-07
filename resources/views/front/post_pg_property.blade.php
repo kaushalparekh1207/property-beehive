@@ -231,10 +231,11 @@
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="logins-part" id="logins-part-trigger">
                                                                 <span class="bs-stepper-circle">1</span>
-                                                                <span class="bs-stepper-label">Basic Information</span>
+                                                                <span class="bs-stepper-label">Property
+                                                                    Details</span>
                                                             </button>
                                                         </div>
-                                                        <div class="line"></div>
+                                                        {{-- <div class="line"></div>
                                                         <div class="step" data-target="#information-part">
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="information-part"
@@ -243,13 +244,13 @@
                                                                 <span class="bs-stepper-label">Property
                                                                     Details</span>
                                                             </button>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="line"></div>
                                                         <div class="step" data-target="#information-part">
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="information-part"
                                                                 id="information-part-trigger">
-                                                                <span class="bs-stepper-circle">3</span>
+                                                                <span class="bs-stepper-circle">2</span>
                                                                 <span class="bs-stepper-label">Room Details</span>
                                                             </button>
                                                         </div>
@@ -258,7 +259,7 @@
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="information-part"
                                                                 id="information-part-trigger">
-                                                                <span class="bs-stepper-circle">4</span>
+                                                                <span class="bs-stepper-circle">3</span>
                                                                 <span class="bs-stepper-label">Amenities
                                                                     (Optional)</span>
                                                             </button>
@@ -267,7 +268,7 @@
                                                         <div class="step" data-target="#photos-part">
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="photos-part" id="photos-part-trigger">
-                                                                <span class="bs-stepper-circle">5</span>
+                                                                <span class="bs-stepper-circle">4</span>
                                                                 <span class="bs-stepper-label">Photos</span>
                                                             </button>
                                                         </div>
@@ -275,7 +276,7 @@
                                                     <!-- your steps content here -->
                                                     <div id="logins-part" class="content" role="tabpanel"
                                                         aria-labelledby="logins-part-trigger">
-                                                        <h3>Property Details</h3>
+                                                        <h3>PG Details</h3>
                                                         <div class="row">
                                                             <div class="form-group col-md-12">
                                                                 <div class="o-features mt-2">
@@ -287,7 +288,7 @@
                                                                             <input id="propertyStatusSaleRadio"
                                                                                 class="form-check-input"
                                                                                 name="property_status" type="radio"
-                                                                                value="Sale">
+                                                                                value="Sale" disabled>
                                                                             <label for="a-1"
                                                                                 class="form-check-label">Sale</label>
                                                                         </li>
@@ -295,15 +296,15 @@
                                                                             <input id="propertyStatusRentRadio"
                                                                                 class="form-check-input"
                                                                                 name="property_status" type="radio"
-                                                                                value="Rent/Lease">
+                                                                                value="Rent/Lease" disabled>
                                                                             <label for="a-2"
                                                                                 class="form-check-label">Rent/Lease</label>
                                                                         </li>
                                                                         <li class="col-xl-3 col-lg-3 col-md-6 col-6">
                                                                             <input id="propertyStatusPgRadio"
-                                                                                class="form-check-input"
+                                                                                class="form-check-input checked"
                                                                                 name="property_status" type="radio"
-                                                                                value="PG/Hostel">
+                                                                                value="PG/Hostel" checked>
                                                                             <label for="a-3"
                                                                                 class="form-check-label">PG/Hostel</label>
                                                                         </li>
@@ -313,114 +314,476 @@
                                                             </div>
 
                                                             <div class="form-group col-md-12">
-                                                                <label>Property Type<a href="javascript:void(0)"
-                                                                        class="tip-topdata"
-                                                                        data-tip="Property Type"><i
-                                                                            class="fa-solid fa-info"></i></a></label>
-                                                                <select class="js-select2" name="property_type"
-                                                                    id="property_type">
-                                                                    <option value="" selected disabled>Select
-                                                                        Property
-                                                                        Type</option>
-                                                                    @foreach ($propertyTypes as $propertyType)
-                                                                        <option value="{{ $propertyType->id }}">
-                                                                            {{ $propertyType->property_type }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                <small id="property_type_error"></small>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12">
-                                                                <label>Property Category<a href="javascript:void(0)"
-                                                                        class="tip-topdata"
-                                                                        data-tip="Property Category"><i
-                                                                            class="fa-solid fa-info"></i></a></label>
-                                                                <select class="js-select2" name="property_category"
-                                                                    id="property_category_dropdown">
-                                                                    <option value="" selected disabled>Select
-                                                                        Property
-                                                                        Category</option>
-                                                                </select>
-                                                                <small id="property_category_error"></small>
-                                                            </div>
-
-                                                            <h3>Property Location</h3>
-                                                            <div class="form-group col-md-4">
-                                                                <label>State</label>
-                                                                <select class="js-select2" name="state_id"
-                                                                    id="state_id">
-                                                                    <option value="" selected disabled>Select
-                                                                        State
-                                                                    </option>
-                                                                    @foreach ($states as $state)
-                                                                        <option value="{{ $state->id }}">
-                                                                            {{ $state->state }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                                <small id="state_error"></small>
-                                                            </div>
-
-                                                            <div class="form-group col-md-4">
-                                                                <label>City</label>
-                                                                <select class="js-select2" name="city_id"
-                                                                    id="city_dropdown">
-                                                                    <option value="" selected disabled>Select
-                                                                        City
-                                                                    </option>
-                                                                </select>
-                                                                <small id="city_error"></small>
-                                                            </div>
-
-                                                            <div class="form-group col-md-4">
-                                                                <label>Taluka</label>
-                                                                <select class="js-select2" name="taluka_id"
-                                                                    id="taluka_dropdown">
-                                                                    <option value="" selected disabled>Select
-                                                                        Taluka
-                                                                    </option>
-                                                                </select>
-                                                                <small id="taluka_error"></small>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12">
-                                                                <label>Locality</label>
+                                                                <label>PG Name (Optional)<sup>*</sup></label>
                                                                 <input type="text" class="form-control"
-                                                                    placeholder="Enter Locality/Area" id="locality"
-                                                                    name="locality">
-                                                                <small id="area_error"></small>
-                                                            </div>
-
-                                                            <div class="form-group col-md-12 landZone">
-                                                                <label>Land Zone</label>
-                                                                <select class="js-select2" name="land_zone"
-                                                                    id="land_zone">
-                                                                    <option value="" selected disabled>Select One
-                                                                    </option>
-                                                                    <option value="Commercial">Commercial</option>
-                                                                    <option value="Transport & Communication">Transport
-                                                                        & Communication</option>
-                                                                    <option value="Public Utilities">Public Utilities
-                                                                    </option>
-                                                                    <option value="Public & Semi Public Use">Public &
-                                                                        Semi Public Use</option>
-                                                                    <option value="Open Spaces">Open Spaces</option>
-                                                                    <option value="Agricultural Zone">Agricultural Zone
-                                                                    </option>
-                                                                    <option value="Special Economic Zone">Special
-                                                                        Economic Zone</option>
-                                                                    <option value="Natural Conservation Zone">Natural
-                                                                        Conservation Zone</option>
-                                                                    <option value="Government Zone">Government Zone
-                                                                    </option>
-                                                                </select>
-                                                                <small id="land_zone_error"></small>
+                                                                    placeholder="Enter PG Name" id="pg_name"
+                                                                    name="pg_name">
+                                                                <small id="pg_name_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-12">
-                                                                <label>Address</label>
-                                                                <textarea class="form-control" style="height: 100px;" id="address" placeholder="Describe Here..." name="address"></textarea>
-                                                                <small id="address_error"></small>
+                                                                <label>Total Beds<sup>*</sup></label>
+                                                                <select class="js-select2" name="total_beds"
+                                                                    id="total_beds_dropdown">
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                    <option value="7">7</option>
+                                                                    <option value="8">8</option>
+                                                                </select>
+                                                                <small id="total_beds_error"></small>
+                                                            </div>
+
+                                                            {{-- <h3>PG Information</h3> --}}
+                                                            <div class="form-group col-md-4">
+                                                                <label>PG is For<sup>*</sup></label>
+                                                                <select class="js-select2" name="pg_for"
+                                                                    id="pg_for_dropdown" multiple>
+                                                                    <option value="">Boys
+                                                                    </option>
+                                                                    <option value="">Girls
+                                                                    </option>
+                                                                </select>
+                                                                <small id="pg_for_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Best Suitable For<sup>*</sup></label>
+                                                                <select class="js-select2" name="best_suited_for"
+                                                                    id="best_suitable_for_dropdown">
+                                                                    <option value="">Students
+                                                                    </option>
+                                                                    <option value="">Professional
+                                                                    </option>
+                                                                </select>
+                                                                <small id="best_suitable_for_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Meals Available<sup>*</sup></label>
+                                                                {{-- <input type="checkbox" name="yes"
+                                                                    id="meal_available_yes">
+                                                                <input type="checkbox" name="no"
+                                                                    id="meal_available_no"> --}}
+                                                                <select class="js-select2" name="meals_available"
+                                                                    id="meals_available_dropdown">
+                                                                    <option value="">Yes
+                                                                    </option>
+                                                                    <option value="">No
+                                                                    </option>
+                                                                </select>
+                                                                <small id="meals_available_error"></small>
+                                                            </div>
+
+                                                            {{-- Yes selected --}}
+                                                            <div class="form-group col-md-6">
+                                                                <label>Meals Offrering<sup>*</sup></label>
+                                                                <select class="js-select2" name="meals_offering"
+                                                                    id="meals_offering_dropdown" multiple>
+                                                                    <option value="">Breckfast
+                                                                    </option>
+                                                                    <option value="">Lunch
+                                                                    </option>
+                                                                    <option value="">Dinner
+                                                                    </option>
+                                                                </select>
+                                                                <small id="meals_offering_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <label>Meals Speciallity(Optional)</label>
+                                                                <select class="js-select2" name="meal_speciality"
+                                                                    id="meals_speciality_dropdown" multiple>
+                                                                    <option value="">Punjabi
+                                                                    </option>
+                                                                    <option value="">South Indian
+                                                                    </option>
+                                                                    <option value="">Andhra
+                                                                    </option>
+                                                                    <option value="">North Indian
+                                                                    </option>
+                                                                    <option value="">Others
+                                                                    </option>
+                                                                </select>
+                                                                {{-- <small id="meals_speciality_error"></small> --}}
+                                                            </div>
+                                                            {{-- End --}}
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Notice Period(Days)<sup>*</sup></label>
+                                                                <input type="number" class="form-control"
+                                                                    id="notice_period" name="notice_period"
+                                                                    value="30">
+                                                                <small id="notice_period_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Lock In Period(Days)<sup>*</sup></label>
+                                                                <input type="number" class="form-control"
+                                                                    id="lock_in_period" name="lock_in_period"
+                                                                    value="30">
+                                                                <small id="lock_in_period_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <label>Common Areas<sup>*</sup></label>
+                                                                <select class="js-select2" name="common_areas"
+                                                                    id="meals_speciality_dropdown" multiple>
+                                                                    <option value="">Living Rooms
+                                                                    </option>
+                                                                    <option value="">Kitchen
+                                                                    </option>
+                                                                    <option value="">Dining Hall
+                                                                    </option>
+                                                                    <option value="">Study Rooms/ Library
+                                                                    </option>
+                                                                    <option value="">Breack Out
+                                                                    </option>
+                                                                </select>
+                                                                <small id="meals_speciality_error"></small>
+                                                            </div>
+
+                                                            <h3>Owner / Caretaker Details</h3>
+                                                            <div class="form-group col-md-12">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Property Managed By
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Land
+                                                                                Lord</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">Charetaker</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input checked"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-3"
+                                                                                class="form-check-label">Dedicated
+                                                                                Professional</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Property Manager stays at Property
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                        {{-- <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input checked"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-3"
+                                                                                class="form-check-label">Dedicated
+                                                                                Professional</label>
+                                                                        </li> --}}
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Non Veg Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="non_veg_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="non_veg_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Opposite Sex Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="opposite_sex_allowed"
+                                                                                type="radio" value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="opposite_sex_allowed"
+                                                                                type="radio" value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                        {{-- <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input checked"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-3"
+                                                                                class="form-check-label">Dedicated
+                                                                                Professional</label>
+                                                                        </li> --}}
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Any Time Aloowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="any_time_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="any_time_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Visitors Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="visitors_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="visitors_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                        {{-- <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input checked"
+                                                                                name="property_status" type="radio"
+                                                                                value="">
+                                                                            <label for="a-3"
+                                                                                class="form-check-label">Dedicated
+                                                                                Professional</label>
+                                                                        </li> --}}
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Gardian Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="guardian_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="guardian_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="guardian_allowed_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Drinking Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="drinking_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="drinking_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                        {{-- <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusPgRadio"
+                                                                                class="form-check-input checked"
+                                                                                name="drinking_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-3"
+                                                                                class="form-check-label">Dedicated
+                                                                                Professional</label>
+                                                                        </li> --}}
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="property_status_error"></small>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4">
+                                                                <div class="o-features mt-2">
+                                                                    <ul class="no-ul-list row">
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <label>Smoking Allowed
+                                                                                <sup>*</sup></label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="smoking_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label">Yes</label>
+                                                                        </li>
+                                                                        <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                            <input id="propertyStatusRentRadio"
+                                                                                class="form-check-input"
+                                                                                name="smoking_allowed" type="radio"
+                                                                                value="">
+                                                                            <label for="a-2"
+                                                                                class="form-check-label">No</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <small id="smoking_allowed_error"></small>
+                                                            </div>
+
+                                                            <h3>Other PG Details</h3>
+                                                            <div class="form-group col-md-12">
+                                                                <div id="form-field" class="form-floating mb-4">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Credit card number"
+                                                                        name="onetime_move_in_charges"
+                                                                        id="onetime_move_in_charges" required>
+                                                                    <label>Onetime Move in Charges (Optional)</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <div id="form-field" class="form-floating mb-4">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Credit card number"
+                                                                        name="meal_charges_per_month"
+                                                                        id="meal_charges_per_month" required>
+                                                                    <label>Meal Charges per Month (Optional)</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <div id="form-field" class="form-floating mb-4">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Credit card number"
+                                                                        name="electricity_charges_per_month"
+                                                                        id="electricity_charges_per_month" required>
+                                                                    <label>Electric Charges per Month (Optional)</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <div id="form-field" class="form-floating mb-4">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Credit card number"
+                                                                        name="additional_information"
+                                                                        id="additional_information" required>
+                                                                    <label>Add Additional Information (Optional)</label>
+                                                                </div>
                                                             </div>
 
                                                         </div>
@@ -435,6 +798,43 @@
                                                         aria-labelledby="information-part-trigger">
 
                                                         <h3>Property Details</h3>
+
+                                                        <div class="form-group col-md-12">
+                                                            <div class="o-features mt-2">
+                                                                <ul class="no-ul-list row">
+                                                                    <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                        <label>Property Managed By <sup>*</sup></label>
+                                                                    </li>
+                                                                    <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                        <input id="propertyStatusSaleRadio"
+                                                                            class="form-check-input"
+                                                                            name="property_status" type="checkbox"
+                                                                            value="">
+                                                                        <label for="a-1"
+                                                                            class="form-check-label">Land Lord</label>
+                                                                    </li>
+                                                                    <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                        <input id="propertyStatusRentRadio"
+                                                                            class="form-check-input"
+                                                                            name="property_status" type="checkbox"
+                                                                            value="Rent/Lease">
+                                                                        <label for="a-2"
+                                                                            class="form-check-label">Charetaker</label>
+                                                                    </li>
+                                                                    <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                        <input id="propertyStatusPgRadio"
+                                                                            class="form-check-input checked"
+                                                                            name="property_status" type="radio"
+                                                                            value="PG/Hostel">
+                                                                        <label for="a-3"
+                                                                            class="form-check-label">Dedicated
+                                                                            Professional</label>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <small id="property_status_error"></small>
+                                                        </div>
+
                                                         <div class="row">
                                                             <div class="form-group col-md-12">
                                                                 <label>Property Title<a href="#"
@@ -1177,7 +1577,8 @@
 
                                                 {{-- <button type="button" id="prev_step" class="btn btn-primary btn-sm"
                                                     --}} {{-- onclick="stepper.previous()">Previous Step</button> --}}
-                                                <a href="{{ route('myProperties') }}" class="btn btn-primary btn-sm"
+                                                <a href="{{ route('myProperties') }}"
+                                                    class="btn btn-primary btn-sm"
                                                     style="background-color: #dc3545; border: none;">Submit</a>
                                             </div>
                                         </div>

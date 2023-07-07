@@ -78,6 +78,39 @@
                     <li class="@yield('propertyServices')"><a href="JavaScript:Void(0);">Property Services<span
                                 class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
+                            <li><a href="JavaScript:Void(0);">Home Services<span class="submenu-indicator"></span></a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="grid-style-1.html">Home Loans</a></li>
+                                    <li><a href="grid-style-2.html">Pest Control</a></li>
+                                    <li><a href="grid-style-3.html">Sanitization</a></li>
+                                    <li><a href="grid-full-style-1.html">Design & Decor</a></li>
+                                    <li><a href="grid-full-style-2.html">Packers & Movers</a></li>
+                                    <li><a href="grid-full-style-2.html">Business Loans</a></li>
+                                    <li><a href="grid-full-style-2.html">Loan Transfer</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="JavaScript:Void(0);">Sale Services<span class="submenu-indicator"></span></a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="list-style-1.html">Legal Services</a></li>
+                                    <li><a href="list-style-2.html">Vastu</a></li>
+                                    <li><a href="list-full-style-1.html">Property
+                                            Inspection</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="JavaScript:Void(0);">Rent Services<span class="submenu-indicator"></span></a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="half-map.html">Pay Rent via
+                                            Credit card</a></li>
+                                    <li><a href="half-map-2.html">Rent Agreement</a></li>
+                                    <li><a href="half-map-3.html">Tenant
+                                            Verification</a></li>
+                                    <li><a href="half-map-list.html">Rent Collection</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        {{-- <ul class="nav-dropdown nav-submenu">
                             <li><a href="{{ route('rentAgreement') }}">Rent Agreement<span
                                         class="submenu-indicator"></span></a>
 
@@ -93,8 +126,9 @@
                             <li><a href="{{ route('loan') }}">Loan<span class="submenu-indicator"></span></a>
 
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
+
                     {{-- <li class="@yield('contact_us')"><a href="contact.php">Contact US<span
                                 class="submenu-indicator"></span></a>
 

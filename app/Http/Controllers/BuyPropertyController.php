@@ -18,11 +18,15 @@ class BuyPropertyController extends Controller
 {
     public function buy()
     {
-        $properties = PropertyMaster::where('flag', 1)->where('property_status', 'Sale')->limit(10)->get();
+        $residentialproperties = PropertyMaster::where('property_type_id', 1)->where('flag', 1)->where('property_status', 'Sale')->inRandomOrder()->limit(10)->get();
+        $commercialproperties = PropertyMaster::where('property_type_id', 2)->where('flag', 1)->where('property_status', 'Sale')->limit(10)->get();
+        $industrialproperties = PropertyMaster::where('property_type_id', 3)->where('flag', 1)->where('property_status', 'Sale')->inRandomOrder()->limit(10)->get();
+        $agriculturalproperties = PropertyMaster::where('property_type_id', 4)->where('flag', 1)->where('property_status', 'Sale')->inRandomOrder()->limit(10)->get();
+
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
         $propertyType = PropertyType::where('flag', 1)->get(['id', 'property_type']);
-        return view('front.buy', compact('properties', 'city', 'propertyType', 'taluka'));
+        return view('front.buy', compact('residentialproperties', 'commercialproperties', 'industrialproperties', 'agriculturalproperties', 'city', 'propertyType', 'taluka'));
     }
 
     public function searchBuyProperty(Request $request)

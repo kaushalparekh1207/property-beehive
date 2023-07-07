@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AgriculturalProperty;
-use App\Models\AgricultureProperty;
 use App\Models\Amenities;
 use App\Models\City;
-use App\Models\CommercialProperty;
-use App\Models\IndustrialProperty;
 use App\Models\PropertyMaster;
 use App\Models\PropertyType;
-use App\Models\ResidentialProperty;
+use App\Models\State;
 use App\Models\Taluka;
 use Illuminate\Http\Request;
 
@@ -22,7 +18,7 @@ class PGPropertyController extends Controller
         $properties = PropertyMaster::where('flag', 1)->where('property_status', 'PG/Hostel')->limit(10)->get(['id', 'property_status', 'cover_image', 'property_type_id', 'name_of_project', 'client_master_id', 'display_price', 'locality']);
         $city = City::where('flag', 1)->get(['id', 'city']);
         $taluka = Taluka::where('flag', 1)->get(['id', 'taluka']);
-        $propertyType = PropertyType::where('flag', 1)->where('id',1)->get(['id', 'property_type']);
+        $propertyType = PropertyType::where('flag', 1)->where('id', 1)->get(['id', 'property_type']);
         return view('front.pg', compact('properties', 'city', 'propertyType', 'taluka'));
     }
 
@@ -561,5 +557,15 @@ class PGPropertyController extends Controller
             }
         }
 
+    }
+
+    public function addPGPropertyDetails()
+    {
+        $amenities = Amenities::where('flag', 1)->get();
+        $propertyTypes = PropertyType::where('flag', 1)->get();
+        $states = State::where('flag', 1)->get();
+        $cities = City::where('flag', 1)->get();
+        $taluka = Taluka::where('flag', 1)->get();
+        return view('front.post_pg_property', compact('propertyTypes', 'states', 'cities', 'amenities', 'taluka'));
     }
 }

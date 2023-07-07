@@ -1,4 +1,15 @@
 $(document).ready(function () {
+
+    /* Get Radio Button Values */
+    $(".form-check-input").change(function(){
+        // bind a function to the change event
+        if( $(this).is(":checked") ){ // check if the radio is checked
+            var selected_value = $(this).val(); // retrieve the value
+            if(selected_value == 'PG/Hostel'){
+                window.location.href = '/add_pg_property_details';
+            }
+        }
+    });
     /* Property Status Validation */
     let propertyStatusError = false;
     // $("#property_type").on('change',function () {

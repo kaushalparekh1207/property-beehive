@@ -254,6 +254,9 @@ Route::post('/insert_property_data_ajax', [PropertyMasterController::class, 'pro
 Route::get('/property/edit/{id}', [PropertyMasterController::class, 'editProperty'])->name('editProperty')->middleware('checkfrontsession');
 Route::post('/property/edit/propertyData', [PropertyMasterController::class, 'editPropertyData'])->name('editPropertyData')->middleware('checkfrontsession');
 
+// Add PG Properties
+Route::get('/add_pg_property_details', [PGPropertyController::class, 'addPGPropertyDetails'])->name('addPGPropertyDetails');
+
 // Upload Documents/Images for Property
 Route::post('/upload_banner', [PropertyFileController::class, 'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');
 Route::post('/upload_master_plan', [PropertyFileController::class, 'uploadPropertyMasterPlanImage'])->name('uploadPropertyMasterPlanImage');

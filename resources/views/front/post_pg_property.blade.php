@@ -87,8 +87,8 @@
                                     <div class="col-lg-12 col-md-12">
 
                                         <div class="submit-page">
-                                            <form class="" id="propertyForm" method="POST"
-                                                action="{{ route('propertyDataInsertAjax') }}">
+                                            <form class="" id="pgpropertyForm" method="POST"
+                                                action="{{ route('PGpropertyDataInsertAjax') }}">
                                                 <input type="hidden" name="_token" id="token"
                                                     value="{{ csrf_token() }}">
                                                 <div class="bs-stepper">
@@ -222,9 +222,9 @@
                                                                 <label>PG is For<sup>*</sup></label>
                                                                 <select class="js-select2" name="pg_for"
                                                                     id="pg_for_dropdown" multiple>
-                                                                    <option value="">Boys
+                                                                    <option value="Boys">Boys
                                                                     </option>
-                                                                    <option value="">Girls
+                                                                    <option value="Girls">Girls
                                                                     </option>
                                                                 </select>
                                                                 <small id="pg_for_error"></small>
@@ -235,9 +235,9 @@
                                                                 <select class="js-select2" name="best_suited_for"
                                                                     id="best_suitable_for_dropdown">
 
-                                                                    <option value="">Students
+                                                                    <option value="Students">Students
                                                                     </option>
-                                                                    <option value="">Professional
+                                                                    <option value="Professional">Professional
                                                                     </option>
                                                                 </select>
                                                                 <small id="suitable_error"></small>
@@ -264,11 +264,11 @@
                                                                 <label>Meals Offrering<sup>*</sup></label>
                                                                 <select class="js-select2" name="meals_offering"
                                                                     id="meals_offering" multiple>
-                                                                    <option value="">Breckfast
+                                                                    <option value="Breckfast">Breckfast
                                                                     </option>
-                                                                    <option value="">Lunch
+                                                                    <option value="Lunch">Lunch
                                                                     </option>
-                                                                    <option value="">Dinner
+                                                                    <option value="Dinner">Dinner
                                                                     </option>
                                                                 </select>
                                                                 <small id="mealoffrering_error"></small>
@@ -278,15 +278,15 @@
                                                                 <label>Meals Speciallity(Optional)</label>
                                                                 <select class="js-select2" name="meal_speciality"
                                                                     id="meals_speciality_dropdown" multiple>
-                                                                    <option value="">Punjabi
+                                                                    <option value="Punjabi">Punjabi
                                                                     </option>
-                                                                    <option value="">South Indian
+                                                                    <option value="South Indian">South Indian
                                                                     </option>
-                                                                    <option value="">Andhra
+                                                                    <option value="Andhra">Andhra
                                                                     </option>
-                                                                    <option value="">North Indian
+                                                                    <option value="North Indian">North Indian
                                                                     </option>
-                                                                    <option value="">Others
+                                                                    <option value="Others">Others
                                                                     </option>
                                                                 </select>
                                                                 {{-- <small id="meals_speciality_error"></small> --}}
@@ -311,15 +311,16 @@
                                                                 <label>Common Areas<sup>*</sup></label>
                                                                 <select class="js-select2" name="common_areas"
                                                                     id="common_areas" multiple>
-                                                                    <option value="">Living Rooms
+                                                                    <option value=">Living Rooms">Living Rooms
                                                                     </option>
-                                                                    <option value="">Kitchen
+                                                                    <option value="Kitchen">Kitchen
                                                                     </option>
-                                                                    <option value="">Dining Hall
+                                                                    <option value="Dining Hall">Dining Hall
                                                                     </option>
-                                                                    <option value="">Study Rooms/ Library
+                                                                    <option value="Study Rooms/Library">Study Rooms/
+                                                                        Library
                                                                     </option>
-                                                                    <option value="">Breack Out
+                                                                    <option value="Breack Out">Breack Out
                                                                     </option>
                                                                 </select>
                                                                 <small id="commonareas_error"></small>
@@ -330,98 +331,98 @@
                                                                 <label>Non Veg Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="non_veg_allowed"
-                                                                    id="non_veg_allowed_dropdown">
+                                                                    id="non_veg_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="non_veg_allowed_error"></small>
+                                                                <small id="nonveg_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-3">
                                                                 <label>Opposite Sex Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="opposite_sex_allowed"
-                                                                    id="opposite_sex_allowed_dropdown">
+                                                                    id="opposite_sex_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="opposite_sex_allowed_error"></small>
+                                                                <small id="oppositesexallowed_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-3">
-                                                                <label>Any Time Aloowed
+                                                                <label>Any Time Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="any_time_allowed"
-                                                                    id="any_time_allowed_dropdown">
+                                                                    id="any_time_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="any_time_allowed_error"></small>
+                                                                <small id="anytime_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-3">
                                                                 <label>Visitors Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="visitors_allowed"
-                                                                    id="visitors_allowed_dropdown">
+                                                                    id="visitors_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="visitors_allowed_error"></small>
+                                                                <small id="visitorsallowed_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Gardian Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="guardian_allowed"
-                                                                    id="guardian_allowed_dropdown">
+                                                                    id="guardian_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="guardian_allowed_error"></small>
+                                                                <small id="Gardiansallowed_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Drinking Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="drinking_allowed"
-                                                                    id="drinking_allowed_dropdown">
+                                                                    id="drinking_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="drinking_allowed_error"></small>
+                                                                <small id="drinkingallowed_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Smoking Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="smoking_allowed"
-                                                                    id="smoking_allowed_dropdown">
+                                                                    id="smoking_allowed">
                                                                     <option selected disabled>select</option>
-                                                                    <option value="">Yes
+                                                                    <option value="Yes">Yes
                                                                     </option>
-                                                                    <option value="">No
+                                                                    <option value="No">No
                                                                     </option>
                                                                 </select>
-                                                                <small id="smoking_allowed_error"></small>
+                                                                <small id="smokingallowed_error"></small>
                                                             </div>
 
                                                             <h3>Other PG Details</h3>
@@ -471,6 +472,10 @@
                                                             class="btn btn-primary btn-sm"
                                                             onclick="stepper.next()">Next
                                                             Step</button><br><br>
+                                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                            id="btn-submit"
+                                                            style="background-color: #dc3545; border: none;">Next
+                                                            Step</button>
 
                                                     </div>
                                                     <div id="information-part" class="content" role="tabpanel"
@@ -1472,6 +1477,13 @@
                                                     <div id="aminities-part" class="content" role="tabpanel"
                                                         aria-labelledby="aminities-part-trigger">
                                                         <h1>Hola</h1>
+                                                        <button type="button" id="prev_step1"
+                                                            class="btn btn-primary btn-sm"
+                                                            onclick="stepper.previous()">Previous Step</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                            id="btn-submit"
+                                                            style="background-color: #dc3545; border: none;">Next
+                                                            Step</button>
                                                     </div>
                                             </form>
 

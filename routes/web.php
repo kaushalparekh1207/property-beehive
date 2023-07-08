@@ -256,6 +256,8 @@ Route::post('/property/edit/propertyData', [PropertyMasterController::class, 'ed
 
 // Add PG Properties
 Route::get('/add_pg_property_details', [PGPropertyController::class, 'addPGPropertyDetails'])->name('addPGPropertyDetails');
+Route::post('/insert_pg_property_data_ajax', [PGPropertyController::class, 'pgpropertyDataInsertAjax'])->name('PGpropertyDataInsertAjax');
+
 
 // Upload Documents/Images for Property
 Route::post('/upload_banner', [PropertyFileController::class, 'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');

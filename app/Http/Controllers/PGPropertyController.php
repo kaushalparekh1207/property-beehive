@@ -568,4 +568,37 @@ class PGPropertyController extends Controller
         $taluka = Taluka::where('flag', 1)->get();
         return view('front.post_pg_property', compact('propertyTypes', 'states', 'cities', 'amenities', 'taluka'));
     }
+    public function pgpropertyDataInsertAjax(Request $request)
+    {
+
+        $propertyMasterModel = new PropertyMaster();
+        $propertyMasterModel->client_master_id = 1;
+        $propertyMasterModel->property_status = 'PG/Hostel';
+        $propertyMasterModel->property_type_id = 4;
+        $propertyMasterModel->property_category_id = 0;
+        $propertyMasterModel->state_id = $request->state_id;
+        $propertyMasterModel->city_id = $request->city_dropdown;
+        $propertyMasterModel->taluka_id = $request->taluka_dropdown;
+        $propertyMasterModel->locality = $request->locality;
+        $propertyMasterModel->name_of_project = $request->pg_name;
+        $propertyMasterModel->address = $request->address;
+        //  $display_price = convertCurrency($request->price);
+        $propertyMasterModel->expected_price = 0;
+        $propertyMasterModel->display_price = 0;
+
+        $propertyMasterModel->save();
+        // $lastInsertedPropertyMasterId = $propertyMasterModel->id;
+        // if ($request->property_type == 4) {
+
+        //     // Residential Property Insert //
+        //     $pgPropertyModel = new PGProperty();
+
+        //     $saveData = $pgPropertyModel->save();
+        //     $lastInsertedTypeId = $pgPropertyModel->id;
+        //     $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+
+        // }
+
+        echo 'suceess';
+    }
 }

@@ -356,7 +356,7 @@
             var budget = '<?php echo $budget; ?>';
             var custom_filter = '<?php echo $custom_filter; ?>';
             var columnString;
-            var urlstring = "{{ route('landPropertyResultSearchList') }}";
+            var urlstring = "{{ route('propertyResultSearchList') }}";
             // alert(urlstring);
             columnString = [{
                 data: 'show'

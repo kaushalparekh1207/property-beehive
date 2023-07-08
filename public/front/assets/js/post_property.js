@@ -6,7 +6,7 @@ $(document).ready(function () {
         if( $(this).is(":checked") ){ // check if the radio is checked
             var selected_value = $(this).val(); // retrieve the value
             if(selected_value == 'PG/Hostel'){
-                window.location.href = '/add_pg_property_details';
+                window.open('/add_pg_property_details','_blank');
             }
         }
     });

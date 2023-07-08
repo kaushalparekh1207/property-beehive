@@ -220,7 +220,7 @@
                                                             {{-- <h3>PG Information</h3> --}}
                                                             <div class="form-group col-md-4">
                                                                 <label>PG is For<sup>*</sup></label>
-                                                                <select class="js-select2" name="pg_for"
+                                                                <select class="js-select2" name="pg_for[]"
                                                                     id="pg_for_dropdown" multiple>
                                                                     <option value="Boys">Boys
                                                                     </option>
@@ -232,8 +232,8 @@
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Best Suitable For<sup>*</sup></label>
-                                                                <select class="js-select2" name="best_suited_for"
-                                                                    id="best_suitable_for_dropdown">
+                                                                <select class="js-select2" name="best_suited_for[]"
+                                                                    id="best_suitable_for_dropdown" multiple>
 
                                                                     <option value="Students">Students
                                                                     </option>
@@ -262,7 +262,7 @@
                                                             {{-- Yes selected --}}
                                                             <div class="form-group col-md-6">
                                                                 <label>Meals Offrering<sup>*</sup></label>
-                                                                <select class="js-select2" name="meals_offering"
+                                                                <select class="js-select2" name="meals_offering[]"
                                                                     id="meals_offering" multiple>
                                                                     <option value="Breckfast">Breckfast
                                                                     </option>
@@ -276,7 +276,7 @@
 
                                                             <div class="form-group col-md-6">
                                                                 <label>Meals Speciallity(Optional)</label>
-                                                                <select class="js-select2" name="meal_speciality"
+                                                                <select class="js-select2" name="meals_speciality[]"
                                                                     id="meals_speciality_dropdown" multiple>
                                                                     <option value="Punjabi">Punjabi
                                                                     </option>
@@ -309,9 +309,9 @@
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Common Areas<sup>*</sup></label>
-                                                                <select class="js-select2" name="common_areas"
+                                                                <select class="js-select2" name="common_areas[]"
                                                                     id="common_areas" multiple>
-                                                                    <option value=">Living Rooms">Living Rooms
+                                                                    <option value="Living Rooms">Living Rooms
                                                                     </option>
                                                                     <option value="Kitchen">Kitchen
                                                                     </option>

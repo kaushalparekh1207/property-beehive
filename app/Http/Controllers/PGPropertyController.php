@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
 use App\Models\City;
+use App\Models\PGProperty;
 use App\Models\PropertyMaster;
 use App\Models\PropertyType;
 use App\Models\State;
@@ -570,15 +571,17 @@ class PGPropertyController extends Controller
     }
     public function pgpropertyDataInsertAjax(Request $request)
     {
+        //     $result = $request->pg_for;
+        //     print_r($result);exit;
 
         $propertyMasterModel = new PropertyMaster();
         $propertyMasterModel->client_master_id = 1;
         $propertyMasterModel->property_status = 'PG/Hostel';
-        $propertyMasterModel->property_type_id = 4;
+        $propertyMasterModel->property_type_id = 5;
         $propertyMasterModel->property_category_id = 0;
         $propertyMasterModel->state_id = $request->state_id;
-        $propertyMasterModel->city_id = $request->city_dropdown;
-        $propertyMasterModel->taluka_id = $request->taluka_dropdown;
+        $propertyMasterModel->city_id = $request->city_id;
+        $propertyMasterModel->taluka_id = $request->taluka_id;
         $propertyMasterModel->locality = $request->locality;
         $propertyMasterModel->name_of_project = $request->pg_name;
         $propertyMasterModel->address = $request->address;
@@ -586,18 +589,57 @@ class PGPropertyController extends Controller
         $propertyMasterModel->expected_price = 0;
         $propertyMasterModel->display_price = 0;
 
-        $propertyMasterModel->save();
-        // $lastInsertedPropertyMasterId = $propertyMasterModel->id;
-        // if ($request->property_type == 4) {
+        $propertymaster = $propertyMasterModel->save();
+        $lastInsertedPropertyMasterId = $propertyMasterModel->id;
+        if ($propertymaster) {
 
-        //     // Residential Property Insert //
-        //     $pgPropertyModel = new PGProperty();
+            // Residential Property Insert //
+            $pgPropertyModel = new PGProperty();
+            $pgPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
+            $pgPropertyModel->pg_name = $request->pg_name;
+            $pgPropertyModel->total_beds = $request->total_beds;
 
-        //     $saveData = $pgPropertyModel->save();
-        //     $lastInsertedTypeId = $pgPropertyModel->id;
-        //     $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+            $pg_for = implode(",", $request->pg_for);
+            $pgPropertyModel->pg_for = $pg_for;
 
-        // }
+            $best_suited_for = implode(",", $request->best_suited_for);
+            $pgPropertyModel->best_suited_for = $best_suited_for;
+
+            $pgPropertyModel->meals_available = $request->meals_available;
+
+            $meals_offering = implode(",", $request->meals_offering);
+            $pgPropertyModel->meals_offering = $meals_offering;
+
+            $meals_speciality =  implode(",", $request->meals_speciality);
+            $pgPropertyModel->meals_speciality = $meals_speciality;
+
+            $pgPropertyModel->notice_period = $request->notice_period;
+            $pgPropertyModel->lock_in_period = $request->lock_in_period;
+
+            $common_areas = implode(",", $request->common_areas);
+            $pgPropertyModel->common_areas = $common_areas;
+
+            $pgPropertyModel->non_veg_allowed = $request->non_veg_allowed;
+            $pgPropertyModel->opposite_sex_allowed = $request->opposite_sex_allowed;
+            $pgPropertyModel->any_time_allowed = $request->any_time_allowed;
+            $pgPropertyModel->visitors_allowed = $request->visitors_allowed;
+            $pgPropertyModel->guardian_allowed = $request->guardian_allowed;
+            $pgPropertyModel->drinking_allowed = $request->drinking_allowed;
+            $pgPropertyModel->smoking_allowed = $request->smoking_allowed;
+
+            $pgPropertyModel->onetime_move_in_charges = $request->onetime_move_in_charges;
+            $pgPropertyModel->meal_charges_per_month = $request->meal_charges_per_month;
+            $pgPropertyModel->electricity_charges_per_month = $request->electricity_charges_per_month;
+            $pgPropertyModel->additional_information = $request->additional_information;
+
+            $saveData = $pgPropertyModel->save();
+            $lastInsertedTypeId = $pgPropertyModel->id;
+            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
+            if ($saveData) {
+                return redirect()->back()->with('success', 'done');
+            }
+
+        }
 
         echo 'suceess';
     }

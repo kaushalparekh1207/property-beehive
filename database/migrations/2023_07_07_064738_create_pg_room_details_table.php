@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('room_type', 50)->nullable();
             $table->integer('total_beds_in_room')->nullable();
             $table->integer('rent');
-            $table->integer('security_deposite');
+            $table->integer('security_deposit');
             $table->text('facilities')->nullable();
             $table->integer('flag')->default(1)->comment('1=Active, 2=>Inactive');
             $table->integer('created_by')->nullable();

@@ -111,7 +111,7 @@
                                                                 <span class="bs-stepper-label">Room Details</span>
                                                             </button>
                                                         </div>
-                                                        <div class="line"></div>
+                                                        {{-- <div class="line"></div>
                                                         <div class="step" data-target="#aminities-part">
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="aminities-part"
@@ -120,12 +120,12 @@
                                                                 <span class="bs-stepper-label">Amenities
                                                                     (Optional)</span>
                                                             </button>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="line"></div>
                                                         <div class="step" data-target="#photos-part">
                                                             <button type="button" class="step-trigger" role="tab"
                                                                 aria-controls="photos-part" id="photos-part-trigger">
-                                                                <span class="bs-stepper-circle">4</span>
+                                                                <span class="bs-stepper-circle">3</span>
                                                                 <span class="bs-stepper-label">Photos</span>
                                                             </button>
                                                         </div>
@@ -204,24 +204,15 @@
                                                                         <option value={{ $y }}>
                                                                             {{ $y }}</option>
                                                                     @endforeach
-
-                                                                    {{-- <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option> --}}
                                                                 </select>
 
                                                             </div>
 
-                                                            {{-- <h3>PG Information</h3> --}}
                                                             <div class="form-group col-md-4">
                                                                 <label>PG is For<sup>*</sup></label>
                                                                 <select class="js-select2" name="pg_for[]"
-                                                                    id="pg_for_dropdown" multiple>
+                                                                    id="pg_for_dropdown"
+                                                                    data-placeholder="Select Options" multiple>
                                                                     <option value="Boys">Boys
                                                                     </option>
                                                                     <option value="Girls">Girls
@@ -233,8 +224,9 @@
                                                             <div class="form-group col-md-4">
                                                                 <label>Best Suitable For<sup>*</sup></label>
                                                                 <select class="js-select2" name="best_suited_for[]"
-                                                                    id="best_suitable_for_dropdown" multiple>
-
+                                                                    id="best_suitable_for_dropdown"
+                                                                    data-placeholder="Select Options" multiple>
+                                                                    <option value="">Select</option>
                                                                     <option value="Students">Students
                                                                     </option>
                                                                     <option value="Professional">Professional
@@ -245,12 +237,10 @@
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Meals Available<sup>*</sup></label>
-                                                                {{-- <input type="checkbox" name="yes"
-                                                                    id="meal_available_yes">
-                                                                <input type="checkbox" name="no"
-                                                                    id="meal_available_no"> --}}
                                                                 <select class="js-select2" name="meals_available"
-                                                                    id="meals_available">
+                                                                    id="meals_available"
+                                                                    onchange="mealOffering(this.value)">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -260,10 +250,12 @@
                                                             </div>
 
                                                             {{-- Yes selected --}}
-                                                            <div class="form-group col-md-6">
-                                                                <label>Meals Offrering<sup>*</sup></label>
+                                                            <div class="form-group col-md-6 meals_options"
+                                                                style="display: none;">
+                                                                <label>Meals Offering</label>
                                                                 <select class="js-select2" name="meals_offering[]"
-                                                                    id="meals_offering" multiple>
+                                                                    id="meals_offering"
+                                                                    data-placeholder="Select Options" multiple>
                                                                     <option value="Breckfast">Breckfast
                                                                     </option>
                                                                     <option value="Lunch">Lunch
@@ -271,13 +263,14 @@
                                                                     <option value="Dinner">Dinner
                                                                     </option>
                                                                 </select>
-                                                                <small id="mealoffrering_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-6 meals_options"
+                                                                style="display: none;">
                                                                 <label>Meals Speciallity(Optional)</label>
                                                                 <select class="js-select2" name="meals_speciality[]"
-                                                                    id="meals_speciality_dropdown" multiple>
+                                                                    id="meals_speciality_dropdown"
+                                                                    data-placeholder="Select Options" multiple>
                                                                     <option value="Punjabi">Punjabi
                                                                     </option>
                                                                     <option value="South Indian">South Indian
@@ -289,28 +282,32 @@
                                                                     <option value="Others">Others
                                                                     </option>
                                                                 </select>
-                                                                {{-- <small id="meals_speciality_error"></small> --}}
                                                             </div>
                                                             {{-- End --}}
 
                                                             <div class="form-group col-md-4">
-                                                                <label>Notice Period(Days)<sup>*</sup></label>
+                                                                <label>Notice Period (Days)<sup>*</sup></label>
                                                                 <input type="number" class="form-control"
-                                                                    id="notice_period" name="notice_period">
+                                                                    id="notice_period"
+                                                                    placeholder="Enter Notice Period (in Days)"
+                                                                    name="notice_period">
                                                                 <small id="noticeperiod_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
-                                                                <label>Lock In Period(Days)<sup>*</sup></label>
+                                                                <label>Lock In Period (Days)<sup>*</sup></label>
                                                                 <input type="number" class="form-control"
-                                                                    id="lock_in_period" name="lock_in_period">
+                                                                    id="lock_in_period" name="lock_in_period"
+                                                                    placeholder="Enter Lock In Period (in Days)">
                                                                 <small id="lookinperiod_error"></small>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
                                                                 <label>Common Areas<sup>*</sup></label>
                                                                 <select class="js-select2" name="common_areas[]"
-                                                                    id="common_areas" multiple>
+                                                                    id="common_areas"
+                                                                    data-placeholder="Select Options" multiple>
+                                                                    <option value="">Select</option>
                                                                     <option value="Living Rooms">Living Rooms
                                                                     </option>
                                                                     <option value="Kitchen">Kitchen
@@ -327,12 +324,13 @@
                                                             </div>
 
                                                             <h3>Rules</h3>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Non Veg Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="non_veg_allowed"
-                                                                    id="non_veg_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="non_veg_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -341,12 +339,13 @@
                                                                 <small id="nonveg_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Opposite Sex Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="opposite_sex_allowed"
-                                                                    id="opposite_sex_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="opposite_sex_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -355,12 +354,13 @@
                                                                 <small id="oppositesexallowed_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Any Time Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="any_time_allowed"
-                                                                    id="any_time_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="any_time_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -369,12 +369,13 @@
                                                                 <small id="anytime_error"></small>
                                                             </div>
 
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-6">
                                                                 <label>Visitors Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="visitors_allowed"
-                                                                    id="visitors_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="visitors_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -387,8 +388,9 @@
                                                                 <label>Gardian Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="guardian_allowed"
-                                                                    id="guardian_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="guardian_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -401,8 +403,9 @@
                                                                 <label>Drinking Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="drinking_allowed"
-                                                                    id="drinking_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="drinking_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -415,8 +418,9 @@
                                                                 <label>Smoking Allowed
                                                                     <sup>*</sup></label>
                                                                 <select class="js-select2" name="smoking_allowed"
-                                                                    id="smoking_allowed">
-                                                                    <option selected disabled>select</option>
+                                                                    id="smoking_allowed"
+                                                                    data-placeholder="Select One">
+                                                                    <option value="">Select</option>
                                                                     <option value="Yes">Yes
                                                                     </option>
                                                                     <option value="No">No
@@ -428,7 +432,7 @@
                                                             <h3>Other PG Details</h3>
                                                             <div class="form-group col-md-12">
                                                                 <div id="form-field" class="form-floating mb-4">
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                         placeholder="Credit card number"
                                                                         name="onetime_move_in_charges"
                                                                         id="onetime_move_in_charges">
@@ -438,7 +442,7 @@
 
                                                             <div class="form-group col-md-12">
                                                                 <div id="form-field" class="form-floating mb-4">
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                         placeholder="Credit card number"
                                                                         name="meal_charges_per_month"
                                                                         id="meal_charges_per_month">
@@ -448,7 +452,7 @@
 
                                                             <div class="form-group col-md-12">
                                                                 <div id="form-field" class="form-floating mb-4">
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                         placeholder="Credit card number"
                                                                         name="electricity_charges_per_month"
                                                                         id="electricity_charges_per_month">
@@ -468,1175 +472,681 @@
 
                                                         </div>
 
-                                                        <button type="button" id="firstBtn"
-                                                            class="btn btn-primary btn-sm"
-                                                            onclick="stepper.next()">Next
-                                                            Step</button><br><br>
                                                         <button type="submit" class="btn btn-primary btn-sm"
                                                             id="btn-submit"
                                                             style="background-color: #dc3545; border: none;">Next
                                                             Step</button>
-
-                                                    </div>
-                                                    <div id="information-part" class="content" role="tabpanel"
-                                                        aria-labelledby="information-part-trigger">
-
-                                                        <h3>Room Details</h3>
-                                                        <div class="form-group col-md-12">
-                                                            <div class="card">
-                                                                <div class="card-header room-card d-flex">
-                                                                    <h5>Room Option 1</h5>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <label class="card-title">Room
-                                                                        Type<sup>*</sup></label>
-                                                                    <div class="form-group col-md-12">
-                                                                        <div class="o-features mt-2">
-                                                                            <ul class="no-ul-list row">
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusSaleRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-1"
-                                                                                        class="form-check-label">Private
-                                                                                        Room</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusRentRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-2"
-                                                                                        class="form-check-label">Double
-                                                                                        Sharing</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-3"
-                                                                                        class="form-check-label">Tripal
-                                                                                        Sharing</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-4"
-                                                                                        class="form-check-label">3+
-                                                                                        Sharing</label>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <small id="property_status_error"></small>
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-12">
-                                                                        <div id="form-field"
-                                                                            class="form-floating mb-4">
-                                                                            <input type="text" class="form-control"
-                                                                                placeholder="Credit card number"
-                                                                                name="additional_information"
-                                                                                id="additional_information">
-                                                                            <label>Total Beds in this Room
-                                                                                (Optional)</label>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <label>Rent<sup>*</sup></label>
-                                                                            <input type="number" class="form-control"
-                                                                                id="rent_room" name="rent_room"
-                                                                                value="1,00,000">
-                                                                            <small id="rent_room_error"></small>
-                                                                        </div>
-
-                                                                        <div class="form-group col-md-6">
-                                                                            <label>Security Deposite<sup>*</sup></label>
-                                                                            <input type="number" class="form-control"
-                                                                                id="rent_room" name="rent_room"
-                                                                                value="10,000">
-                                                                            <small id="rent_room_error"></small>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <label class="card-title">Facilities
-                                                                        Offerd<sup>*</sup></label>
-                                                                    <div class="form-group col-md-12">
-                                                                        <div class="o-features mt-2">
-                                                                            <ul class="no-ul-list row">
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusSaleRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-1"
-                                                                                        class="form-check-label">Personal
-                                                                                        Cupboard</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusRentRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-2"
-                                                                                        class="form-check-label">Table
-                                                                                        Chaire</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-3"
-                                                                                        class="form-check-label">TV in
-                                                                                        Rooms</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-4"
-                                                                                        class="form-check-label">Attached
-                                                                                        Balcony</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-5"
-                                                                                        class="form-check-label">Attached
-                                                                                        Bathroom</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-6"
-                                                                                        class="form-check-label">Meals
-                                                                                        Included</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusPgRadio"
-                                                                                        class="form-check-input checked"
-                                                                                        name="property_status"
-                                                                                        type="checkbox"
-                                                                                        value="">
-                                                                                    <label for="a-7"
-                                                                                        class="form-check-label">AC</label>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <small id="property_status_error"></small>
-                                                                    </div>
-
-                                                                    <label class="card-title">Bathroom
-                                                                        Style<sup>*</sup></label>
-                                                                    <div class="form-group col-md-12">
-                                                                        <div class="o-features mt-2">
-                                                                            <ul class="no-ul-list row">
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusSaleRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-1"
-                                                                                        class="form-check-label">Western</label>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                    <input id="propertyStatusRentRadio"
-                                                                                        class="form-check-input"
-                                                                                        name="property_status"
-                                                                                        type="radio" value="">
-                                                                                    <label for="a-2"
-                                                                                        class="form-check-label">Indian</label>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <small id="property_status_error"></small>
-                                                                    </div>
-
-                                                                </div>
-                                                                <small id="smoking_allowed_error"></small>
-
-                                                                <button class="btn btn-primary" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapseExample"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="collapseExample">
-                                                                    +Add New Room Type
-                                                                </button>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="collapse" id="collapseExample">
-                                                            <div class="card card-body">
-                                                                <div class="form-group col-md-12">
-                                                                    <div class="card">
-                                                                        <div class="card-header room-card d-flex">
-                                                                            <h5>Room Option 2</h5>
-                                                                            <a style="float: right;"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseExample"
-                                                                                aria-expanded="false"
-                                                                                aria-controls="collapseExample">
-                                                                                <i class="fa-solid fa-trash"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <label class="card-title">Room
-                                                                                Type<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Private
-                                                                                                Room</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Double
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">Tripal
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">3+
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <div id="form-field"
-                                                                                    class="form-floating mb-4">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        placeholder="Credit card number"
-                                                                                        name="additional_information"
-                                                                                        id="additional_information">
-                                                                                    <label>Total Beds in this Room
-                                                                                        (Optional)</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="row">
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Rent<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="1,00,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Security
-                                                                                        Deposite<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="10,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <label class="card-title">Facilities
-                                                                                Offerd<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Personal
-                                                                                                Cupboard</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Table
-                                                                                                Chaire</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">TV
-                                                                                                in
-                                                                                                Rooms</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">Attached
-                                                                                                Balcony</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-5"
-                                                                                                class="form-check-label">Attached
-                                                                                                Bathroom</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-6"
-                                                                                                class="form-check-label">Meals
-                                                                                                Included</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-7"
-                                                                                                class="form-check-label">AC</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <label class="card-title">Bathroom
-                                                                                Style<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Western</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Indian</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <small id="smoking_allowed_error"></small>
-
-                                                                        <button class="btn btn-primary" type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseExample1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="collapseExample1">
-                                                                            +Add New Room Type
-                                                                        </button>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="collapse" id="collapseExample1">
-                                                            <div class="card card-body">
-                                                                <div class="form-group col-md-12">
-                                                                    <div class="card">
-                                                                        <div class="card-header room-card d-flex">
-                                                                            <h5>Room Option 3</h5>
-                                                                            <a style="float: right;"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseExample1"
-                                                                                aria-expanded="false"
-                                                                                aria-controls="collapseExample1">
-                                                                                <i class="fa-solid fa-trash"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <label class="card-title">Room
-                                                                                Type<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Private
-                                                                                                Room</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Double
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">Tripal
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">3+
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <div id="form-field"
-                                                                                    class="form-floating mb-4">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        placeholder="Credit card number"
-                                                                                        name="additional_information"
-                                                                                        id="additional_information">
-                                                                                    <label>Total Beds in this Room
-                                                                                        (Optional)</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="row">
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Rent<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="1,00,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Security
-                                                                                        Deposite<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="10,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <label class="card-title">Facilities
-                                                                                Offerd<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Personal
-                                                                                                Cupboard</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Table
-                                                                                                Chaire</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">TV
-                                                                                                in
-                                                                                                Rooms</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">Attached
-                                                                                                Balcony</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-5"
-                                                                                                class="form-check-label">Attached
-                                                                                                Bathroom</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-6"
-                                                                                                class="form-check-label">Meals
-                                                                                                Included</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-7"
-                                                                                                class="form-check-label">AC</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <label class="card-title">Bathroom
-                                                                                Style<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Western</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Indian</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <small id="smoking_allowed_error"></small>
-
-                                                                        <button class="btn btn-primary" type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseExample2"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="collapseExample2">
-                                                                            +Add New Room Type
-                                                                        </button>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="collapse" id="collapseExample2">
-                                                            <div class="card card-body">
-                                                                <div class="form-group col-md-12">
-                                                                    <div class="card">
-                                                                        <div class="card-header room-card d-flex">
-                                                                            <h5>Room Option 4</h5>
-                                                                            <a style="float: right;"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseExample2"
-                                                                                aria-expanded="false"
-                                                                                aria-controls="collapseExample2">
-                                                                                <i class="fa-solid fa-trash"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <label class="card-title">Room
-                                                                                Type<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Private
-                                                                                                Room</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Double
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">Tripal
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">3+
-                                                                                                Sharing</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-12">
-                                                                                <div id="form-field"
-                                                                                    class="form-floating mb-4">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        placeholder="Credit card number"
-                                                                                        name="additional_information"
-                                                                                        id="additional_information">
-                                                                                    <label>Total Beds in this Room
-                                                                                        (Optional)</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="row">
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Rent<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="1,00,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label>Security
-                                                                                        Deposite<sup>*</sup></label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        id="rent_room"
-                                                                                        name="rent_room"
-                                                                                        value="10,000">
-                                                                                    <small
-                                                                                        id="rent_room_error"></small>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <label class="card-title">Facilities
-                                                                                Offerd<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Personal
-                                                                                                Cupboard</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Table
-                                                                                                Chaire</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-3"
-                                                                                                class="form-check-label">TV
-                                                                                                in
-                                                                                                Rooms</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-4"
-                                                                                                class="form-check-label">Attached
-                                                                                                Balcony</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-5"
-                                                                                                class="form-check-label">Attached
-                                                                                                Bathroom</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-6"
-                                                                                                class="form-check-label">Meals
-                                                                                                Included</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusPgRadio"
-                                                                                                class="form-check-input checked"
-                                                                                                name="property_status"
-                                                                                                type="checkbox"
-                                                                                                value="">
-                                                                                            <label for="a-7"
-                                                                                                class="form-check-label">AC</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                            <label class="card-title">Bathroom
-                                                                                Style<sup>*</sup></label>
-                                                                            <div class="form-group col-md-12">
-                                                                                <div class="o-features mt-2">
-                                                                                    <ul class="no-ul-list row">
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusSaleRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-1"
-                                                                                                class="form-check-label">Western</label>
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-6">
-                                                                                            <input
-                                                                                                id="propertyStatusRentRadio"
-                                                                                                class="form-check-input"
-                                                                                                name="property_status"
-                                                                                                type="radio"
-                                                                                                value="">
-                                                                                            <label for="a-2"
-                                                                                                class="form-check-label">Indian</label>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <small
-                                                                                    id="property_status_error"></small>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <small id="smoking_allowed_error"></small>
-
-                                                                        {{-- <button class="btn btn-primary" type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseExample1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="collapseExample1">
-                                                                            +Add New Room Type
-                                                                        </button> --}}
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <button type="button" id="prev_step1"
-                                                            class="btn btn-primary btn-sm"
-                                                            onclick="stepper.previous()">Previous Step</button>
-                                                        <button type="button" class="btn btn-primary btn-sm"
-                                                            {{-- id="btn-submit" --}} id="secondbtn"
-                                                            onclick="stepper.next()"
-                                                            style="background-color: #dc3545; border: none;">Next
-                                                            Step</button>
-                                                    </div>
-
-                                                    <div id="aminities-part" class="content" role="tabpanel"
-                                                        aria-labelledby="aminities-part-trigger">
-                                                        <h1>Hola</h1>
-                                                        <button type="button" id="prev_step1"
-                                                            class="btn btn-primary btn-sm"
-                                                            onclick="stepper.previous()">Previous Step</button>
-                                                        <button type="submit" class="btn btn-primary btn-sm"
-                                                            id="btn-submit"
-                                                            style="background-color: #dc3545; border: none;">Next
-                                                            Step</button>
-                                                    </div>
                                             </form>
+                                        </div>
+                                        <form class="" id="pgRoomDetailsForm" method="POST"
+                                            action="{{ route('PGroomDetailsInsertAjax') }}">
+                                            <input type="hidden" name="_token" id="token"
+                                                value="{{ csrf_token() }}">
+                                            <div id="information-part" class="content" role="tabpanel"
+                                                aria-labelledby="information-part-trigger">
+                                                <small>* Field is Required</small><br>
+                                                <small id="common_error"></small>
+                                                <h3>Private Room</h3>
+                                                <input type="hidden" name="room_type" value="Private Room">
 
-                                            <div id="photos-part" class="content" role="tabpanel"
-                                                aria-labelledby="photos-part-trigger">
-                                                <label for="">Banner/Cover Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadPropertyBannerImage') }}" method="post"
-                                                    id="bannerImageUpload"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Rent (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control" id="pr_rent"
+                                                            name="pr_rent" placeholder="Enter PG Rent">
+                                                        <small id="pr_rent_error"></small>
                                                     </div>
-                                                </form><br>
 
-                                                <label for="">Master Plan Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadPropertyMasterPlanImage') }}"
-                                                    method="post" id="masterImageUpload"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Security Deposit (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control"
+                                                            id="pr_security_deposit" name="pr_security_deposit"
+                                                            placeholder="Enter Security Deposit" required>
+                                                        <small id="pr_security_deposit_error"></small>
                                                     </div>
-                                                </form>
-                                                <br>
+                                                </div>
 
-                                                <label for="">Site View Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadPropertySiteViewImage') }}"
-                                                    method="post" id="siteViewImageUpload"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="form-group col-md-12">
+                                                    <label>Total Beds (Optional)</label>
+                                                    <div id="form-field" class="form-floating mb-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Credit card number" name="pr_total_beds"
+                                                            id="pr_total_beds">
+                                                        <label>Total Beds in this Room
+                                                            (Optional)</label>
                                                     </div>
-                                                </form><br>
+                                                </div>
 
-                                                <label for="">Floor Plan Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadPropertyFloorPlanImage') }}"
-                                                    method="post" id="floorPlanImageUpload"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <label class="card-title">Facilities
+                                                    Offered<sup>*</sup></label>
+                                                <div class="form-group col-md-12">
+                                                    <div class="o-features mt-2">
+                                                        <ul class="no-ul-list row">
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input" name="pr_facilities[]"
+                                                                    type="checkbox" value="Personal Cupboard">
+                                                                <label for="a-1"
+                                                                    class="form-check-label">Personal Cupboard</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input" name="pr_facilities[]"
+                                                                    type="checkbox" value="Table Chaire">
+                                                                <label for="a-2" class="form-check-label">Table
+                                                                    Chaire</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="pr_facilities[]" type="checkbox"
+                                                                    value="TV in Rooms">
+                                                                <label for="a-3" class="form-check-label">TV in
+                                                                    Rooms</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="pr_facilities[]" type="checkbox"
+                                                                    value="Attached Balcony">
+                                                                <label for="a-4"
+                                                                    class="form-check-label">Attached Balcony</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="pr_facilities[]" type="checkbox"
+                                                                    value="Attached Bathroom">
+                                                                <label for="a-5"
+                                                                    class="form-check-label">Attached Bathroom</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="pr_facilities[]" type="checkbox"
+                                                                    value="Meals Included">
+                                                                <label for="a-6" class="form-check-label">Meals
+                                                                    Included</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="prFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="pr_facilities[]" type="checkbox"
+                                                                    value="AC">
+                                                                <label for="a-7"
+                                                                    class="form-check-label">AC</label>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                </form><br>
+                                                    <small id="pr_facilities_error"></small>
+                                                </div>
+                                                <hr>
+                                                <h3>Double Sharing</h3>
+                                                <input type="hidden" name="room_type" value="Double Sharing">
 
-                                                <label for="">Exterior View Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadExteriorViewImage') }}" method="post"
-                                                    id="exteriorViewImage"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Rent (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control" id="ds_rent"
+                                                            name="ds_rent" placeholder="Enter PG Rent">
+                                                        <small id="rent_error"></small>
                                                     </div>
-                                                </form><br>
 
-                                                <label for="">Living Room Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadLivingRoomImage') }}" method="post"
-                                                    id="livingRoomImage"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Security Deposit (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control"
+                                                            id="ds_security_deposit" name="ds_security_deposit"
+                                                            placeholder="Enter Security Deposit">
+                                                        <small id="security_deposit_error"></small>
                                                     </div>
-                                                </form><br>
+                                                </div>
 
-                                                <label for="">Bedroom Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadBedRoomImage') }}" method="POST"
-                                                    id="bedRoomImage" class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="form-group col-md-12">
+                                                    <label>Total Beds (Optional)</label>
+                                                    <div id="form-field" class="form-floating mb-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Credit card number" name="ds_total_beds"
+                                                            id="ds_total_beds">
+                                                        <label>Total Beds in this Room
+                                                            (Optional)</label>
                                                     </div>
-                                                </form><br>
+                                                </div>
 
-                                                <label for="">Kitchen Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadKitchenImage') }}" method="post"
-                                                    id="kitchenImage" class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <label class="card-title">Facilities
+                                                    Offered<sup>*</sup></label>
+                                                <div class="form-group col-md-12">
+                                                    <div class="o-features mt-2">
+                                                        <ul class="no-ul-list row">
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input" name="ds_facilities[]"
+                                                                    type="checkbox" value="Personal Cupboard">
+                                                                <label for="a-1"
+                                                                    class="form-check-label">Personal
+                                                                    Cupboard</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input" name="ds_facilities[]"
+                                                                    type="checkbox" value="Table Chair">
+                                                                <label for="a-2" class="form-check-label">Table
+                                                                    Chair</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ds_facilities[]" type="checkbox"
+                                                                    value="TV in Rooms">
+                                                                <label for="a-3" class="form-check-label">TV in
+                                                                    Rooms</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ds_facilities[]" type="checkbox"
+                                                                    value="Attached Balcony">
+                                                                <label for="a-4"
+                                                                    class="form-check-label">Attached
+                                                                    Balcony</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ds_facilities[]" type="checkbox"
+                                                                    value="Attached Bathroom">
+                                                                <label for="a-5"
+                                                                    class="form-check-label">Attached
+                                                                    Bathroom</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ds_facilities[]" type="checkbox"
+                                                                    value="Meals Included">
+                                                                <label for="a-6" class="form-check-label">Meals
+                                                                    Included</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="dsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ds_facilities[]" type="checkbox"
+                                                                    value="AC">
+                                                                <label for="a-7"
+                                                                    class="form-check-label">AC</label>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                </form><br>
+                                                    <small id="facilities_error"></small>
+                                                </div>
+                                                <hr>
+                                                <h3>Triple Sharing</h3>
+                                                <input type="hidden" name="room_type" value="Triple Sharing">
 
-                                                <label for="">Bathroom Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadBathroomImage') }}" method="post"
-                                                    id="bathroomImage" class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Rent (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control" id="ts_rent"
+                                                            name="ts_rent" placeholder="Enter PG Rent">
+                                                        <small id="rent_error"></small>
                                                     </div>
-                                                </form><br>
 
-                                                <label for="">Location Map Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadLocationMapImage') }}" method="post"
-                                                    id="locationMapImage"
-                                                    class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Security Deposit (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control"
+                                                            id="ts_security_deposit" name="ts_security_deposit"
+                                                            placeholder="Enter Security Deposit">
+                                                        <small id="security_deposit_error"></small>
                                                     </div>
-                                                </form><br>
+                                                </div>
 
-                                                <label for="">Other Image<sup>*</sup></label>
-                                                <form action="{{ route('uploadOtherImage') }}" method="post"
-                                                    id="otherImage" class="dropzone dz-clickable primary-dropzone"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="dz-default dz-message">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span>Drag & Drop Files to Upload</span>
+                                                <div class="form-group col-md-12">
+                                                    <label>Total Beds (Optional)</label>
+                                                    <div id="form-field" class="form-floating mb-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Credit card number" name="ts_total_beds"
+                                                            id="ts_total_beds">
+                                                        <label>Total Beds in this Room
+                                                            (Optional)</label>
                                                     </div>
-                                                </form><br>
+                                                </div>
 
-                                                {{-- <button type="button" id="prev_step" class="btn btn-primary btn-sm"
-                                                    --}} {{-- onclick="stepper.previous()">Previous Step</button> --}}
-                                                <a href="{{ route('myProperties') }}"
-                                                    class="btn btn-primary btn-sm"
-                                                    style="background-color: #dc3545; border: none;">Submit</a>
+                                                <label class="card-title">Facilities
+                                                    Offered<sup>*</sup></label>
+                                                <div class="form-group col-md-12">
+                                                    <div class="o-features mt-2">
+                                                        <ul class="no-ul-list row">
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input" name="ts_facilities[]"
+                                                                    type="checkbox" value="Personal Cupboard">
+                                                                <label for="a-1"
+                                                                    class="form-check-label">Personal
+                                                                    Cupboard</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input" name="ts_facilities[]"
+                                                                    type="checkbox" value="Table Chair">
+                                                                <label for="a-2" class="form-check-label">Table
+                                                                    Chair</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ts_facilities[]" type="checkbox"
+                                                                    value="TV in Rooms">
+                                                                <label for="a-3" class="form-check-label">TV in
+                                                                    Rooms</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ts_facilities[]" type="checkbox"
+                                                                    value="Attached Balcony">
+                                                                <label for="a-4"
+                                                                    class="form-check-label">Attached
+                                                                    Balcony</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ts_facilities[]" type="checkbox"
+                                                                    value="Attached Bathroom">
+                                                                <label for="a-5"
+                                                                    class="form-check-label">Attached
+                                                                    Bathroom</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ts_facilities[]" type="checkbox"
+                                                                    value="Meals Included">
+                                                                <label for="a-6" class="form-check-label">Meals
+                                                                    Included</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="tsFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ts_facilities[]" type="checkbox"
+                                                                    value="AC">
+                                                                <label for="a-7"
+                                                                    class="form-check-label">AC</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <small id="facilities_error"></small>
+                                                </div>
+                                                <hr>
+                                                <h3>3+ Sharing</h3>
+                                                <input type="hidden" name="room_type" value="3+ Sharing">
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Rent (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control" id="ms_rent"
+                                                            name="ms_rent" placeholder="Enter PG Rent">
+                                                        <small id="rent_error"></small>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label>Security Deposit (INR)<sup>*</sup></label>
+                                                        <input type="number" class="form-control"
+                                                            id="ms_security_deposit" name="ms_security_deposit"
+                                                            placeholder="Enter Security Deposit">
+                                                        <small id="security_deposit_error"></small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label>Total Beds (Optional)</label>
+                                                    <div id="form-field" class="form-floating mb-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Credit card number" name="ms_total_beds"
+                                                            id="ms_total_beds">
+                                                        <label>Total Beds in this Room
+                                                            (Optional)</label>
+                                                    </div>
+                                                </div>
+
+                                                <label class="card-title">Facilities
+                                                    Offered<sup>*</sup></label>
+                                                <div class="form-group col-md-12">
+                                                    <div class="o-features mt-2">
+                                                        <ul class="no-ul-list row">
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input" name="ms_facilities[]"
+                                                                    type="checkbox" value="Personal Cupboard">
+                                                                <label for="a-1"
+                                                                    class="form-check-label">Personal
+                                                                    Cupboard</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input" name="ms_facilities[]"
+                                                                    type="checkbox" value="Table Chair">
+                                                                <label for="a-2" class="form-check-label">Table
+                                                                    Chair</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ms_facilities[]" type="checkbox"
+                                                                    value="TV in Rooms">
+                                                                <label for="a-3" class="form-check-label">TV in
+                                                                    Rooms</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ms_facilities[]" type="checkbox"
+                                                                    value="Attached Balcony">
+                                                                <label for="a-4"
+                                                                    class="form-check-label">Attached
+                                                                    Balcony</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ms_facilities[]" type="checkbox"
+                                                                    value="Attached Bathroom">
+                                                                <label for="a-5"
+                                                                    class="form-check-label">Attached
+                                                                    Bathroom</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ms_facilities[]" type="checkbox"
+                                                                    value="Meals Included">
+                                                                <label for="a-6" class="form-check-label">Meals
+                                                                    Included</label>
+                                                            </li>
+                                                            <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                <input id="msFacilityCheckBox"
+                                                                    class="form-check-input checked"
+                                                                    name="ms_facilities[]" type="checkbox"
+                                                                    value="AC">
+                                                                <label for="a-7"
+                                                                    class="form-check-label">AC</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <small id="facilities_error"></small>
+                                                </div>
+
+
+                                        </form>
+
+                                        <button type="button" id="prev_step1" class="btn btn-primary btn-sm"
+                                            onclick="stepper.previous()">Previous Step</button>
+                                        <button type="button" id="submitRoomDetails" onclick="validateRoomDetails()"
+                                            class="btn btn-primary btn-sm"
+                                            style="background-color: #dc3545; border: none;">Next
+                                            Step</button>
+                                    </div>
+
+                                    {{-- <div id="aminities-part" class="content" role="tabpanel"
+                                        aria-labelledby="aminities-part-trigger">
+                                        <div id="aminities-part" class="content" role="tabpanel"
+                                            aria-labelledby="aminities-part-trigger">
+
+                                            <div class="form-group col-md-12">
+                                                <hr>
+                                                <div class="col-md-12">
+                                                    <label class="card-title">Security
+                                                        Aminities<sup>*</sup></label>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="o-features mt-2">
+                                                            <ul class="no-ul-list row">
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <!-- <input id="propertyStatusSaleRadio"
+                                                                                class="form-check-input"
+                                                                                name="cctv" type="checkbox"
+                                                                                value="CCTV">
+                                                                            <label for="a-1"
+                                                                                class="form-check-label"><i
+                                                                                    class="fa-solid fa-camera-cctv"></i>
+                                                                                CCTV</label> -->
+
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="vbtn-radio" id="vbtn-radio1"
+                                                                        autocomplete="off">
+                                                                    <label class="btn" for="vbtn-radio1"><a
+                                                                            style="color: #fff;"
+                                                                            href="{{ route('front_buy') }}">Buy</a></label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input"
+                                                                        name="gatted_community" type="checkbox"
+                                                                        value="Gatted
+                                                                                Community">
+                                                                    <label for="a-2"
+                                                                        class="form-check-label">Gatted
+                                                                        Community</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="security"
+                                                                        type="checkbox" value="Security">
+                                                                    <label for="a-3"
+                                                                        class="form-check-label">Security</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="biometric"
+                                                                        type="checkbox" value="Biometric">
+                                                                    <label for="a-4"
+                                                                        class="form-check-label">Biometric</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <small id="security_aminities_error"></small>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="col-md-12">
+                                                    <label class="card-title">Furnishings in Property</label>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="o-features mt-2">
+                                                            <ul class="no-ul-list row">
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusSaleRadio"
+                                                                        class="form-check-input" name="fridge"
+                                                                        type="checkbox" value="Fridge">
+                                                                    <label for="a-1" class="form-check-label"><i
+                                                                            class="fa-solid fa-camera-cctv"></i>
+                                                                        Fridge</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input"
+                                                                        name="washing_machine" type="checkbox"
+                                                                        value="Washing
+                                                                                Machine">
+                                                                    <label for="a-2"
+                                                                        class="form-check-label">Washing
+                                                                        Machine</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="microwave"
+                                                                        type="checkbox" value="Microwave">
+                                                                    <label for="a-3"
+                                                                        class="form-check-label">Microwave</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="water_purifier"
+                                                                        type="checkbox"
+                                                                        value="Waterr
+                                                                                Purifier">
+                                                                    <label for="a-4"
+                                                                        class="form-check-label">Waterr
+                                                                        Purifier</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="tt_table"
+                                                                        type="checkbox"
+                                                                        value="TT
+                                                                                Table">
+                                                                    <label for="a-5" class="form-check-label">TT
+                                                                        Table</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="tv"
+                                                                        type="checkbox" value="TV">
+                                                                    <label for="a-6"
+                                                                        class="form-check-label">TV</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="Coffee_machine"
+                                                                        type="checkbox"
+                                                                        value="Coffee
+                                                                                Machine">
+                                                                    <label for="a-7"
+                                                                        class="form-check-label">Coffee
+                                                                        Machine</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <small id="furnishings_in_property_error"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="card-title">Services</label>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="o-features mt-2">
+                                                            <ul class="no-ul-list row">
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusSaleRadio"
+                                                                        class="form-check-input" name="laundry"
+                                                                        type="checkbox" value="Laundry">
+                                                                    <label for="a-1" class="form-check-label"><i
+                                                                            class="fa-solid fa-camera-cctv"></i>
+                                                                        Laundry</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="house_keeping"
+                                                                        type="checkbox"
+                                                                        value="House
+                                                                                Keeping">
+                                                                    <label for="a-2"
+                                                                        class="form-check-label">House
+                                                                        Keeping</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input"
+                                                                        name="internet_connection" type="checkbox"
+                                                                        value="Internet /
+                                                                                Wi-Fi Connectivity">
+                                                                    <label for="a-3"
+                                                                        class="form-check-label">Internet /
+                                                                        Wi-Fi Connectivity</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <small id="property_status_error"></small>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="col-md-12">
+                                                    <label class="card-title">Top Amenities</label>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="o-features mt-2">
+                                                            <ul class="no-ul-list row">
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusSaleRadio"
+                                                                        class="form-check-input" name="gym"
+                                                                        type="checkbox" value="Gym">
+                                                                    <label for="a-1" class="form-check-label"><i
+                                                                            class="fa-solid fa-camera-cctv"></i>
+                                                                        Gym</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="lift"
+                                                                        type="checkbox" value="Lift">
+                                                                    <label for="a-2"
+                                                                        class="form-check-label">Lift</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input"
+                                                                        name="daily_water_supply" type="checkbox"
+                                                                        value="Daily Water
+                                                                                Supply">
+                                                                    <label for="a-3"
+                                                                        class="form-check-label">Daily Water
+                                                                        Supply</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input"
+                                                                        name="reserved_parking" type="checkbox"
+                                                                        value="Reserved
+                                                                                Parking">
+                                                                    <label for="a-4"
+                                                                        class="form-check-label">Reserved
+                                                                        Parking</label>
+                                                                </li>
+                                                                <li class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                                                    <input id="propertyStatusRentRadio"
+                                                                        class="form-check-input" name="power_backup"
+                                                                        type="checkbox" value="Power Backup">
+                                                                    <label for="a-5"
+                                                                        class="form-check-label">Power
+                                                                        Backup</label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <small id="top_eminities_error"></small>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <button type="button" id="prev_step1" class="btn btn-primary btn-sm"
+                                            onclick="stepper.previous()">Previous Step</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" id="btn-submit"
+                                            style="background-color: #dc3545; border: none;">Next
+                                            Step</button>
+                                    </div> --}}
+
+
+                                    <div id="photos-part" class="content" role="tabpanel"
+                                        aria-labelledby="photos-part-trigger">
+                                        <label for="">Upload Photos<sup>*</sup></label>
+                                        <form action="{{ route('uploadPGPropertyImage') }}" method="POST"
+                                            id="pgImageUpload" class="dropzone dz-clickable primary-dropzone"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="dz-default dz-message">
+                                                <i class="fa-solid fa-images"></i>
+                                                <span>Drag & Drop Files to Upload</span>
+                                            </div>
+                                        </form><br>
+                                        <a href="{{ url('my_pg_properties') }}" class="btn btn-primary btn-sm"
+                                            style="background-color: #dc3545; border: none;">Submit</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-                    <div class="col-xl-2 col-lg-12 col-md-12"></div>
-                    <!-- row -->
 
                 </div>
+
             </div>
+            <div class="col-xl-2 col-lg-12 col-md-12"></div>
+            <!-- row -->
+
+    </div>
+    </div>
 
     </div>
     </div>
@@ -1663,10 +1173,13 @@
     <script>
         $(document).ready(function() {
             $(".js-select2").select2({
-                closeOnSelect: true
+                closeOnSelect: true,
+            });
+            $(".js-select3").select2({
+                closeOnSelect: true,
             });
             $(".js-select2-disablesearch").select2({
-                minimumResultsForSearch: Infinity
+                minimumResultsForSearch: Infinity,
             });
 
             $('#possession_status').on('change', function() {
@@ -1788,69 +1301,7 @@
         });
     </script>
     <script>
-        Dropzone.options.bannerImageUpload = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            maxFiles: 1,
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.masterImageUpload = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.siteViewImageUpload = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.floorPlanImageUpload = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.exteriorViewImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.livingRoomImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.bedRoomImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.kitchenImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.bathroomImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.locationMapImage = {
-            maxFilesize: 2,
-            acceptedFiles: '.jpg,.jpeg,.png,.webp',
-            addRemoveLinks: true,
-        }
-
-        Dropzone.options.otherImage = {
-            maxFilesize: 2,
+        Dropzone.options.pgImageUpload = {
             acceptedFiles: '.jpg,.jpeg,.png,.webp',
             addRemoveLinks: true,
         }
@@ -1866,8 +1317,8 @@
         });
     </script>
     <script>
-        function reraFunction(val) {
-            val == 'Yes' ? $('.rera_reg_number').show() : $('.rera_reg_number').hide();
+        function mealOffering(val) {
+            val == 'Yes' ? $('.meals_options').show() : $('.meals_options').hide();
         }
     </script>
 

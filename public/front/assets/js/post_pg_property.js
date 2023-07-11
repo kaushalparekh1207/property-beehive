@@ -1,91 +1,5 @@
 $(document).ready(function () {
 
-    /* Get Radio Button Values */
-    // $(".form-check-input").change(function(){
-    //     // bind a function to the change event
-    //     if( $(this).is(":checked") ){ // check if the radio is checked
-    //         var selected_value = $(this).val(); // retrieve the value
-    //         if(selected_value == 'PG/Hostel'){
-    //             window.location.href = '/add_pg_property_details';
-    //         }
-    //     }
-    // });
-    /* Property Status Validation */
-    let propertyStatusError = false;
-    // $("#property_type").on('change',function () {
-    //     validatePropertyType();
-    // });
-    // function validatePropertyStatus() {
-    //     var pstatusSale = $(".propertyStatusSale:checked").val();
-    //     var pstatusRent = $(".propertyStatusRent:checked").val();
-    //     var pstatusPg = $(".propertyStatusPg:checked").val();
-    //     if (
-    //         pstatusSale == null ||
-    //         pstatusSale == "" ||
-    //         !$("#propertyStatusSaleRadio").is(":checked")
-    //     ) {
-    //         $("#property_status_error").html("");
-    //         propertyStatusError = false;
-    //     } else if (
-    //         pstatusRent == null ||
-    //         pstatusRent == "" ||
-    //         !$("#propertyStatusRentRadio").is(":checked")
-    //     ) {
-    //         $("#property_status_error").html("");
-    //         propertyStatusError = false;
-    //     } else if (
-    //         pstatusPg == null ||
-    //         pstatusPg == "" ||
-    //         !$("#propertyStatusPgRadio").is(":checked")
-    //     ) {
-    //         $("#property_status_error").html("");
-    //         propertyStatusError = false;
-    //     } else {
-    //         $("#property_status_error").html("* Please Select One Option");
-    //         propertyStatusError = true;
-    //         stepper.previous();
-    //         return false;
-    //     }
-    // }
-
-    /* Property Type Validation */
-    // let propertyTypeError = false;
-    // $("#property_type").on("change", function () {
-    //     validatePropertyType();
-    // });
-    // function validatePropertyType() {
-    //     var ptype = $("#property_type").val();
-    //     if (ptype == null) {
-    //         $("#property_type_error").html("* Please Select Property Type");
-    //         propertyTypeError = true;
-    //         stepper.previous();
-    //         return false;
-    //     } else {
-    //         $("#property_type_error").html("");
-    //         propertyTypeError = false;
-    //     }
-    // }
-
-    /* Property Category Validation */
-    // let propertyCategoryError = false;
-    // $("#property_category_dropdown").on("change", function () {
-    //     validatePropertyCategory();
-    // });
-    // function validatePropertyCategory() {
-    //     var pcat = $("#property_category_dropdown").val();
-    //     if (pcat == null) {
-    //         $("#property_category_error").html(
-    //             "* Please Select Property Category"
-    //         );
-    //         propertyCategoryError = true;
-    //         stepper.previous();
-    //         return false;
-    //     } else {
-    //         $("#property_category_error").html("");
-    //         propertyCategoryError = false;
-    //     }
-    // }
-
     /* State Validation */
     let stateError = false;
     $("#state_id").on("change", function () {
@@ -245,24 +159,6 @@ $(document).ready(function () {
         }
     }
 
-    // PG Meals Offrering
-    let mealsofferingError = false;
-    $("#meals_offering").on("change", function () {
-        validateMealOffering();
-    });
-    function validateMealOffering() {
-        var Offrering = $("#meals_offering").val();
-        if (Offrering == null) {
-            $("#mealoffrering_error").html("* Please Select PG Meals Offrering ");
-            mealsofferingError = true;
-            stepper.previous();
-            return false;
-        } else {
-            $("#mealoffrering_error").html("");
-            mealsofferingError = false;
-        }
-    }
-
     // PG Notice Period
     let noticeperiodError = false;
     $("#notice_period").keyup(function () {
@@ -315,7 +211,6 @@ $(document).ready(function () {
             commonareasError = false;
         }
     }
-
 
     //Rules
     //non veg allowed
@@ -439,59 +334,6 @@ $(document).ready(function () {
     }
 
 
-
-    /* Property Description Validation */
-    let descrError = false;
-    $("#descr").keyup(function () {
-        validateDescription();
-    });
-    function validateDescription() {
-        var descr = $("#descr").val();
-        if (descr == null || descr == "") {
-            $("#descr_error").html("* Please Insert Property Description");
-            descrError = true;
-            return false;
-        } else {
-            $("#descr_error").html("");
-            descrError = false;
-        }
-    }
-
-
-    /* Property Price Validation */
-    let priceError = false;
-    $("#price").keyup(function () {
-        validatePrice();
-    });
-    function validatePrice() {
-        var price = $("#price").val();
-        if (price == null || price == "") {
-            $("#price_error").html("* Please Insert Property Expected Price");
-            priceError = true;
-            return false;
-        } else {
-            $("#price_error").html("");
-            priceError = false;
-        }
-    }
-
-    /* Terms and Conditions */
-    let termsError = false;
-
-    function validateTermsAndConditions() {
-        var value = $(".terms:checked").val();
-
-        if (value == null || value == "" || !$("#terms").is(":checked")) {
-            $("#terms_error").html("");
-            termsError = false;
-        } else {
-            $("#terms_error").html("* This is a required field");
-            termsError = true;
-            stepper.previous();
-            return false;
-        }
-    }
-
     $("#btn-submit").click(function (e) {
         e.preventDefault();
 
@@ -505,7 +347,6 @@ $(document).ready(function () {
         validatePgfor();
         validateSuitable();
         validateAvailableMeal();
-        validateMealOffering();
         validateNoticeperiod();
         validateLookineperiod();
         validateCommonareas();
@@ -516,10 +357,6 @@ $(document).ready(function () {
         validateguardianallowed();
         validatedrinkingallowed();
         validatesmokingallowed();
-        validateDescription();
-        validatePrice();
-        validatePropertyStatus();
-        validateTermsAndConditions();
 
         if (
 
@@ -532,7 +369,6 @@ $(document).ready(function () {
             suitableError == false &&
             nameError == false &&
             mealsavailableError == false &&
-            mealsofferingError == false &&
             noticeperiodError == false &&
             lookinperiodError == false &&
             commonareasError == false &&
@@ -542,11 +378,7 @@ $(document).ready(function () {
             visitorsallowedError == false &&
             guardianallowedError == false &&
             drinkingallowedError == false &&
-            smokingallowedError == false &&
-            descrError == false &&
-            priceError == false &&
-            propertyStatusError == false &&
-            termsError == false
+            smokingallowedError == false
         ) {
             insertProperty();
         } else {
@@ -556,7 +388,6 @@ $(document).ready(function () {
 });
 
 function insertProperty() {
-    //  var propertystatus = $(".property_status:checked").val();
 
     var state_id = $("#state_id").val();
     var city_dropdown = $("#city_dropdown").val();
@@ -585,60 +416,12 @@ function insertProperty() {
     var electricity_charges_per_month = $("#electricity_charges_per_month").val();
     var additional_information = $("#additional_information").val();
 
-
-
-
-
-
-
-
-
-    // var name_of_project = $("#name_of_project").val();
-    // var no_of_flats = $(".no_of_flats:checked").val();
-    // var total_floors = $("#total_floors").val();
-    // var total_bedrooms = $("#total_bedrooms").val();
-    // var total_balconies = $("#total_balconies").val();
-    // var total_bathrooms = $("#total_bathrooms").val();
-    // var descr = $("#descr").val();
-    // var amenitiesArray = new Array();
-    // var element = $("input[type='checkbox']");
-    // $(element).each(function (i) {
-    //     if ($($(element)[i]).prop("checked")) {
-    //         amenitiesArray.push($('input[name="amenities[]"').val());
-    //     } else {
-    //         amenitiesArray = [];
-    //     }
-    // });
-
-    // // Append Array to String
-    // var dataString = "amenitiesArray=" + amenitiesArray;
-    // var floors_allowed_for_construction = $(
-    //     "#floors_allowed_for_construction"
-    // ).val();
-    // var no_of_open_sides = $("#no_of_open_sides").val();
-    // var width_of_road_facing_plot = $("#width_of_road_facing_plot").val();
-    // var any_construction = $("#any_construction").val();
-    // var boundary_wall = $("#boundary_wall").val();
-    // var carpet_area = $("#carpet_area").val();
-    // var super_area = $("#super_area").val();
-    // var plot_area = $("#plot_area").val();
-    // var plot_length = $("#plot_length").val();
-    // var plot_breadth = $("#plot_breadth").val();
-    // var price = $("#price").val();
-    // var booking_amount = $("#booking_amount").val();
-    // var furnished_status = $("#furnished_status").val();
-    // var possession_status = $("#possession_status").val();
-    // var available_from = $("#available_from").val();
-    // var age = $("#age").val();
-    // var monthly_maintenance_charge = $("#monthly_maintenance_charge").val();
-
     var url = $("#pgpropertyForm").attr("action");
 
     $.ajax({
         type: "POST",
         url: url,
         data: {
-            propertystatus: propertystatus,
             state_id: state_id,
             city_id: city_dropdown,
             taluka_id: taluka_dropdown,
@@ -665,45 +448,366 @@ function insertProperty() {
             meal_charges_per_month: meal_charges_per_month,
             electricity_charges_per_month: electricity_charges_per_month,
             additional_information: additional_information,
-
-
-            // name_of_project: name_of_project,
-            // no_of_flats: no_of_flats,
-            // total_floors: total_floors,
-            // total_bedrooms: total_bedrooms,
-            // total_balconies: total_balconies,
-            // total_bathrooms: total_bathrooms,
-            // descr: descr,
-            // amenitiesArray: amenitiesArray,
-            // floors_allowed_for_construction: floors_allowed_for_construction,
-            // no_of_open_sides: no_of_open_sides,
-            // width_of_road_facing_plot: width_of_road_facing_plot,
-            // any_construction: any_construction,
-            // boundary_wall: boundary_wall,
-            // carpet_area: carpet_area,
-            // super_area: super_area,
-            // plot_area: plot_area,
-            // plot_length: plot_length,
-            // plot_breadth: plot_breadth,
-            // price: price,
-            // booking_amount: booking_amount,
-            // furnished_status: furnished_status,
-            // possession_status: possession_status,
-            // available_from: available_from,
-            // age: age,
-            // monthly_maintenance_charge: monthly_maintenance_charge,
             _token: $("#token").val(),
         },
         beforeSend: function () {
             $("#btn-submit").html("Please Wait...");
-            // $("#btn-submit").attr("disabled", true);
-            // $("#prev_step1").attr("disabled", true);
         },
         success: function (data) {
             if ((data = "suceess")) {
                 stepper.next();
-                $("#prev_step2").attr("disabled", true);
             }
         },
     });
 }
+
+
+
+/* Room Details Validation */
+
+// $("#submitRoomDetails").on("click", function () {
+//     var pr_rent = $('#pr_rent').val();
+//     var ps_security_deposit = document.getElementById("ps_security_deposit").value;
+//     var ps_facilities = document.querySelector('#prFacilityCheckBox:checked');
+//     alert(pr_rent);
+//     return false;
+// });
+    
+
+    function validateRoomDetails()
+    {
+        /* Private Room Validation */
+        var pr_rent = document.getElementById("pr_rent").value;
+        var pr_security_deposit = document.getElementById("pr_security_deposit").value;
+        var pr_facilities = document.querySelector('#prFacilityCheckBox:checked');
+        var pr_total_beds = document.getElementById("pr_total_beds").value;
+
+        /* Double Sharing Validation */
+        var ds_rent = document.getElementById("ds_rent").value;
+        var ds_security_deposit = document.getElementById("ds_security_deposit").value;
+        var ds_total_beds = document.getElementById("ds_total_beds").value;
+        var ds_facilities = document.querySelector('#dsFacilityCheckBox:checked');
+
+        /* Triple Sharing Validation */
+        var ts_rent = document.getElementById("ts_rent").value;
+        var ts_security_deposit = document.getElementById("ts_security_deposit").value;
+        var ts_facilities = document.querySelector('#tsFacilityCheckBox:checked');
+        var ts_total_beds = document.getElementById("ts_total_beds").value;
+
+        /* 3+ Sharing Validation */
+        var ms_rent = document.getElementById("ms_rent").value;
+        var ms_security_deposit = document.getElementById("ms_security_deposit").value;
+        var ms_facilities = document.querySelector('#msFacilityCheckBox:checked');
+        var ms_total_beds = document.getElementById("ms_total_beds").value;
+
+        if ((pr_rent!== '' || pr_security_deposit!== '' || pr_facilities!== null) || (ds_rent!== '' || ds_security_deposit!== '' || ds_facilities!==null) || (ts_rent!== '' || ts_security_deposit!== '' || ts_facilities!== null) || (ms_rent!== '' || ms_security_deposit!== '' || ms_facilities!== null))
+        {
+            document.getElementById('common_error').innerHTML = '';
+            var pg_url = $("#pgRoomDetailsForm").attr("action");
+            var pr_facilities_arr = new Array();
+            $.each($("input[name='pr_facilities[]']:checked"), function(){
+                pr_facilities_arr.push($(this).val());
+            });
+            var ds_facilities_arr = new Array();
+            $.each($("input[name='ds_facilities[]']:checked"), function(){
+                ds_facilities_arr.push($(this).val());
+            });
+            var ts_facilities_arr = new Array();
+            $.each($("input[name='ts_facilities[]']:checked"), function(){
+                ts_facilities_arr.push($(this).val());
+            });
+            var ms_facilities_arr = new Array();
+            $.each($("input[name='ms_facilities[]']:checked"), function(){
+                ms_facilities_arr.push($(this).val());
+            });
+            $.ajax({
+                type: "POST",
+                url: pg_url,
+                data: {
+                    pr_rent: pr_rent,
+                    pr_security_deposit: pr_security_deposit,
+                    pr_facilities_arr: pr_facilities_arr,
+                    pr_total_beds: pr_total_beds,
+                    ds_rent: ds_rent,
+                    ds_security_deposit: ds_security_deposit,
+                    ds_total_beds: ds_total_beds,
+                    ds_facilities_arr: ds_facilities_arr,
+                    ts_rent: ts_rent,
+                    ts_security_deposit: ts_security_deposit,
+                    ts_total_beds: ts_total_beds,
+                    ts_facilities_arr: ts_facilities_arr,
+                    ms_rent: ms_rent,
+                    ms_security_deposit: ms_security_deposit,
+                    ms_total_beds: ms_total_beds,
+                    ms_facilities_arr: ms_facilities_arr,
+                    _token: $("#token").val(),
+                },
+                beforeSend: function () {
+                    $("#submitRoomDetails").html("Please Wait...");
+                },
+                success: function (data) {
+                    if ((data = "success")) {
+                        stepper.next();
+                        $("#prev_step2").attr("disabled", true);
+                    }
+                },
+            });
+            // document.getElementById("pgRoomDetailsForm").submit();
+            // if(pr_rent !== '' && pr_security_deposit !== '' && pr_facilities !== null){
+            //     if(pr_rent === ''){
+            //         document.getElementById('pr_rent_error').innerHTML = '';
+            //     }else if (pr_security_deposit === ''){
+            //         document.getElementById('pr_security_deposit_error').innerHTML = '';
+            //     }else if (pr_facilities === null){
+            //         document.getElementById('pr_facilities_error').innerHTML = '';
+            //     }else{
+                    
+            //     }
+            // }
+            
+        }
+        else{
+            var msg = '* At Least One Room Detail is Required!';
+            document.getElementById('common_error').innerHTML = msg;
+        }
+        
+        // if(pr_rent == '' || pr_security_deposit == '' || !pr_facilities) 
+        // {
+        //     var msg = '* At Least One Room Detail is Required!';
+        //     document.getElementById('common_error').innerHTML = msg;
+        //     return false;
+        // } else if(ds_rent || ds_security_deposit || ds_facilities) {
+        //     document.getElementById('common_error').innerHTML = '';
+        //     return false;
+        // } else if(ts_rent || ts_security_deposit || ts_facilities) {
+        //     document.getElementById('common_error').innerHTML = '';
+        //     return false;
+        // } else if(ms_rent || ms_security_deposit || ms_facilities) {
+        //     document.getElementById('common_error').innerHTML = '';
+        //     return false;
+        // }
+        // else {
+        //     alert('Form Validation Successfully');
+        // }
+    }
+    
+
+    
+
+
+function reset_msg()
+{
+    document.getElementById('room_type_error').innerHTML = '';
+}
+
+$("#rent").on("keyup", function () {
+    $('#rent_error').html('');
+});
+
+$("#security_deposit").on("keyup", function () {
+    $('#security_deposit_error').html('');
+});
+
+$("#facilityCheckBox").on("change", function () {
+    $('#facilities_error').html('');
+});
+
+// $(document).ready(function () {
+
+//     /* Room Type Validation */
+//     let roomTypeError = false;
+
+//     // function validateRoomType() {
+//     //     var privateRoom = $("#privateRoom:checked").val();
+//     //     var doubleSharing = $(".doubleSharing:checked").val();
+//     //     var tripleSharing = $(".tripleSharing:checked").val();
+//     //     var threePlusSharing = $(".threePlusSharing:checked").val();
+//     //     if (
+//     //         privateRoom == null ||
+//     //         privateRoom == "" ||
+//     //         !$("#privateRoom").is(":checked")
+//     //     ) {
+//     //         $("#room_type_error").html("");
+//     //         roomTypeError = false;
+//     //     } else if (
+//     //         doubleSharing == null ||
+//     //         doubleSharing == "" ||
+//     //         !$("#doubleSharing").is(":checked")
+//     //     ) {
+//     //         $("#room_type_error").html("");
+//     //         roomTypeError = false;
+//     //     } else if (
+//     //         tripleSharing == null ||
+//     //         tripleSharing == "" ||
+//     //         !$("#tripleSharing").is(":checked")
+//     //     ) {
+//     //         $("#room_type_error").html("");
+//     //         roomTypeError = false;
+//     //     } else if (
+//     //         threePlusSharing == null ||
+//     //         threePlusSharing == "" ||
+//     //         !$("#threePlusSharing").is(":checked")
+//     //     ) {
+//     //         $("#room_type_error").html("");
+//     //         roomTypeError = false;
+//     //     } else {
+//     //         $("#room_type_error").html("* Please Select One Option");
+//     //         roomTypeError = true;
+//     //         // stepper.previous();
+//     //         return false;
+//     //     }
+//     // }
+
+//     /* Rent Validation */
+//     let rentError = false;
+//     $("#rent").on("keyup", function () {
+//         validateRent();
+//     });
+//     function validateRent() {
+//         var rent = $("#rent").val();
+//         if (rent == null) {
+//             $("#rent_error").html("* This Field is required");
+//             rentError = true;
+//             // stepper.previous();
+//             return false;
+//         } else {
+//             $("#rent_error").html("");
+//             rentError = false;
+//         }
+//     }
+
+//     /* Taluka Validation */
+//     // let talukaError = false;
+//     // $("#taluka_dropdown").on("change", function () {
+//     //     validateTaluka();
+//     // });
+//     // function validateTaluka() {
+//     //     var taluka = $("#taluka_dropdown").val();
+//     //     if (taluka == null) {
+//     //         $("#taluka_error").html("* Please Select Taluko");
+//     //         talukaError = true;
+//     //         stepper.previous();
+//     //         return false;
+//     //     } else {
+//     //         $("#taluka_error").html("");
+//     //         talukaError = false;
+//     //     }
+//     // }
+
+
+    
+    
+    
+
+//     // PG meals_available 
+//     // let mealsavailableError = false;
+//     // $("#meals_available").on("change", function () {
+//     //     validateAvailableMeal();
+//     // });
+//     // function validateAvailableMeal() {
+//     //     var available = $("#meals_available").val();
+//     //     if (available == null) {
+//     //         $("#meal_error").html("* Please Select PG Meals Available ");
+//     //         mealsavailableError = true;
+//     //         stepper.previous();
+//     //         return false;
+//     //     } else {
+//     //         $("#meal_error").html("");
+//     //         mealsavailableError = false;
+//     //     }
+//     // }
+
+
+//     $("#addNewRoomType").click(function (e) {
+//         e.preventDefault();
+
+//         validateRent();
+
+
+//         if (
+
+//             rentError == false
+//         ) {
+//             insertRoomDetails();
+//         } else {
+//             return false;
+//         }
+//     });
+// });
+
+// function insertRoomDetails() {
+
+//     alert('Validating Success');
+//     return false;
+
+//     // var state_id = $("#state_id").val();
+//     // var city_dropdown = $("#city_dropdown").val();
+//     // var taluka_dropdown = $("#taluka_dropdown").val();
+//     // var locality = $("#locality").val();
+//     // var address = $("#address").val();
+//     // var pg_name = $("#pg_name").val();
+//     // var total_beds = $("#total_beds:selected").val();
+//     // var pg_for = $("#pg_for_dropdown").val();
+//     // var suitable_for = $("#best_suitable_for_dropdown").val();
+//     // var meals_available = $("#meals_available").val();
+//     // var meals_offering = $("#meals_offering").val();
+//     // var meals_speciality = $("#meals_speciality_dropdown").val();
+//     // var notice_period = $("#notice_period").val();
+//     // var lock_in_period = $("#lock_in_period").val();
+//     // var common_areas = $("#common_areas").val();
+//     // var non_veg_allowed = $("#non_veg_allowed").val();
+//     // var opposite_sex_allowed = $("#opposite_sex_allowed").val();
+//     // var any_time_allowed = $("#any_time_allowed").val();
+//     // var visitors_allowed = $("#visitors_allowed").val();
+//     // var guardian_allowed = $("#guardian_allowed").val();
+//     // var drinking_allowed = $("#drinking_allowed").val();
+//     // var smoking_allowed = $("#smoking_allowed").val();
+//     // var onetime_move_in_charges = $("#onetime_move_in_charges").val();
+//     // var meal_charges_per_month = $("#meal_charges_per_month").val();
+//     // var electricity_charges_per_month = $("#electricity_charges_per_month").val();
+//     // var additional_information = $("#additional_information").val();
+
+//     // var url = $("#pgpropertyForm").attr("action");
+
+//     // $.ajax({
+//     //     type: "POST",
+//     //     url: url,
+//     //     data: {
+//     //         state_id: state_id,
+//     //         city_id: city_dropdown,
+//     //         taluka_id: taluka_dropdown,
+//     //         locality: locality,
+//     //         address: address,
+//     //         pg_name: pg_name,
+//     //         total_beds: total_beds,
+//     //         pg_for: pg_for,
+//     //         best_suited_for: suitable_for,
+//     //         meals_available: meals_available,
+//     //         meals_offering: meals_offering,
+//     //         meals_speciality: meals_speciality,
+//     //         notice_period: notice_period,
+//     //         lock_in_period: lock_in_period,
+//     //         common_areas: common_areas,
+//     //         non_veg_allowed: non_veg_allowed,
+//     //         opposite_sex_allowed: opposite_sex_allowed,
+//     //         any_time_allowed: any_time_allowed,
+//     //         visitors_allowed: visitors_allowed,
+//     //         guardian_allowed: guardian_allowed,
+//     //         drinking_allowed: drinking_allowed,
+//     //         smoking_allowed: smoking_allowed,
+//     //         onetime_move_in_charges: onetime_move_in_charges,
+//     //         meal_charges_per_month: meal_charges_per_month,
+//     //         electricity_charges_per_month: electricity_charges_per_month,
+//     //         additional_information: additional_information,
+//     //         _token: $("#token").val(),
+//     //     },
+//     //     beforeSend: function () {
+//     //         $("#btn-submit").html("Please Wait...");
+//     //     },
+//     //     success: function (data) {
+//     //         if ((data = "suceess")) {
+//     //             stepper.next();
+//     //         }
+//     //     },
+//     // });
+// }

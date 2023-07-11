@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
 use App\Models\City;
+use App\Models\PGImage;
 use App\Models\PGProperty;
+use App\Models\PGRoomDetails;
 use App\Models\PropertyMaster;
 use App\Models\PropertyType;
 use App\Models\State;
@@ -569,13 +571,11 @@ class PGPropertyController extends Controller
         $taluka = Taluka::where('flag', 1)->get();
         return view('front.post_pg_property', compact('propertyTypes', 'states', 'cities', 'amenities', 'taluka'));
     }
+
     public function pgpropertyDataInsertAjax(Request $request)
     {
-        //     $result = $request->pg_for;
-        //     print_r($result);exit;
-
         $propertyMasterModel = new PropertyMaster();
-        $propertyMasterModel->client_master_id = 1;
+        $propertyMasterModel->client_master_id = session('user')['id'];
         $propertyMasterModel->property_status = 'PG/Hostel';
         $propertyMasterModel->property_type_id = 5;
         $propertyMasterModel->property_category_id = 0;
@@ -585,15 +585,14 @@ class PGPropertyController extends Controller
         $propertyMasterModel->locality = $request->locality;
         $propertyMasterModel->name_of_project = $request->pg_name;
         $propertyMasterModel->address = $request->address;
-        //  $display_price = convertCurrency($request->price);
         $propertyMasterModel->expected_price = 0;
         $propertyMasterModel->display_price = 0;
 
-        $propertymaster = $propertyMasterModel->save();
+        $savePropertyMasterData = $propertyMasterModel->save();
         $lastInsertedPropertyMasterId = $propertyMasterModel->id;
-        if ($propertymaster) {
+        if ($savePropertyMasterData) {
 
-            // Residential Property Insert //
+            // PG Property Insert //
             $pgPropertyModel = new PGProperty();
             $pgPropertyModel->property_master_id = $lastInsertedPropertyMasterId;
             $pgPropertyModel->pg_name = $request->pg_name;
@@ -607,10 +606,18 @@ class PGPropertyController extends Controller
 
             $pgPropertyModel->meals_available = $request->meals_available;
 
-            $meals_offering = implode(",", $request->meals_offering);
+            if ($request->meals_offering) {
+                $meals_offering = implode(",", $request->meals_offering);
+            } else {
+                $meals_offering = null;
+            }
             $pgPropertyModel->meals_offering = $meals_offering;
 
-            $meals_speciality =  implode(",", $request->meals_speciality);
+            if ($request->meals_speciality) {
+                $meals_speciality = implode(",", $request->meals_speciality);
+            } else {
+                $meals_speciality = null;
+            }
             $pgPropertyModel->meals_speciality = $meals_speciality;
 
             $pgPropertyModel->notice_period = $request->notice_period;
@@ -634,13 +641,126 @@ class PGPropertyController extends Controller
 
             $saveData = $pgPropertyModel->save();
             $lastInsertedTypeId = $pgPropertyModel->id;
-            $request->session()->put('property_master_id', $lastInsertedPropertyMasterId);
-            if ($saveData) {
-                return redirect()->back()->with('success', 'done');
-            }
+            $request->session()->put('pg_property_id', $lastInsertedPropertyMasterId);
 
         }
 
         echo 'suceess';
+    }
+
+    public function PGroomDetailsInsertAjax(Request $request)
+    {
+        /* Private Room */
+        $pr_rent = $request->pr_rent;
+        $pr_security_deposit = $request->pr_security_deposit;
+        $pr_total_beds = $request->pr_total_beds;
+        $pr_facilities_arr = $request->pr_facilities_arr;
+        if ($pr_facilities_arr) {
+            $pr_facilities = implode("','", $pr_facilities_arr);
+        } else {
+            $pr_facilities = null;
+        }
+
+        /* Double Sharing */
+        $ds_rent = $request->ds_rent;
+        $ds_security_deposit = $request->ds_security_deposit;
+        $ds_facilities_arr = $request->ds_facilities_arr;
+        $ds_total_beds = $request->ds_total_beds;
+        if ($ds_facilities_arr) {
+            $ds_facilities = implode("','", $ds_facilities_arr);
+        } else {
+            $ds_facilities = null;
+        }
+
+        /* Triple Sharing */
+        $ts_rent = $request->ts_rent;
+        $ts_security_deposit = $request->ts_security_deposit;
+        $ts_total_beds = $request->ts_total_beds;
+        $ts_facilities_arr = $request->ts_facilities_arr;
+        if ($ts_facilities_arr) {
+            $ts_facilities = implode("','", $ts_facilities_arr);
+        } else {
+            $ts_facilities = null;
+        }
+
+        /* 3+ Sharing */
+        $ms_rent = $request->ms_rent;
+        $ms_security_deposit = $request->ms_security_deposit;
+        $ms_total_beds = $request->ms_total_beds;
+        $ms_facilities_arr = $request->ms_facilities_arr;
+        if ($ms_facilities_arr) {
+            $ms_facilities = implode("','", $ms_facilities_arr);
+        } else {
+            $ms_facilities = null;
+        }
+
+        $last_pg_id = session('pg_property_id');
+
+        /* Private Room */
+        if ($pr_rent || $pr_security_deposit) {
+            $roomModel = new PGRoomDetails();
+            $roomModel->pg_id = $last_pg_id;
+            $roomModel->room_type = 'Private Room';
+            $roomModel->total_beds_in_room = $pr_total_beds;
+            $roomModel->rent = $pr_rent;
+            $roomModel->security_deposit = $pr_security_deposit;
+            $roomModel->facilities = $pr_facilities;
+            $roomModel->save();
+        } else {
+
+        }
+
+        /* Double Sharing */
+        if ($ds_rent || $ds_security_deposit) {
+            $roomModel = new PGRoomDetails();
+            $roomModel->pg_id = $last_pg_id;
+            $roomModel->room_type = 'Double Sharing';
+            $roomModel->total_beds_in_room = $ds_total_beds;
+            $roomModel->rent = $ds_rent;
+            $roomModel->security_deposit = $ds_security_deposit;
+            $roomModel->facilities = $ds_facilities;
+            $roomModel->save();
+        }
+
+        /* Triple Sharing */
+        if ($ts_rent || $ts_security_deposit) {
+            $roomModel = new PGRoomDetails();
+            $roomModel->pg_id = $last_pg_id;
+            $roomModel->room_type = 'Triple Sharing';
+            $roomModel->total_beds_in_room = $ts_total_beds;
+            $roomModel->rent = $ts_rent;
+            $roomModel->security_deposit = $ts_security_deposit;
+            $roomModel->facilities = $ts_facilities;
+            $roomModel->save();
+        }
+
+        /* 3+ Sharing */
+        if ($ms_rent || $ms_security_deposit) {
+            $roomModel = new PGRoomDetails();
+            $roomModel->pg_id = $last_pg_id;
+            $roomModel->room_type = '3+ Sharing';
+            $roomModel->total_beds_in_room = $ms_total_beds;
+            $roomModel->rent = $ms_rent;
+            $roomModel->security_deposit = $ms_security_deposit;
+            $roomModel->facilities = $ms_facilities;
+            $roomModel->save();
+        }
+
+        echo 'success';
+
+    }
+
+    public function uploadPGPropertyImage(Request $request)
+    {
+        $last_pg_id = session('pg_property_id');
+        $pgImageModel = new PGImage();
+        $pgImage = $request->file('file');
+        $pg_image_name = uniqid() . '_' . $pgImage->getClientOriginalName();
+        $path = storage_path('app/public/property/pg/');
+        $pgImage->move($path, $pg_image_name);
+        $pgImageModel->pg_id = $last_pg_id;
+        $pgImageModel->pg_image = $pg_image_name;
+        $pgImageModel->save();
+        return response()->json(['success' => $pg_image_name]);
     }
 }

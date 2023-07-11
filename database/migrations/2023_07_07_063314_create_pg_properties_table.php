@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('best_suited_for', 99)->nullable();
             $table->string('meals_available', 10)->nullable();
             $table->string('meals_offering', 255)->nullable();
-            $table->string('meal_speciality', 999)->nullable();
+            $table->string('meals_speciality', 999)->nullable();
             $table->string('notice_period', 20)->nullable();
             $table->string('lock_in_period', 20)->nullable();
             $table->text('common_areas')->nullable();

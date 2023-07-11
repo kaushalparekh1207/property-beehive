@@ -257,7 +257,11 @@ Route::post('/property/edit/propertyData', [PropertyMasterController::class, 'ed
 // Add PG Properties
 Route::get('/add_pg_property_details', [PGPropertyController::class, 'addPGPropertyDetails'])->name('addPGPropertyDetails');
 Route::post('/insert_pg_property_data_ajax', [PGPropertyController::class, 'pgpropertyDataInsertAjax'])->name('PGpropertyDataInsertAjax');
+Route::post('/add_new_room', [PGPropertyController::class, 'addNewRoom'])->name('addNewRoom');
+Route::post('/insert_pg_room_details_ajax', [PGPropertyController::class, 'PGroomDetailsInsertAjax'])->name('PGroomDetailsInsertAjax');
 
+// PG Property Image Upload
+Route::post('/upload_pg_images', [PGPropertyController::class, 'uploadPGPropertyImage'])->name('uploadPGPropertyImage');
 
 // Upload Documents/Images for Property
 Route::post('/upload_banner', [PropertyFileController::class, 'uploadPropertyBannerImage'])->name('uploadPropertyBannerImage');

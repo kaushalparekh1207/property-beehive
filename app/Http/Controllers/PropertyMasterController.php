@@ -426,6 +426,7 @@ class PropertyMasterController extends Controller
         }
 
         // Add Property Amenities
+
         $amenitiesArray = $request->amenitiesArray;
         if ($amenitiesArray != []) {
             foreach ($amenitiesArray as $amenity) {
